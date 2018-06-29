@@ -1,0 +1,101 @@
+import React from "react";
+import fetch from "isomorphic-fetch";
+import _ from "lodash";
+import EpcEnergyEfficiencyGraph from "../components/EpcEnergyEfficiencyGraph";
+import EpcEnvironmentalImpactGraph from "../components/EpcEnvironmentalImpactGraph";
+import PropertySidebar from "../components/PropertySidebar";
+class Epc extends React.Component {
+    render( ) {
+
+        if(_.isEmpty(this.props.epc)) {
+            return (
+                <div className="container list-page-padding">
+                    <div className="row">
+                        <PropertySidebar url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
+                        <div className="col">
+                            <div className="text-center">
+                                No EPC data for this address, this might be because this property hasn't been sold since the EPC was
+                                brought in.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            )
+        } else {
+        return (
+        <div className="container list-page-padding">
+            <div className="row">
+            <PropertySidebar url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number} />
+            <div className="col">
+
+
+            <h1>EPC details for {this.props.property.full_address}</h1>
+            <p>An Energy Performance Certificate shows the energy efficiency of a domestic or commercial properties in the UK. This will show you ways that you can save money on your bills and make your property more energy efficient.  </p>
+            <div className="row">
+                <div className="col">
+                   <EpcEnergyEfficiencyGraph epc={this.props.epc}/>
+                </div>
+
+                <div className="col">
+                    <EpcEnvironmentalImpactGraph epc={this.props.epc} />
+                </div>
+            </div>
+
+            <div className="row">
+                <div className="col">
+                    <div className="panel panel-default">
+                        <div className="panel-heading">
+                            EPC
+                        </div>
+                        <div className="panel-body">
+                            <ul className="list-unstyled">
+                                <li>Date: {this.props.epc.inspection_date} </li>
+                                <li>Floor area: {this.props.epc.total_floor_area} sqm</li>
+                                <li>Current Energy Rating: {this.props.epc.current_energy_rating}</li>
+                                <li>Potential Rating: {this.props.epc.potential_energy_rating}</li>
+                                <li>Current Carbon Footprint: {this.props.epc.co2_emmissions_current}</li>
+                                <li>Potential Carbon Footprint: {this.props.epc.co2_emissions_potential}</li>
+                                <li>Annual Saving {_.round(this.props.epc.co2_emmissions_current - this.props.epc.co2_emissions_potential,2)}</li>
+                                <li>Equal to
+                                    planting {_.round(this.props.epc.co2_emmissions_current - this.props.epc.co2_emissions_potential) * 5} trees
+                                    per year
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div className="col">
+                    <div className="panel panel-default">
+                        <div className="panel-heading">
+                            Running Costs
+                        </div>
+                        <div className="panel-body">
+                            <ul className="list-unstyled">
+                                <li>Annual Fuel
+                                    Bill: &pound;{this.props.epc.hot_water_cost_current + this.props.epc.heating_cost_current + this.props.epc.lighting_cost_current}</li>
+                                <li>UK Average: &pound; 1350</li>
+                                <li>Difference: &pound; {1350 -(this.props.epc.hot_water_cost_current + this.props.epc.heating_cost_current + this.props.epc.lighting_cost_current)}</li>
+                                <li>Potential Bill: &pound; {(this.props.epc.hot_water_cost_potential + this.props.epc.heating_cost_potential + this.props.epc.lighting_cost_potential)}</li>
+                                <li>Potential Saving: &pound;{(this.props.epc.hot_water_cost_current + this.props.epc.heating_cost_current + this.props.epc.lighting_cost_current)-(this.props.epc.hot_water_cost_potential + this.props.epc.heating_cost_potential + this.props.epc.lighting_cost_potential)}</li>
+                                <li>Saving: {_.round((this.props.epc.hot_water_cost_potential + this.props.epc.heating_cost_potential + this.props.epc.lighting_cost_potential)/(this.props.epc.hot_water_cost_current + this.props.epc.heating_cost_current + this.props.epc.lighting_cost_current)*100)} %</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+        );
+        }
+    }
+}
+
+Epc.getInitialProps = async ({ req, query: { postcode, address } }) => {
+    const res = await fetch("http://www.housevault.test/api/address/" + postcode + "/" + address);
+    const json = await res.json();
+    return { property: json.data, epc: _.first(_.orderBy(json.data.epc.data,['id'],['desc'])) }
+};
+
+export default Epc;

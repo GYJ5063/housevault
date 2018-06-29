@@ -1,0 +1,30 @@
+{
+  "name": "nextjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@zeit/next-sass": "^0.2.0",
+    "dns": "^0.2.2",
+    "express": "^4.16.3",
+    "fetch": "^1.1.0",
+    "lodash": "^4.17.10",
+    "moment": "^2.22.2",
+    "net": "^1.0.2",
+    "next": "^6.0.3",
+    "next-routes": "^1.4.2",
+    "node-sass": "^4.9.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-google-maps": "^9.4.5",
+    "recompose": "^0.27.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
