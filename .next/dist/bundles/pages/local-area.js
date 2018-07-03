@@ -67,125 +67,16 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./components/Hospitals.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./components/LocalAreaList.js":
+/***/ (function(module, __webpack_exports__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_isomorphic_fetch__ = __webpack_require__("isomorphic-fetch");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_isomorphic_fetch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_isomorphic_fetch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__("react");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment_moment__ = __webpack_require__("moment/moment");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash__ = __webpack_require__("lodash");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_lodash__);
-var _jsxFileName = "/Users/leemellon/Code/Morzuo/nextjs/components/Hospitals.js";
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-
-
-var Hospitals =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(Hospitals, _React$Component);
-
-  function Hospitals() {
-    _classCallCheck(this, Hospitals);
-
-    return _possibleConstructorReturn(this, (Hospitals.__proto__ || Object.getPrototypeOf(Hospitals)).apply(this, arguments));
-  }
-
-  _createClass(Hospitals, [{
-    key: "render",
-    value: function render() {
-      if (__WEBPACK_IMPORTED_MODULE_3_lodash___default.a.isEmpty(this.props.hospitallist)) {
-        return 'Loading';
-      }
-
-      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
-        className: "table-responsive",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 13
-        }
-      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("table", {
-        className: "table",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 14
-        }
-      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("thead", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 15
-        }
-      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("tr", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 16
-        }
-      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("th", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 17
-        }
-      }, "Name"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("th", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 18
-        }
-      }, "Distance"))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("tbody", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 21
-        }
-      }, this.props.hospitallist.map(function (hospital) {
-        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("tr", {
-          key: hospital.id,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 23
-          }
-        }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("td", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 24
-          }
-        }, hospital.organisation_name), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("td", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 25
-          }
-        }, __WEBPACK_IMPORTED_MODULE_3_lodash___default.a.round(hospital.distance, 1), " miles"));
-      }))));
-    }
-  }]);
-
-  return Hospitals;
-}(__WEBPACK_IMPORTED_MODULE_1_react___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["a"] = (Hospitals);
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/leemellon/Code/Morzuo/nextjs/components/LocalAreaList.js'");
 
 /***/ }),
 
@@ -228,7 +119,7 @@ var _jsxFileName = "/Users/leemellon/Code/Morzuo/nextjs/components/PropertySideb
       fileName: _jsxFileName,
       lineNumber: 7
     }
-  }, "Property Profile ", props.url, " ")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__routes__["Link"], {
+  }, "Property Profile ")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__routes__["Link"], {
     route: "/property/" + props.postcode + "/" + props.number + "/sold-prices",
     __source: {
       fileName: _jsxFileName,
@@ -264,55 +155,55 @@ var _jsxFileName = "/Users/leemellon/Code/Morzuo/nextjs/components/PropertySideb
       fileName: _jsxFileName,
       lineNumber: 16
     }
-  }, "Local Area")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
-    className: "nav-link",
-    id: "v-pills-settings-tab",
-    "data-toggle": "pill",
-    href: "#v-pills-settings",
-    role: "tab",
-    "aria-controls": "v-pills-settings",
-    "aria-selected": "false",
+  }, "Local Area")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__routes__["Link"], {
+    route: "/property/" + props.postcode + "/" + props.number + "/people",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
+    className: (props.url === '/people' ? 'active' : null) + " nav-link",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 19
     }
-  }, "People"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
-    className: "nav-link",
-    id: "v-pills-settings-tab",
-    "data-toggle": "pill",
-    href: "#v-pills-settings",
-    role: "tab",
-    "aria-controls": "v-pills-settings",
-    "aria-selected": "false",
+  }, "People")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__routes__["Link"], {
+    route: "/property/" + props.postcode + "/" + props.number + "/property-stats",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 21
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
+    className: (props.url === '/property-stats' ? 'active' : null) + " nav-link",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 22
     }
-  }, "Property"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
-    className: "nav-link",
-    id: "v-pills-settings-tab",
-    "data-toggle": "pill",
-    href: "#v-pills-settings",
-    role: "tab",
-    "aria-controls": "v-pills-settings",
-    "aria-selected": "false",
+  }, "Property Stats")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__routes__["Link"], {
+    route: "/property/" + props.postcode + "/" + props.number + "/culture",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 24
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
+    className: (props.url === '/culture' ? 'active' : null) + " nav-link",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 25
     }
-  }, "Culture"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
-    className: "nav-link",
-    id: "v-pills-settings-tab",
-    "data-toggle": "pill",
-    href: "#v-pills-settings",
-    role: "tab",
-    "aria-controls": "v-pills-settings",
-    "aria-selected": "false",
+  }, "Culture")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__routes__["Link"], {
+    route: "/property/" + props.postcode + "/" + props.number + "/crime",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 27
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
+    className: (props.url === '/crime' ? 'active' : null) + " nav-link",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 28
     }
-  }, "Crime")));
+  }, "Crime"))));
 });
 
 /***/ }),
@@ -326,8 +217,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__("react");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Hospitals__ = __webpack_require__("./components/Hospitals.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_LocalAreaList__ = __webpack_require__("./components/LocalAreaList.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_LocalAreaList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_LocalAreaList__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_PropertySidebar__ = __webpack_require__("./components/PropertySidebar.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_isomorphic_fetch__ = __webpack_require__("isomorphic-fetch");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_isomorphic_fetch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_isomorphic_fetch__);
 
 var _jsxFileName = "/Users/leemellon/Code/Morzuo/nextjs/pages/local-area.js";
 
@@ -351,6 +245,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
 var LocalArea =
 /*#__PURE__*/
 function (_React$Component) {
@@ -369,37 +264,80 @@ function (_React$Component) {
         className: "container list-page-padding",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 12
+          lineNumber: 13
         }
       }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
         className: "row",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 13
+          lineNumber: 14
         }
       }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_PropertySidebar__["a" /* default */], {
+        url: this.props.url.pathname,
+        postcode: this.props.property.postcode,
+        number: this.props.property.building_number,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 14
+          lineNumber: 15
         }
       }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
         className: "col",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 15
-        }
-      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h3", {
-        __source: {
-          fileName: _jsxFileName,
           lineNumber: 16
         }
-      }, "Closest Hospitals to this address "), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Hospitals__["a" /* default */], {
-        hospitallist: this.props.hospitals,
+      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+        className: "row",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 17
         }
-      }))));
+      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h3", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 18
+        }
+      }, "Closest Hospitals to this address "), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_LocalAreaList__["default"], {
+        list: this.props.hospitals,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 19
+        }
+      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+        className: "row",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 21
+        }
+      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h3", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 22
+        }
+      }, "Closest Primary Schools to this address "), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_LocalAreaList__["default"], {
+        list: this.props.primary_schools,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 23
+        }
+      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+        className: "row",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 25
+        }
+      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h3", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 26
+        }
+      }, "Closest Primary Schools to this address "), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_LocalAreaList__["default"], {
+        list: this.props.secondary_schools,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 27
+        }
+      })))));
     }
   }]);
 
@@ -420,7 +358,7 @@ function () {
           case 0:
             req = _ref.req, _ref$query = _ref.query, postcode = _ref$query.postcode, address = _ref$query.address;
             _context.next = 3;
-            return fetch("http://www.housevault.test/api/address/" + postcode + "/" + address + '/hospitals');
+            return __WEBPACK_IMPORTED_MODULE_4_isomorphic_fetch___default()("http://www.housevault.test/api/address/" + postcode + "/" + address + '/local-area');
 
           case 3:
             res = _context.sent;
@@ -430,7 +368,10 @@ function () {
           case 6:
             json = _context.sent;
             return _context.abrupt("return", {
-              hospitals: json
+              property: json.address,
+              hospitals: json.hospitals,
+              primary_schools: json.primary_schools,
+              secondary_schools: json.secondary_schools
             });
 
           case 8:
@@ -455,11 +396,11 @@ function () {
 
 var routes = module.exports = __webpack_require__("next-routes")();
 
-routes.add('town', '/town/:town').add('property', '/property/:postcode/:address').add('epc', '/property/:postcode/:address/epc').add('sold-prices', '/property/:postcode/:address/sold-prices').add('local-area', '/property/:postcode/:address/local-area').add('town-postcode-list', '/towns').add('street', '/postcode/:postcode');
+routes.add('town', '/town/:town').add('property', '/property/:postcode/:address').add('epc', '/property/:postcode/:address/epc').add('sold-prices', '/property/:postcode/:address/sold-prices').add('local-area', '/property/:postcode/:address/local-area').add('culture', '/property/:postcode/:address/culture').add('property-stats', '/property/:postcode/:address/property-stats').add('people', '/property/:postcode/:address/people').add('town-postcode-list', '/towns').add('street', '/postcode/:postcode');
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("./pages/local-area.js");
@@ -478,20 +419,6 @@ module.exports = require("@babel/runtime/regenerator");
 /***/ (function(module, exports) {
 
 module.exports = require("isomorphic-fetch");
-
-/***/ }),
-
-/***/ "lodash":
-/***/ (function(module, exports) {
-
-module.exports = require("lodash");
-
-/***/ }),
-
-/***/ "moment/moment":
-/***/ (function(module, exports) {
-
-module.exports = require("moment/moment");
 
 /***/ }),
 

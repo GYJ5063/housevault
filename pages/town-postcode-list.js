@@ -37,7 +37,7 @@ class TownPostcodeList extends React.Component {
     }
 }
 TownPostcodeList.getInitialProps = async ({ req }) => {
-    const res = await fetch('http://www.housevault.test/api/towns');
+    const res = await fetch(process.env.BACKEND_URL + "towns");
     const json = await res.json();
 
     return { towns: json.data }

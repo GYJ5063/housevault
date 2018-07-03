@@ -36,7 +36,7 @@ class Town extends React.Component {
 }
 Town.getInitialProps = async ({ req , query: { town } }) => {
 
-    const res = await fetch('http://www.housevault.test/api/town/' + town);
+    const res = await fetch(process.env.BACKEND_URL + "town/" + town);
     const json = await res.json();
     return { town: json.data, name: town }
 };

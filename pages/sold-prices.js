@@ -3,7 +3,7 @@ import fetch from "isomorphic-fetch";
 import _ from "lodash";
 import PropertySidebar from "../components/PropertySidebar";
 import moment from "moment";
-import GoogleMapsWithMarkers from "../components/GoogleMapsWithMarkers";
+
 class SoldPrices extends React.Component {
 
     render() {
@@ -23,12 +23,10 @@ class SoldPrices extends React.Component {
                                     <div className="col">
                                         {moment(price.sold_date,"DD-MM-YYYY").format("MMMM YYYY")}
                                     </div>
-                                    <div className="col">
+                                    <div className="col text-right">
                                         &pound;{price.price}
                                     </div>
                                 </div>
-
-
                             </div>
                         ) ) }
                     </div>
@@ -40,7 +38,7 @@ class SoldPrices extends React.Component {
     }
 }
 SoldPrices.getInitialProps = async ({ req, query: { postcode, address } }) => {
-    const res = await fetch("http://www.housevault.test/api/address/" + postcode + "/" + address);
+    const res = await fetch(process.env.BACKEND_URL + "address/" + postcode + "/" + address);
     const json = await res.json();
     return {property: json.data, prices: json.data.prices.data}
 };

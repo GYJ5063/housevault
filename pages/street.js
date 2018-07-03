@@ -128,7 +128,7 @@ class Street extends React.Component {
     }
 }
 Street.getInitialProps = async ({ req , query: { postcode } }) => {
-    const res = await fetch("http://www.housevault.test/api/postcode/"+ postcode);
+    const res = await fetch(process.env.BACKEND_URL + "postcode/"+ postcode);
     const json = await res.json();
     return { addresses: json.data }
 };

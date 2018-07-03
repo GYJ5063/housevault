@@ -4,7 +4,7 @@ export default (props) =>
         <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
              aria-orientation="vertical">
             <Link route={"/property/"+props.postcode+"/"+props.number}>
-                <a className={ ((props.url === '/property') ? 'active' : null) + " nav-link"} >Property Profile {props.url} </a>
+                <a className={ ((props.url === '/property') ? 'active' : null) + " nav-link"} >Property Profile </a>
             </Link>
             <Link route={"/property/"+props.postcode+"/"+props.number +"/sold-prices"}>
             <a className={ ((props.url === '/sold-prices') ? 'active' : null) + " nav-link"}>Sold Prices</a>
@@ -15,18 +15,18 @@ export default (props) =>
             <Link route={"/property/"+props.postcode+"/"+props.number +"/local-area"}>
                 <a className={ ((props.url === '/local-area') ? 'active' : null) + " nav-link"}>Local Area</a>
             </Link>
+            <Link route={"/property/"+props.postcode+"/"+props.number +"/people"}>
+                <a className={ ((props.url === '/people') ? 'active' : null) + " nav-link"}>People</a>
+            </Link>
+            <Link route={"/property/"+props.postcode+"/"+props.number +"/property-stats"}>
+                <a className={ ((props.url === '/property-stats') ? 'active' : null) + " nav-link"}>Property Stats</a>
+            </Link>
+            <Link route={"/property/"+props.postcode+"/"+props.number +"/culture"}>
+                <a className={ ((props.url === '/culture') ? 'active' : null) + " nav-link"}>Culture</a>
+            </Link>
+            <Link route={"/property/"+props.postcode+"/"+props.number +"/crime"}>
+                <a className={ ((props.url === '/crime') ? 'active' : null) + " nav-link"}>Crime</a>
+            </Link>
 
-            <a className="nav-link" id="v-pills-settings-tab" data-toggle="pill"
-               href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
-               aria-selected="false">People</a>
-            <a className="nav-link" id="v-pills-settings-tab" data-toggle="pill"
-               href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
-               aria-selected="false">Property</a>
-            <a className="nav-link" id="v-pills-settings-tab" data-toggle="pill"
-               href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
-               aria-selected="false">Culture</a>
-            <a className="nav-link" id="v-pills-settings-tab" data-toggle="pill"
-               href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
-               aria-selected="false">Crime</a>
         </div>
     </div>

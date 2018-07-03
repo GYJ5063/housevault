@@ -33,7 +33,7 @@ class Postcodes extends React.Component {
     }
 }
 Postcodes.getInitialProps = async ({ req }) => {
-    const res = await fetch('http://www.housevault.test/api/postcode');
+    const res = await fetch(process.env.BACKEND_URL + "postcode");
     const json = await res.json();
     return { postcodes: json.data }
 };

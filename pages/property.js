@@ -94,7 +94,7 @@ class Property extends React.Component {
 }
 
 Property.getInitialProps = async ({ req, query: { postcode, address } }) => {
-    const res = await fetch("http://www.housevault.test/api/address/" + postcode + "/" + address);
+    const res = await fetch(process.env.BACKEND_URL + "address/" + postcode + "/" + address);
     const json = await res.json();
     return { address: json.data }
 };

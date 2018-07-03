@@ -93,7 +93,7 @@ class Epc extends React.Component {
 }
 
 Epc.getInitialProps = async ({ req, query: { postcode, address } }) => {
-    const res = await fetch("http://www.housevault.test/api/address/" + postcode + "/" + address);
+    const res = await fetch(process.env.BACKEND_URL + "address/" + postcode + "/" + address);
     const json = await res.json();
     return { property: json.data, epc: _.first(_.orderBy(json.data.epc.data,['id'],['desc'])) }
 };
