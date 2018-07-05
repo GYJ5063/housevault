@@ -78,6 +78,16 @@ header {
 }
 .navbar .nav li {
     padding: 5px;
+    .searchfieldtop{
+        border: 1px solid #65D2FF;
+        background: transparent;
+        border-radius: 15px;
+        color: #FFFFFF;
+        padding: 2px 10px;
+        &::-webkit-input-placeholder{
+            color: #FFFFFF;
+        }
+    }
     a {
         color: #fff;
         font-size: 15px;
@@ -296,8 +306,8 @@ header {
     }
 }
 
-.sec-hedding {
-    font: 700 35px/75px 'Roboto Condensed', sans-serif;
+.sec-heading {
+    font: 700 26px/75px 'Roboto Condensed', sans-serif;
     min-height: 75px;
     box-sizing: border-box;
     text-align: center;
@@ -333,8 +343,8 @@ header {
 
 .tech-heading {
     background-color: #ffffff;
-    font: 700 35px/75px 'Roboto Condensed', sans-serif;
-    min-height: 75px;
+    font: 600 26px/50px 'Roboto Condensed', sans-serif;
+    min-height: 50px;
     box-sizing: border-box;
     text-align: center;
     color: #000;

@@ -10,6 +10,9 @@ export default () =>
                 </button>
                 <div className="collapse navbar-collapse justify-content-md-end" id="navbarSupportedContent">
                     <ul className="nav navbar-nav navbar-right">
+                        <li><input type="text" id="autocompletetop" className="searchfieldtop"
+                                   placeholder="Search the vault" aria-label="SEARCH.."
+                                   aria-describedby="search-vault" /></li>
                         <li><a href="/towns" title="">SEARCH BY TOWN</a></li>
                         <li><a href="/postcodes" title="">SEARCH BY POSTCODE</a></li>
                         <li><a href="/about-us" title="">ABOUT US</a></li>
