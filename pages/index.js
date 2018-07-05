@@ -75,7 +75,7 @@ export default () =>
         <div className="container">
             <div className="col-md-12 bottom-box illustration-1 row">
                 <div className="col-md-6">
-                    <h4 className="sec-hedding">WHAT IS THE HOUSEVAULT?</h4>
+                    <h4 className="sec-heading">WHAT IS THE HOUSEVAULT?</h4>
                     <h3>HouseVault, as the name suggests, is the largest known database of property and local
                         information.</h3>
                     <p>Accessing the HouseVault, which uses our leading Machine Learning & Artificial Intelligence
@@ -117,7 +117,7 @@ export default () =>
         <div className="container">
             <div className="col-md-12 row">
                 <div className="col-md-6">
-                    <h4 className="sec-hedding">THE FUTURE IS HERE!</h4>
+                    <h4 className="sec-heading">THE FUTURE IS HERE!</h4>
                     <div className="col-md-12 row">
                         <div className="col-md-6">
                             <span className="icon-predict"></span>
@@ -171,7 +171,7 @@ export default () =>
             <div className="container">
                 <div className="col-md-12">
                     <div className="col-md-6">
-                        <h4 className="sec-hedding">GET TO KNOW YOUR NEIGHBOURS</h4>
+                        <h4 className="sec-heading">GET TO KNOW YOUR NEIGHBOURS</h4>
                         <p>With Housevault you can search for the following information</p>
                         <ul>
                             <li>Current house prices</li>
