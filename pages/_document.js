@@ -15,6 +15,7 @@ export default class MyDocument extends Document {
                       crossOrigin="anonymous" />
 
                 <link rel="stylesheet" href="/_next/static/style.css" />
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             </Head>
             <Header />
             <body>
