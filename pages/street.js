@@ -152,7 +152,17 @@ class Street extends React.Component {
                             <div key={price.id}>
                                 <div className="row">
                                     <div className="col">
-                                        <h6>{moment(price.sold_date,"YYYY-MM-DD HH:mm:ss").format('Do MMMM YYYY')} - {price.poan} {price.street} <span className="float-right">&pound;{price.price}</span></h6>
+                                        <div className="table-responsive">
+                                        <table className="table">
+                                            <tbody>
+                                            <tr>
+                                                <td  scope="row"><b>{price.poan} {price.street}</b> - Sold on <i>{moment(price.sold_date,"YYYY-MM-DD HH:mm:ss").format('Do MMMM YYYY')}</i> </td>
+
+                                                <td className="text-right ">&pound;{price.price}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
