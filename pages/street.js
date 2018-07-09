@@ -96,19 +96,7 @@ class Street extends React.Component {
             <div>
                 <div className="container postcode-page">
                     <div className="row">
-                    <div className="col-2">
-                        <b>{this.props.postcode}</b>
-                        <ul className="list-unstyled">
-                            <li>Properties</li>
-                            <li>Sold Prices</li>
-                            <li>Local Area</li>
-                            <li>Crime</li>
-                            <li>Broadband</li>
-                            <li>People</li>
-                            <li>Culture</li>
-                        </ul>
-
-                    </div>
+                   
                     <div className="col">
                         <h1>About {this.props.postcode}</h1>
                         <p>
