@@ -1251,5 +1251,31 @@ footer {
 
 .list-page-padding {
     padding:1rem 0 1rem 0;
+}
+.postcode-page {
+    h1 {
+        margin-top:20px;
+    }
+    h2 {
+
+        background:$banner-blue;
+        color:#ffffff;
+        font-size:1.2em;
+        padding:10px;
+        margin-bottom:20px;
+    }
+    .property-image {
+        margin-bottom:20px;
+    }
+    .property-header {
+        border:1px solid $banner-blue;
+        color:$banner-blue;
+        padding:10px;
+        margin-bottom:20px;
+        h6 {
+            padding:0;
+            margin:0;
+        }
+    }
 
 }

@@ -18,10 +18,6 @@ const GoogleMaps = compose(
         defaultCenter={props.markerPosition}
     >
         {props.isMarkerShown && <Marker position={props.markerPosition} onClick={props.onMarkerClick} />}
-        <Marker
-            position={{ lat: 51.638651, lng: -1.864093 }}
-        />
-        
     </GoogleMap>
 );
 
