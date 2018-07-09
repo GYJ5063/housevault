@@ -96,9 +96,9 @@ class Street extends React.Component {
             <div>
                 <div className="container postcode-page">
                     <div className="row">
-                   
+
                     <div className="col">
-                        <h1>About {this.props.postcode}</h1>
+                        <h1>{this.props.postcode} Area Report</h1>
                         <p>
                             <span>Below you will find key statistics including sold prices, property valuations, energy performance, crime and local services for the { _.first(this.props.addresses.addresses.data).street }, { _.first(this.props.addresses.addresses.data).town}, { _.first(this.props.addresses.addresses.data).postcode} area. If you want specific property information select the address under ‘Properties Section’. You can freely use our AVM to generate property valuations and our EnergyVault app to predict a properties efficiency and running costs. </span>
                         </p>
