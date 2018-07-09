@@ -1,15 +1,31 @@
 import React from "react";
 import _ from "lodash";
-import Link from 'next/link'
 import fetch from "isomorphic-fetch";
 import moment from 'moment';
 import GoogleMaps from "../components/GoogleMaps";
+import CensusHousingType from "../components/census/CensusHousingType";
+import CensusHousingTenure from "../components/census/CensusHousingTenure";
+import CensusEthnicGroup from "../components/census/CensusEthnicGroup";
 import LocalAreaList from "../components/LocalAreaList";
-
+import CensusReligion from "../components/census/CensusReligion";
+import CensusAge from "../components/census/CensusAge";
+import CensusRelationshipStatus from "../components/census/CensusRelationshipStatus";
+import CensusGender from "../components/census/CensusGender";
+import CensusHealth from "../components/census/CensusHealth";
+import CensusEducation from "../components/census/CensusEducation";
 class Street extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {isMarkerShown: false, localAreaLoading:false, localArea:[], propertyDataLoading:false, property:[]}
+        this.state = {
+            isMarkerShown: false,
+            localAreaLoading: false,
+            localArea: [],
+            propertyDataLoading: false,
+            census: []
+        }
+
+
+
 
     }
 
@@ -54,7 +70,6 @@ class Street extends React.Component {
             .then(function(response) {
                return response.json();
         }).then(function(localArea) {
-
             self.setState(prevState => ({
                 localAreaLoading: false,
                 localArea: [...prevState.localArea,localArea]
@@ -62,24 +77,9 @@ class Street extends React.Component {
         });
     }
 
-    getPropertyGraphs(postcode) {
-        this.setState({propertyGraphsLoading:true});
-        let self = this;
-
-        fetch(process.env.BACKEND_URL + "postcode/"+ postcode + '/property')
-            .then(function(response) {
-                return response.json();
-            }).then(function(propertyData) {
-
-            self.setState(prevState => ({
-                propertyGraphsLoading: false,
-                propertyData: [...prevState.propertyData,propertyData]
-            }));
-        });
-    }
-
 
     render() {
+
         if (_.isEmpty(this.props.addresses) && _.isEmpty(this.props.sold_prices)) {
             return null;
         }
@@ -89,6 +89,9 @@ class Street extends React.Component {
 
         let marker = {lng: _.toNumber(this.props.addresses.lng), lat: _.toNumber(this.props.addresses.lat)};
         let localArea = _.head(this.state.localArea);
+
+
+
         return (
             <div>
                 <div className="container postcode-page">
@@ -104,19 +107,12 @@ class Street extends React.Component {
                             <li>People</li>
                             <li>Culture</li>
                         </ul>
-                        <ins className="adsbygoogle"
-                             style={{display:'block'}}
-                             data-ad-client="ca-pub-4216565043840609"
-                             data-ad-slot="6643207276"
-                             data-ad-format="auto"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
+
                     </div>
                     <div className="col">
                         <h1>About {this.props.postcode}</h1>
                         <p>
-                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci commodi, enim facilis fugiat fugit hic maiores modi nulla quibusdam, recusandae repellat similique sunt tempore temporibus totam veniam. Magnam, omnis.</span><span>Ad alias aliquid animi, distinctio ducimus explicabo facilis iste quidem sit. Accusantium ad, aspernatur doloremque eaque est excepturi fuga ipsum, molestiae neque nobis nulla optio pariatur, provident quas ratione voluptatibus!</span>
+                            <span>Below you will find key statistics including sold prices, property valuations, energy performance, crime and local services for the { _.first(this.props.addresses.addresses.data).street }, { _.first(this.props.addresses.addresses.data).town}, { _.first(this.props.addresses.addresses.data).postcode} area. If you want specific property information select the address under ‘Properties Section’. You can freely use our AVM to generate property valuations and our EnergyVault app to predict a properties efficiency and running costs. </span>
                         </p>
 
                         <GoogleMaps
@@ -126,6 +122,43 @@ class Street extends React.Component {
                             zoom={11}
                         />
                         <br />
+
+                        <div className="row">
+                            <div className="col">
+                                <CensusHousingType areacode={this.props.addresses.census_code} />
+                            </div>
+                            <div className="col">
+                                <CensusHousingTenure areacode={this.props.addresses.census_code} />
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col">
+                                <CensusEthnicGroup areacode={this.props.addresses.census_code} />
+                            </div>
+                            <div className="col">
+                                <CensusReligion areacode={this.props.addresses.census_code} />
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col">
+                                <CensusAge areacode={this.props.addresses.census_code} />
+                            </div>
+                            <div className="col">
+                                <CensusEducation areacode={this.props.addresses.census_code} />
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col">
+                                <CensusGender areacode={this.props.addresses.census_code} />
+                            </div>
+                            <div className="col">
+                                <CensusHealth areacode={this.props.addresses.census_code} />
+                            </div>
+                        </div>
+                      
                         <h2>Sold Prices</h2>
                         {this.props.sold_prices.map((price) => (
                             <div key={price.id}>
