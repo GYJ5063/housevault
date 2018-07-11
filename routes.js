@@ -1,6 +1,7 @@
 const routes = module.exports = require('next-routes')()
 
 routes
+    .add('index', '/')
     .add('town', '/town/:town')
     .add('property', '/property/:postcode/:address')
     .add('epc', '/property/:postcode/:address/epc')
@@ -9,5 +10,7 @@ routes
     .add('culture', '/property/:postcode/:address/culture')
     .add('property-stats', '/property/:postcode/:address/property-stats')
     .add('people', '/property/:postcode/:address/people')
+    .add('broadband', '/property/:postcode/:address/broadband')
+    .add('crime', '/property/:postcode/:address/broadband')
     .add('town-postcode-list', '/towns')
     .add('street', '/postcode/:postcode');

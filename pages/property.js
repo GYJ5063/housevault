@@ -3,6 +3,7 @@ import _ from "lodash";
 import StreetView from "../components/StreetView";
 import GoogleMaps from "../components/GoogleMaps";
 import PropertySidebar from "../components/PropertySidebar";
+import fetch from 'isomorphic-fetch';
 class Property extends React.Component {
 
     constructor(props) {

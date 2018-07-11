@@ -5,9 +5,11 @@ import _ from "lodash";
 class ChartTable extends React.Component {
 
     render() {
+
         if (_.isEmpty(this.props.list)) {
             return 'Loading';
         }
+
         return (
             <div className="table-responsive">
                 <table className="table">

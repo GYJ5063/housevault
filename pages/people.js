@@ -2,7 +2,6 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 import _ from "lodash";
 import PropertySidebar from "../components/PropertySidebar";
-import moment from "moment";
 
 class People extends React.Component {
 
@@ -19,7 +18,7 @@ class People extends React.Component {
 
                         <table className="table">
                         { this.props.ageData.map((el,i) => (
-                        <div key={i}>
+                        <tbody key={i}>
                             {
                                 Object.entries(el).map(([key, value], j) => (
                                     <tr>
@@ -28,12 +27,11 @@ class People extends React.Component {
                                     </tr>
                                 ))
                             }
-                        </div>
+                        </tbody>
                         ))}
                         </table>
                     </div>
                 </div>
-
             </div>
         );
 
