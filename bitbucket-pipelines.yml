@@ -13,6 +13,8 @@
    branches:
      master:
      - step:
+        caches:
+          - node
         # set HEROKU_API_KEY and HEROKU_APP_NAME environment variables
         # set clone `depth: full' as described here: https://confluence.atlassian.com/x/Y9-5Mw
         name: Deploy to Heroku
