@@ -38,7 +38,7 @@
   },
   "scripts": {
     "dev": "node server.js",
-    "build": "next build",
+    "build": "npm run build",
     "start": "NODE_ENV=production node server.js",
     "heroku-postbuild": "npm run build"
   },
