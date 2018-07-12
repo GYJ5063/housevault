@@ -2,7 +2,7 @@
 import Document, { Head, Main, NextScript } from 'next/document'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import "../styles.scss"
+import "../housevault.scss"
 
 
 export default class MyDocument extends Document {
@@ -16,7 +16,7 @@ export default class MyDocument extends Document {
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
                 <title>Search the house vault for the latest property information | House Vault</title>
-                <link rel="stylesheet" href="/_next/static/style.css" />
+                <link rel="stylesheet" href="/_next/static/housevault.css" />
                 <meta name="description" content="View Local information about an address including epc, population, house prices, crime and much more." />
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             </Head>
