@@ -146,7 +146,7 @@ class Street extends React.Component {
                                 <CensusHealth areacode={this.props.addresses.census_code} />
                             </div>
                         </div>
-                      
+
                         <h2>Sold Prices</h2>
                         {this.props.sold_prices.map((price) => (
                             <div key={price.id}>
@@ -226,7 +226,9 @@ class Street extends React.Component {
 }
 Street.getInitialProps = async ({ req , query: { postcode } }) => {
     const res = await fetch(process.env.BACKEND_URL + "postcode/"+ postcode);
+    console.log(process.env.BACKEND_URL + "postcode/"+ postcode);
     const json = await res.json();
+    console.log(json);
     return { addresses: json.postcode_details.data, sold_prices: json.sold_prices, postcode:postcode }
 };
 export default Street;
