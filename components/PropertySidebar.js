@@ -9,7 +9,7 @@ export default (props) =>
             <Link route={"/property/"+props.postcode+"/"+props.number +"/broadband"}>
                 <a className={ ((props.url === '/property') ? 'active' : null) + " nav-link"} >Broadband </a>
             </Link>
-            <Link route={"/property/"+props.postcode+"/"+props.number +"/crime"}>
+            <Link route={"/property/"+props.postcode+"/"+props.number +"/crime-data"}>
                 <a className={ ((props.url === '/property') ? 'active' : null) + " nav-link"} >Crime </a>
             </Link>
             <Link route={"/property/"+props.postcode+"/"+props.number +"/sold-prices"}>
