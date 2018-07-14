@@ -55,11 +55,6 @@ class Index extends Component {
             )
     }
 
-    navigateToHome() {
-
-
-    }
-
     render() {
         return (
             <main role="main">
