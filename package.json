@@ -25,7 +25,11 @@
     "react-chartjs-2": "^2.7.2",
     "react-dom": "^16.4.1",
     "react-google-maps": "^9.4.5",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-router-native": "^4.3.0",
     "react-vis": "^1.10.1",
+    "reactstrap": "^6.3.0",
     "recompose": "^0.27.1",
     "validate": "^4.4.1",
     "validator": "^10.4.0"
