@@ -1,6 +1,5 @@
 .idea
 dist
-.next
 /node_modules
 package-lock.json
 test/node_modules
