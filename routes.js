@@ -10,5 +10,7 @@ routes
     .add('culture', '/property/:postcode/:address/culture')
     .add('property-stats', '/property/:postcode/:address/property-stats')
     .add('people', '/property/:postcode/:address/people')
+    .add('broadband', '/property/:postcode/:address/broadband')
+    .add('crime-data', '/property/:postcode/:address/crime-data')
     .add('town-postcode-list', '/towns')
     .add('street', '/postcode/:postcode');

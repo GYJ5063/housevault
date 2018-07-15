@@ -2,6 +2,8 @@
 import Document, { Head, Main, NextScript } from 'next/document'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import GoogleTagManager from '../components/GoogleTagManager'
+
 import "../styles.scss"
 
 
@@ -10,6 +12,7 @@ export default class MyDocument extends Document {
         return (
             <html>
             <Head>
+
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
                       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
                       crossOrigin="anonymous" />
@@ -18,7 +21,7 @@ export default class MyDocument extends Document {
                 <title>Search the house vault for the latest property information | House Vault</title>
                 <link rel="stylesheet" href="/_next/static/style.css" />
                 <meta name="description" content="View Local information about an address including epc, population, house prices, crime and much more." />
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <GoogleTagManager gtmId='GTM-TZVVKSN' />
             </Head>
             <Header />
             <body>

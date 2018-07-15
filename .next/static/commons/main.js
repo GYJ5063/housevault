@@ -35321,35 +35321,9 @@ module.exports = function(module) {
 /***/ }),
 
 /***/ "./styles.scss":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin;
-    if (true) {
-      var injectCss = function injectCss(prev, href) {
-        var link = prev.cloneNode();
-        link.href = href;
-        link.onload = function() {
-          prev.parentNode.removeChild(prev);
-        };
-        prev.stale = true;
-        prev.parentNode.insertBefore(link, prev);
-      };
-      module.hot.dispose(function() {
-        window.__webpack_reload_css__ = true;
-      });
-      if (window.__webpack_reload_css__) {
-        module.hot.__webpack_reload_css__ = false;
-        console.log("[HMR] Reloading stylesheets...");
-        var prefix = document.location.protocol + '//' + document.location.host;
-        document
-          .querySelectorAll("link[href][rel=stylesheet]")
-          .forEach(function(link) {
-            if (!link.href.match(prefix) || link.stale) return;
-            injectCss(link, link.href.split("?")[0] + "?unix=1531686177534");
-          });
-      }
-    }
-  
+throw new Error("Module build failed: ModuleBuildError: Module build failed: \n@import \"~react-vis/dist/style\";\n^\n      File to import not found or unreadable: ~react-vis/dist/style.\n      in /Users/leemellon/Code/Morzuo/nextjs/styles.scss (line 3, column 1)\n    at runLoaders (/Users/leemellon/Code/Morzuo/nextjs/node_modules/webpack/lib/NormalModule.js:195:19)\n    at /Users/leemellon/Code/Morzuo/nextjs/node_modules/loader-runner/lib/LoaderRunner.js:364:11\n    at /Users/leemellon/Code/Morzuo/nextjs/node_modules/loader-runner/lib/LoaderRunner.js:230:18\n    at context.callback (/Users/leemellon/Code/Morzuo/nextjs/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at Object.asyncSassJobQueue.push [as callback] (/Users/leemellon/Code/Morzuo/nextjs/node_modules/sass-loader/lib/loader.js:55:13)\n    at Object.<anonymous> (/Users/leemellon/Code/Morzuo/nextjs/node_modules/async/dist/async.js:2271:31)\n    at Object.callback (/Users/leemellon/Code/Morzuo/nextjs/node_modules/async/dist/async.js:969:16)\n    at options.error (/Users/leemellon/Code/Morzuo/nextjs/node_modules/node-sass/lib/index.js:294:32)");
 
 /***/ }),
 

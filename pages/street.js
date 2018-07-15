@@ -14,6 +14,7 @@ import CensusHealth from "../components/census/CensusHealth";
 import CensusEducation from "../components/census/CensusEducation";
 
 class Street extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
