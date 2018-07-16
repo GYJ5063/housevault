@@ -2,7 +2,7 @@
 import Document, { Head, Main, NextScript } from 'next/document'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import GoogleTagManager from '../components/GoogleTagManager'
+
 
 import "../styles.scss"
 
@@ -21,7 +21,7 @@ export default class MyDocument extends Document {
                 <title>Search the house vault for the latest property information | House Vault</title>
                 <link rel="stylesheet" href="/_next/static/style.css" />
                 <meta name="description" content="View Local information about an address including epc, population, house prices, crime and much more." />
-                <GoogleTagManager gtmId='GTM-TZVVKSN' />
+
             </Head>
             <Header />
             <body>

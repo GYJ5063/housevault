@@ -200,6 +200,7 @@ class Valuation extends Component {
                                 <span className="col-sm-2"><label htmlFor="property_type">Property Type</label></span>
                                 <select name="property_type" className="field col-sm-8" id="property_type" onChange={this.handleChange}>
                                     <option value="">Choose Property Type</option>
+                                    <option value="Bungalow">Bungalow</option>
                                     <option value="Flat">Flat</option>
                                     <option value="House">House</option>
                                     <option value="Maisonette">Maisonette</option>
@@ -214,12 +215,12 @@ class Valuation extends Component {
                                 <span className="col-sm-2"><label htmlFor="property_style">Property Style</label></span>
                                 <select name="property_style" className="field col-sm-8" id="property_style" onChange={this.handleChange}>
                                     <option value="">Choose Property Style</option>
-                                    <option value="Detatched">Detatched</option>
-                                    <option value="Semi Detached">Semi Detached</option>
-                                    <option value="End Terrace">End Terrace</option>
-                                    <option value="Mid Terrace">Mid Terrace</option>
+                                    <option value="Detached">Detached</option>
+                                    <option value="Semi-Detached">Semi Detached</option>
+                                    <option value="End-Terrace">End Terrace</option>
+                                    <option value="Mid-Terrace">Mid-Terrace</option>
                                     <option value="Enclosed End-Terrace">Enclosed End-Terrace</option>
-                                    <option value="Enclosed Mid-Terrace">Enclosed Mid-Terrace</option>
+                                    <option value="Enclosed-Mid-Terrace">Enclosed Mid-Terrace</option>
                                 </select>
                             </div>
 
@@ -231,6 +232,7 @@ class Valuation extends Component {
                                 <span className="col-sm-2"><label htmlFor="wall_type">Building Construction</label></span>
                                 <select name="wall_type" className="field col-sm-8" id="wall_type" onChange={this.handleChange}>
                                     <option value="">Choose Building Construction</option>
+                                    <option value="system">System</option>
                                     <option value="brick">Brick</option>
                                     <option value="cavity wall">Cavity Wall</option>
                                     <option value="timber">Timber</option>
@@ -318,7 +320,7 @@ class Valuation extends Component {
                                 <span id="err_email" className="col-sm-8 errText">{validation.property_size.message}</span>
                             </div>
                             <div className="row margin-bottom-1">
-                                <span className="col-sm-2"><label htmlFor="property_size">Approximate Size</label></span>
+                                <span className="col-sm-2"><label htmlFor="property_size">Approximate Size (sqm)</label></span>
                                 <input type="text" name="property_size" id="property_size" value={this.state.property_size} className="field col-sm-8" placeholder="Approximate Size" onChange={this.handleChange} /><br/>
                             </div>
 
