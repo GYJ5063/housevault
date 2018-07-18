@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import FormValidator from "../components/FormValidator";
 import axios from "axios/index";
+import _ from 'lodash';
 
 class Valuation extends Component {
 
@@ -88,7 +89,8 @@ class Valuation extends Component {
             property_age: '',
             property_size:'',
             validation: this.validator.valid(),
-            hideLoadingSpinner: true
+            hideLoadingSpinner: true,
+            valuation: {}
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -120,17 +122,17 @@ class Valuation extends Component {
             number_of_bedrooms:this.state.number_of_bedrooms,
             number_of_reception_rooms:this.state.number_of_reception_rooms,
             number_of_bathrooms: this.state.number_of_bathrooms,
-            address_id:24868781,
+            address_id:this.props.url.query.id,
             property_size: this.state.property_size,
             property_age: this.state.property_age
         }
 
         if (validation.isValid) {
             this.setState({hideLoadingSpinner: false});
-
+            let self = this;
             axios.post(process.env.BACKEND_URL +'valuation', formData)
                 .then(function (response) {
-                    console.log(response);
+                    self.setState({ hideLoadingSpinner: true, valuation: response.data });
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -141,16 +143,33 @@ class Valuation extends Component {
     render() {
         let validation = this.submitted ?
             this.validator.validate(this.state) :
-            this.state.validation
+            this.state.validation;
 
         if(!this.state.hideLoadingSpinner) {
             return (
-                <div className="container">
-                    <div className="loading" >
-                        <i className="fa fa-spinner fa-spin fa-10x"></i>
+                <div className="container list-page-padding">
+                    <div className="row">
+                        <div className="col text-center">
+                            <i className="fa fa-spinner fa-spin fa-4x"></i>
+                        </div>
                     </div>
                 </div>
             )
+        }
+        if(!_.isEmpty(this.state.valuation)) {
+
+            return (
+                <div className="container list-page-padding text-center">
+                    <div className="row">
+                        <div className="col">
+                            <h1>We have successfully valued your property</h1>
+                            <p>Your valuation is</p>
+                            <h3>{this.state.valuation.predict_price}</h3>
+                        </div>
+                    </div>
+                </div>
+            )
+
         }
         return (
             <div className="container list-page-padding">
@@ -247,11 +266,12 @@ class Valuation extends Component {
                                 <span id="err_email" className="col-sm-8 errText">{validation.property_age.message}</span>
                             </div>
                             <div className="row margin-bottom-1">
-                                <span className="col-sm-2"><label htmlFor="property_age">Building Construction</label></span>
+                                <span className="col-sm-2"><label htmlFor="property_age">New Build?</label></span>
                                 <select name="property_age" className="field col-sm-8" id="property_age" onChange={this.handleChange}>
-                                    <option value="">Age of Property</option>
-                                    <option value="old">Old</option>
-                                    <option value="new">New</option>
+                                    <option value="">New Build?</option>
+                                    <option value="new">Yes</option>
+                                    <option value="old">No</option>
+
                                 </select>
                             </div>
 
@@ -282,7 +302,7 @@ class Valuation extends Component {
                             <div className="row margin-bottom-1">
                                 <span className="col-sm-2"><label htmlFor="number_of_reception_rooms">Number of Reception Rooms</label></span>
                                 <select name="number_of_reception_rooms" className="field col-sm-8" id="number_of_reception_rooms" onChange={this.handleChange}>
-                                    <option value="">Number of Bedrooms</option>
+                                    <option value="">Number of Reception Rooms</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -302,7 +322,7 @@ class Valuation extends Component {
                             <div className="row margin-bottom-1">
                                 <span className="col-sm-2"><label htmlFor="number_of_bathrooms">Number of Bathrooms</label></span>
                                 <select name="number_of_bathrooms" className="field col-sm-8" id="number_of_bathrooms" onChange={this.handleChange}>
-                                    <option value="">Number of Bedrooms</option>
+                                    <option value="">Number of Bathrooms</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -336,4 +356,8 @@ class Valuation extends Component {
 
     }
 }
+
+
+
+
 export default Valuation;

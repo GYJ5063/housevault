@@ -13,4 +13,5 @@ routes
     .add('broadband', '/property/:postcode/:address/broadband')
     .add('crime-data', '/property/:postcode/:address/crime-data')
     .add('town-postcode-list', '/towns')
-    .add('street', '/postcode/:postcode');
+    .add('street', '/postcode/:postcode')
+    .add('valuation', '/valuation/:id');

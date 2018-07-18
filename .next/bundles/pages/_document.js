@@ -292,99 +292,6 @@ var _jsxFileName = "/Users/leemellon/Code/Morzuo/nextjs/components/Footer.js";
 
 /***/ }),
 
-/***/ "./components/GoogleTagManager.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-throw new Error("Cannot find module \"react-google-tag-manager\"");
-var _jsxFileName = "/Users/leemellon/Code/Morzuo/nextjs/components/GoogleTagManager.js";
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-var GoogleTagManager =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(GoogleTagManager, _React$Component);
-
-  function GoogleTagManager() {
-    _classCallCheck(this, GoogleTagManager);
-
-    return _possibleConstructorReturn(this, (GoogleTagManager.__proto__ || Object.getPrototypeOf(GoogleTagManager)).apply(this, arguments));
-  }
-
-  _createClass(GoogleTagManager, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var dataLayerName = this.props.dataLayerName || 'dataLayer';
-      var scriptId = this.props.scriptId || 'react-google-tag-manager-gtm';
-
-      if (!window[dataLayerName]) {
-        var gtmScriptNode = document.getElementById(scriptId);
-        eval(gtmScriptNode.textContent);
-      }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var gtm = __WEBPACK_IMPORTED_MODULE_1_react_google_tag_manager___default()({
-        id: this.props.gtmId,
-        dataLayerName: this.props.dataLayerName || 'dataLayer',
-        additionalEvents: this.props.additionalEvents || {},
-        previewVariables: this.props.previewVariables || false,
-        scheme: this.props.scheme || 'https:'
-      });
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 26
-        }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 27
-        }
-      }, gtm.noScriptAsReact()), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-        id: this.props.scriptId || 'react-google-tag-manager-gtm',
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 28
-        }
-      }, gtm.scriptAsReact()));
-    }
-  }]);
-
-  return GoogleTagManager;
-}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
-
-GoogleTagManager.propTypes = {
-  gtmId: __WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.string.isRequired,
-  dataLayerName: __WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.string,
-  additionalEvents: __WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.object,
-  previewVariables: __WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.string,
-  scriptId: __WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.string,
-  scheme: __WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.string
-};
-/* harmony default export */ __webpack_exports__["a"] = (GoogleTagManager);
-
-/***/ }),
-
 /***/ "./components/Header.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -469,55 +376,7 @@ var _jsxFileName = "/Users/leemellon/Code/Morzuo/nextjs/components/Header.js";
       fileName: _jsxFileName,
       lineNumber: 13
     }
-  })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("li", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 16
-    }
-  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
-    href: "/online-property-valuation",
-    title: "Online Property Valuation",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 16
-    }
-  }, "Online Property Valuation")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("li", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 17
-    }
-  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
-    href: "/house-prices",
-    title: "Sold Prices",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 17
-    }
-  }, "Sold Prices")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("li", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 18
-    }
-  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
-    href: "/energy-efficiency",
-    title: "Energy Efficiency",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 18
-    }
-  }, "Energy Efficiency")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("li", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 19
-    }
-  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
-    href: "/compare",
-    title: "Compare",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 19
-    }
-  }, "Compare"))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("ul", {
+  }))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("ul", {
     className: "social",
     __source: {
       fileName: _jsxFileName,
@@ -2237,9 +2096,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_document___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_next_document__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Header__ = __webpack_require__("./components/Header.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Footer__ = __webpack_require__("./components/Footer.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_GoogleTagManager__ = __webpack_require__("./components/GoogleTagManager.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__styles_scss__ = __webpack_require__("./styles.scss");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__styles_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__styles_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__styles_scss__ = __webpack_require__("./styles.scss");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__styles_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__styles_scss__);
 var _jsxFileName = "/Users/leemellon/Code/Morzuo/nextjs/pages/_document.js";
 
 
@@ -2258,7 +2116,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 // ./pages/_document.js
-
 
 
 
@@ -2288,66 +2145,69 @@ function (_Document) {
           fileName: _jsxFileName,
           lineNumber: 14
         }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        name: "viewport",
+        content: "width=device-width, initial-scale=1, shrink-to-fit=no",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 15
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("title", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 16
+        }
+      }, "Search the house vault for the latest property information | House Vault"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
         rel: "stylesheet",
         href: "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
         integrity: "sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm",
         crossOrigin: "anonymous",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 16
+          lineNumber: 17
         }
-      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
-        name: "viewport",
-        content: "width=device-width, initial-scale=1, shrink-to-fit=no",
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
+        href: "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
+        rel: "stylesheet",
+        integrity: "sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN",
+        crossOrigin: "anonymous",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 19
+          lineNumber: 20
         }
-      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("title", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 21
-        }
-      }, "Search the house vault for the latest property information | House Vault"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
         rel: "stylesheet",
         href: "/_next/static/style.css",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 22
+          lineNumber: 24
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
         name: "description",
         content: "View Local information about an address including epc, population, house prices, crime and much more.",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 23
-        }
-      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_GoogleTagManager__["a" /* default */], {
-        gtmId: "GTM-TZVVKSN",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 24
+          lineNumber: 25
         }
       })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Header__["a" /* default */], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 26
+          lineNumber: 28
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("body", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 27
+          lineNumber: 29
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_next_document__["Main"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 29
+          lineNumber: 31
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Footer__["a" /* default */], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 30
+          lineNumber: 32
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("script", {
         src: "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js",
@@ -2355,12 +2215,12 @@ function (_Document) {
         crossOrigin: "anonymous",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 31
+          lineNumber: 33
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_next_document__["NextScript"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 34
+          lineNumber: 36
         }
       })));
     }

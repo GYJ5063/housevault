@@ -13,10 +13,10 @@ export default () =>
                     <li><input type="text" id="autocompletetop" className="searchfieldtop"
                                placeholder="Search the vault" aria-label="SEARCH.."
                                aria-describedby="search-vault"/></li>
-                    <li><a href="/online-property-valuation" title="Online Property Valuation">Online Property Valuation</a></li>
-                    <li><a href="/house-prices" title="Sold Prices">Sold Prices</a></li>
-                    <li><a href="/energy-efficiency" title="Energy Efficiency">Energy Efficiency</a></li>
-                    <li><a href="/compare" title="Compare">Compare</a></li>
+                    {/*<li><a href="/online-property-valuation" title="Online Property Valuation">Online Property Valuation</a></li>*/}
+                    {/*<li><a href="/house-prices" title="Sold Prices">Sold Prices</a></li>*/}
+                    {/*<li><a href="/energy-efficiency" title="Energy Efficiency">Energy Efficiency</a></li>*/}
+                    {/*<li><a href="/compare" title="Compare">Compare</a></li>*/}
                 </ul>
                 <ul className="social">
                     <li className="twitter">
