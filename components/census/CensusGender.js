@@ -19,7 +19,7 @@ class CensusHousingType extends React.Component {
         this.setState({propertyGraphsLoading: true});
         let self = this;
 
-        fetch('http://www.nomisweb.co.uk/api/v01/dataset/NM_144_1.jsonstat.json?geography=' + areacode + '&rural_urban=0&measures=20100&_=58527')
+        fetch('https://www.nomisweb.co.uk/api/v01/dataset/NM_144_1.jsonstat.json?geography=' + areacode + '&rural_urban=0&measures=20100&_=58527')
             .then(function (response) {
                 return response.json();
             }).then(function (census) {
