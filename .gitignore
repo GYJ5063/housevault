@@ -1,7 +1,8 @@
 .idea
 dist
-.next
 /node_modules
+.next
+package-lock.json
 test/node_modules
 .DS_Store
 # Elastic Beanstalk Files

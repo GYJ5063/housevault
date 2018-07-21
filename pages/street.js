@@ -12,6 +12,8 @@ import CensusAge from "../components/census/CensusAge";
 import CensusGender from "../components/census/CensusGender";
 import CensusHealth from "../components/census/CensusHealth";
 import CensusEducation from "../components/census/CensusEducation";
+import {Link} from '../routes'
+import Head from 'next/head'
 
 class Street extends React.Component {
 
@@ -73,6 +75,27 @@ class Street extends React.Component {
         });
     }
 
+    valuationButton(address) {
+        if((address.valuation)) {
+            return (
+                <div>
+                    <h5> {'Estimated Value £' + _.round(address.valuation.data.predicted_valuation).toLocaleString() }</h5>
+                        <Link route={'/valuation/'+address.id} ><a>Refine</a></Link>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <Link route={'/valuation/'+address.id}  >
+                        <a>
+                            <button className="btn btn-primary">Request Valuation</button>
+                        </a>
+                </Link>
+                </div>
+            )
+        }
+    }
+
 
     render() {
         if (_.isEmpty(this.props.addresses) && _.isEmpty(this.props.sold_prices)) {
@@ -88,6 +111,10 @@ class Street extends React.Component {
 
         return (
             <div>
+                <Head>
+                    <title>Detailed area report for {_.toUpper(this.props.postcode)} | House Vault</title>
+                    <meta name="description" content="Useful information about {_.toUpper(this.props.postcode)} including EPC, Sold Prices, Demographics etc..." />
+                </Head>
                 <div className="container postcode-page">
                     <div className="row">
 
@@ -202,15 +229,14 @@ class Street extends React.Component {
                                         </div>
                                         <div className="col">
                                             Last Sold Price<br/>
-                                            {(!_.isNaN(_.meanBy(address.prices.data, "price"))) ? ("£" + _.meanBy(address.prices.data, "price")) : 'No sales history for this property'}
+                                            {(!_.isNaN(_.meanBy(address.prices.data, "price"))) ? ("£" + _.round(_.meanBy(address.prices.data, "price"))) : 'No sales history for this property'}
                                         </div>
                                         <div className="col">
                                             EPC Rating<br/>
                                             {(_.first(_.orderBy(address.epc.data, ['id'], ['desc']))) ? _.first(_.orderBy(address.epc.data, ['id'], ['desc'])).current_energy_rating : 'None'}
                                         </div>
                                         <div className="col text-right">
-                                            <h5>{(address.valuation && housePriceIndex.index) ? 'Estimated Value £' + _.round(_.multiply(_.divide(parseInt(address.valuation.data.predicted_valuation), 100), parseInt(housePriceIndex.index))).toLocaleString() :
-                                                <button className="btn btn-primary">Request Valuation</button>}</h5>
+                                            {this.valuationButton(address)}
                                         </div>
                                     </div>
                                 </div>

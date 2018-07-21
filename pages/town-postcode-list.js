@@ -1,7 +1,7 @@
 import fetch from "isomorphic-fetch";
 import React from "react";
 import _ from 'lodash';
-import {Link} from '../routes'
+import Link from 'next/link'
 
 
 class TownPostcodeList extends React.Component {
