@@ -380,7 +380,8 @@ function (_Component) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-throw new Error("Cannot find module \"react\"");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("react");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 var _jsxFileName = "/Applications/MAMP/htdocs/h/components/Header.js";
 
 /* harmony default export */ __webpack_exports__["a"] = (function () {
@@ -720,8 +721,10 @@ function (_Component) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MyDocument; });
-throw new Error("Cannot find module \"react\"");
-throw new Error("Cannot find module \"next/document\"");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("react");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_document__ = __webpack_require__("next/document");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_document___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_next_document__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Header__ = __webpack_require__("./components/Header.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Footer__ = __webpack_require__("./components/Footer.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__styles_scss__ = __webpack_require__("./styles.scss");
@@ -864,9 +867,9 @@ function (_Document) {
 /***/ "./routes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
-var routes = module.exports = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"next-routes\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))();
+var routes = module.exports = __webpack_require__("next-routes")();
 
-routes.add('index', '/').add('town', '/town/:town').add('property', '/property/:postcode/:address').add('epc', '/property/:postcode/:address/epc').add('sold-prices', '/property/:postcode/:address/sold-prices').add('local-area', '/property/:postcode/:address/local-area').add('culture', '/property/:postcode/:address/culture').add('property-stats', '/property/:postcode/:address/property-stats').add('people', '/property/:postcode/:address/people').add('broadband', '/property/:postcode/:address/broadband').add('crime-data', '/property/:postcode/:address/crime-data').add('town-postcode-list', '/towns').add('street', '/postcode/:postcode').add('valuation', '/valuation/:id');
+routes.add('index', '/').add('town', '/town/:town').add('property', '/property/:postcode/:address').add('epc', '/property/:postcode/:address/epc').add('sold-prices', '/property/:postcode/:address/sold-prices').add('local-area', '/property/:postcode/:address/local-area').add('culture', '/property/:postcode/:address/culture').add('property-stats', '/property/:postcode/:address/property-stats').add('people', '/property/:postcode/:address/people').add('broadband', '/property/:postcode/:address/broadband').add('crime-data', '/property/:postcode/:address/crime-data').add('town-postcode-list', '/towns').add('street', '/postcode/:postcode').add('valuation', '/valuation/:id').add('online-estate-agent-reviews', '/online-estate-agent-reviews').add('property-buying-company-reviews', '/property-buying-company-reviews');
 
 /***/ }),
 
@@ -882,6 +885,20 @@ routes.add('index', '/').add('town', '/town/:town').add('property', '/property/:
 
 module.exports = __webpack_require__("./pages/_document.js");
 
+
+/***/ }),
+
+/***/ "next-routes":
+/***/ (function(module, exports) {
+
+module.exports = require("next-routes");
+
+/***/ }),
+
+/***/ "next/document":
+/***/ (function(module, exports) {
+
+module.exports = require("next/document");
 
 /***/ }),
 
