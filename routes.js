@@ -14,4 +14,5 @@ routes
     .add('crime-data', '/property/:postcode/:address/crime-data')
     .add('town-postcode-list', '/towns')
     .add('street', '/postcode/:postcode')
-    .add('valuation', '/valuation/:id');
+    .add('valuation', '/valuation/:id')
+    .add('page', '/:page');

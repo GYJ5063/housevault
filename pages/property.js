@@ -4,6 +4,7 @@ import StreetView from "../components/StreetView";
 import GoogleMaps from "../components/GoogleMaps";
 import PropertySidebar from "../components/PropertySidebar";
 import fetch from 'isomorphic-fetch';
+import Layout from '../components/Layout'
 class Property extends React.Component {
 
     constructor(props) {
@@ -33,6 +34,7 @@ class Property extends React.Component {
 
         return (
             <div className="container list-page-padding">
+                <Layout>
                 <div className="row">
                     <div className="col">
                         <h2>Property Profile for {this.props.address.full_address}</h2>
@@ -97,6 +99,7 @@ class Property extends React.Component {
                         </div>
                     </div>
                 </div>
+                </Layout>
             </div>
         );
     }

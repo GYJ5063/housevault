@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import FormValidator from '../components/FormValidator';
-
+import Layout from '../components/Layout'
 class ContactUs extends Component {
     constructor(props) {
         super(props);
@@ -102,6 +102,7 @@ class ContactUs extends Component {
         }
         return (
             <div className="container list-page-padding">
+                <Layout>
                 <h1>Contact Us</h1>
                 <div className="row">
                     <div className="col">
@@ -159,6 +160,7 @@ class ContactUs extends Component {
                     </form>
                     </div>
                 </div>
+                </Layout>
             </div>
             );
     }

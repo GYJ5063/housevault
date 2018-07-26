@@ -2,7 +2,7 @@ import React from "react";
 import LocalAreaList from "../components/LocalAreaList";
 import PropertySidebar from "../components/PropertySidebar"
 import fetch from "isomorphic-fetch";
-
+import Layout from '../components/Layout'
 class LocalArea extends React.Component {
 
     constructor(props) {
@@ -11,6 +11,7 @@ class LocalArea extends React.Component {
     render() {
         return (
             <div className="container list-page-padding">
+                <Layout>
                 <div className="row">
                     <PropertySidebar url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.building_number}/>
                     <div className="col">
@@ -29,6 +30,7 @@ class LocalArea extends React.Component {
                     </div>
 
                 </div>
+                </Layout>
         </div>
         );
     }

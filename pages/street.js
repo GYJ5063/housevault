@@ -13,6 +13,7 @@ import CensusGender from "../components/census/CensusGender";
 import CensusHealth from "../components/census/CensusHealth";
 import CensusEducation from "../components/census/CensusEducation";
 import {Link} from '../routes'
+import Layout from '../components/Layout'
 import Head from 'next/head'
 
 class Street extends React.Component {
@@ -115,6 +116,7 @@ class Street extends React.Component {
                     <title>Detailed area report for {_.toUpper(this.props.postcode)} | House Vault</title>
                     <meta name="description" content="Useful information about {_.toUpper(this.props.postcode)} including EPC, Sold Prices, Demographics etc..." />
                 </Head>
+                <Layout>
                 <div className="container postcode-page">
                     <div className="row">
 
@@ -244,6 +246,7 @@ class Street extends React.Component {
                         </div>
                     </div>
                 </div>
+                </Layout>
             </div>
         );
     }

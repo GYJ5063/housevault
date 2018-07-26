@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Router} from '../routes';
 import Head from 'next/head'
+import Layout from '../components/Layout'
 
 class Index extends Component {
     constructor(props, context) {
@@ -62,6 +63,7 @@ class Index extends Component {
                     <title>Search the house vault for the latest property information | House Vault</title>
                     <meta name="description" content="View Local information about an address including epc, population, house prices, crime and much more." />
                 </Head>
+                <Layout>
                 <div className="banner">
                     <img src="/static/banner-bg.jpg" alt="Banner"/>
                     <h1 className="note">What’s important to you? Your perfect home is only a search away…</h1>
@@ -291,6 +293,7 @@ class Index extends Component {
                         </div>
                     </div>
                 </div>
+                </Layout>
             </main>
         );
     }

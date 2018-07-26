@@ -2,6 +2,7 @@ import fetch from "isomorphic-fetch";
 import React from "react";
 import _ from 'lodash';
 import Link from 'next/link'
+import Layout from '../components/Layout'
 class Town extends React.Component {
 
     constructor(props) {
@@ -14,6 +15,7 @@ class Town extends React.Component {
         }
         return (
             <div className="container  list-page-padding">
+                <Layout>
                 <h1>{this.props.name} Postcodes</h1>
                 <p>Here is a list of all the postcodes available in {this.props.name} </p>
                 { _.chunk(this.props.town,4) .map( ( t ) => (
@@ -29,6 +31,7 @@ class Town extends React.Component {
                         ) ) }
                     </div>
                 ) ) }
+                </Layout>
             </div>
         )
 
