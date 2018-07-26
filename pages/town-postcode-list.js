@@ -2,6 +2,7 @@ import fetch from "isomorphic-fetch";
 import React from "react";
 import _ from 'lodash';
 import Link from 'next/link'
+import Layout from '../components/Layout'
 
 
 class TownPostcodeList extends React.Component {
@@ -17,6 +18,7 @@ class TownPostcodeList extends React.Component {
         }
         return (
             <div className="container  list-page-padding">
+                <Layout>
                 <h1>List of Towns</h1>
                 <p>You can browse our listings by town, click on the town name below to see all the postcodes in this town. </p>
                     { _.chunk(this.props.towns,3) .map( ( t ) => (
@@ -32,6 +34,7 @@ class TownPostcodeList extends React.Component {
                             ) ) }
                         </div>
                     ) ) }
+                </Layout>
             </div>
         )
     }

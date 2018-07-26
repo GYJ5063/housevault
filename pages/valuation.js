@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import FormValidator from "../components/FormValidator";
 import axios from "axios/index";
 import _ from 'lodash';
+import Layout from '../components/Layout'
 
 class Valuation extends Component {
 
@@ -160,6 +161,7 @@ class Valuation extends Component {
 
             return (
                 <div className="container list-page-padding text-center">
+                    <Layout>
                     <div className="row">
                         <div className="col">
                             <h1>We have successfully valued your property</h1>
@@ -167,12 +169,14 @@ class Valuation extends Component {
                             <h3>{this.state.valuation.predict_price}</h3>
                         </div>
                     </div>
+                    </Layout>
                 </div>
             )
 
         }
         return (
             <div className="container list-page-padding">
+                <Layout>
                 <h1>Request Valuation</h1>
                 <div className="row">
                     <div className="col">
@@ -351,6 +355,7 @@ class Valuation extends Component {
                         </form>
                     </div>
                 </div>
+                </Layout>
             </div>
         );
 

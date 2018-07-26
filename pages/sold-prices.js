@@ -3,14 +3,14 @@ import fetch from "isomorphic-fetch";
 import _ from "lodash";
 import PropertySidebar from "../components/PropertySidebar";
 import moment from "moment";
-
+import Layout from '../components/Layout'
 class SoldPrices extends React.Component {
 
     render() {
 
         return (
             <div className="container list-page-padding">
-           
+                <Layout>
                 <div className="row">
                     <PropertySidebar url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
                     <div className="col">
@@ -31,7 +31,7 @@ class SoldPrices extends React.Component {
                         ) ) }
                     </div>
                 </div>
-
+                </Layout>
             </div>
         );
 

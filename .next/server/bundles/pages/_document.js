@@ -81,7 +81,7 @@ module.exports =
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_SearchVault__ = __webpack_require__("./components/SearchVault.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__routes__ = __webpack_require__("./routes.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__routes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__routes__);
-var _jsxFileName = "/Applications/MAMP/htdocs/h/components/Footer.js";
+var _jsxFileName = "/Users/Lee/Code/Morzuo/housevault/components/Footer.js";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -382,7 +382,7 @@ function (_Component) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("react");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-var _jsxFileName = "/Applications/MAMP/htdocs/h/components/Header.js";
+var _jsxFileName = "/Users/Lee/Code/Morzuo/housevault/components/Header.js";
 
 /* harmony default export */ __webpack_exports__["a"] = (function () {
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
@@ -519,7 +519,7 @@ var _jsxFileName = "/Applications/MAMP/htdocs/h/components/Header.js";
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("react");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-var _jsxFileName = "/Applications/MAMP/htdocs/h/components/SearchVault.js";
+var _jsxFileName = "/Users/Lee/Code/Morzuo/housevault/components/SearchVault.js";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -727,9 +727,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_document___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_next_document__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Header__ = __webpack_require__("./components/Header.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Footer__ = __webpack_require__("./components/Footer.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__styles_scss__ = __webpack_require__("./styles.scss");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__styles_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__styles_scss__);
-var _jsxFileName = "/Applications/MAMP/htdocs/h/pages/_document.js";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment__ = __webpack_require__("moment");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__styles_scss__ = __webpack_require__("./styles.scss");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__styles_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__styles_scss__);
+var _jsxFileName = "/Users/Lee/Code/Morzuo/housevault/pages/_document.js";
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -747,6 +749,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 // ./pages/_document.js
+
 
 
 
@@ -820,25 +823,165 @@ function (_Document) {
           fileName: _jsxFileName,
           lineNumber: 25
         }
-      })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Header__["a" /* default */], {
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        itemProp: "isFamilyFriendly",
+        content: "TRUE",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 26
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        itemProp: "accessibilityControl",
+        content: "fullKeyboardControl",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 27
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        itemProp: "accessibilityControl",
+        content: "fullMouseControl",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 28
         }
-      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("body", {
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        itemProp: "accessibilityControl",
+        content: "fullTouchControl",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 29
         }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_next_document__["Main"], {
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        itemProp: "accessibilityFeature",
+        content: "alternativeText",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 30
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        itemProp: "accessibilityFeature",
+        content: "structuralNavigation",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 31
         }
-      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Footer__["a" /* default */], {
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        itemProp: "accessibilityHazard",
+        content: "noFlashingHazard",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 32
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        itemProp: "accessibilityHazard",
+        content: "noMotionSimulationHazard",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 33
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        itemProp: "accessibilityHazard",
+        content: "noSoundHazard",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 34
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        itemProp: "copyrightYear",
+        content: __WEBPACK_IMPORTED_MODULE_4_moment___default()().format('YYYY'),
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 35
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        itemProp: "copyrightHolder",
+        content: "Housevault UK",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 36
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        itemProp: "name",
+        content: "Housevault | Property Valuation | House Prices ",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 38
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        itemProp: "description",
+        content: "Property valuation and House Prices, House Buying / Selling Guides and much more...",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 39
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        itemProp: "image",
+        content: "https://housevault.co.uk/static/housevault-logo.svg",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 40
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        name: "twitter:card",
+        content: "summary_large_image",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 42
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        name: "twitter:site",
+        content: "@housevaultuk",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 43
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        name: "twitter:title",
+        content: "Housevault | Property Valuation | House Prices",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 44
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        name: "twitter:description",
+        content: "Property valuation and House Prices, House Buying / Selling Guides and much more...",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 45
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        name: "twitter:creator",
+        content: "@housevaultuk",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 46
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+        name: "twitter:image:src",
+        content: "https://housevault.co.uk/static/housevault-logo.svg",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 47
+        }
+      })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Header__["a" /* default */], {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 49
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("body", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 50
+        }
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_next_document__["Main"], {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 52
+        }
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Footer__["a" /* default */], {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 53
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("script", {
         src: "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js",
@@ -846,12 +989,12 @@ function (_Document) {
         crossOrigin: "anonymous",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 33
+          lineNumber: 54
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_next_document__["NextScript"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 36
+          lineNumber: 57
         }
       })));
     }
@@ -865,11 +1008,9 @@ function (_Document) {
 /***/ }),
 
 /***/ "./routes.js":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var routes = module.exports = __webpack_require__("next-routes")();
-
-routes.add('index', '/').add('town', '/town/:town').add('property', '/property/:postcode/:address').add('epc', '/property/:postcode/:address/epc').add('sold-prices', '/property/:postcode/:address/sold-prices').add('local-area', '/property/:postcode/:address/local-area').add('culture', '/property/:postcode/:address/culture').add('property-stats', '/property/:postcode/:address/property-stats').add('people', '/property/:postcode/:address/people').add('broadband', '/property/:postcode/:address/broadband').add('crime-data', '/property/:postcode/:address/crime-data').add('town-postcode-list', '/towns').add('street', '/postcode/:postcode').add('valuation', '/valuation/:id').add('online-estate-agent-reviews', '/online-estate-agent-reviews').add('property-buying-company-reviews', '/property-buying-company-reviews');
+throw new Error("Module build failed: SyntaxError: /Users/Lee/Code/Morzuo/housevault/routes.js: Unexpected token (18:3)\n\n  16 |     .add('street', '/postcode/:postcode')\n  17 |     .add('valuation', '/valuation/:id')\n> 18 | <<<<<<< HEAD\n     |    ^\n  19 |     .add('online-estate-agent-reviews', '/online-estate-agent-reviews')\n  20 |     .add('property-buying-company-reviews', '/property-buying-company-reviews');\n  21 | =======\n    at _class.raise (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:778:15)\n    at _class.unexpected (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:2063:16)\n    at _class.jsxParseIdentifier (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:7874:14)\n    at _class.jsxParseNamespacedName (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:7884:23)\n    at _class.jsxParseElementName (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:7895:23)\n    at _class.jsxParseOpeningElementAt (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:7981:24)\n    at _class.jsxParseElementAt (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:8008:33)\n    at _class.jsxParseElement (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:8077:19)\n    at _class.parseExprAtom (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:8084:21)\n    at _class.parseExprSubscripts (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:2725:21)\n    at _class.parseMaybeUnary (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:2704:21)\n    at _class.parseExprOp (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:2657:46)\n    at _class.parseExprOps (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:2626:17)\n    at _class.parseMaybeConditional (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:2588:21)\n    at _class.parseMaybeAssign (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:2546:21)\n    at _class.parseExpression (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:2499:21)");
 
 /***/ }),
 
@@ -888,10 +1029,10 @@ module.exports = __webpack_require__("./pages/_document.js");
 
 /***/ }),
 
-/***/ "next-routes":
+/***/ "moment":
 /***/ (function(module, exports) {
 
-module.exports = require("next-routes");
+module.exports = require("moment");
 
 /***/ }),
 

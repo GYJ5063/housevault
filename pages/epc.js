@@ -4,6 +4,7 @@ import _ from "lodash";
 import EpcEnergyEfficiencyGraph from "../components/EpcEnergyEfficiencyGraph";
 import EpcEnvironmentalImpactGraph from "../components/EpcEnvironmentalImpactGraph";
 import PropertySidebar from "../components/PropertySidebar";
+import Layout from '../components/Layout'
 class Epc extends React.Component {
     render( ) {
 
@@ -25,6 +26,7 @@ class Epc extends React.Component {
         } else {
         return (
         <div className="container list-page-padding">
+            <Layout>
             <div className="row">
             <PropertySidebar url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number} />
             <div className="col">
@@ -86,6 +88,7 @@ class Epc extends React.Component {
             </div>
             </div>
             </div>
+            </Layout>
         </div>
         );
         }
