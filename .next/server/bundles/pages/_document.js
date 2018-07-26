@@ -1008,9 +1008,11 @@ function (_Document) {
 /***/ }),
 
 /***/ "./routes.js":
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: /Users/Lee/Code/Morzuo/housevault/routes.js: Unexpected token (18:3)\n\n  16 |     .add('street', '/postcode/:postcode')\n  17 |     .add('valuation', '/valuation/:id')\n> 18 | <<<<<<< HEAD\n     |    ^\n  19 |     .add('online-estate-agent-reviews', '/online-estate-agent-reviews')\n  20 |     .add('property-buying-company-reviews', '/property-buying-company-reviews');\n  21 | =======\n    at _class.raise (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:778:15)\n    at _class.unexpected (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:2063:16)\n    at _class.jsxParseIdentifier (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:7874:14)\n    at _class.jsxParseNamespacedName (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:7884:23)\n    at _class.jsxParseElementName (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:7895:23)\n    at _class.jsxParseOpeningElementAt (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:7981:24)\n    at _class.jsxParseElementAt (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:8008:33)\n    at _class.jsxParseElement (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:8077:19)\n    at _class.parseExprAtom (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:8084:21)\n    at _class.parseExprSubscripts (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:2725:21)\n    at _class.parseMaybeUnary (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:2704:21)\n    at _class.parseExprOp (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:2657:46)\n    at _class.parseExprOps (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:2626:17)\n    at _class.parseMaybeConditional (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:2588:21)\n    at _class.parseMaybeAssign (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:2546:21)\n    at _class.parseExpression (/Users/Lee/Code/Morzuo/housevault/node_modules/@babel/core/node_modules/babylon/lib/index.js:2499:21)");
+var routes = module.exports = __webpack_require__("next-routes")();
+
+routes.add('index', '/').add('town', '/town/:town').add('property', '/property/:postcode/:address').add('epc', '/property/:postcode/:address/epc').add('sold-prices', '/property/:postcode/:address/sold-prices').add('local-area', '/property/:postcode/:address/local-area').add('culture', '/property/:postcode/:address/culture').add('property-stats', '/property/:postcode/:address/property-stats').add('people', '/property/:postcode/:address/people').add('broadband', '/property/:postcode/:address/broadband').add('crime-data', '/property/:postcode/:address/crime-data').add('town-postcode-list', '/towns').add('street', '/postcode/:postcode').add('valuation', '/valuation/:id').add('page', '/:page').add('online-estate-agent-reviews', '/online-estate-agent-reviews').add('property-buying-company-reviews', '/property-buying-company-reviews');
 
 /***/ }),
 
@@ -1033,6 +1035,13 @@ module.exports = __webpack_require__("./pages/_document.js");
 /***/ (function(module, exports) {
 
 module.exports = require("moment");
+
+/***/ }),
+
+/***/ "next-routes":
+/***/ (function(module, exports) {
+
+module.exports = require("next-routes");
 
 /***/ }),
 
