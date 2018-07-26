@@ -1,11 +1,11 @@
 import React from "react";
-import fetch from "isomorphic-fetch";
-import Layout from '../components/Layout'
+import fetch from " ";
+import Layout from './Layout'
 import renderHTML from 'react-render-html';
 import Head from 'next/head'
 import _ from 'lodash'
 
-class Page extends React.Component {
+class Post extends React.Component {
 
     constructor(props) {
         super(props)
@@ -43,9 +43,9 @@ class Page extends React.Component {
         );
     }
 }
-Page.getInitialProps = async ({ req, query: { page } }) => {
+Post.getInitialProps = async ({ req, query: { page } }) => {
     const res = await fetch(process.env.BACKEND_URL + 'page/' + page);
     const json = await res.json();
     return { page: json }
 };
-export default Page;
+export default Post;
