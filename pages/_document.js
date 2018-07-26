@@ -3,7 +3,6 @@ import Document, { Head, Main, NextScript } from 'next/document'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import moment from "moment"
-
 import "../styles.scss"
 
 
@@ -21,6 +20,11 @@ export default class MyDocument extends Document {
                       rel="stylesheet"
                       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
                       crossOrigin="anonymous" />
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+                      integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+                      crossOrigin="anonymous" />
+
+
                 <link rel="stylesheet" href="/_next/static/style.css" />
                 <meta name="description" content="View Local information about an address including epc, population, house prices, crime and much more." />
                 <meta itemProp="isFamilyFriendly" content="TRUE" />
@@ -48,7 +52,6 @@ export default class MyDocument extends Document {
             </Head>
             <Header />
             <body>
-
                 <Main />
                 <Footer />
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"

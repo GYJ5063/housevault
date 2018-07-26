@@ -237,8 +237,21 @@ class Street extends React.Component {
                                             EPC Rating<br/>
                                             {(_.first(_.orderBy(address.epc.data, ['id'], ['desc']))) ? _.first(_.orderBy(address.epc.data, ['id'], ['desc'])).current_energy_rating : 'None'}
                                         </div>
+
                                         <div className="col text-right">
-                                            {this.valuationButton(address)}
+                                            <ul className="list-unstyled">
+                                                <li>
+                                                <Link route={'/property/'+address.postcode + '/'+ address.house_number }  >
+                                                    <a>
+                                                        <button className="btn btn-success property-btn">View Property</button>
+                                                    </a>
+                                                </Link>
+                                                </li>
+                                                <li>
+
+                                                {this.valuationButton(address)}
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>

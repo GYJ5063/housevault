@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Router} from '../routes';
 class SearchVault extends Component {
     constructor(props, context) {
         super(props, context);
@@ -58,9 +59,6 @@ class SearchVault extends Component {
                     <div className="input-group-append">
                         <button className="btn btn-danger" type="submit">Go</button>
                     </div>
-                </div>
-                <div className="col-md-6 font-bolder">
-                    { this.state.search_status }
                 </div>
                 <input name="street_number" type="hidden" className="field" id="street_number"
                        disabled="true"/>
