@@ -1,7 +1,7 @@
 const routes = module.exports = require('next-routes')()
 
 routes
-    .add('index', '/')
+    .add('index', '/:slug')
     .add('town', '/town/:town')
     .add('property', '/property/:postcode/:address')
     .add('epc', '/property/:postcode/:address/epc')
