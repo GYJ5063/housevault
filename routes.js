@@ -1,7 +1,9 @@
 const routes = module.exports = require('next-routes')()
 
 routes
-    .add('index', '/:slug')
+
+    .add('online-estate-agent-reviews', '/online-estate-agent-reviews')
+    .add('property-buying-company-reviews', '/property-buying-company-reviews')
     .add('town', '/town/:town')
     .add('property', '/property/:postcode/:address')
     .add('epc', '/property/:postcode/:address/epc')
@@ -15,6 +17,4 @@ routes
     .add('town-postcode-list', '/towns')
     .add('street', '/postcode/:postcode')
     .add('valuation', '/valuation/:id')
-    .add('page', '/:page')
-    .add('online-estate-agent-reviews', '/online-estate-agent-reviews')
-    .add('property-buying-company-reviews', '/property-buying-company-reviews');
+    .add('index', '/:page/:sub');

@@ -19,21 +19,20 @@ class Index extends Component {
         }
 
         return (
-            <div>
+            <div className="page">
                 <Post data={this.props.page}/>
             </div>
         );
     }
 }
-Index.getInitialProps = async ({  query: { slug } }) => {
+Index.getInitialProps = async ({  query: { page , sub } }) => {
 
-    if(typeof slug !== 'undefined') {
+    let url = (sub) ? process.env.BACKEND_URL + 'page/' + page + '/' + sub : process.env.BACKEND_URL + 'page/' + page;
 
-        const res = await fetch(process.env.BACKEND_URL + 'page/' + slug);
+    if(typeof page !== 'undefined') {
+        const res = await fetch(url);
         const json = await res.json();
-        console.log(json);
-
-        return { slug: slug, page: json }
+        return { slug: page, page: json }
     }
 
     return {};  

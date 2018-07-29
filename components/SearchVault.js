@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Router} from '../routes';
+
 class SearchVault extends Component {
     constructor(props, context) {
         super(props, context);

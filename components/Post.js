@@ -28,9 +28,7 @@ class Post extends React.Component {
                             </div>
 
                             <div className="page-body">
-                                {this.props.data.content.split('\n').map((item, key) => {
-                                    return <p>{renderHTML(item)}</p>
-                                })}
+                                {renderHTML(this.props.data.content)}
                             </div>
                         </div>
                         <div className="col-3">

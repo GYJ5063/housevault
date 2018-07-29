@@ -49,7 +49,7 @@ class Property extends React.Component {
                                 <div className="card">
                                     <div className="card-body">
                                         Estimated Valuation<br />
-                                        <h3>&pound;{this.props.address.valuation.data.predicted_valuation}</h3>
+                                        <h3>&pound;{(this.props.address.valuation.data) ? this.props.address.valuation.data.predicted_valuation : ""}</h3>
                                     </div>
                                 </div>
                             </div>
