@@ -12,11 +12,8 @@ class Footer extends Component {
                                 <div className="col-md-4 footer-links padding-left-0">
                                     <h4>Features? </h4>
                                     <ul>
-                                        <li><a href="#">House Valuation</a></li>
-                                        <li><a href="#">Energy rating prediction</a></li>
-                                        <li><a href="#">Broadband Quality</a></li>
-                                        <li><a href="#">Crime statistics</a></li>
-                                        <li><a href="#">More here?</a></li>
+                                        <li><a href="/online-estate-agent-reviews">Online Estate Agent Reviews</a></li>
+                                        <li><a href="/property-buying-company-reviews">Property Buying Company Reviews</a></li>
                                     </ul>
                                 </div>
                                 <div className="col-md-4 footer-links">
