@@ -18,4 +18,5 @@ routes
     .add('street', '/postcode/:postcode')
     .add('valuation', '/valuation/:id')
     .add('subpage', '/:page/:sub')
-    .add('page', '/:page');
+    .add('page', '/:page')
+    .add('homepage', '/');
