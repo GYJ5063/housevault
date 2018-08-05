@@ -4,7 +4,7 @@ import Homepage from '../components/Homepage'
 import Post from '../components/Post'
 import fetch from "isomorphic-fetch";
 
-class Index extends Component {
+class Page extends Component {
 
     constructor(props) {
         super(props)
@@ -25,19 +25,18 @@ class Index extends Component {
         );
     }
 }
-Index.getInitialProps = async ({  query: { page , sub } }) => {
+Page.getInitialProps = async ({  query: { page  } }) => {
 
-    let url = (sub) ? process.env.BACKEND_URL + 'page/' + page + '/' + sub : process.env.BACKEND_URL + 'page/' + page;
+    let url = process.env.BACKEND_URL + 'page/' + page;
 
     if(typeof page !== 'undefined') {
         const res = await fetch(url);
         const json = await res.json();
         return { slug: page, page: json }
     }
-
     return {};  
 
 };
 
 
-export default Index;
+export default Page;

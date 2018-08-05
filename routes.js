@@ -17,4 +17,5 @@ routes
     .add('town-postcode-list', '/towns')
     .add('street', '/postcode/:postcode')
     .add('valuation', '/valuation/:id')
-    .add('index', '/:page/:sub');
+    .add('subpage', '/:page/:sub')
+    .add('page', '/:page');
