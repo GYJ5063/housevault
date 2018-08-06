@@ -31,7 +31,6 @@ class Property extends React.Component {
 
     render( ) {
         const marker = {lng: _.toNumber(this.props.address.lng), lat: _.toNumber(this.props.address.lat) };
-
         return (
             <div className="container list-page-padding">
                 <Layout>
@@ -49,7 +48,7 @@ class Property extends React.Component {
                                 <div className="card">
                                     <div className="card-body">
                                         Estimated Valuation<br />
-                                        <h3>&pound;{(this.props.address.valuation.data) ? this.props.address.valuation.data.predicted_valuation : ""}</h3>
+                                        <h3>{(typeof this.props.address.valuation !== "undefined") ? "&pound;" + this.props.address.valuation.data.predicted_valuation : "None"}</h3>
                                     </div>
                                 </div>
                             </div>
