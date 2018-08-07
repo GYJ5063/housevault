@@ -3,6 +3,7 @@ import React from "react";
 import _ from 'lodash';
 import Link from 'next/link'
 import Layout from '../components/Layout'
+import Head from "next/head";
 class Town extends React.Component {
 
     constructor(props) {
@@ -15,6 +16,10 @@ class Town extends React.Component {
         }
         return (
             <div className="container  list-page-padding">
+                <Head>
+                    <title>{this.props.town} Postcode List | House Vault</title>
+                    <meta name="description" content={"All the postcodes listed for "+this.props.town} />
+                </Head>
                 <Layout>
                 <h1>{this.props.name} Postcodes</h1>
                 <p>Here is a list of all the postcodes available in {this.props.name} </p>

@@ -4,7 +4,7 @@ import {Router} from '../routes';
 class Footer extends Component {
     render() {
         return (
-                <footer>
+                <footer className="footer">
                     <div className="container">
                         <div className="row col-md-12">
                             <div className="col-md-6 row">
@@ -14,6 +14,7 @@ class Footer extends Component {
                                     <ul>
                                         <li><a href="/online-estate-agent-reviews">Online Estate Agent Reviews</a></li>
                                         <li><a href="/property-buying-company-reviews">Property Buying Company Reviews</a></li>
+                                        <li><a href="/towns">Town List</a></li>
                                     </ul>
                                 </div>
                                 <div className="col-md-4 footer-links">

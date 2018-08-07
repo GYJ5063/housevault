@@ -49,6 +49,7 @@ export default class MyDocument extends Document {
                 <meta name="twitter:description" content="Property valuation and House Prices, House Buying / Selling Guides and much more..." />
                 <meta name="twitter:creator" content="@housevaultuk" />
                 <meta name="twitter:image:src" content="https://housevault.co.uk/static/housevault-logo.svg" />
+
             </Head>
             <Header />
             <body>
@@ -59,6 +60,7 @@ export default class MyDocument extends Document {
                         crossOrigin="anonymous"></script>
                 <NextScript />
             </body>
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             </html>
         )
     }

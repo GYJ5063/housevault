@@ -15,8 +15,10 @@ routes
     .add('broadband', '/property/:postcode/:address/broadband')
     .add('crime-data', '/property/:postcode/:address/crime-data')
     .add('town-postcode-list', '/towns')
+    .add('postcodes', '/postcodes')
     .add('street', '/postcode/:postcode')
     .add('valuation', '/valuation/:id')
     .add('subpage', '/:page/:sub')
+    .add('about-us', '/about-us')
     .add('page', '/:page')
     .add('homepage', '/');

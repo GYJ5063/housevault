@@ -4,6 +4,7 @@ import Layout from './Layout'
 import renderHTML from 'react-render-html';
 import Head from 'next/head'
 import _ from 'lodash'
+import AdSense from "react-adsense";
 
 class Post extends React.Component {
 
@@ -32,7 +33,13 @@ class Post extends React.Component {
                             </div>
                         </div>
                         <div className="col-3">
-
+                            <AdSense.Google
+                                client='ca-pub-4216565043840609'
+                                slot='8158930894'
+                                style={{ display: 'block' }}
+                                format='auto'
+                                responsive='true'
+                            />
                         </div>
                     </div>
                 </Layout>

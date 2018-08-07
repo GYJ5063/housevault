@@ -15,6 +15,7 @@ import CensusEducation from "../components/census/CensusEducation";
 import {Link} from '../routes'
 import Layout from '../components/Layout'
 import Head from 'next/head'
+import AdSense from "react-adsense";
 
 class Street extends React.Component {
 
@@ -113,11 +114,13 @@ class Street extends React.Component {
         return (
             <div>
                 <Head>
-                    <title>Detailed area report for {_.toUpper(this.props.postcode)} | House Vault</title>
-                    <meta name="description" content="Useful information about {_.toUpper(this.props.postcode)} including EPC, Sold Prices, Demographics etc..." />
+                    <title>Detailed stats for the postcode {_.toUpper(this.props.postcode)} | House Vault</title>
+                        <meta name="description" content={"Useful information about " +_.toUpper(this.props.postcode) + " including EPC, Sold Prices, Demographics etc..."} />
                 </Head>
                 <Layout>
                 <div className="container postcode-page">
+                    <amp-auto-ads type="adsense" data-ad-client="ca-pub-4216565043840609">
+                    </amp-auto-ads>
                     <div className="row">
 
                         <div className="col">
@@ -170,6 +173,17 @@ class Street extends React.Component {
                                 </div>
                             </div>
 
+                            <div className="row">
+                                <div className="col">
+                                    <AdSense.Google
+                                        client='ca-pub-4216565043840609'
+                                        slot='8158930894'
+                                        style={{ display: 'block' }}
+                                        format='auto'
+                                        responsive='true'
+                                    />
+                                </div>
+                            </div>
                             <h2>Sold Prices</h2>
                             {this.props.sold_prices.map((price) => (
                                 <div key={price.id}>

@@ -25,7 +25,7 @@ class TownPostcodeList extends React.Component {
                         <div key={t.index} className="row">
                             { t.map( ( towns ) => (
                                 <div key={ towns.town } className="col">
-                                    <Link route='town' params={{town: towns.town}} >
+                                    <Link route='town' href={"/town?town=" +  towns.town} as={'/town/'+ towns.town }  >
                                         <a>
                                             { towns.town }
                                         </a>

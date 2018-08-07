@@ -10,6 +10,7 @@ class AgentTableRow extends Component {
         return (
                 <tr>
                     <td className="text-center">
+
                         <Link route={'/online-estate-agent-reviews/' + pagelink}   >
                             <a>
                                 {this.props.obj.Name}

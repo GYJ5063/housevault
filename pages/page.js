@@ -3,6 +3,7 @@ import {Router} from '../routes';
 import Homepage from '../components/Homepage'
 import Post from '../components/Post'
 import fetch from "isomorphic-fetch";
+import AdSense from "react-adsense";
 
 class Page extends Component {
 
@@ -21,6 +22,13 @@ class Page extends Component {
         return (
             <div className="page">
                 <Post data={this.props.page}/>
+                <AdSense.Google
+                    client='ca-pub-4216565043840609'
+                    slot='8158930894'
+                    style={{ display: 'block' }}
+                    format='auto'
+                    responsive='true'
+                />
             </div>
         );
     }
