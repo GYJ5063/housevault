@@ -17,8 +17,8 @@ class Town extends React.Component {
         return (
             <div className="container  list-page-padding">
                 <Head>
-                    <title>{this.props.town} Postcode List | House Vault</title>
-                    <meta name="description" content={"All the postcodes listed for "+this.props.town} />
+                    <title>{this.props.name} Postcode List | House Vault</title>
+                    <meta name="description" content={"All the postcodes listed for "+this.props.name} />
                 </Head>
                 <Layout>
                 <h1>{this.props.name} Postcodes</h1>
