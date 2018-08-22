@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Router} from '../routes';
-
+import _ from 'lodash';
 class SearchVault extends Component {
     constructor(props, context) {
         super(props, context);
@@ -23,7 +23,7 @@ class SearchVault extends Component {
 
         let postcode = this.state.search_keyword;
         
-        let url_postcode = process.env.BACKEND_URL + "postcode-exist/" + postcode;
+        let url_postcode = process.env.BACKEND_URL + "postcode-exist/" + _.replace(postcode, ' ', '');
 
         fetch(url_postcode)
             .then(res => res.json())
@@ -33,9 +33,10 @@ class SearchVault extends Component {
                     if(status) {
                         this.setState({
                             search_status: 'Found it, redirecting...'
-                        })
+                        });
 
-                        Router.pushRoute('/postcode/' + postcode);
+                        Router.pushRoute('/house-prices/' + _.upperCase(_.replace(postcode, ' ', '')));
+
                     } else {
                         this.setState({
                             search_status: 'Invalid postcode'

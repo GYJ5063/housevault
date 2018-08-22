@@ -66,7 +66,7 @@ class Street extends React.Component {
         this.setState({localAreaLoading: true});
         let self = this;
 
-        fetch(process.env.BACKEND_URL + "postcode/" + postcode + '/localarea')
+        fetch(process.env.BACKEND_URL + "postcode/" + _.replace(postcode, ' ', '') + '/localarea')
             .then(function (response) {
                 return response.json();
             }).then(function (localArea) {
@@ -239,9 +239,7 @@ class Street extends React.Component {
                                     <div className="row">
                                         <hr/>
                                         <div className="col">
-                                            <img
-                                                src={encodeURI("https://maps.googleapis.com/maps/api/streetview?size=100x100&location=" + address.house_number + "," + address.street + "," + address.postcode + "&fov=60&pitch=5&key=AIzaSyAcODcVyIBZJhmueCEdpCU7MNlMISDGSkQ")}
-                                                className="property-image"/>
+
                                         </div>
                                         <div className="col">
                                             Last Sold Price<br/>

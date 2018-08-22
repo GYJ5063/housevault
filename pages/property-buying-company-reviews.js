@@ -3,20 +3,17 @@ import React, {Component} from 'react';
 import {Router} from '../routes';
 import Head from 'next/head';
 import CompanyTableRow from '../components/CompanyTableRow';
+import OnlineEstateAgentReviews from "./online-estate-agent-reviews";
 
 class PropertyBuyingCompanyReviews extends Component {
     constructor(props) {
         super(props);
         this.state = {value: '', items: ''};
     }
-    async componentDidMount() {
-        const res = await fetch(process.env.BACKEND_URL + "company-reviews/items");
-        const data = await res.json();
-        this.setState({ items:data });
-    }
+
     tabRow() {
-        if (this.state.items instanceof Array) {
-            return this.state.items.map(function (object, i) {
+        if (this.props.items instanceof Array) {
+            return this.props.items.map(function (object, i) {
                 return <CompanyTableRow obj={object} key={i} />;
             });
         }
@@ -46,5 +43,9 @@ class PropertyBuyingCompanyReviews extends Component {
                 );
     }
 }
-
+PropertyBuyingCompanyReviews.getInitialProps = async () => {
+    const res = await fetch(process.env.BACKEND_URL + "company-reviews/items");
+    const data = await res.json();
+    return { items: data }
+};
 export default PropertyBuyingCompanyReviews;
