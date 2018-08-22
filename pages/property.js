@@ -64,7 +64,7 @@ class Property extends React.Component {
                                 <div className="card">
                                     <div className="card-body">
                                         Floor Area<br />
-                                        <h3>{(_.first(_.orderBy(this.props.address.epc.data, ['id'], ['desc']))) ? _.first(_.orderBy(this.props.address.epc.data, ['id'], ['desc'])).Total_Floor_Area : 'None'}</h3>
+                                        <h3>{(_.first(_.orderBy(this.props.address.epc.data, ['id'], ['desc']))) ? _.first(_.orderBy(this.props.address.epc.data, ['id'], ['desc'])).total_floor_area : 'None'}</h3>
                                     </div>
                                 </div>
                             </div>
