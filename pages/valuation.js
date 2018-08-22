@@ -133,6 +133,7 @@ class Valuation extends Component {
             let self = this;
             axios.post(process.env.BACKEND_URL +'valuation', formData)
                 .then(function (response) {
+
                     self.setState({ hideLoadingSpinner: true, valuation: response.data });
                 })
                 .catch(function (error) {

@@ -3,20 +3,16 @@ import React, {Component} from 'react';
 import {Router} from '../routes';
 import Head from 'next/head';
 import AgentTableRow from '../components/AgentTableRow';
+import LocalArea from "./local-area";
 
 class OnlineEstateAgentReviews extends Component {
     constructor(props) {
         super(props);
         this.state = {value: '', items: ''};
     }
-    async componentDidMount() {
-        const res = await fetch(process.env.BACKEND_URL + "agents/items");
-        const data = await res.json();
-        this.setState({ items:data });
-    }
     tabRow() {
-        if (this.state.items instanceof Array) {
-            return this.state.items.map(function (object, i) {
+        if (this.props.items instanceof Array) {
+            return this.props.items.map(function (object, i) {
                 return <AgentTableRow obj={object} key={i} />;
             });
         }
@@ -50,4 +46,10 @@ class OnlineEstateAgentReviews extends Component {
                 );
     }
 }
+
+OnlineEstateAgentReviews.getInitialProps = async ({ req, query: { postcode, address } }) => {
+    const res = await fetch(process.env.BACKEND_URL + "agents/items");
+    const data = await res.json();
+    return { items: data }
+};
 export default OnlineEstateAgentReviews;

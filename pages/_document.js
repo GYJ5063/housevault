@@ -27,6 +27,7 @@ export default class MyDocument extends Document {
 
                 <link rel="stylesheet" href="/_next/static/style.css" />
                 <meta name="description" content="View Local information about an address including epc, population, house prices, crime and much more." />
+                <meta name="google-site-verification" content="WdS4Z6EBmpQwp-mES6S5_gv77-uQEqOYT3YgD4FLfYE" />
                 <meta itemProp="isFamilyFriendly" content="TRUE" />
                 <meta itemProp="accessibilityControl" content="fullKeyboardControl" />
                 <meta itemProp="accessibilityControl" content="fullMouseControl" />

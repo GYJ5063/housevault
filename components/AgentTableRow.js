@@ -26,7 +26,7 @@ class AgentTableRow extends Component {
                     </td>
                     <td className="text-center">
                         {this.props.obj.UserRating}<br/>
-                        <Link route={'/online-estate-agent-reviews/' + this.props.obj.Name}   >
+                        <Link route={'/online-estate-agent-reviews/' + pagelink}   >
                             <a target="_blank">Read Reviews</a>
                         </Link>
 
