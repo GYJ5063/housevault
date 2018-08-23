@@ -242,12 +242,12 @@ class Street extends React.Component {
 
                                         </div>
                                         <div className="col">
-                                            Last Sold Price<br/>
+                                            <strong>Last Sold Price</strong><br/>
                                             {(!_.isNaN(_.meanBy(address.prices.data, "price"))) ? ("£" + _.round(_.meanBy(address.prices.data, "price"))) : 'No sales history for this property'}
                                         </div>
                                         <div className="col">
-                                            EPC Rating<br/>
-                                            {(_.first(_.orderBy(address.epc.data, ['id'], ['desc']))) ? _.first(_.orderBy(address.epc.data, ['id'], ['desc'])).current_energy_rating : 'None'}
+                                            <strong>Property Size</strong><br/>
+                                            {(_.first(_.orderBy(address.epc.data, ['id'], ['desc']))) ? _.first(_.orderBy(address.epc.data, ['id'], ['desc'])).total_floor_area + ' sqm' : 'Coming Soon'}
                                         </div>
 
                                         <div className="col text-right">
