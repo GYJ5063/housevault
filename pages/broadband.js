@@ -32,6 +32,9 @@ class Broadband extends React.Component {
                         </table>
                         <h5>Broadband Deals Available for {this.props.property.full_address}</h5>
                         <p>Compare the latest boradband deals from providers below. Also check our tips of choosing the right broadband package further down the page.</p>
+                        <p><a href="https://www.awin1.com/cread.php?s=1014966&v=2973&q=316550&r=440043">
+                            <img src="https://www.awin1.com/cshow.php?s=1014966&v=2973&q=316550&r=440043" width="100%" border="0" />
+                        </a></p>
                         <h5>Average Download Speed</h5>
                         <p>The average download speed is a much better indicator of what you're likely to experience compared with the Maximum Download Speed because it takes into account factors such as number of users sharing a line, distance from the exchange and local infrastructure.</p>
                         <h5>Average Upload Speed</h5>
