@@ -33,7 +33,10 @@ class Epc extends React.Component {
 
 
             <h1>EPC details for {this.props.property.full_address}</h1>
-            <p>An Energy Performance Certificate shows the energy efficiency of a domestic or commercial properties in the UK. This will show you ways that you can save money on your bills and make your property more energy efficient.  </p>
+            <p>An Energy Performance Certificate shows the energy efficiency of a domestic property in the UK. It is useful for understanding how efficient
+                a home is including how much your energy bills are likely to be. Once you understand where you're wasting energy you can make changes to save money and help the environment. </p>
+                <p>The energy efficiency assessment for <u>{this.props.property.full_address}</u> took place on {this.props.epc.inspection_date}. The inspection resulted in a rating of <u>{this.props.epc.current_energy_rating}</u> compared to the average UK rating of <u>D</u>.</p>
+                <p>The estimated annual energy bill is <strong>&pound;{this.props.epc.hot_water_cost_current + this.props.epc.heating_cost_current + this.props.epc.lighting_cost_current}</strong> compared to a UK average of <strong>&pound;1350</strong>. The EPC report has highlighted several improvements measures the homeowner could undertake to increase the rating to {this.props.epc.potential_energy_rating} and reduce the annual energy bill by £{(this.props.epc.hot_water_cost_current + this.props.epc.heating_cost_current + this.props.epc.lighting_cost_current)-(this.props.epc.hot_water_cost_potential + this.props.epc.heating_cost_potential + this.props.epc.lighting_cost_potential)}.</p>
             <div className="row">
                 <div className="col">
                    <EpcEnergyEfficiencyGraph epc={this.props.epc}/>
@@ -43,16 +46,16 @@ class Epc extends React.Component {
                     <EpcEnvironmentalImpactGraph epc={this.props.epc} />
                 </div>
             </div>
-
+                <br/>
             <div className="row">
                 <div className="col">
                     <div className="panel panel-default">
                         <div className="panel-heading">
-                            EPC
+                            Property Assessment Results
                         </div>
                         <div className="panel-body">
                             <ul className="list-unstyled">
-                                <li>Date: {this.props.epc.inspection_date} </li>
+
                                 <li>Floor area: {this.props.epc.total_floor_area} sqm</li>
                                 <li>Current Energy Rating: {this.props.epc.current_energy_rating}</li>
                                 <li>Potential Rating: {this.props.epc.potential_energy_rating}</li>
@@ -63,6 +66,7 @@ class Epc extends React.Component {
                                     planting {_.round(this.props.epc.co2_emmissions_current - this.props.epc.co2_emissions_potential) * 5} trees
                                     per year
                                 </li>
+                                <li>Inspection Date: {this.props.epc.inspection_date} </li>
                             </ul>
                         </div>
                     </div>
@@ -70,7 +74,7 @@ class Epc extends React.Component {
                 <div className="col">
                     <div className="panel panel-default">
                         <div className="panel-heading">
-                            Running Costs
+                            Running Costs & Potential Savings
                         </div>
                         <div className="panel-body">
                             <ul className="list-unstyled">
