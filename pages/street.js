@@ -136,7 +136,7 @@ class Street extends React.Component {
                                 zoom={11}
                             />
                             <br/>
-
+                            <h2>Demographic Information for {_.first(this.props.addresses.addresses.data).town}, {_.toUpper(this.props.postcode)}</h2>
                             <div className="row">
                                 <div className="col">
                                     <CensusHousingType areacode={this.props.addresses.census_code}/>
