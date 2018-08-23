@@ -48,7 +48,7 @@ class Property extends React.Component {
                                 <div className="card">
                                     <div className="card-body">
                                         Estimated Valuation<br />
-                                        <h3>{(typeof this.props.address.valuation !== "undefined") ? "&pound;" + this.props.address.valuation.data.predicted_valuation : "None"}</h3>
+                                        <h3>{(typeof this.props.address.valuation !== "undefined") ? "£" + this.props.address.valuation.data.predicted_valuation : "None"}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -56,15 +56,15 @@ class Property extends React.Component {
                                 <div className="card">
                                     <div className="card-body">
                                         Last Sold Price<br/>
-                                       <h3> {(!_.isNaN(_.meanBy(this.props.address.prices.data, "price"))) ? ("£" + _.round(_.meanBy(this.props.address.prices.data, "price"))) : 'No sales history for this property'}</h3>
+                                       <h3> {(!_.isNaN(_.meanBy(this.props.address.prices.data, "price"))) ? ("£" + _.round(_.meanBy(this.props.address.prices.data, "price"))) : 'Original Owner'}</h3>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-sm-4">
                                 <div className="card">
                                     <div className="card-body">
-                                        Estimated Energy Rating<br />
-                                        <h3>{(_.first(_.orderBy(this.props.address.epc.data, ['id'], ['desc']))) ? _.first(_.orderBy(this.props.address.epc.data, ['id'], ['desc'])).current_energy_rating : 'None'}</h3>
+                                        Floor Area<br />
+                                        <h3>{(_.first(_.orderBy(this.props.address.epc.data, ['id'], ['desc']))) ? _.first(_.orderBy(this.props.address.epc.data, ['id'], ['desc'])).total_floor_area : 'None'}</h3>
                                     </div>
                                 </div>
                             </div>

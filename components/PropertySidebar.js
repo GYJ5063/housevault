@@ -30,9 +30,6 @@ export default (props) =>
             <Link route={"/property/"+props.postcode+"/"+props.number +"/culture"}>
                 <a className={ ((props.url === '/culture') ? 'active' : null) + " nav-link"}>Culture</a>
             </Link>
-            <Link route={"/property/"+props.postcode+"/"+props.number +"/crime"}>
-                <a className={ ((props.url === '/crime') ? 'active' : null) + " nav-link"}>Crime</a>
-            </Link>
 
         </div>
     </div>
