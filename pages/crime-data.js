@@ -1,9 +1,10 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 import PropertySidebar from "../components/PropertySidebar";
-import _ from "lodash"
+import _ from "lodash";
 import moment from "moment";
-import Layout from '../components/Layout'
+import Layout from '../components/Layout';
+import GoogleMapsWithMarkerClusterer from "../components/GoogleMapsWithMarkerClusterer";
 
 class Crime extends React.Component {
 
@@ -41,6 +42,7 @@ class Crime extends React.Component {
                             </table>
                         </div>
                     </div>
+					<GoogleMapsWithMarkerClusterer markers={this.props.markers} />
                 </Layout>
             </div>
         );
@@ -53,8 +55,11 @@ Crime.getInitialProps = async ({ req, query: { postcode, address } }) => {
     const res = await fetch(process.env.BACKEND_URL + "address/" + postcode + "/" + address);
     const json = await res.json();
     const crime = await fetch("https://data.police.uk/api/crimes-street/all-crime?lat="+json.data.lat+"&lng="+ json.data.lng );
-    const crimeRes = await crime.json();
-    return { property: json.data, prices: json.data.prices.data, crimes: crimeRes, month: _.first(crimeRes).month }
+	const crimeRes = await crime.json();
+	const markers = crimeRes.map(c => {
+        return { lat: parseFloat(c.location.latitude), lng: parseFloat(c.location.longitude), id: c.persistent_id }
+	});
+    return { property: json.data, prices: json.data.prices.data, crimes: crimeRes, month: _.first(crimeRes).month, markers }
 };
 
 export default Crime;
