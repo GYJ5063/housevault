@@ -56,7 +56,7 @@ class Crime extends React.Component {
     render() {
 
         return (
-            <div className="container list-page-padding">
+            <div className="container property-crime-container">
                 <Layout>
                     <div className="row">
                         <PropertySidebar url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
@@ -86,17 +86,23 @@ class Crime extends React.Component {
                         </div>
                     </div>
                     <div className="row">
-                        <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggle()}>
-                            <DropdownToggle caret>{this.state.month}</DropdownToggle>
-                            <DropdownMenu>
-                                {
-                                    this.getMonthsForYear("2018").map((m, i) => (
-                                        <DropdownItem onClick={() => this.selectMonth(m)} key={i}>{m}</DropdownItem>
-                                ))}
-                            </DropdownMenu>
-                        </ButtonDropdown>
+                        <div className="col">
+                            <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggle()}>
+                                <DropdownToggle caret>{this.state.month}</DropdownToggle>
+                                <DropdownMenu>
+                                    {
+                                        this.getMonthsForYear("2018").map((m, i) => (
+                                            <DropdownItem onClick={() => this.selectMonth(m)} key={i}>{m}</DropdownItem>
+                                    ))}
+                                </DropdownMenu>
+                            </ButtonDropdown>
+                        </div>
                     </div>
-                    <GoogleMapsWithMarkerClusterer markers={this.state.markers} />
+                    <div className="row">
+                        <div className="col">
+                            <GoogleMapsWithMarkerClusterer markers={this.state.markers} />
+                        </div>
+                    </div>
                 </Layout>
             </div>
         );
