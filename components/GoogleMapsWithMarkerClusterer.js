@@ -31,9 +31,9 @@ const GoogleMapsWithMarkerClusterer = compose(
 			enableRetinaIcons
 			gridSize={60}
 		>
-			{props.markers.map((marker) => (
+			{props.markers.map((marker, i) => (
 				<Marker
-					key={marker.id}
+					key={i}
 					position={{ lat: marker.lat, lng: marker.lng }}
 				/>
 			))}
