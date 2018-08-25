@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Table } from 'reactstrap';
 import fetch from "isomorphic-fetch";
 import PropertySidebar from "../components/PropertySidebar";
 import _ from "lodash";
@@ -63,25 +63,26 @@ class Crime extends React.Component {
 
                         <div className="col">
                             <h4>Crime in {this.props.property.full_address} for {this.state.month}</h4>
+                            <div className="property-crime-crimes-container">
+                                <Table className="property-crime-crimes-table">
+                                    <thead>
+                                    <tr>
+                                        <th>Crime Type</th>
+                                        <th>Location</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody >
+                                    { this.state.crimes.map((crime, i) => (
 
-                            <table className="table">
-                                <thead>
-                                <tr>
-                                    <th>Crime Type</th>
-                                    <th>Location</th>
-                                </tr>
-                                </thead>
-                                <tbody >
-                                { this.state.crimes.map((crime, i) => (
+                                            <tr key={i}>
+                                                <td>{_.capitalize(crime.category.replace(/-/g, ' ')) }</td>
+                                                <td>{crime.location.street.name}</td>
+                                            </tr>
 
-                                        <tr key={i}>
-                                            <td>{crime.location.street.name}</td>
-                                            <td>{_.capitalize(crime.category.replace(/-/g, ' ')) }</td>
-                                        </tr>
-
-                                ))}
-                                </tbody>
-                            </table>
+                                    ))}
+                                    </tbody>
+                                </Table>
+                            </div>
                         </div>
                     </div>
                     <div className="row">

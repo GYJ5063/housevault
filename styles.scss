@@ -607,6 +607,14 @@ footer {
     }
 }
 
+.property-crime-crimes-container {
+    height: 300px;
+    overflow-y: scroll;
+}
+.property-crime-crimes-table {
+    height: 100%;
+}
+
 .nopadding {
     padding: 0 !important;
     margin: 0 !important;
