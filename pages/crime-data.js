@@ -112,7 +112,7 @@ Crime.getInitialProps = async ({ req, query: { postcode, address } }) => {
     const crimeReq = await fetch(`https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${lng}`);
     const crimes = await crimeReq.json();
     const markers = crimes.map(c => {
-        return { lat: parseFloat(c.location.latitude), lng: parseFloat(c.location.longitude), month: c.month }
+        return { lat: parseFloat(c.location.latitude), lng: parseFloat(c.location.longitude) }
     });
     const month = moment(_.first(crimes).month,"YYYY-MM").format("MMMM YYYY");
     return { property, prices: property.prices.data, crimes, month, markers, lat, lng}
