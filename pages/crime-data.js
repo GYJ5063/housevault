@@ -20,12 +20,6 @@ class Crime extends React.Component {
         };
     }
 
-    getMonthsForYear(year){
-        // TODO
-        return [...Array(6).keys()]
-                .map(m => moment(`${year}-${++m}`,"YYYY-MM").format("MMMM YYYY"));
-    }
-
     toggle() {
         this.setState({
           dropdownOpen: !this.state.dropdownOpen
@@ -89,9 +83,26 @@ class Crime extends React.Component {
                         <div className="col">
                             <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggle()}>
                                 <DropdownToggle caret>{this.state.month}</DropdownToggle>
-                                <DropdownMenu>
+                                <DropdownMenu
+                                    modifiers={{
+                                        setMaxHeight: {
+                                          enabled: true,
+                                          order: 890,
+                                          fn: (data) => {
+                                            return {
+                                              ...data,
+                                              styles: {
+                                                ...data.styles,
+                                                overflow: 'auto',
+                                                maxHeight: 200,
+                                              },
+                                            };
+                                          },
+                                        },
+                                      }}
+                                >
                                     {
-                                        this.getMonthsForYear("2018").map((m, i) => (
+                                        this.props.dates.map((m, i) => (
                                             <DropdownItem onClick={() => this.selectMonth(m)} key={i}>{m}</DropdownItem>
                                     ))}
                                 </DropdownMenu>
@@ -116,13 +127,19 @@ Crime.getInitialProps = async ({ req, query: { postcode, address } }) => {
     const json = await res.json();
     const property = json.data;
     const { lat, lng } = property;
+
     const crimeReq = await fetch(`https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${lng}`);
     const crimes = await crimeReq.json();
+
+    const datesReq = await fetch("https://data.police.uk/api/crimes-street-dates");
+    const datesWithCrimes = await datesReq.json();
+    const dates = datesWithCrimes.map(d => moment(d.date, "YYYY-MM").format("MMMM YYYY"));
+
     const markers = crimes.map(c => {
         return { lat: parseFloat(c.location.latitude), lng: parseFloat(c.location.longitude) }
     });
     const month = moment(_.first(crimes).month,"YYYY-MM").format("MMMM YYYY");
-    return { property, prices: property.prices.data, crimes, month, markers, lat, lng}
+    return { property, prices: property.prices.data, crimes, month, markers, lat, lng, dates }
 };
 
 export default Crime;
