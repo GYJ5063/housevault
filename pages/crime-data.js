@@ -15,15 +15,15 @@ class Crime extends React.Component {
         this.state = {
           dropdownOpen: false,
           markers: this.props.markers,
-          selectedDate: this.props.month,
-          month: this.props.month
+          month: this.props.month,
+          crimes: this.props.crimes
         };
     }
 
     getMonthsForYear(year){
         // TODO
         return [...Array(6).keys()]
-                .map(m => `${year}-${++m}`);
+                .map(m => moment(`${year}-${++m}`,"YYYY-MM").format("MMMM YYYY"));
     }
 
     toggle() {
@@ -32,23 +32,25 @@ class Crime extends React.Component {
         });
     }
 
-    
-    async getMarkersByMonth(month){
-        const crime = await fetch("https://data.police.uk/api/crimes-street/all-crime?lat="+this.props.lat+"&lng="+ this.props.lng + "&date=" + month );
-        const crimeRes = await crime.json();
-        const markers = crimeRes.map(c => {
+    async getCrimes(lat, lng, date){
+        const baseUrl = `https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${lng}`;
+        const url = date ? baseUrl + `&date=${date}` : "";
+        const crime = await fetch(url);
+        const crimes = await crime.json();
+        return crimes;
+    }
+
+    async selectMonth(m){
+        const crimes = await this.getCrimes(this.props.lat, this.props.lng, moment(m,"MMMM YYYY").format("YYYY-MM"));
+
+        const markers = crimes.map(c => {
             return { lat: parseFloat(c.location.latitude), lng: parseFloat(c.location.longitude) }
         });
 
-        return markers;
-    }
-    
-    async selectMonth(m){
-        const markers = await this.getMarkersByMonth(m);
         this.setState({
             markers: markers,
-            selectedDate: m,
-            month: m
+            month: m,
+            crimes: crimes
         });
     }
     render() {
@@ -60,7 +62,7 @@ class Crime extends React.Component {
                         <PropertySidebar url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
 
                         <div className="col">
-                            <h4>Crime in {this.props.property.full_address} for {moment(this.state.month,"YYYY-MM").format("MMMM YYYY")}</h4>
+                            <h4>Crime in {this.props.property.full_address} for {this.state.month}</h4>
 
                             <table className="table">
                                 <thead>
@@ -70,7 +72,7 @@ class Crime extends React.Component {
                                 </tr>
                                 </thead>
                                 <tbody >
-                                { this.props.crimes.map((crime, i) => (
+                                { this.state.crimes.map((crime, i) => (
 
                                         <tr key={i}>
                                             <td>{crime.location.street.name}</td>
@@ -84,7 +86,7 @@ class Crime extends React.Component {
                     </div>
                     <div className="row">
                         <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggle()}>
-                            <DropdownToggle caret>{this.state.selectedDate}</DropdownToggle>
+                            <DropdownToggle caret>{this.state.month}</DropdownToggle>
                             <DropdownMenu>
                                 {
                                     this.getMonthsForYear("2018").map((m, i) => (
@@ -105,13 +107,15 @@ Crime.getInitialProps = async ({ req, query: { postcode, address } }) => {
 
     const res = await fetch(process.env.BACKEND_URL + "address/" + postcode + "/" + address);
     const json = await res.json();
-    const { lat, lng } = json.data;
-    const crime = await fetch("https://data.police.uk/api/crimes-street/all-crime?lat="+json.data.lat+"&lng="+ json.data.lng);
-    const crimeRes = await crime.json();
-    const markers = crimeRes.map(c => {
+    const property = json.data;
+    const { lat, lng } = property;
+    const crimeReq = await fetch(`https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${lng}`);
+    const crimes = await crimeReq.json();
+    const markers = crimes.map(c => {
         return { lat: parseFloat(c.location.latitude), lng: parseFloat(c.location.longitude), month: c.month }
     });
-    return { property: json.data, prices: json.data.prices.data, crimes: crimeRes, month: _.first(crimeRes).month, markers, lat, lng}
+    const month = moment(_.first(crimes).month,"YYYY-MM").format("MMMM YYYY");
+    return { property, prices: property.prices.data, crimes, month, markers, lat, lng}
 };
 
 export default Crime;
