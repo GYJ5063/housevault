@@ -240,7 +240,11 @@ class Street extends React.Component {
                                     <div className="row">
                                         <div className="col">
                                             <div className="property-header">
-                                                <h6 onClick={() => this.toggleAccordion(index)}>{address.full_address} <i className="fas fa-caret-right"></i></h6>
+                                                <h6 onClick={() => this.toggleAccordion(index)}>{address.full_address}
+                                                {
+                                                    this.state.collapsed === index ? <i className="fas fa-caret-down"></i> : <i className="fas fa-caret-right"></i>
+                                                }
+                                                </h6>
                                             </div>
                                         </div>
                                     </div>
