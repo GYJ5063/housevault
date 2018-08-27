@@ -1,5 +1,6 @@
 import React from "react";
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Table } from 'reactstrap';
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Table,
+    Nav, NavItem, NavLink, TabContent, TabPane, Row } from 'reactstrap';
 import fetch from "isomorphic-fetch";
 import PropertySidebar from "../components/PropertySidebar";
 import _ from "lodash";
@@ -16,7 +17,9 @@ class Crime extends React.Component {
           dropdownOpen: false,
           markers: this.props.markers,
           month: this.props.month,
-          crimes: this.props.crimes
+          crimes: this.props.crimes,
+          crimesGroupedByCategory: this.props.crimesGroupedByCategory,
+          activeTab: '0'
         };
     }
 
@@ -25,6 +28,13 @@ class Crime extends React.Component {
           dropdownOpen: !this.state.dropdownOpen
         });
     }
+    toggleTab(tab) {
+        if (this.state.activeTab !== tab) {
+          this.setState({
+            activeTab: tab
+          });
+        }
+      }
 
     async getCrimes(lat, lng, date){
         const baseUrl = `https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${lng}`;
@@ -34,17 +44,20 @@ class Crime extends React.Component {
         return crimes;
     }
 
-    async selectMonth(m){
-        const crimes = await this.getCrimes(this.props.lat, this.props.lng, moment(m,"MMMM YYYY").format("YYYY-MM"));
+    async selectMonth(month){
+        const crimes = await this.getCrimes(this.props.lat, this.props.lng, moment(month,"MMMM YYYY").format("YYYY-MM"));
 
         const markers = crimes.map(c => {
             return { lat: parseFloat(c.location.latitude), lng: parseFloat(c.location.longitude) }
         });
 
+        const crimesGroupedByCategory = _.groupBy(crimes, "category");
+
         this.setState({
-            markers: markers,
-            month: m,
-            crimes: crimes
+            markers,
+            month,
+            crimes,
+            crimesGroupedByCategory
         });
     }
     render() {
@@ -57,26 +70,45 @@ class Crime extends React.Component {
 
                         <div className="col">
                             <h4>Crime in {this.props.property.full_address} for {this.state.month}</h4>
-                            <div className="property-crime-crimes-container">
-                                <Table className="property-crime-crimes-table">
-                                    <thead>
-                                    <tr>
-                                        <th>Crime Type</th>
-                                        <th>Location</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody >
-                                    { this.state.crimes.map((crime, i) => (
+                            <Nav tabs>
+                                {
+                                    _.map(this.state.crimesGroupedByCategory, (val, key) => (
+                                        <NavItem>
+                                            <NavLink
+                                                className={this.state.activeTab === key ? 'active' : ''}
+                                                onClick={() => { this.toggleTab(key); }}
+                                            >
+                                            {`${key} (${val.length})`}
+                                            </NavLink>
+                                        </NavItem>
+                                ))}
+                            </Nav>
+                            <TabContent activeTab={this.state.activeTab}>
+                            {
+                                _.map(this.state.crimesGroupedByCategory, (val, key) => (
+                                    <TabPane tabId={key}>
+                                        <div className="property-crime-crimes-container">
+                                            <Table className="property-crime-crimes-table">
+                                                <thead>
+                                                <tr>
+                                                    <th>Crime Type</th>
+                                                    <th>Location</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody >
+                                                { val.map((crime, i) => (
 
-                                            <tr key={i}>
-                                                <td>{_.capitalize(crime.category.replace(/-/g, ' ')) }</td>
-                                                <td>{crime.location.street.name}</td>
-                                            </tr>
-
-                                    ))}
-                                    </tbody>
-                                </Table>
-                            </div>
+                                                        <tr key={i}>
+                                                            <td>{_.capitalize(crime.category.replace(/-/g, ' ')) }</td>
+                                                            <td>{crime.location.street.name}</td>
+                                                        </tr>
+                                                ))}
+                                                </tbody>
+                                            </Table>
+                                        </div>
+                                    </TabPane>
+                            ))}
+                            </TabContent>
                         </div>
                     </div>
                     <div className="row">
@@ -122,7 +154,8 @@ class Crime extends React.Component {
 }
 
 Crime.getInitialProps = async ({ req, query: { postcode, address } }) => {
-
+    // TODO: for performamce, consider using reduce to map every collection to a single object
+    // instead of looping through the same collection multiple times
     const res = await fetch(process.env.BACKEND_URL + "address/" + postcode + "/" + address);
     const json = await res.json();
     const property = json.data;
@@ -139,7 +172,10 @@ Crime.getInitialProps = async ({ req, query: { postcode, address } }) => {
         return { lat: parseFloat(c.location.latitude), lng: parseFloat(c.location.longitude) }
     });
     const month = moment(_.first(crimes).month,"YYYY-MM").format("MMMM YYYY");
-    return { property, prices: property.prices.data, crimes, month, markers, lat, lng, dates }
+
+    const crimesGroupedByCategory = _.groupBy(crimes, "category");
+
+    return { property, prices: property.prices.data, crimes, month, markers, lat, lng, dates, crimesGroupedByCategory }
 };
 
 export default Crime;
