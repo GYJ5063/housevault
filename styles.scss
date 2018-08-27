@@ -606,12 +606,24 @@ footer {
         margin-bottom:20px;
     }
 }
+
 .property-crime-container {
     padding:1rem 0 1rem 0;
-    
+
     .row {
         margin: 10px 0;
 
+        .crime-cat-tab.nav.nav-tabs {
+            overflow-x: auto;
+            overflow-y: hidden;
+            display: -webkit-box;
+            display: -moz-box;
+            
+            li {
+                float: none;
+                height: 44px;
+            }
+        }
         .property-crime-crimes-container {
             height: 300px;
             overflow-y: auto;

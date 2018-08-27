@@ -1,6 +1,6 @@
 import React from "react";
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Table,
-    Nav, NavItem, NavLink, TabContent, TabPane, Row } from 'reactstrap';
+         Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import fetch from "isomorphic-fetch";
 import PropertySidebar from "../components/PropertySidebar";
 import _ from "lodash";
@@ -18,8 +18,7 @@ class Crime extends React.Component {
           markers: this.props.markers,
           month: this.props.month,
           crimes: this.props.crimes,
-          crimesGroupedByCategory: this.props.crimesGroupedByCategory,
-          activeTab: '0'
+          activeTab: this.props.firstCategory
         };
     }
 
@@ -36,16 +35,8 @@ class Crime extends React.Component {
         }
       }
 
-    async getCrimes(lat, lng, date){
-        const baseUrl = `https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${lng}`;
-        const url = date ? baseUrl + `&date=${date}` : "";
-        const crime = await fetch(url);
-        const crimes = await crime.json();
-        return crimes;
-    }
-
     async selectMonth(month){
-        const crimes = await this.getCrimes(this.props.lat, this.props.lng, moment(month,"MMMM YYYY").format("YYYY-MM"));
+        const crimes = await Crime.getCrimes(this.props.lat, this.props.lng, moment(month,"MMMM YYYY").format("YYYY-MM"));
 
         const markers = crimes.map(c => {
             return { lat: parseFloat(c.location.latitude), lng: parseFloat(c.location.longitude) }
@@ -56,8 +47,7 @@ class Crime extends React.Component {
         this.setState({
             markers,
             month,
-            crimes,
-            crimesGroupedByCategory
+            crimes: crimesGroupedByCategory
         });
     }
     render() {
@@ -68,12 +58,12 @@ class Crime extends React.Component {
                     <div className="row">
                         <PropertySidebar url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
 
-                        <div className="col">
+                        <div className="col-9">
                             <h4>Crime in {this.props.property.full_address} for {this.state.month}</h4>
-                            <Nav tabs>
+                            <Nav className="crime-cat-tab" tabs>
                                 {
-                                    _.map(this.state.crimesGroupedByCategory, (val, key) => (
-                                        <NavItem>
+                                    _.map(this.state.crimes, (val, key) => (
+                                        <NavItem key={key}>
                                             <NavLink
                                                 className={this.state.activeTab === key ? 'active' : ''}
                                                 onClick={() => { this.toggleTab(key); }}
@@ -85,8 +75,8 @@ class Crime extends React.Component {
                             </Nav>
                             <TabContent activeTab={this.state.activeTab}>
                             {
-                                _.map(this.state.crimesGroupedByCategory, (val, key) => (
-                                    <TabPane tabId={key}>
+                                _.map(this.state.crimes, (val, key) => (
+                                    <TabPane key={key} tabId={key}>
                                         <div className="property-crime-crimes-container">
                                             <Table className="property-crime-crimes-table">
                                                 <thead>
@@ -153,29 +143,57 @@ class Crime extends React.Component {
     }
 }
 
+Crime.getCrimes = async function getCrimes(lat, lng, date){
+    const baseUrl = `https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${lng}`;
+    const url = date ? baseUrl + `&date=${date}` : baseUrl;
+    const crime = await fetch(url);
+    const crimes = await crime.json();
+    return crimes;
+};
+
+Crime.processCrimes = function processCrimes(crimes){
+    // as the data set may be large 800+, this method only iterates the collection once
+    const processedData = crimes.reduce((acc, crime) => {
+        acc.markers.push({ 
+            lat: parseFloat(crime.location.latitude), lng: parseFloat(crime.location.longitude)
+        });
+        const category = _.capitalize(crime.category.replace(/-/g, ' '));
+
+        if (!acc.crimes[category]) {
+            acc.crimes[category] = [];
+        }
+        acc.crimes[category].push(crime);
+
+        if(!acc.firstCategory) {
+            acc.firstCategory = category;
+        }
+
+        return acc;
+    }, { markers: [], crimes: {}, firstCategory: null });
+
+    return processedData;
+}
+
 Crime.getInitialProps = async ({ req, query: { postcode, address } }) => {
-    // TODO: for performamce, consider using reduce to map every collection to a single object
-    // instead of looping through the same collection multiple times
     const res = await fetch(process.env.BACKEND_URL + "address/" + postcode + "/" + address);
     const json = await res.json();
+
     const property = json.data;
     const { lat, lng } = property;
 
-    const crimeReq = await fetch(`https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${lng}`);
-    const crimes = await crimeReq.json();
+    const crimes = await Crime.getCrimes(lat, lng);
+    const data = Crime.processCrimes(crimes);
 
     const datesReq = await fetch("https://data.police.uk/api/crimes-street-dates");
     const datesWithCrimes = await datesReq.json();
     const dates = datesWithCrimes.map(d => moment(d.date, "YYYY-MM").format("MMMM YYYY"));
 
-    const markers = crimes.map(c => {
-        return { lat: parseFloat(c.location.latitude), lng: parseFloat(c.location.longitude) }
-    });
     const month = moment(_.first(crimes).month,"YYYY-MM").format("MMMM YYYY");
 
-    const crimesGroupedByCategory = _.groupBy(crimes, "category");
-
-    return { property, prices: property.prices.data, crimes, month, markers, lat, lng, dates, crimesGroupedByCategory }
+    return { 
+        property, prices: property.prices.data, crimes: data.crimes, month,
+        markers: data.markers, lat, lng, dates, firstCategory: data.firstCategory
+    }
 };
 
 export default Crime;
