@@ -20,7 +20,7 @@ class Crime extends React.Component {
         };
     }
 
-    toggle() {
+    toggleDropdown() {
         this.setState({
           dropdownOpen: !this.state.dropdownOpen
         });
@@ -81,7 +81,7 @@ class Crime extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col">
-                            <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggle()}>
+                            <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggleDropdown()}>
                                 <DropdownToggle caret>{this.state.month}</DropdownToggle>
                                 <DropdownMenu
                                     modifiers={{
