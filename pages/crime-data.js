@@ -36,18 +36,13 @@ class Crime extends React.Component {
       }
 
     async selectMonth(month){
-        const crimes = await Crime.getCrimes(this.props.lat, this.props.lng, moment(month,"MMMM YYYY").format("YYYY-MM"));
-
-        const markers = crimes.map(c => {
-            return { lat: parseFloat(c.location.latitude), lng: parseFloat(c.location.longitude) }
-        });
-
-        const crimesGroupedByCategory = _.groupBy(crimes, "category");
+        const unProcessedcrimes = await Crime.getCrimes(this.props.lat, this.props.lng, moment(month,"MMMM YYYY").format("YYYY-MM"));
+        const { markers, crimes } = Crime.processCrimes(unProcessedcrimes);
 
         this.setState({
             markers,
             month,
-            crimes: crimesGroupedByCategory
+            crimes
         });
     }
     render() {
@@ -181,18 +176,18 @@ Crime.getInitialProps = async ({ req, query: { postcode, address } }) => {
     const property = json.data;
     const { lat, lng } = property;
 
-    const crimes = await Crime.getCrimes(lat, lng);
-    const data = Crime.processCrimes(crimes);
+    const unProcessedCrimes = await Crime.getCrimes(lat, lng);
+    const { crimes, markers, firstCategory } = Crime.processCrimes(unProcessedCrimes);
 
     const datesReq = await fetch("https://data.police.uk/api/crimes-street-dates");
     const datesWithCrimes = await datesReq.json();
     const dates = datesWithCrimes.map(d => moment(d.date, "YYYY-MM").format("MMMM YYYY"));
 
-    const month = moment(_.first(crimes).month,"YYYY-MM").format("MMMM YYYY");
+    const month = moment(_.first(unProcessedCrimes).month,"YYYY-MM").format("MMMM YYYY");
 
     return { 
-        property, prices: property.prices.data, crimes: data.crimes, month,
-        markers: data.markers, lat, lng, dates, firstCategory: data.firstCategory
+        property, prices: property.prices.data, crimes, month,
+        markers, lat, lng, dates, firstCategory
     }
 };
 
