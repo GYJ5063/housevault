@@ -28,7 +28,7 @@ class Street extends React.Component {
             localArea: [],
             propertyDataLoading: false,
             census: [],
-            collapsed: null
+            collapsed: 0
         }
     }
 
@@ -248,7 +248,7 @@ class Street extends React.Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <Collapse isOpen={this.state.collapsed === index}>
+                                    <Collapse className="property-address-listing" isOpen={this.state.collapsed === index}>
                                         <Card>
                                             <CardBody>
                                                 <div className="row">
