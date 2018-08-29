@@ -18,7 +18,8 @@ class Crime extends React.Component {
           markers: this.props.markers,
           month: this.props.month,
           crimes: this.props.crimes,
-          activeTab: this.props.firstCategory
+          activeTab: this.props.firstCategory,
+          visibleMarkers: this.props.markers
         };
     }
 
@@ -33,8 +34,19 @@ class Crime extends React.Component {
             activeTab: tab
           });
         }
+        this.filterMarkersByCategory(tab);
       }
 
+    filterMarkersByCategory(category) {
+        const markers = this.state.crimes[category].map(c => ({
+            lat: parseFloat(c.location.latitude),
+            lng: parseFloat(c.location.longitude)
+        }));
+
+        this.setState({
+            visibleMarkers: markers
+        });
+    }
     async selectMonth(month){
         const unProcessedcrimes = await Crime.getCrimes(this.props.lat, this.props.lng, moment(month,"MMMM YYYY").format("YYYY-MM"));
         const { markers, crimes } = Crime.processCrimes(unProcessedcrimes);
@@ -94,7 +106,7 @@ class Crime extends React.Component {
                                         </NavItem>
                                 ))}
                             </Nav>
-                            <GoogleMapsWithMarkerClusterer markers={this.state.markers} />
+                            <GoogleMapsWithMarkerClusterer markers={this.state.visibleMarkers} />
                             <TabContent activeTab={this.state.activeTab}>
                             {
                                 _.map(this.state.crimes, (val, key) => (
