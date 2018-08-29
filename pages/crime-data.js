@@ -55,49 +55,6 @@ class Crime extends React.Component {
 
                         <div className="col-9">
                             <h4>Crime in {this.props.property.full_address} for {this.state.month}</h4>
-                            <Nav className="crime-cat-tab" tabs>
-                                {
-                                    _.map(this.state.crimes, (val, key) => (
-                                        <NavItem key={key}>
-                                            <NavLink
-                                                className={this.state.activeTab === key ? 'active' : ''}
-                                                onClick={() => { this.toggleTab(key); }}
-                                            >
-                                            {`${key} (${val.length})`}
-                                            </NavLink>
-                                        </NavItem>
-                                ))}
-                            </Nav>
-                            <TabContent activeTab={this.state.activeTab}>
-                            {
-                                _.map(this.state.crimes, (val, key) => (
-                                    <TabPane key={key} tabId={key}>
-                                        <div className="property-crime-crimes-container">
-                                            <Table className="property-crime-crimes-table">
-                                                <thead>
-                                                <tr>
-                                                    <th>Crime Type</th>
-                                                    <th>Location</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody >
-                                                { val.map((crime, i) => (
-
-                                                        <tr key={i}>
-                                                            <td>{_.capitalize(crime.category.replace(/-/g, ' ')) }</td>
-                                                            <td>{crime.location.street.name}</td>
-                                                        </tr>
-                                                ))}
-                                                </tbody>
-                                            </Table>
-                                        </div>
-                                    </TabPane>
-                            ))}
-                            </TabContent>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col">
                             <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggleDropdown()}>
                                 <DropdownToggle caret>{this.state.month}</DropdownToggle>
                                 <DropdownMenu
@@ -124,11 +81,46 @@ class Crime extends React.Component {
                                     ))}
                                 </DropdownMenu>
                             </ButtonDropdown>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col">
+                            <Nav className="crime-cat-tab" tabs>
+                                {
+                                    _.map(this.state.crimes, (val, key) => (
+                                        <NavItem key={key}>
+                                            <NavLink
+                                                className={this.state.activeTab === key ? 'active' : ''}
+                                                onClick={() => { this.toggleTab(key); }}
+                                            >
+                                            {`${key} (${val.length})`}
+                                            </NavLink>
+                                        </NavItem>
+                                ))}
+                            </Nav>
                             <GoogleMapsWithMarkerClusterer markers={this.state.markers} />
+                            <TabContent activeTab={this.state.activeTab}>
+                            {
+                                _.map(this.state.crimes, (val, key) => (
+                                    <TabPane key={key} tabId={key}>
+                                        <div className="property-crime-crimes-container">
+                                            <Table className="property-crime-crimes-table">
+                                                <thead>
+                                                <tr>
+                                                    <th>Crime Type</th>
+                                                    <th>Location</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody >
+                                                { val.map((crime, i) => (
+
+                                                        <tr key={i}>
+                                                            <td>{_.capitalize(crime.category.replace(/-/g, ' ')) }</td>
+                                                            <td>{crime.location.street.name}</td>
+                                                        </tr>
+                                                ))}
+                                                </tbody>
+                                            </Table>
+                                        </div>
+                                    </TabPane>
+                            ))}
+                            </TabContent>
                         </div>
                     </div>
                 </Layout>
