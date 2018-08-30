@@ -18,9 +18,18 @@ class Crime extends React.Component {
           markers: this.props.markers,
           month: this.props.month,
           crimes: this.props.crimes,
-          activeTab: this.props.firstCategory,
-          visibleMarkers: this.props.markers
+          activeTab: null,
+          visibleMarkers: this.props.markers,
+          categoriesToDisplay: {
+            "Anti social behaviour": "fas fa-spray-can",
+            "Criminal damage arson": "fas fa-fire",
+            "Other theft": "fas fa-motorcycle",
+            "Public order": "fas fa-balance-scale",
+            "Violent crime": "fas fa-ambulance"
+          }
         };
+
+        this.toggleTab(this.props.firstCategory);
     }
 
     toggleDropdown() {
@@ -38,19 +47,21 @@ class Crime extends React.Component {
       }
 
     filterMarkersByCategory(category) {
+        console.log(category)
+        console.log(this.state.crimes[category]);
         const markers = this.state.crimes[category].map(c => ({
             lat: parseFloat(c.location.latitude),
             lng: parseFloat(c.location.longitude)
         }));
-
+        console.log("finished");
         this.setState({
             visibleMarkers: markers
         });
     }
     async selectMonth(month){
         const unProcessedcrimes = await Crime.getCrimes(this.props.lat, this.props.lng, moment(month,"MMMM YYYY").format("YYYY-MM"));
+        console.log(unProcessedcrimes.length);
         const { markers, crimes } = Crime.processCrimes(unProcessedcrimes);
-
         this.setState({
             markers,
             month,
@@ -67,6 +78,7 @@ class Crime extends React.Component {
 
                         <div className="col-9">
                             <h4>Crime in {this.props.property.full_address} for {this.state.month}</h4>
+                            By month:
                             <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggleDropdown()}>
                                 <DropdownToggle caret>{this.state.month}</DropdownToggle>
                                 <DropdownMenu
@@ -95,13 +107,14 @@ class Crime extends React.Component {
                             </ButtonDropdown>
                             <Nav className="crime-cat-tab" tabs>
                                 {
-                                    _.map(this.state.crimes, (val, key) => (
+                                    _.map(this.state.categoriesToDisplay, (val, key) => (
                                         <NavItem key={key}>
                                             <NavLink
                                                 className={this.state.activeTab === key ? 'active' : ''}
                                                 onClick={() => { this.toggleTab(key); }}
                                             >
-                                            {`${key} (${val.length})`}
+                                            <i className={val}></i>
+                                            {`${key} (${this.state.crimes[key].length})`}
                                             </NavLink>
                                         </NavItem>
                                 ))}
@@ -181,6 +194,7 @@ Crime.getInitialProps = async ({ req, query: { postcode, address } }) => {
     const { lat, lng } = property;
 
     const unProcessedCrimes = await Crime.getCrimes(lat, lng);
+    console.log(unProcessedCrimes.length);
     const { crimes, markers, firstCategory } = Crime.processCrimes(unProcessedCrimes);
 
     const datesReq = await fetch("https://data.police.uk/api/crimes-street-dates");
