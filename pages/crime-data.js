@@ -43,6 +43,8 @@ class Crime extends React.Component {
             activeTab: tab
           });
         }
+        // this calls setState and will causes issues
+        // as component hasn't mounted yet
         this.filterMarkersByCategory(tab);
       }
 
