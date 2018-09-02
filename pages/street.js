@@ -1,4 +1,5 @@
 import React from "react";
+import { Collapse, Card, CardBody } from "reactstrap"
 import _ from "lodash";
 import fetch from "isomorphic-fetch";
 import moment from 'moment';
@@ -26,8 +27,15 @@ class Street extends React.Component {
             localAreaLoading: false,
             localArea: [],
             propertyDataLoading: false,
-            census: []
+            census: [],
+            collapsed: 0
         }
+    }
+
+    toggleAccordion(index) {
+        this.setState({
+            collapsed: this.state.collapsed === index ? null : index
+        });
     }
 
     delayedShowMarker() {
@@ -226,46 +234,56 @@ class Street extends React.Component {
                                 : ''}
 
                             <h2>Properties</h2>
-                            {addresses.data.map((address) => (
+                            {addresses.data.map((address, index) => (
 
                                 <div key={address.id}>
                                     <div className="row">
                                         <div className="col">
                                             <div className="property-header">
-                                                <h6>{address.full_address} <i className="fas fa-caret-right"></i></h6>
+                                                <h6 onClick={() => this.toggleAccordion(index)}>{address.full_address}
+                                                {
+                                                    this.state.collapsed === index ? <i className="fas fa-caret-down"></i> : <i className="fas fa-caret-right"></i>
+                                                }
+                                                </h6>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="row">
-                                        <hr/>
-                                        <div className="col">
+                                    <Collapse className="property-address-listing" isOpen={this.state.collapsed === index}>
+                                        <Card>
+                                            <CardBody>
+                                                <div className="row">
+                                                    <hr/>
+                                                    <div className="col">
 
-                                        </div>
-                                        <div className="col">
-                                            <strong>Last Sold Price</strong><br/>
-                                            {(!_.isNaN(_.meanBy(address.prices.data, "price"))) ? ("£" + _.round(_.meanBy(address.prices.data, "price"))) : 'No sales history for this property'}
-                                        </div>
-                                        <div className="col">
-                                            <strong>Property Size</strong><br/>
-                                            {(_.first(_.orderBy(address.epc.data, ['id'], ['desc']))) ? _.first(_.orderBy(address.epc.data, ['id'], ['desc'])).total_floor_area + ' sqm' : 'Coming Soon'}
-                                        </div>
+                                                    </div>
+                                                    <div className="col">
+                                                        <strong>Last Sold Price</strong><br/>
+                                                        {(!_.isNaN(_.meanBy(address.prices.data, "price"))) ? ("£" + _.round(_.meanBy(address.prices.data, "price"))) : 'No sales history for this property'}
+                                                    </div>
+                                                    <div className="col">
+                                                        <strong>Property Size</strong><br/>
+                                                        {(_.first(_.orderBy(address.epc.data, ['id'], ['desc']))) ? _.first(_.orderBy(address.epc.data, ['id'], ['desc'])).total_floor_area + ' sqm' : 'Coming Soon'}
+                                                    </div>
 
-                                        <div className="col text-right">
-                                            <ul className="list-unstyled">
-                                                <li>
-                                                <Link route={'/property/'+address.postcode + '/'+ address.house_number }  >
-                                                    <a>
-                                                        <button className="btn btn-success property-btn">View Property</button>
-                                                    </a>
-                                                </Link>
-                                                </li>
-                                                <li>
+                                                    <div className="col text-right">
+                                                        <ul className="list-unstyled">
+                                                            <li>
+                                                            <Link route={'/property/'+address.postcode + '/'+ address.house_number }  >
+                                                                <a>
+                                                                    <button className="btn btn-success property-btn">View Property</button>
+                                                                </a>
+                                                            </Link>
+                                                            </li>
+                                                            <li>
 
-                                                {this.valuationButton(address)}
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                                            {this.valuationButton(address)}
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </CardBody>
+                                        </Card>
+                                    </Collapse>
                                 </div>
                             ))}
                         </div>
