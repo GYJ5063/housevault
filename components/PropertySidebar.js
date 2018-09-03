@@ -1,35 +1,68 @@
-import {Link} from '../routes';
-export default (props) =>
-    <div className="col-3">
-        <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
-             aria-orientation="vertical">
-            <Link route={"/property/"+props.postcode+"/"+props.number}>
-                <a className={ ((props.url === '/property') ? 'active' : null) + " nav-link"} >Property Profile </a>
-            </Link>
-            <Link route={"/property/"+props.postcode+"/"+props.number +"/broadband"}>
-                <a className={ ((props.url === '/broadband') ? 'active' : null) + " nav-link"} >Broadband </a>
-            </Link>
-            <Link route={"/property/"+props.postcode+"/"+props.number +"/crime-data"}>
-                <a className={ ((props.url === '/crime-data') ? 'active' : null) + " nav-link"} >Crime </a>
-            </Link>
-            <Link route={"/property/"+props.postcode+"/"+props.number +"/sold-prices"}>
-            <a className={ ((props.url === '/sold-prices') ? 'active' : null) + " nav-link"}>Sold Prices</a>
-            </Link>
-            <Link route={"/property/"+props.postcode+"/"+props.number +"/epc"}>
-            <a className={ ((props.url === '/epc') ? 'active' : null) + " nav-link"}>Energy Rating</a>
-            </Link>
-            <Link route={"/property/"+props.postcode+"/"+props.number +"/local-area"}>
-                <a className={ ((props.url === '/local-area') ? 'active' : null) + " nav-link"}>Local Area</a>
-            </Link>
-            <Link route={"/property/"+props.postcode+"/"+props.number +"/people"}>
-                <a className={ ((props.url === '/people') ? 'active' : null) + " nav-link"}>People</a>
-            </Link>
-            <Link route={"/property/"+props.postcode+"/"+props.number +"/property-stats"}>
-                <a className={ ((props.url === '/property-stats') ? 'active' : null) + " nav-link"}>Property Stats</a>
-            </Link>
-            <Link route={"/property/"+props.postcode+"/"+props.number +"/culture"}>
-                <a className={ ((props.url === '/culture') ? 'active' : null) + " nav-link"}>Culture</a>
-            </Link>
+import { Link } from '../routes';
+import { Nav, NavItem, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import _ from 'lodash';
 
-        </div>
-    </div>
+class PropertySidebar extends React.Component {
+    constructor(props){
+        super(props);
+
+        this.state = {
+            dropdownOpen: false,
+            currentPage: this.props.url,
+            urlTitles: {
+                // TODO: handle "/"
+                "property": "Property Profile",
+                "broadband": "Broadband",
+                "crime-data": "Crime",
+                "sold-prices": "Sold Prices",
+                "epc": "Energy Rating",
+                "local-area": "Local Area",
+                "property-stats": "Property Stats",
+                "culture": "Culture"
+            }
+        };
+    }
+
+    toggle() {
+        this.setState({
+          dropdownOpen: !this.state.dropdownOpen
+        });
+    }
+
+    render() {
+        return(
+            <div className="col-12">
+                <Nav pills fill className="full-display-nav">
+                    {
+                        _.map(this.state.urlTitles, (title, url) => (
+                            <NavItem key={url}>
+                                <Link route={`/property/${this.props.postcode}/${this.props.number}/${url}`}>
+                                    <a className={ ((this.props.url === `/${url}`) ? 'active' : null) + " nav-link"} >{title}</a>
+                                </Link>
+                            </NavItem>
+                        ))
+                    }
+                </Nav>
+                <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggle()}>
+                    <DropdownToggle caret>
+                    {/* TODO: get this display working correctly */}
+                    {this.state.urlTitles[this.state.currentPage.substring(1)]}
+                    </DropdownToggle>
+                    <DropdownMenu>
+                        {
+                            _.map(this.state.urlTitles, (title, url) => (
+                                <DropdownItem key={url}>
+                                    <Link route={`/property/${this.props.postcode}/${this.props.number}/${url}`}>
+                                        <a className={ ((this.props.url === `/${url}`) ? 'active' : null) + " nav-link"} >{title}</a>
+                                    </Link>
+                                </DropdownItem>
+                            ))
+                        }
+                    </DropdownMenu>
+                </ButtonDropdown>
+          </div>
+        );
+    }
+}
+
+export default PropertySidebar;

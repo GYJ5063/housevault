@@ -288,7 +288,11 @@ header {
         display: none;
     }
 }
-
+.full-display-nav {
+    @include breakpoint($min: 0, $max: 991px) {
+        display: none;
+    }
+}
 .learn-more {
     background-color: #FF4E54;
     color: #ffffff;
