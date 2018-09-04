@@ -10,85 +10,65 @@ class Valuation extends Component {
         super(props);
         this.validator = new FormValidator([
             {
-                field: 'first_name',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'Name is required.'
-            },
-            {
-                field: 'last_name',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'Last Name is required.'
-            },
-            {
-                field: 'email',
-                method: 'isEmail',
+                field: 'postcode',
+                method: 'isPostalCode',
+                args: ['GB'],
                 validWhen: true,
-                message: 'That is not a valid email.'
+                message: 'Postcode not valid.'
+            },
+            {
+                field: 'building_number',
+                method: (field, data) => {
+                    if(data.building_name || parseInt(data.building_number)) {
+                        return true;
+                    }
+                    return false;
+                },
+                validWhen: true,
+                message: 'Building number is required if building name is blank.'
+            },
+            {
+                field: 'built_from',
+                method: 'isEmpty',
+                validWhen: false,
+                message: 'Built from is required.'
             },
             {
                 field: 'property_type',
                 method: 'isEmpty',
                 validWhen: false,
-                message: 'Property Type is required.'
-            },
-            {
-                field: 'property_style',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'Property Style is required.'
+                message: 'Property type is required.'
             },
             {
                 field: 'wall_type',
                 method: 'isEmpty',
                 validWhen: false,
-                message: 'Building Construction is required.'
+                message: 'Wall type is required.'
             },
             {
-                field: 'number_of_bedrooms',
+                field: 'number_habitable_rooms',
                 method: 'isEmpty',
                 validWhen: false,
-                message: 'Number of Bedrooms is required.'
+                message: 'Number of habitable rooms is required.'
             },
             {
-                field: 'number_of_reception_rooms',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'Number of Reception is required.'
-            },
-            {
-                field: 'number_of_bathrooms',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'Number of Bathrooms is required.'
-            },
-            {
-                field: 'property_age',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'Property Age is required.'
-            },
-            {
-                field: 'property_size',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'Approximate size is required.'
+                field: 'total_floor_area',
+                method: _.inRange,
+                args: [10, 600],
+                validWhen: true,
+                message: 'Area must be a valid number between 10 and 600.'
             }
         ]);
 
         this.state = {
-            first_name: '',
-            last_name: '',
-            email: '',
+            postcode: '',
+            building_number: '',
+            building_name: '',
+            built_from: '',
             property_type: '',
-            property_style: '',
             wall_type: '',
-            number_of_bedrooms:'',
-            number_of_reception_rooms:'',
-            number_of_bathrooms: '',
-            property_age: '',
-            property_size:'',
+            number_habitable_rooms:'',
+            total_floor_area: '',
             validation: this.validator.valid(),
             hideLoadingSpinner: true,
             valuation: {}
@@ -114,29 +94,36 @@ class Valuation extends Component {
         this.submitted = true;
 
         let formData = {
-            first_name: this.state.first_name,
-            last_name: this.state.last_name,
-            email: this.state.email,
+            postcode: this.state.postcode,
+            building_number: this.state.building_number,
+            building_name: this.state.building_name,
+            built_from: this.state.built_from,
             property_type: this.state.property_type,
-            property_style: this.state.property_style,
             wall_type: this.state.wall_type,
-            number_of_bedrooms:this.state.number_of_bedrooms,
-            number_of_reception_rooms:this.state.number_of_reception_rooms,
-            number_of_bathrooms: this.state.number_of_bathrooms,
-            address_id:this.props.url.query.id,
-            property_size: this.state.property_size,
-            property_age: this.state.property_age
+            number_habitable_rooms:this.state.number_habitable_rooms,
+            total_floor_area:this.state.total_floor_area
         }
 
         if (validation.isValid) {
+            if(formData.building_name && !formData.building_number){
+                formData.building_number = 0;
+            }
+
             this.setState({hideLoadingSpinner: false});
             let self = this;
-            axios.post(process.env.BACKEND_URL +'valuation', formData)
-                .then(function (response) {
+            let config = {
+                headers: {
+                    "Authorization": process.env.PRICEPREDICTION_TOKEN,
+                    "Access-Control-Allow-Origin": "*"
+                }
+            };
 
+            axios.post(process.env.PRICEPREDICTION_URL, formData, config)
+                .then(function (response) {
                     self.setState({ hideLoadingSpinner: true, valuation: response.data });
                 })
                 .catch(function (error) {
+                    self.setState({ hideLoadingSpinner: true});
                     console.log(error);
                 });
         }
@@ -191,71 +178,68 @@ class Valuation extends Component {
 
                             <div className="row">
                                 <span className="col-sm-2">&nbsp;</span>
-                                <span id="err_name" className="col-sm-8 errText">{validation.first_name.message}</span>
+                                <span id="err_postcode" className="col-sm-8 errText">{validation.postcode.message}</span>
                             </div>
                             <div className="row margin-bottom-1">
-                                <span className="col-sm-2"><label htmlFor="first_name">First Name</label></span>
-                                <input type="text" name="first_name" id="first_name" value={this.state.first_name} className="field col-sm-8" placeholder="First Name" onChange={this.handleChange} /><br/>
+                                <span className="col-sm-2"><label htmlFor="postcode">Postcode</label></span>
+                                <input type="text" name="postcode" id="postcode" value={this.state.postcode} className="field col-sm-8" placeholder="Postcode" onChange={this.handleChange} /><br/>
                             </div>
 
                             <div className="row">
                                 <span className="col-sm-2">&nbsp;</span>
-                                <span id="err_name" className="col-sm-8 errText">{validation.last_name.message}</span>
+                                <span id="err_building_number" className="col-sm-8 errText">{validation.building_number.message}</span>
                             </div>
                             <div className="row margin-bottom-1">
-                                <span className="col-sm-2"><label htmlFor="last_name">Last Name</label></span>
-                                <input type="text" name="last_name" id="last_name" value={this.state.last_name} className="field col-sm-8" placeholder="Last Name" onChange={this.handleChange} /><br/>
+                                <span className="col-sm-2"><label htmlFor="building_number">Building Number</label></span>
+                                <input type="text" name="building_number" id="building_number" value={this.state.building_number} className="field col-sm-8" placeholder="Building number" onChange={this.handleChange} /><br/>
+                            </div>
+
+                            <div className="row margin-bottom-1">
+                                <span className="col-sm-2"><label htmlFor="building_name">Building Name</label></span>
+                                <input type="text" name="building_name" id="building_name" value={this.state.building_name} className="field col-sm-8" placeholder="Building Name" onChange={this.handleChange} /><br/>
+                                <p style={{ fontSize: 14, marginLeft: 200 }}>Can be left blank if building number is present</p>
                             </div>
 
                             <div className="row">
                                 <div className="col-sm-2">&nbsp;</div>
-                                <span id="err_email" className="col-sm-8 errText">{validation.email.message}</span>
+                                <span id="err_built_from" className="col-sm-8 errText">{validation.built_from.message}</span>
                             </div>
                             <div className="row margin-bottom-1">
-                                <span className="col-sm-2"><label htmlFor="email">Email</label></span>
-                                <input type="text" name="email" id="email" value={this.state.email} className="field col-sm-8" placeholder="Email Address" onChange={this.handleChange} /><br/>
+                                <span className="col-sm-2"><label htmlFor="built_from">Built From</label></span>
+                                <select name="built_from" className="field col-sm-8" id="built_from" onChange={this.handleChange}>
+                                    <option value="">Choose Built From</option>
+                                    <option value="Enclosed End-Terrace">Enclosed End Terrace</option>
+                                    <option value="Enclosed Mid-Terrace">Enclosed Mid Terrace</option>
+                                    <option value="End-Terrace">End Terrace</option>
+                                    <option value="Mid-Terrace">Mid Terrace</option>
+                                    <option value="Semi-Detached">Semi Detached</option>
+                                    <option value="Detached">Detached</option>
+                                </select>
                             </div>
 
                             <div className="row">
                                 <div className="col-sm-2">&nbsp;</div>
-                                <span id="err_email" className="col-sm-8 errText">{validation.property_type.message}</span>
+                                <span id="err_property_type" className="col-sm-8 errText">{validation.property_type.message}</span>
                             </div>
                             <div className="row margin-bottom-1">
                                 <span className="col-sm-2"><label htmlFor="property_type">Property Type</label></span>
                                 <select name="property_type" className="field col-sm-8" id="property_type" onChange={this.handleChange}>
                                     <option value="">Choose Property Type</option>
-                                    <option value="Bungalow">Bungalow</option>
                                     <option value="Flat">Flat</option>
-                                    <option value="House">House</option>
                                     <option value="Maisonette">Maisonette</option>
+                                    <option value="Bungalow">Bungalow</option>
+                                    <option value="House">House</option>
                                 </select>
                             </div>
 
                             <div className="row">
                                 <div className="col-sm-2">&nbsp;</div>
-                                <span id="err_email" className="col-sm-8 errText">{validation.property_style.message}</span>
+                                <span id="err_wall_type" className="col-sm-8 errText">{validation.wall_type.message}</span>
                             </div>
                             <div className="row margin-bottom-1">
-                                <span className="col-sm-2"><label htmlFor="property_style">Property Style</label></span>
-                                <select name="property_style" className="field col-sm-8" id="property_style" onChange={this.handleChange}>
-                                    <option value="">Choose Property Style</option>
-                                    <option value="Detached">Detached</option>
-                                    <option value="Semi-Detached">Semi Detached</option>
-                                    <option value="End-Terrace">End Terrace</option>
-                                    <option value="Mid-Terrace">Mid-Terrace</option>
-                                    <option value="Enclosed End-Terrace">Enclosed End-Terrace</option>
-                                    <option value="Enclosed-Mid-Terrace">Enclosed Mid-Terrace</option>
-                                </select>
-                            </div>
-
-                            <div className="row">
-                                <div className="col-sm-2">&nbsp;</div>
-                                <span id="err_email" className="col-sm-8 errText">{validation.wall_type.message}</span>
-                            </div>
-                            <div className="row margin-bottom-1">
-                                <span className="col-sm-2"><label htmlFor="wall_type">Building Construction</label></span>
+                                <span className="col-sm-2"><label htmlFor="wall_type">Wall type</label></span>
                                 <select name="wall_type" className="field col-sm-8" id="wall_type" onChange={this.handleChange}>
-                                    <option value="">Choose Building Construction</option>
+                                    <option value="">Choose Wall Type</option>
                                     <option value="system">System</option>
                                     <option value="brick">Brick</option>
                                     <option value="cavity wall">Cavity Wall</option>
@@ -268,85 +252,31 @@ class Valuation extends Component {
 
                             <div className="row">
                                 <div className="col-sm-2">&nbsp;</div>
-                                <span id="err_email" className="col-sm-8 errText">{validation.property_age.message}</span>
+                                <span id="err_number_habitable_rooms" className="col-sm-8 errText">{validation.number_habitable_rooms.message}</span>
                             </div>
                             <div className="row margin-bottom-1">
-                                <span className="col-sm-2"><label htmlFor="property_age">New Build?</label></span>
-                                <select name="property_age" className="field col-sm-8" id="property_age" onChange={this.handleChange}>
-                                    <option value="">New Build?</option>
-                                    <option value="new">Yes</option>
-                                    <option value="old">No</option>
-
-                                </select>
-                            </div>
-
-                            <div className="row">
-                                <div className="col-sm-2">&nbsp;</div>
-                                <span id="err_email" className="col-sm-8 errText">{validation.number_of_bedrooms.message}</span>
-                            </div>
-                            <div className="row margin-bottom-1">
-                                <span className="col-sm-2"><label htmlFor="number_of_bedrooms">Number of Bedrooms</label></span>
-                                <select name="number_of_bedrooms" className="field col-sm-8" id="number_of_bedrooms" onChange={this.handleChange}>
-                                    <option value="">Number of Bedrooms</option>
-                                    <option value="1">1</option>
+                                <span className="col-sm-2"><label htmlFor="number_habitable_rooms">Number Habitable Rooms</label></span>
+                                <select name="number_habitable_rooms" className="field col-sm-8" id="number_habitable_rooms" onChange={this.handleChange}>
+                                    <option value="">Choose number of habitale rooms</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
                                     <option value="6">6</option>
-                                    <option value="6">7</option>
-                                    <option value="6">8</option>
-                                    <option value="6">9</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
                                 </select>
                             </div>
 
                             <div className="row">
                                 <div className="col-sm-2">&nbsp;</div>
-                                <span id="err_email" className="col-sm-8 errText">{validation.number_of_reception_rooms.message}</span>
+                                <span id="err_total_floor_area" className="col-sm-8 errText">{validation.total_floor_area.message}</span>
                             </div>
                             <div className="row margin-bottom-1">
-                                <span className="col-sm-2"><label htmlFor="number_of_reception_rooms">Number of Reception Rooms</label></span>
-                                <select name="number_of_reception_rooms" className="field col-sm-8" id="number_of_reception_rooms" onChange={this.handleChange}>
-                                    <option value="">Number of Reception Rooms</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="6">7</option>
-                                    <option value="6">8</option>
-                                    <option value="6">9</option>
-                                </select>
-                            </div>
-
-                            <div className="row">
-                                <div className="col-sm-2">&nbsp;</div>
-                                <span id="err_email" className="col-sm-8 errText">{validation.number_of_bathrooms.message}</span>
-                            </div>
-                            <div className="row margin-bottom-1">
-                                <span className="col-sm-2"><label htmlFor="number_of_bathrooms">Number of Bathrooms</label></span>
-                                <select name="number_of_bathrooms" className="field col-sm-8" id="number_of_bathrooms" onChange={this.handleChange}>
-                                    <option value="">Number of Bathrooms</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="6">7</option>
-                                    <option value="6">8</option>
-                                    <option value="6">9</option>
-                                </select>
-                            </div>
-
-                            <div className="row">
-                                <div className="col-sm-2">&nbsp;</div>
-                                <span id="err_email" className="col-sm-8 errText">{validation.property_size.message}</span>
-                            </div>
-                            <div className="row margin-bottom-1">
-                                <span className="col-sm-2"><label htmlFor="property_size">Approximate Size (sqm)</label></span>
-                                <input type="text" name="property_size" id="property_size" value={this.state.property_size} className="field col-sm-8" placeholder="Approximate Size" onChange={this.handleChange} /><br/>
+                                <span className="col-sm-2"><label htmlFor="total_floor_area">Approximate Size (Between 10 - 600 sqm)</label></span>
+                                <input type="text" name="total_floor_area" id="total_floor_area" value={this.state.total_floor_area} className="field col-sm-8" placeholder="Total Floor Area" onChange={this.handleChange} /><br/>
                             </div>
 
 
