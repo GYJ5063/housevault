@@ -2,7 +2,7 @@ import React from "react";
 import _ from "lodash";
 import StreetView from "../components/StreetView";
 import GoogleMaps from "../components/GoogleMaps";
-import PropertySidebar from "../components/PropertySidebar";
+import PropertyMenu from "../components/PropertyMenu";
 import fetch from 'isomorphic-fetch';
 import Layout from '../components/Layout'
 class Property extends React.Component {
@@ -41,7 +41,7 @@ class Property extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <PropertySidebar url={this.props.url.pathname} postcode={this.props.address.postcode} number={this.props.address.house_number} />
+                    <PropertyMenu url={this.props.url.pathname} postcode={this.props.address.postcode} number={this.props.address.house_number} />
                     <div className="col">
                         <div className="row">
                             <div className="col-sm-4">

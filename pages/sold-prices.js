@@ -1,7 +1,7 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 import _ from "lodash";
-import PropertySidebar from "../components/PropertySidebar";
+import PropertyMenu from "../components/PropertyMenu";
 import moment from "moment";
 import Layout from '../components/Layout'
 class SoldPrices extends React.Component {
@@ -12,7 +12,7 @@ class SoldPrices extends React.Component {
             <div className="container list-page-padding">
                 <Layout>
                 <div className="row">
-                    <PropertySidebar url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
+                    <PropertyMenu url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
                     <div className="col">
                         <h4>Sold Prices for {this.props.property.full_address}</h4>
                         <p>This property has been sold { _.size(this.props.prices) } times.</p>

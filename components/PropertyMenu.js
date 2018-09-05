@@ -2,7 +2,7 @@ import { Link } from '../routes';
 import { Nav, NavItem, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import _ from 'lodash';
 
-class PropertySidebar extends React.Component {
+class PropertyMenu extends React.Component {
     constructor(props){
         super(props);
 
@@ -10,7 +10,6 @@ class PropertySidebar extends React.Component {
             dropdownOpen: false,
             currentPage: this.props.url,
             urlTitles: {
-                // TODO: handle "/"
                 "property": "Property Profile",
                 "broadband": "Broadband",
                 "crime-data": "Crime",
@@ -65,4 +64,4 @@ class PropertySidebar extends React.Component {
     }
 }
 
-export default PropertySidebar;
+export default PropertyMenu;
