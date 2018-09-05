@@ -113,8 +113,7 @@ class Valuation extends Component {
             let self = this;
             let config = {
                 headers: {
-                    "Authorization": process.env.PRICEPREDICTION_TOKEN,
-                    "Access-Control-Allow-Origin": "*"
+                    "Authorization": process.env.PRICEPREDICTION_TOKEN
                 }
             };
 
