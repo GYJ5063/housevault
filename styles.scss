@@ -296,7 +296,7 @@ header {
         }
     }
     .dropdown-display-nav {
-        margin: 0px 0px 15px 15px;
+        margin-bottom: 15px;
         @include breakpoint($min: 576px, $max: 0) {
             display: none;
         }
