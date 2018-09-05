@@ -44,7 +44,6 @@ class PropertyMenu extends React.Component {
                 </Nav>
                 <ButtonDropdown className="dropdown-display-nav" isOpen={this.state.dropdownOpen} toggle={() => this.toggle()}>
                     <DropdownToggle caret color="primary">
-                    {/* TODO: get this display working correctly */}
                     {this.state.urlTitles[this.state.currentPage.substring(1)]}
                     </DropdownToggle>
                     <DropdownMenu>
