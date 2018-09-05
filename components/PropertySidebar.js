@@ -36,7 +36,7 @@ class PropertySidebar extends React.Component {
                     {
                         _.map(this.state.urlTitles, (title, url) => (
                             <NavItem key={url}>
-                                <Link route={`/property/${this.props.postcode}/${this.props.number}/${url}`}>
+                                <Link route={`/property/${this.props.postcode}/${this.props.number}/${url === "property" ? "" : url}`}>
                                     <a className={ ((this.props.url === `/${url}`) ? 'active' : null) + " nav-link"} >{title}</a>
                                 </Link>
                             </NavItem>
@@ -52,7 +52,7 @@ class PropertySidebar extends React.Component {
                         {
                             _.map(this.state.urlTitles, (title, url) => (
                                 <DropdownItem key={url}>
-                                    <Link route={`/property/${this.props.postcode}/${this.props.number}/${url}`}>
+                                    <Link route={`/property/${this.props.postcode}/${this.props.number}/${url === "property" ? "" : url}`}>
                                         <a className={ ((this.props.url === `/${url}`) ? 'active' : null) + " nav-link"} >{title}</a>
                                     </Link>
                                 </DropdownItem>
