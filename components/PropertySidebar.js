@@ -31,7 +31,7 @@ class PropertySidebar extends React.Component {
 
     render() {
         return(
-            <div className="col-12">
+            <div className="col-12" id="property-menu-container">
                 <Nav pills fill className="full-display-nav">
                     {
                         _.map(this.state.urlTitles, (title, url) => (
@@ -43,8 +43,8 @@ class PropertySidebar extends React.Component {
                         ))
                     }
                 </Nav>
-                <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggle()}>
-                    <DropdownToggle caret>
+                <ButtonDropdown className="dropdown-display-nav" isOpen={this.state.dropdownOpen} toggle={() => this.toggle()}>
+                    <DropdownToggle caret color="primary">
                     {/* TODO: get this display working correctly */}
                     {this.state.urlTitles[this.state.currentPage.substring(1)]}
                     </DropdownToggle>
