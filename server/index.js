@@ -14,8 +14,6 @@ const router = express.Router();
 
 router.get("/address/:id", (req, res) => {
     connection.query(`SELECT * FROM addresses WHERE id = ${req.params.id}`, (err, result) => {
-        console.log('err', err);
-        console.log('result', result);
         if(err) throw err;
         res.json(result);
     });
