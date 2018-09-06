@@ -37,9 +37,9 @@
     "babel-plugin-transform-define": "^1.3.0"
   },
   "scripts": {
-    "dev": "node server.js",
+    "dev": "node server/server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "NODE_ENV=production node server/server.js",
     "deploy": "next build && eb deploy"
   },
   "author": "",

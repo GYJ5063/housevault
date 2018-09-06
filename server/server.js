@@ -1,11 +1,11 @@
 // server.js
-const express = require('express');
-const next = require('next')
+import express from 'express';
+import next from 'next';
 
 const port = process.env.PORT || 8081;
-const routes = require('./routes') 
+import { getRequestHandler } from '../routes'; 
 const app = next({dev: process.env.NODE_ENV !== 'production'})
-const handler = routes.getRequestHandler(app)
+const handler = getRequestHandler(app)
 
 // without express
 // const {createServer} = require('http')
@@ -26,4 +26,8 @@ app.prepare()
             if (err) throw err;
             console.log(`> Ready on http://localhost:${port}`);
         });
+    })
+    .catch(ex => {
+        console.error(ex.stack);
+        process.exit(1);
     });
