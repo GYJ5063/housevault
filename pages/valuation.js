@@ -57,6 +57,12 @@ class Valuation extends Component {
                 args: [10, 600],
                 validWhen: true,
                 message: 'Area must be a valid number between 10 and 600.'
+            },
+            {
+                field: 'report',
+                method: 'isEmpty',
+                validWhen: false,
+                message: 'Select if a report is needed.'
             }
         ]);
 
@@ -69,6 +75,7 @@ class Valuation extends Component {
             wall_type: '',
             number_habitable_rooms:'',
             total_floor_area: '',
+            report: '',
             validation: this.validator.valid(),
             hideLoadingSpinner: true,
             valuation: {}
@@ -100,8 +107,9 @@ class Valuation extends Component {
             built_from: this.state.built_from,
             property_type: this.state.property_type,
             wall_type: this.state.wall_type,
-            number_habitable_rooms:this.state.number_habitable_rooms,
-            total_floor_area:this.state.total_floor_area
+            number_habitable_rooms: this.state.number_habitable_rooms,
+            total_floor_area: this.state.total_floor_area,
+            report: this.state.report
         }
 
         if (validation.isValid) {
@@ -153,7 +161,7 @@ class Valuation extends Component {
                         <div className="col">
                             <h1>We have successfully valued your property</h1>
                             <p>Your valuation is</p>
-                            <h3>{this.state.valuation.predict_price}</h3>
+                            <h3>{this.state.valuation.predict_results.predict_price}</h3>
                         </div>
                     </div>
                     </Layout>
@@ -276,6 +284,19 @@ class Valuation extends Component {
                             <div className="row margin-bottom-1">
                                 <span className="col-sm-2"><label htmlFor="total_floor_area">Approximate Size (Between 10 - 600 sqm)</label></span>
                                 <input type="text" name="total_floor_area" id="total_floor_area" value={this.state.total_floor_area} className="field col-sm-8" placeholder="Total Floor Area" onChange={this.handleChange} /><br/>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-sm-2">&nbsp;</div>
+                                <span id="err_total_report" className="col-sm-8 errText">{validation.report.message}</span>
+                            </div>
+                            <div className="row margin-bottom-1">
+                                <span className="col-sm-2"><label htmlFor="report">Report needed</label></span>
+                                <select name="report" className="field col-sm-8" id="report" onChange={this.handleChange}>
+                                    <option value="">Choose if report is required</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
                             </div>
 
 
