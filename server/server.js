@@ -1,11 +1,11 @@
 // server.js
-import express from 'express';
-import next from 'next';
+const express = require('express');
+const next = require('next');
 
 const port = process.env.PORT || 8081;
-import { getRequestHandler } from '../routes'; 
+const routes = require('../routes'); 
 const app = next({dev: process.env.NODE_ENV !== 'production'})
-const handler = getRequestHandler(app)
+const handler = routes.getRequestHandler(app)
 
 // without express
 // const {createServer} = require('http')
@@ -17,6 +17,9 @@ const handler = getRequestHandler(app)
 app.prepare()
     .then(() => {
         const server = express();
+        const api = require('./index.js');
+        
+        server.use('/api', api);
 
         server.get('*', (req, res) => {
             return handler(req, res);
