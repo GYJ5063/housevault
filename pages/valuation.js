@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import FormValidator from "../components/FormValidator";
 import axios from "axios/index";
 import _ from 'lodash';
+import { Table } from 'reactstrap';
 import Layout from '../components/Layout'
 
 class Valuation extends Component {
@@ -128,6 +129,7 @@ class Valuation extends Component {
             axios.post(process.env.PRICEPREDICTION_URL, formData, config)
                 .then(function (response) {
                     self.setState({ hideLoadingSpinner: true, valuation: response.data });
+                    console.log(this.state.valuation);
                 })
                 .catch(function (error) {
                     self.setState({ hideLoadingSpinner: true});
@@ -162,6 +164,48 @@ class Valuation extends Component {
                             <h1>We have successfully valued your property</h1>
                             <p>Your valuation is</p>
                             <h3>{this.state.valuation.predict_results.predict_price}</h3>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <h2>Comparable Properties</h2>
+                            <Table>
+                                <thead>
+                                    <tr>
+                                        <th>Address</th>
+                                        <th>Current Valuation</th>
+                                        <th>Distance to valuated property</th>
+                                        <th>House Type</th>
+                                        <th>Postcode</th>
+                                        <th>Rooms</th>
+                                        <th>Size</th>
+                                        <th>Sold Date</th>
+                                        <th>Sold Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                _.map(this.state.valuation.comparable_properties, (cp, i) => (
+                                    
+                                    <tr key={i}>
+                                        <td>{cp.address_1}</td>
+                                        <td>{cp.current_valuation}</td>
+                                        <td>{cp.distance_to_query_property}</td>
+                                        <td>{cp.house_type}</td>
+                                        <td>{cp.postcode}</td>
+                                        <td>{cp.rooms}</td>
+                                        <td>{cp.size}</td>
+                                        <td>{cp.sold_date}</td>
+                                        <td>{cp.sold_price}</td>
+                                    </tr>
+                                ))
+                            }
+                                </tbody>
+                            </Table>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col">
                         </div>
                     </div>
                     </Layout>
