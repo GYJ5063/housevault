@@ -3,6 +3,7 @@ import FormValidator from "../components/FormValidator";
 import axios from "axios/index";
 import _ from 'lodash';
 import { Table } from 'reactstrap';
+import { HorizontalBar } from 'react-chartjs-2';
 import Layout from '../components/Layout'
 
 class Valuation extends Component {
@@ -129,7 +130,6 @@ class Valuation extends Component {
             axios.post(process.env.PRICEPREDICTION_URL, formData, config)
                 .then(function (response) {
                     self.setState({ hideLoadingSpinner: true, valuation: response.data });
-                    console.log(this.state.valuation);
                 })
                 .catch(function (error) {
                     self.setState({ hideLoadingSpinner: true});
@@ -137,7 +137,25 @@ class Valuation extends Component {
                 });
         }
     }
-
+    getValues(target, suffix, label){
+        const data = Object.keys(target)
+            .filter(k => k.includes(suffix))
+            .map(k => target[k]);
+        return {
+            labels: ['Detached', 'Flat', 'Semi Detached', 'Terrace'],
+            datasets: [
+                {
+                    label: label,
+                    backgroundColor: 'rgba(255,99,132,0.2)',
+                    borderColor: 'rgba(255,99,132,1)',
+                    borderWidth: 1,
+                    hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+                    hoverBorderColor: 'rgba(255,99,132,1)',
+                    data: data
+                }
+            ]
+        };
+    }
     render() {
         let validation = this.submitted ?
             this.validator.validate(this.state) :
@@ -159,13 +177,6 @@ class Valuation extends Component {
             return (
                 <div className="container list-page-padding text-center">
                     <Layout>
-                    <div className="row">
-                        <div className="col">
-                            <h1>We have successfully valued your property</h1>
-                            <p>Your valuation is</p>
-                            <h3>{this.state.valuation.predict_results.predict_price}</h3>
-                        </div>
-                    </div>
                     <div className="row">
                         <div className="col">
                             <h2>Comparable Properties</h2>
@@ -198,10 +209,20 @@ class Valuation extends Component {
                                         <td>{cp.sold_date}</td>
                                         <td>{cp.sold_price}</td>
                                     </tr>
-                                ))
-                            }
+                                ))}
                                 </tbody>
                             </Table>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <h2>Local Property Type Statistic</h2>
+                            <div>
+                                <HorizontalBar data={this.getValues(this.state.valuation.local_property_type_statistic, 'average_size', 'Average Size')} />
+                                <HorizontalBar data={this.getValues(this.state.valuation.local_property_type_statistic, 'average_value', 'Average Value')} />
+                                <HorizontalBar data={this.getValues(this.state.valuation.local_property_type_statistic, 'num_ratio', 'Ratio')} />
+                                <HorizontalBar data={this.getValues(this.state.valuation.local_property_type_statistic, 'per_size_value', 'Per Size Value')} />
+                            </div>
                         </div>
                     </div>
                     <div className="row">
