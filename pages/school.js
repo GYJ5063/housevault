@@ -3,7 +3,6 @@ import fetch from "isomorphic-fetch";
 import _ from "lodash";
 import EpcEnergyEfficiencyGraph from "../components/EpcEnergyEfficiencyGraph";
 import EpcEnvironmentalImpactGraph from "../components/EpcEnvironmentalImpactGraph";
-import PropertySidebar from "../components/PropertySidebar";
 import Layout from '../components/Layout'
 class School extends React.Component {
 

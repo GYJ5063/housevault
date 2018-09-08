@@ -1,6 +1,6 @@
 import React from "react";
 import LocalAreaList from "../components/LocalAreaList";
-import PropertySidebar from "../components/PropertySidebar"
+import PropertyMenu from "../components/PropertyMenu"
 import fetch from "isomorphic-fetch";
 import Layout from '../components/Layout'
 class LocalArea extends React.Component {
@@ -13,7 +13,7 @@ class LocalArea extends React.Component {
             <div className="container list-page-padding">
                 <Layout>
                 <div className="row">
-                    <PropertySidebar url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.building_number}/>
+                    <PropertyMenu url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.building_number}/>
                     <div className="col">
                         <div className="row">
                             <h3>Closest Hospitals to this address </h3>

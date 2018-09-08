@@ -3,7 +3,7 @@ import fetch from "isomorphic-fetch";
 import _ from "lodash";
 import EpcEnergyEfficiencyGraph from "../components/EpcEnergyEfficiencyGraph";
 import EpcEnvironmentalImpactGraph from "../components/EpcEnvironmentalImpactGraph";
-import PropertySidebar from "../components/PropertySidebar";
+import PropertyMenu from "../components/PropertyMenu";
 import Layout from '../components/Layout'
 class Epc extends React.Component {
     render( ) {
@@ -12,7 +12,7 @@ class Epc extends React.Component {
             return (
                 <div className="container list-page-padding">
                     <div className="row">
-                        <PropertySidebar url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
+                        <PropertyMenu url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
                         <div className="col">
                             <div className="text-center">
                                 No EPC data for this address, this might be because this property hasn't been sold since the EPC was
@@ -28,7 +28,7 @@ class Epc extends React.Component {
         <div className="container list-page-padding">
             <Layout>
             <div className="row">
-            <PropertySidebar url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number} />
+            <PropertyMenu url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number} />
             <div className="col">
 
 

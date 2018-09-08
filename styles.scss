@@ -288,6 +288,20 @@ header {
         display: none;
     }
 }
+#property-menu-container {
+    .full-display-nav {
+        margin-bottom: 10px;
+        @include breakpoint($min: 0, $max: 576px) {
+            display: none;
+        }
+    }
+    .dropdown-display-nav {
+        margin-bottom: 15px;
+        @include breakpoint($min: 576px, $max: 0) {
+            display: none;
+        }
+    }
+}
 
 .learn-more {
     background-color: #FF4E54;
@@ -799,9 +813,6 @@ footer {
             width: 80%;
             padding-left: 0px;
         }
-    }
-    .nav{
-        display: inline-block;
     }
     #exTab .nav-pills>li>a{
         padding: 12px;
