@@ -3,7 +3,7 @@ import FormValidator from "../components/FormValidator";
 import axios from "axios/index";
 import _ from 'lodash';
 import { Table } from 'reactstrap';
-import { HorizontalBar } from 'react-chartjs-2';
+import { HorizontalBar, Line } from 'react-chartjs-2';
 import Layout from '../components/Layout'
 
 class Valuation extends Component {
@@ -137,7 +137,7 @@ class Valuation extends Component {
                 });
         }
     }
-    getValues(target, suffix, label){
+    getValuesForType(target, suffix, label){
         const data = Object.keys(target)
             .filter(k => k.includes(suffix))
             .map(k => target[k]);
@@ -155,6 +155,39 @@ class Valuation extends Component {
                 }
             ]
         };
+    }
+    getValuesForLine(regPriceFiveYear){
+        const prices = Object.values(regPriceFiveYear);
+        const currentPrice = prices.pop();
+        console.log(prices);
+        const data = {
+            // TODO: include year and make DRY
+            labels: ['January\n2018', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November'],
+            datasets: [
+              {
+                label: `Current Price ${currentPrice}`,
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: 'rgba(75,192,192,0.4)',
+                borderColor: 'rgba(75,192,192,1)',
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: 'rgba(75,192,192,1)',
+                pointBackgroundColor: '#fff',
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                pointHoverBorderColor: 'rgba(220,220,220,1)',
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: prices
+              }
+            ]
+          };
+          return data;
     }
     render() {
         let validation = this.submitted ?
@@ -218,15 +251,17 @@ class Valuation extends Component {
                         <div className="col">
                             <h2>Local Property Type Statistic</h2>
                             <div>
-                                <HorizontalBar data={this.getValues(this.state.valuation.local_property_type_statistic, 'average_size', 'Average Size')} />
-                                <HorizontalBar data={this.getValues(this.state.valuation.local_property_type_statistic, 'average_value', 'Average Value')} />
-                                <HorizontalBar data={this.getValues(this.state.valuation.local_property_type_statistic, 'num_ratio', 'Ratio')} />
-                                <HorizontalBar data={this.getValues(this.state.valuation.local_property_type_statistic, 'per_size_value', 'Per Size Value')} />
+                                <HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'average_size', 'Average Size')} />
+                                <HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'average_value', 'Average Value')} />
+                                <HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'num_ratio', 'Ratio')} />
+                                <HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'per_size_value', 'Per Size Value')} />
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col">
+                            <h2>Line Example</h2>
+                            <Line data={this.getValuesForLine(this.state.valuation.predict_price_5y)} />
                         </div>
                     </div>
                     </Layout>
