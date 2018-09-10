@@ -133,7 +133,7 @@ class Valuation extends Component {
                 })
                 .catch(function (error) {
                     self.setState({ hideLoadingSpinner: true});
-                    console.log(error);
+                    console.error(error);
                 });
         }
     }
@@ -159,10 +159,9 @@ class Valuation extends Component {
     getValuesForLine(regPriceFiveYear){
         const prices = Object.values(regPriceFiveYear);
         const currentPrice = prices.pop();
-        console.log(prices);
         const data = {
             // TODO: include year and make DRY
-            labels: ['January\n2018', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November'],
+            labels: ['January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November'],
             datasets: [
               {
                 label: `Current Price ${currentPrice}`,
@@ -189,6 +188,42 @@ class Valuation extends Component {
           };
           return data;
     }
+    prepareVauesForRegional(regionalPrices){
+        const areaCode = regionalPrices['area_code'];
+        const regionName = regionalPrices['regionname'];
+        const currentPrice = regionalPrices['index_31'];
+        const allValues = Object.values(regionalPrices);
+        const prices = allValues.slice(1, (allValues.length - 3));
+        const data = {
+            // TODO: include year and make DRY
+            labels: ['January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November'],
+            datasets: [
+              {
+                label: `Current Price ${currentPrice}`,
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: 'rgba(75,192,192,0.4)',
+                borderColor: 'rgba(75,192,192,1)',
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: 'rgba(75,192,192,1)',
+                pointBackgroundColor: '#fff',
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                pointHoverBorderColor: 'rgba(220,220,220,1)',
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: prices
+              }
+            ]
+          };
+          // TODO: use areaCode and regionName
+          return data;
+    }
     render() {
         let validation = this.submitted ?
             this.validator.validate(this.state) :
@@ -212,6 +247,7 @@ class Valuation extends Component {
                     <Layout>
                     <div className="row">
                         <div className="col">
+                        <h1>Valuation</h1>
                             <h2>Comparable Properties</h2>
                             <Table>
                                 <thead>
@@ -260,10 +296,27 @@ class Valuation extends Component {
                     </div>
                     <div className="row">
                         <div className="col">
-                            <h2>Line Example</h2>
+                            <h2>5 Year Price Prediction</h2>
                             <Line data={this.getValuesForLine(this.state.valuation.predict_price_5y)} />
                         </div>
                     </div>
+                    <div className="row">
+                        <div className="col">
+                            <h2>Regional 5 Year Price Prediction</h2>
+                            <Line data={this.prepareVauesForRegional(this.state.valuation.predict_price_5y)} />
+                        </div>
+                    </div>
+                    <h2>Regional House Type 5 Year Price Prediction</h2>
+                    {
+                        _.map(this.state.valuation.regional_housetype_price_5y, (ht, i) => (
+                            <div key={i} className="row">
+                                <div className="col">
+                                    <h3>{i}</h3>
+                                    <Line data={this.getValuesForLine(ht)} />
+                                </div>
+                            </div>
+                        ))
+                    }
                     </Layout>
                 </div>
             )
