@@ -500,7 +500,8 @@ class Valuation extends Component {
                             <div className="row margin-bottom-1">
                                 <span className="col-sm-2"><label htmlFor="report">Report needed</label></span>
                                 <select name="report" className="field col-sm-8" id="report" onChange={this.handleChange}>
-                                    <option selected value="1">Yes</option>
+                                    <option value="">Choose if report is required</option>
+                                    <option value="1">Yes</option>
                                     <option value="0">No</option>
                                 </select>
                             </div>
