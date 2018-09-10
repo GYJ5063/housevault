@@ -224,30 +224,12 @@ class Valuation extends Component {
           // TODO: use areaCode and regionName
           return data;
     }
-    render() {
-        let validation = this.submitted ?
-            this.validator.validate(this.state) :
-            this.state.validation;
-
-        if(!this.state.hideLoadingSpinner) {
+    renderReport(){
+        if (this.state.report == 1) {
             return (
-                <div className="container list-page-padding">
-                    <div className="row">
-                        <div className="col text-center">
-                            <i className="fa fa-spinner fa-spin fa-4x"></i>
-                        </div>
-                    </div>
-                </div>
-            )
-        }
-        if(!_.isEmpty(this.state.valuation)) {
-
-            return (
-                <div className="container list-page-padding text-center">
-                    <Layout>
+                <React.Fragment>
                     <div className="row">
                         <div className="col">
-                        <h1>Valuation</h1>
                             <h2>Comparable Properties</h2>
                             <Table>
                                 <thead>
@@ -317,10 +299,82 @@ class Valuation extends Component {
                             </div>
                         ))
                     }
-                    </Layout>
+                </React.Fragment>
+            )
+        }
+        return (
+            <div className="row">
+                <div className="col-sm-4">
+                    <div className="card">
+                        <div className="card-body">
+                            Price Prediction<br/>
+                        <h3>{this.state.valuation.predict_results.predict_price}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-sm-4">
+                    <div className="card">
+                        <div className="card-body">
+                            Price Prediction Low<br/>
+                        <h3>{this.state.valuation.predict_results.predict_price_low}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-sm-4">
+                    <div className="card">
+                        <div className="card-body">
+                            Price Prediction High<br/>
+                        <h3>{this.state.valuation.predict_results.predict_price_up}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-sm-4">
+                    <div className="card">
+                        <div className="card-body">
+                            Confidence Level<br/>
+                        <h3>{this.state.valuation.predict_results.confidence_level}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-sm-4">
+                    <div className="card">
+                        <div className="card-body">
+                            Band<br/>
+                        <h3>{this.state.valuation.predict_results.band}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+    render() {
+        let validation = this.submitted ?
+            this.validator.validate(this.state) :
+            this.state.validation;
+
+        if(!this.state.hideLoadingSpinner) {
+            return (
+                <div className="container list-page-padding">
+                    <div className="row">
+                        <div className="col text-center">
+                            <i className="fa fa-spinner fa-spin fa-4x"></i>
+                        </div>
+                    </div>
                 </div>
             )
+        }
+        if(!_.isEmpty(this.state.valuation)) {
 
+            return (
+                <div className="container list-page-padding text-center">
+                    <Layout>
+                        <h1>Property Valuation</h1>
+                        {
+                            this.renderReport(this.state.valuation)
+                        }
+                    </Layout>
+                </div>
+                );
         }
         return (
             <div className="container list-page-padding">
