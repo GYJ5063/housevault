@@ -25,10 +25,12 @@ class Epc extends React.Component {
             )
         } else {
         return (
-        <div className="container list-page-padding">
+
             <Layout>
+                <PropertyMenu url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number} />
+                <div className="container list-page-padding">
             <div className="row">
-            <PropertyMenu url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number} />
+
             <div className="col">
 
 
@@ -92,8 +94,9 @@ class Epc extends React.Component {
             </div>
             </div>
             </div>
+                </div>
             </Layout>
-        </div>
+
         );
         }
     }

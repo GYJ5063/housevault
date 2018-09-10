@@ -10,10 +10,12 @@ class LocalArea extends React.Component {
     }
     render() {
         return (
-            <div className="container list-page-padding">
+
                 <Layout>
-                <div className="row">
                     <PropertyMenu url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.building_number}/>
+                    <div className="container list-page-padding">
+                <div className="row">
+
                     <div className="col">
                         <div className="row">
                             <h3>Closest Hospitals to this address </h3>
@@ -30,8 +32,9 @@ class LocalArea extends React.Component {
                     </div>
 
                 </div>
+                    </div>
                 </Layout>
-        </div>
+
         );
     }
 }

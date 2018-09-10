@@ -9,10 +9,12 @@ class SoldPrices extends React.Component {
     render() {
 
         return (
-            <div className="container list-page-padding">
+
                 <Layout>
-                <div className="row">
                     <PropertyMenu url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
+                    <div className="container list-page-padding">
+                <div className="row">
+
                     <div className="col">
                         <h4>Sold Prices for {this.props.property.full_address}</h4>
                         <p>This property has been sold { _.size(this.props.prices) } times.</p>
@@ -31,8 +33,9 @@ class SoldPrices extends React.Component {
                         ) ) }
                     </div>
                 </div>
+                    </div>
                 </Layout>
-            </div>
+
         );
 
     }

@@ -5,19 +5,18 @@ import _ from 'lodash';
 class PropertyMenu extends React.Component {
     constructor(props){
         super(props);
-
         this.state = {
             dropdownOpen: false,
             currentPage: this.props.url,
             urlTitles: {
-                "property": "Property Profile",
+                "property": "Profile",
                 "broadband": "Broadband",
                 "crime-data": "Crime",
-                "sold-prices": "Sold Prices",
-                "epc": "Energy Rating",
+                "sold-prices": "Prices",
+                "epc": "Energy",
                 "local-area": "Local Area",
-                "property-stats": "Property Stats",
-                "culture": "Culture"
+                // "property-stats": "Property Stats",
+                // "culture": "Culture"
             }
         };
     }
@@ -31,7 +30,7 @@ class PropertyMenu extends React.Component {
     render() {
         return(
             <div className="col-12" id="property-menu-container">
-                <Nav pills fill className="full-display-nav">
+                <Nav pills  className="full-display-nav">
                     {
                         _.map(this.state.urlTitles, (title, url) => (
                             <NavItem key={url}>

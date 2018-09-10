@@ -1,12 +1,14 @@
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600|Source+Sans+Pro");
 @import "~react-vis/dist/style";
 // Variables
-
+$font-color:#282D32;
+body {background:#F8F8F8; color:#282D32;font-family:'Source Sans Pro', sans-serif;}
 $banner-blue: #212C40;
 $company-purple: #4d2072;
 $logo-blue: #65D3FB;
 $logo-red: #FF4E54;
+
 
 @mixin breakpoint($class) {
     @if $class == xs {
@@ -289,8 +291,21 @@ header {
     }
 }
 #property-menu-container {
+    background:#ffffff;
+    width:100%;
+
+
+    .active {
+        background:none;
+        text-decoration:underline;
+        color:$font-color;
+    }
+    .nav-link {
+        color:$font-color;
+    }
     .full-display-nav {
         margin-bottom: 10px;
+
         @include breakpoint($min: 0, $max: 576px) {
             display: none;
         }
@@ -1322,4 +1337,15 @@ footer {
 
 .footer {
     margin-top:20px;
+}
+
+.card {
+    margin-top:10px;
+    border:none;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.home-marker {
+    color: #BD10E0;
 }
