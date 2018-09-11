@@ -291,17 +291,17 @@ header {
     }
 }
 #property-menu-container {
-    background:#ffffff;
+    background:#4A90E2;
     width:100%;
+
 
 
     .active {
         background:none;
         text-decoration:underline;
-        color:$font-color;
     }
     .nav-link {
-        color:$font-color;
+        color:#ffffff;
     }
     .full-display-nav {
         margin-bottom: 10px;
