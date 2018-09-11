@@ -48,7 +48,6 @@ class Property extends React.Component {
                             </div>
                         </div>
 
-
                         <div className="card-deck">
                             <div className="card">
                                 <div className="card-body">
@@ -72,7 +71,7 @@ class Property extends React.Component {
                             <div className="card">
                                 <div className="card-body">
                                     Last Sold Price<br />
-                                    <h3> {(!_.isNaN(_.meanBy(this.props.address.prices.data, "price"))) ? ("£" + _.round(_.meanBy(this.props.address.prices.data, "price"))) : 'Original Owner'}</h3>
+                                    <h3> {(!_.isEmpty(_.first(this.props.address.prices.data))) ? ("£" + _.first(this.props.address.prices.data).price) : 'Original Owner'}</h3>
                                 </div>
                             </div>
                         </div>

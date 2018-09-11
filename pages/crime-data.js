@@ -21,8 +21,9 @@ class Crime extends React.Component {
 
 
                         <div className="col">
-                            <h4>Crime in {this.props.property.full_address} for {moment(this.props.month,"YYYY-MM").format("MMMM YYYY")}</h4>
-
+                            <h2>Crime in {this.props.property.full_address} for {moment(this.props.month,"YYYY-MM").format("MMMM YYYY")}</h2>
+                            <div className="card">
+                                <div className="card-body">
                             <table className="table">
                                 <thead>
                                 <tr>
@@ -43,6 +44,9 @@ class Crime extends React.Component {
                             </table>
                         </div>
                     </div>
+                        </div>
+                    </div>
+
                     </div>
                 </Layout>
 

@@ -16,7 +16,11 @@ class SoldPrices extends React.Component {
                 <div className="row">
 
                     <div className="col">
-                        <h4>Sold Prices for {this.props.property.full_address}</h4>
+                        <h2>Sold Prices for {this.props.property.full_address}</h2>
+                        <div className="card">
+                            <div className="card-body">
+
+
                         <p>This property has been sold { _.size(this.props.prices) } times.</p>
 
                         { this.props.prices.map( ( price ) => (
@@ -31,6 +35,8 @@ class SoldPrices extends React.Component {
                                 </div>
                             </div>
                         ) ) }
+                    </div>
+                        </div>
                     </div>
                 </div>
                     </div>

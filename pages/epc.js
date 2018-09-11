@@ -10,18 +10,23 @@ class Epc extends React.Component {
 
         if(_.isEmpty(this.props.epc)) {
             return (
+                <Layout>
+                <PropertyMenu url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
                 <div className="container list-page-padding">
-                    <div className="row">
-                        <PropertyMenu url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
-                        <div className="col">
-                            <div className="text-center">
+                    <div className="row ">
+                        <div className="col text-center">
+                        <div className="card">
+                            <div className="card-body">
                                 No EPC data for this address, this might be because this property hasn't been sold since the EPC was
                                 brought in.
                             </div>
                         </div>
+                        </div>
+
                     </div>
 
                 </div>
+                </Layout>
             )
         } else {
         return (

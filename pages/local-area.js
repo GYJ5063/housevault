@@ -13,25 +13,27 @@ class LocalArea extends React.Component {
 
                 <Layout>
                     <PropertyMenu url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.building_number}/>
+
+
                     <div className="container list-page-padding">
-                <div className="row">
-
-                    <div className="col">
-                        <div className="row">
-                            <h3>Closest Hospitals to this address </h3>
-                            <LocalAreaList list={this.props.hospitals}/>
+                        <h2>Local Area</h2>
+                        <div className="card">
+                            <div className="card-body">
+                                <LocalAreaList list={this.props.hospitals}/>
+                            </div>
                         </div>
-                        <div className="row">
-                            <h3>Closest Primary Schools to this address </h3>
-                            <LocalAreaList list={this.props.primary_schools}/>
+                        <div className="card">
+                            <div className="card-body">
+                                <h3>Closest Primary Schools to this address </h3>
+                                <LocalAreaList list={this.props.primary_schools}/>
+                            </div>
                         </div>
-                        <div className="row">
-                            <h3>Closest Primary Schools to this address </h3>
-                            <LocalAreaList list={this.props.secondary_schools}/>
+                        <div className="card">
+                            <div className="card-body">
+                                <h3>Closest Secondary Schools to this address </h3>
+                                <LocalAreaList list={this.props.secondary_schools}/>
+                            </div>
                         </div>
-                    </div>
-
-                </div>
                     </div>
                 </Layout>
 
