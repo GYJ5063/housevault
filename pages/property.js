@@ -5,6 +5,7 @@ import GoogleMaps from "../components/GoogleMaps";
 import PropertyMenu from "../components/PropertyMenu";
 import fetch from 'isomorphic-fetch';
 import Layout from '../components/Layout';
+import moment from "moment";
 
 
 class Property extends React.Component {
@@ -52,7 +53,7 @@ class Property extends React.Component {
                             <div className="card">
                                 <div className="card-body">
                                         Last Sold Date<br />
-                                        <h3> {(!_.isNaN(_.meanBy(this.props.address.prices.data, "sold_date"))) ? this.props.address.prices.data.sold_date : 'Original Owner'}</h3>
+                                        <h3> {(!_.isEmpty(this.props.address.prices.data)) ? moment(this.props.address.prices.data[0].sold_date,"DD-MM-YYYY").format("MMM YYYY") : 'Original Owner'}</h3>
 
                                 </div>
                             </div>
