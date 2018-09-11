@@ -1,21 +1,25 @@
 const express = require('express');
-const mysql = require('mysql');
+const Sequelize = require('sequelize');
 
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'new_password',
-    database: 'housevault_min'
+const connection = new Sequelize('housevault_min', 'root', 'new_password', {
+    dialect: 'mysql',
+    define: {
+        // true by default. false because bydefault sequelize adds createdAt, modifiedAt columns with timestamps
+        timestamps: false
+    }
 });
 
-connection.connect();
-
+const addresses = connection.import(`../sequelize/models/addresses.js`)
 const router = express.Router();
 
 router.get("/address/:id", (req, res) => {
-    connection.query(`SELECT * FROM addresses WHERE id = ${req.params.id}`, (err, result) => {
-        if(err) throw err;
-        res.json(result);
+    console.log(`${__dirname}/models/addresses.js`);
+    //make sure you use false here. otherwise the total data 
+    //from the impported models will get deleted and new tables will be created
+    connection.sync({ force: false }).then(() => {
+        addresses.findById(req.params.id)
+        .then(result => res.json(result))
+        .catch(err => console.log(err));
     });
 });
 
