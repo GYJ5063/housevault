@@ -138,9 +138,8 @@ class Valuation extends Component {
         }
     }
     getValuesForType(target, suffix, label){
-        const data = Object.keys(target)
-            .filter(k => k.includes(suffix))
-            .map(k => target[k]);
+        const types = ['Detached', 'Flat', 'Semi_Detached', 'Terrace'];
+        const data = types.map(t => target[`${t}_${suffix}`]);
         return {
             labels: ['Detached', 'Flat', 'Semi Detached', 'Terrace'],
             datasets: [
