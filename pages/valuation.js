@@ -326,50 +326,6 @@ class Valuation extends Component {
                 </React.Fragment>
             )
         }
-        return (
-            <div className="row">
-                <div className="col-sm-4">
-                    <div className="card">
-                        <div className="card-body">
-                            Price Prediction<br/>
-                        <h3>{this.state.valuation.predict_results.predict_price}</h3>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-sm-4">
-                    <div className="card">
-                        <div className="card-body">
-                            Price Prediction Low<br/>
-                        <h3>{this.state.valuation.predict_results.predict_price_low}</h3>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-sm-4">
-                    <div className="card">
-                        <div className="card-body">
-                            Price Prediction High<br/>
-                        <h3>{this.state.valuation.predict_results.predict_price_up}</h3>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-sm-4">
-                    <div className="card">
-                        <div className="card-body">
-                            Confidence Level<br/>
-                        <h3>{this.state.valuation.predict_results.confidence_level}</h3>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-sm-4">
-                    <div className="card">
-                        <div className="card-body">
-                            Band<br/>
-                        <h3>{this.state.valuation.predict_results.band}</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
     }
     render() {
         let validation = this.submitted ?
@@ -393,6 +349,48 @@ class Valuation extends Component {
                 <div className="container list-page-padding text-center">
                     <Layout>
                         <h1>Property Valuation</h1>
+                        <div className="row">
+                            <div className="col-sm-4">
+                                <div className="card">
+                                    <div className="card-body">
+                                        Price Prediction<br/>
+                                    <h3>{this.state.valuation.predict_results.predict_price}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-sm-4">
+                                <div className="card">
+                                    <div className="card-body">
+                                        Price Prediction Low<br/>
+                                    <h3>{this.state.valuation.predict_results.predict_price_low}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-sm-4">
+                                <div className="card">
+                                    <div className="card-body">
+                                        Price Prediction High<br/>
+                                    <h3>{this.state.valuation.predict_results.predict_price_up}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-sm-4">
+                                <div className="card">
+                                    <div className="card-body">
+                                        Confidence Level<br/>
+                                    <h3>{this.state.valuation.predict_results.confidence_level}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-sm-4">
+                                <div className="card">
+                                    <div className="card-body">
+                                        Band<br/>
+                                    <h3>{this.state.valuation.predict_results.band}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         {
                             this.renderReport(this.state.valuation)
                         }
