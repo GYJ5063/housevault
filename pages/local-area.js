@@ -19,6 +19,7 @@ class LocalArea extends React.Component {
                         <h2>Local Area</h2>
                         <div className="card">
                             <div className="card-body">
+                                <h3>Closest hospitals to this address</h3>
                                 <LocalAreaList list={this.props.hospitals}/>
                             </div>
                         </div>
