@@ -3,7 +3,7 @@ import FormValidator from "../components/FormValidator";
 import axios from "axios/index";
 import _ from 'lodash';
 import { Table } from 'reactstrap';
-import { HorizontalBar, Line } from 'react-chartjs-2';
+import { HorizontalBar, Line, Pie } from 'react-chartjs-2';
 import moment from 'moment/moment';
 import Layout from '../components/Layout'
 
@@ -165,6 +165,28 @@ class Valuation extends Component {
             ]
         };
     }
+    getValuesForPie(target, suffix){
+        const types = ['Detached', 'Flat', 'Semi_Detached', 'Terrace'];
+        const data = types.map(t => target[`${t}_${suffix}`]);
+        return {
+            labels: ['Detached', 'Flat', 'Semi Detached', 'Terrace'],
+            datasets: [
+                {
+                    data: data,
+                    backgroundColor: [
+                        '#FF6384',
+                        '#36A2EB',
+                        '#FFCE56'
+                    ],
+                    hoverBackgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56'
+                    ]
+                }
+            ]
+        };
+    }
     getValuesForLine(regPriceFiveYear){
         const keys = Object.keys(regPriceFiveYear);
         // filter out empty values
@@ -250,7 +272,7 @@ class Valuation extends Component {
                             <div>
                                 <HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'average_size', 'Average Size')} />
                                 <HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'average_value', 'Average Value')} />
-                                <HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'num_ratio', 'Ratio')} />
+                                <Pie data={this.getValuesForPie(this.state.valuation.local_property_type_statistic, 'num_ratio')} />
                                 <HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'per_size_value', 'Per Size Value')} />
                             </div>
                         </div>
