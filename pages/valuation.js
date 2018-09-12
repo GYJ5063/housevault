@@ -172,7 +172,6 @@ class Valuation extends Component {
             .map((k, i) => regPriceFiveYear[`index_${++i}`])
             .filter(v => v);
         const currentPrice = regPriceFiveYear['index_31'];
-        console.log(prices);
         const data = {
             labels: this.createMonthLabels(prices),
             datasets: [
@@ -279,6 +278,29 @@ class Valuation extends Component {
                             </div>
                         ))
                     }
+                    <h2>Sales History Analyze</h2>
+                        <Table>
+                            <thead>
+                                <tr>
+                                    <th>Price Change Percentage</th>
+                                    <th>Price Change</th>
+                                    <th>Sold Date</th>
+                                    <th>Sold Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    _.map(this.state.valuation.sales_history_analyze, (val, key) => (
+                                        <tr key={key}>
+                                            <td>{val.price_chage_percent}%</td>
+                                            <td>{val.price_change}</td>
+                                            <td>{moment(val.sold_date).format('YYYY MMM D')}</td>
+                                            <td>{val.sold_price}</td>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </Table>
                 </React.Fragment>
             )
         }
