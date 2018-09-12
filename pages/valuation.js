@@ -4,6 +4,7 @@ import axios from "axios/index";
 import _ from 'lodash';
 import { Table } from 'reactstrap';
 import { HorizontalBar, Line } from 'react-chartjs-2';
+import moment from 'moment/moment';
 import Layout from '../components/Layout'
 
 class Valuation extends Component {
@@ -137,6 +138,15 @@ class Valuation extends Component {
                 });
         }
     }
+    createMonthLabels(count){
+        let monthNumber = moment().month();
+
+        return count.map(c => {
+            const date = moment().month(monthNumber).format('MMMM');
+            (monthNumber = monthNumber + 2) % 12;
+            return date;
+        });
+    }
     getValuesForType(target, suffix, label){
         const types = ['Detached', 'Flat', 'Semi_Detached', 'Terrace'];
         const data = types.map(t => target[`${t}_${suffix}`]);
@@ -156,11 +166,15 @@ class Valuation extends Component {
         };
     }
     getValuesForLine(regPriceFiveYear){
-        const prices = Object.values(regPriceFiveYear);
-        const currentPrice = prices.pop();
+        const keys = Object.keys(regPriceFiveYear);
+        // filter out empty values
+        const prices = keys
+            .map((k, i) => regPriceFiveYear[`index_${++i}`])
+            .filter(v => v);
+        const currentPrice = regPriceFiveYear['index_31'];
+        console.log(prices);
         const data = {
-            // TODO: include year and make DRY
-            labels: ['January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November'],
+            labels: this.createMonthLabels(prices),
             datasets: [
               {
                 label: `Current Price ${currentPrice}`,
@@ -188,40 +202,7 @@ class Valuation extends Component {
           return data;
     }
     prepareVauesForRegional(regionalPrices){
-        const areaCode = regionalPrices['area_code'];
-        const regionName = regionalPrices['regionname'];
-        const currentPrice = regionalPrices['index_31'];
-        const allValues = Object.values(regionalPrices);
-        const prices = allValues.slice(1, (allValues.length - 3));
-        const data = {
-            // TODO: include year and make DRY
-            labels: ['January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November', 'January', 'March', 'May', 'July', 'September', 'November'],
-            datasets: [
-              {
-                label: `Current Price ${currentPrice}`,
-                fill: false,
-                lineTension: 0.1,
-                backgroundColor: 'rgba(75,192,192,0.4)',
-                borderColor: 'rgba(75,192,192,1)',
-                borderCapStyle: 'butt',
-                borderDash: [],
-                borderDashOffset: 0.0,
-                borderJoinStyle: 'miter',
-                pointBorderColor: 'rgba(75,192,192,1)',
-                pointBackgroundColor: '#fff',
-                pointBorderWidth: 1,
-                pointHoverRadius: 5,
-                pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                pointHoverBorderColor: 'rgba(220,220,220,1)',
-                pointHoverBorderWidth: 2,
-                pointRadius: 1,
-                pointHitRadius: 10,
-                data: prices
-              }
-            ]
-          };
-          // TODO: use areaCode and regionName
-          return data;
+
     }
     renderReport(){
         if (this.state.report == 1) {
@@ -284,7 +265,7 @@ class Valuation extends Component {
                     <div className="row">
                         <div className="col">
                             <h2>Regional 5 Year Price Prediction</h2>
-                            <Line data={this.prepareVauesForRegional(this.state.valuation.predict_price_5y)} />
+                            <Line data={this.getValuesForLine(this.state.valuation.regional_price_5y)} />
                         </div>
                     </div>
                     <h2>Regional House Type 5 Year Price Prediction</h2>
