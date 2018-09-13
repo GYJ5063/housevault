@@ -1,12 +1,14 @@
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600|Source+Sans+Pro");
 @import "~react-vis/dist/style";
 // Variables
-
+$font-color:#282D32;
+body {background:#F8F8F8; color:#282D32;font-family:'Source Sans Pro', sans-serif;}
 $banner-blue: #212C40;
 $company-purple: #4d2072;
 $logo-blue: #65D3FB;
 $logo-red: #FF4E54;
+
 
 @mixin breakpoint($class) {
     @if $class == xs {
@@ -286,6 +288,33 @@ header {
     }
     @include breakpoint($min: 0, $max: 767px) {
         display: none;
+    }
+}
+#property-menu-container {
+    background:#4A90E2;
+    width:100%;
+
+
+
+    .active {
+        background:none;
+        text-decoration:underline;
+    }
+    .nav-link {
+        color:#ffffff;
+    }
+    .full-display-nav {
+        margin-bottom: 10px;
+
+        @include breakpoint($min: 0, $max: 576px) {
+            display: none;
+        }
+    }
+    .dropdown-display-nav {
+        margin-bottom: 15px;
+        @include breakpoint($min: 576px, $max: 0) {
+            display: none;
+        }
     }
 }
 
@@ -816,9 +845,6 @@ footer {
             padding-left: 0px;
         }
     }
-    .nav{
-        display: inline-block;
-    }
     #exTab .nav-pills>li>a{
         padding: 12px;
     }
@@ -1286,6 +1312,7 @@ footer {
         color:$banner-blue;
         padding:10px;
         margin-bottom:20px;
+        cursor: pointer;
         h6 {
             padding:0;
             margin:0;
@@ -1294,7 +1321,9 @@ footer {
     .property-btn {
         margin-bottom:10px;
     }
-
+    .property-address-listing {
+        margin-bottom: 20px;
+    }
 }
 
 .streeview {
@@ -1321,4 +1350,15 @@ footer {
 
 .footer {
     margin-top:20px;
+}
+
+.card {
+    margin-top:10px;
+    border:none;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.home-marker {
+    color: #BD10E0;
 }

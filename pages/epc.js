@@ -3,37 +3,48 @@ import fetch from "isomorphic-fetch";
 import _ from "lodash";
 import EpcEnergyEfficiencyGraph from "../components/EpcEnergyEfficiencyGraph";
 import EpcEnvironmentalImpactGraph from "../components/EpcEnvironmentalImpactGraph";
-import PropertySidebar from "../components/PropertySidebar";
+import PropertyMenu from "../components/PropertyMenu";
 import Layout from '../components/Layout'
 class Epc extends React.Component {
     render( ) {
 
         if(_.isEmpty(this.props.epc)) {
             return (
+                <Layout>
+                <PropertyMenu url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
                 <div className="container list-page-padding">
-                    <div className="row">
-                        <PropertySidebar url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
-                        <div className="col">
-                            <div className="text-center">
+                    <div className="row ">
+                        <div className="col text-center">
+                        <div className="card">
+                            <div className="card-body">
                                 No EPC data for this address, this might be because this property hasn't been sold since the EPC was
                                 brought in.
                             </div>
                         </div>
+                        </div>
+
                     </div>
 
                 </div>
+                </Layout>
             )
         } else {
         return (
-        <div className="container list-page-padding">
+
             <Layout>
+                <PropertyMenu url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number} />
+                <div className="container list-page-padding">
             <div className="row">
-            <PropertySidebar url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number} />
+
             <div className="col">
 
 
-            <h1>EPC details for {this.props.property.full_address}</h1>
-            <p>An Energy Performance Certificate shows the energy efficiency of a domestic property in the UK. It is useful for understanding how efficient
+            <h2>EPC details for {this.props.property.full_address}</h2>
+                <div className="card">
+                    <div className="card-body">
+
+
+                <p>An Energy Performance Certificate shows the energy efficiency of a domestic property in the UK. It is useful for understanding how efficient
                 a home is including how much your energy bills are likely to be. Once you understand where you're wasting energy you can make changes to save money and help the environment. </p>
                 <p>The energy efficiency assessment for <u>{this.props.property.full_address}</u> took place on {this.props.epc.inspection_date}. The inspection resulted in a rating of <u>{this.props.epc.current_energy_rating}</u> compared to the average UK rating of <u>D</u>.</p>
                 <p>The estimated annual energy bill is <strong>&pound;{this.props.epc.hot_water_cost_current + this.props.epc.heating_cost_current + this.props.epc.lighting_cost_current}</strong> compared to a UK average of <strong>&pound;1350</strong>. The EPC report has highlighted several improvements measures the homeowner could undertake to increase the rating to {this.props.epc.potential_energy_rating} and reduce the annual energy bill by £{(this.props.epc.hot_water_cost_current + this.props.epc.heating_cost_current + this.props.epc.lighting_cost_current)-(this.props.epc.hot_water_cost_potential + this.props.epc.heating_cost_potential + this.props.epc.lighting_cost_potential)}.</p>
@@ -92,8 +103,11 @@ class Epc extends React.Component {
             </div>
             </div>
             </div>
+            </div>
+            </div>
+                </div>
             </Layout>
-        </div>
+
         );
         }
     }

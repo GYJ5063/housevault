@@ -1,7 +1,7 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 import _ from "lodash";
-import PropertySidebar from "../components/PropertySidebar";
+import PropertyMenu from "../components/PropertyMenu";
 import Layout from '../components/Layout'
 class People extends React.Component {
 
@@ -11,7 +11,7 @@ class People extends React.Component {
             <div className="container list-page-padding">
                 <Layout>
                 <div className="row">
-                    <PropertySidebar url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
+                    <PropertyMenu url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
                     <div className="col">
                         <h4>Demographics for {this.props.property.full_address}</h4>
                         <h5>Age Groups</h5>

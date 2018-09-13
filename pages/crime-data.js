@@ -2,8 +2,8 @@ import React from "react";
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Table,
          Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import fetch from "isomorphic-fetch";
-import PropertySidebar from "../components/PropertySidebar";
-import _ from "lodash";
+import PropertyMenu from "../components/PropertyMenu";
+import _ from "lodash"
 import moment from "moment";
 import Layout from '../components/Layout';
 import GoogleMapsWithMarkerClusterer from "../components/GoogleMapsWithMarkerClusterer";
@@ -49,20 +49,17 @@ class Crime extends React.Component {
       }
 
     filterMarkersByCategory(category) {
-        console.log(category)
-        console.log(this.state.crimes[category]);
         const markers = this.state.crimes[category].map(c => ({
             lat: parseFloat(c.location.latitude),
             lng: parseFloat(c.location.longitude)
         }));
-        console.log("finished");
+
         this.setState({
             visibleMarkers: markers
         });
     }
     async selectMonth(month){
         const unProcessedcrimes = await Crime.getCrimes(this.props.lat, this.props.lng, moment(month,"MMMM YYYY").format("YYYY-MM"));
-        console.log(unProcessedcrimes.length);
         const { markers, crimes } = Crime.processCrimes(unProcessedcrimes);
         this.setState({
             markers,
@@ -75,8 +72,9 @@ class Crime extends React.Component {
         return (
             <div className="container property-crime-container">
                 <Layout>
+                    <PropertyMenu url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
+                    <div className="container list-page-padding">
                     <div className="row">
-                        <PropertySidebar url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
 
                         <div className="col-9">
                             <h4>Crime in {this.props.property.full_address} for {this.state.month}</h4>
@@ -148,10 +146,12 @@ class Crime extends React.Component {
                                     </TabPane>
                             ))}
                             </TabContent>
+                    </div>
                         </div>
                     </div>
-                </Layout>
-            </div>
+                    </Layout>
+                    </div>
+
         );
 
     }
@@ -196,7 +196,6 @@ Crime.getInitialProps = async ({ req, query: { postcode, address } }) => {
     const { lat, lng } = property;
 
     const unProcessedCrimes = await Crime.getCrimes(lat, lng);
-    console.log(unProcessedCrimes.length);
     const { crimes, markers, firstCategory } = Crime.processCrimes(unProcessedCrimes);
 
     const datesReq = await fetch("https://data.police.uk/api/crimes-street-dates");

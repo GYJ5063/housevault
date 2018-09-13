@@ -23,7 +23,8 @@ export default class MyDocument extends Document {
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
                       integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
                       crossOrigin="anonymous" />
-
+                <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon" />
+                <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
 
                 <link rel="stylesheet" href="/_next/static/style.css" />
                 <meta name="description" content="View Local information about an address including epc, population, house prices, crime and much more." />
