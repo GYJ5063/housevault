@@ -231,39 +231,45 @@ class Valuation extends Component {
                 <React.Fragment>
                     <div className="row">
                         <div className="col">
-                            <h2>Comparable Properties</h2>
-                            <Table>
-                                <thead>
-                                    <tr>
-                                        <th>Address</th>
-                                        <th>Current Valuation</th>
-                                        <th>Distance to valuated property</th>
-                                        <th>House Type</th>
-                                        <th>Postcode</th>
-                                        <th>Rooms</th>
-                                        <th>Size</th>
-                                        <th>Sold Date</th>
-                                        <th>Sold Price</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                {
-                                _.map(this.state.valuation.comparable_properties, (cp, i) => (
-                                    
-                                    <tr key={i}>
-                                        <td>{cp.address_1}</td>
-                                        <td>{cp.current_valuation}</td>
-                                        <td>{cp.distance_to_query_property}</td>
-                                        <td>{cp.house_type}</td>
-                                        <td>{cp.postcode}</td>
-                                        <td>{cp.rooms}</td>
-                                        <td>{cp.size}</td>
-                                        <td>{cp.sold_date}</td>
-                                        <td>{cp.sold_price}</td>
-                                    </tr>
-                                ))}
-                                </tbody>
-                            </Table>
+                            {
+                                _.isEmpty(this.state.valuation.comparable_properties[1]) ? null : (
+                                    <React.Fragment>
+                                        <h2>Comparable Properties</h2>
+                                        <Table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Address</th>
+                                                    <th>Current Valuation</th>
+                                                    <th>Distance to valuated property</th>
+                                                    <th>House Type</th>
+                                                    <th>Postcode</th>
+                                                    <th>Rooms</th>
+                                                    <th>Size</th>
+                                                    <th>Sold Date</th>
+                                                    <th>Sold Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {
+                                            _.map(this.state.valuation.comparable_properties, (cp, i) => (
+                                                
+                                                <tr key={i}>
+                                                    <td>{cp.address_1}</td>
+                                                    <td>{cp.current_valuation}</td>
+                                                    <td>{cp.distance_to_query_property}</td>
+                                                    <td>{cp.house_type}</td>
+                                                    <td>{cp.postcode}</td>
+                                                    <td>{cp.rooms}</td>
+                                                    <td>{cp.size}</td>
+                                                    <td>{cp.sold_date}</td>
+                                                    <td>{cp.sold_price}</td>
+                                                </tr>
+                                            ))}
+                                            </tbody>
+                                        </Table>
+                                    </React.Fragment>
+                                )
+                            }
                         </div>
                     </div>
                     <div className="row">
@@ -300,29 +306,35 @@ class Valuation extends Component {
                             </div>
                         ))
                     }
-                    <h2>Sales History Analyze</h2>
-                        <Table>
-                            <thead>
-                                <tr>
-                                    <th>Price Change Percentage</th>
-                                    <th>Price Change</th>
-                                    <th>Sold Date</th>
-                                    <th>Sold Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    _.map(this.state.valuation.sales_history_analyze, (val, key) => (
-                                        <tr key={key}>
-                                            <td>{val.price_chage_percent}%</td>
-                                            <td>{val.price_change}</td>
-                                            <td>{moment(val.sold_date).format('YYYY MMM D')}</td>
-                                            <td>{val.sold_price}</td>
+                    {
+                        _.isEmpty(this.state.valuation.sales_history_analyze[1]) ? null : (
+                            <React.Fragment>
+                                <h2>Sales History Analyze</h2>
+                                <Table>
+                                    <thead>
+                                        <tr>
+                                            <th>Price Change Percentage</th>
+                                            <th>Price Change</th>
+                                            <th>Sold Date</th>
+                                            <th>Sold Price</th>
                                         </tr>
-                                    ))
-                                }
-                            </tbody>
-                        </Table>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            _.map(this.state.valuation.sales_history_analyze, (val, key) => (
+                                                <tr key={key}>
+                                                    <td>{val.price_chage_percent}%</td>
+                                                    <td>{val.price_change}</td>
+                                                    <td>{moment(val.sold_date).format('YYYY MMM D')}</td>
+                                                    <td>{val.sold_price}</td>
+                                                </tr>
+                                            ))
+                                        }
+                                    </tbody>
+                                </Table>
+                            </React.Fragment>
+                        )
+                    }
                 </React.Fragment>
             )
         }
