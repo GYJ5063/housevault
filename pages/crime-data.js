@@ -76,7 +76,7 @@ class Crime extends React.Component {
                     <div className="container list-page-padding">
                     <div className="row">
 
-                        <div className="col-9">
+                        <div className="col-12">
                             <h4>Crime in {this.props.property.full_address} for {this.state.month}</h4>
                             By month:
                             <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggleDropdown()}>
