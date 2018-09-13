@@ -7,13 +7,6 @@ const routes = require('../routes');
 const app = next({dev: process.env.NODE_ENV !== 'production'})
 const handler = routes.getRequestHandler(app)
 
-// without express
-// const {createServer} = require('http')
-// app.prepare().then(() => {
-//   createServer(handler).listen(port)
-// })
-
-// with express
 app.prepare()
     .then(() => {
         const server = express();
