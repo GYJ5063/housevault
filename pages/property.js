@@ -6,6 +6,7 @@ import PropertyMenu from "../components/PropertyMenu";
 import fetch from 'isomorphic-fetch';
 import Layout from '../components/Layout';
 import moment from "moment";
+import {Link} from '../routes';
 
 
 class Property extends React.Component {
@@ -53,7 +54,9 @@ class Property extends React.Component {
                                 <div className="card-body">
                                         Last Sold Date<br />
                                         <h3> {(!_.isEmpty(this.props.address.prices.data)) ? moment(this.props.address.prices.data[0].sold_date,"DD-MM-YYYY").format("MMM YYYY") : 'Original Owner'}</h3>
-
+                                        <Link route={'/property/'+this.props.address.postcode + '/'+ this.props.address.house_number+'/'+'sold-prices'}>
+                                        <a className={ ((this.props.url === '/sold-prices') ? 'active' : null)}>Further Records</a>
+                                        </Link>
                                 </div>
                             </div>
                             <div className="card">
@@ -72,6 +75,9 @@ class Property extends React.Component {
                                 <div className="card-body">
                                     Last Sold Price<br />
                                     <h3> {(!_.isEmpty(_.first(this.props.address.prices.data))) ? ("£" + _.first(this.props.address.prices.data).price) : 'Original Owner'}</h3>
+                                    <Link route={'/property/'+this.props.address.postcode + '/'+ this.props.address.house_number+'/'+'sold-prices'}>
+                                        <a className={ ((this.props.url === '/sold-prices') ? 'active' : null)}>Historic Data</a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
