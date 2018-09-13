@@ -69,6 +69,7 @@ class Property extends React.Component {
                                 <div className="card-body">
                                     Estimated Value<br />
                                     <h3>{(typeof this.props.address.valuation !== "undefined") ? "£" + this.props.address.valuation.data.predicted_valuation : "None"}</h3>
+                                    <Link route={'/valuation/'+this.props.address.id} ><a>Refine Valuation</a></Link>
                                 </div>
                             </div>
                             <div className="card">
