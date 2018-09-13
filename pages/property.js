@@ -58,8 +58,8 @@ class Property extends React.Component {
                             </div>
                             <div className="card">
                                 <div className="card-body">
-                                    EPC Rating<br/>
-                                    <h3>{(_.first(_.orderBy(this.props.address.epc.data, ['id'], ['desc']))) ? _.first(_.orderBy(this.props.address.epc.data, ['id'], ['desc'])).current_energy_rating : 'None'}</h3>
+                                    Property Size<br/>
+                                    <h3>{(_.first(_.orderBy(this.props.address.epc.data, ['id'], ['desc']))) ? _.first(_.orderBy(this.props.address.epc.data, ['id'], ['desc'])).total_floor_area + ' sqm' : 'Awaiting'}</h3>
                                 </div>
                             </div>
                             <div className="card">
