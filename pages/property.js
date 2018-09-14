@@ -84,7 +84,7 @@ class Property extends React.Component {
                         </div>
                         <div className="row " >
 
-                            <div className="col">
+                            <div className="col-sm-8">
                                 <div className="streeview">
                                     <StreetView
                                         isMarkerShown={this.state.isMarkerShown}
@@ -94,7 +94,7 @@ class Property extends React.Component {
                                     />
                                 </div>
                             </div>
-                            <div className="col-4">
+                            <div className="col-sm-4">
                                 <div className="card">
                                     <div className="card-body">
                                         <h4>Locality</h4>
