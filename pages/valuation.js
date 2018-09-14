@@ -341,16 +341,20 @@ class Valuation extends Component {
                         </div>
                     </div>
                     <h2>Regional House Type 5 Year Price Prediction</h2>
+                    <div className="card-deck">
                     {
                         _.map(this.state.valuation.regional_housetype_price_5y, (ht, i) => (
+                            <div className="col-md-6">
                             <div key={i} className="row">
-                                <div className="col">
-                                    <h3>{i}</h3>
+                                <div className="card bg-light mb-3 text-left w-100">
+                                    <div className="card-header"><h3>{i}</h3></div>
                                     <Line data={this.getValuesForLine(ht)} />
                                 </div>
                             </div>
+                            </div>
                         ))
                     }
+                    </div>
                     {
                         _.isEmpty(this.state.valuation.sales_history_analyze[1]) ? null : (
                             <React.Fragment>
