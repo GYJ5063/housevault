@@ -28,10 +28,10 @@ class Crime extends React.Component {
             "Violent crime": "fas fa-ambulance"
           }
         };
-
+    }
+    componentDidMount(){
         this.toggleTab(this.props.firstCategory);
     }
-
     toggleDropdown() {
         this.setState({
           dropdownOpen: !this.state.dropdownOpen
