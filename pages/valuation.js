@@ -230,54 +230,18 @@ class Valuation extends Component {
             return (
                 <React.Fragment>
                     <div className="row">
-                        <div className="col">
                             {
                                 _.isEmpty(this.state.valuation.comparable_properties[1]) ? null : (
                                     <React.Fragment>
-                                        <h2>Comparable Properties</h2>
-                                        <Table>
-                                            <thead>
-                                                <tr>
-                                                    <th>Address</th>
-                                                    <th>Current Valuation</th>
-                                                    <th>Distance to valuated property</th>
-                                                    <th>House Type</th>
-                                                    <th>Postcode</th>
-                                                    <th>Rooms</th>
-                                                    <th>Size</th>
-                                                    <th>Sold Date</th>
-                                                    <th>Sold Price</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            {
-                                            _.map(this.state.valuation.comparable_properties, (cp, i) => (
-                                                
-                                                <tr key={i}>
-                                                    <td>{cp.address_1}</td>
-                                                    <td>{cp.current_valuation}</td>
-                                                    <td>{cp.distance_to_query_property}</td>
-                                                    <td>{cp.house_type}</td>
-                                                    <td>{cp.postcode}</td>
-                                                    <td>{cp.rooms}</td>
-                                                    <td>{cp.size}</td>
-                                                    <td>{cp.sold_date}</td>
-                                                    <td>{cp.sold_price}</td>
-                                                </tr>
-                                            ))}
-                                            </tbody>
-                                        </Table>
-                                    </React.Fragment>
-                                )
-                            }
-                        </div>
-                    </div>
-                    <div className="row">
-                            {
-                                _.isEmpty(this.state.valuation.comparable_properties[1]) ? null : (
-                                    <React.Fragment>
-                                        <h2>Comparable Properties</h2>
                                         <div className="card-deck">
+                                            <div className="card border-light mb-3 w-100">
+                                                <div className="card-header"><h2>Comparable Properties</h2></div>
+                                                <div className="card-body"><p>The accuracy of an automated valuation will vary according to a number of factors. The best method of calculating a valuation is by looking at comparable properties in the local area. Our report takes this information and takes over 100 external factors to predict a valuation.</p>
+                                                <p>Below you will see the comparable properties we believe are the most significant in estimating your property valuation. Whilst sold prices on a street are important we look at a much wider range of factors to collect the local properties most suited to use as supporting evidence.</p>
+                                                <p>Each property tile below shows the current market valuation, distance from the subject property, address & property characteristics. A full list of comparables can be found at the end of this report</p>
+                                                </div>
+                                                </div>
+                                            <div className="row">
                                             {
                                                 _.map(this.state.valuation.comparable_properties, (cp, i) => (
                                                 <div className="col-md-4">
@@ -294,6 +258,7 @@ class Valuation extends Component {
                                                 </div>
                                                 </div>
                                                 ))}
+                                            </div>
                                         </div>
                                     </React.Fragment>
                                 )
@@ -329,18 +294,24 @@ class Valuation extends Component {
                               </div>
                     </div>
                     <div className="row">
-                        <div className="col">
-                            <h2>5 Year Price Prediction</h2>
-                            <Line data={this.getValuesForLine(this.state.valuation.predict_price_5y)} />
+                        <h2>Property Performance V Regional Average</h2>
+                        <div className="card-deck">
+                        <div className="col-lg-6">
+                            <div className="card bg-light mb-3 text-left w-100">
+                                <div className="card-header">This properties market value over 5 years</div>
+                                <div className="card-body"><Line data={this.getValuesForLine(this.state.valuation.predict_price_5y)} /></div>
+                            </div>
                         </div>
+                        <div className="col-lg-6">
+                            <div className="card bg-light mb-3 text-left w-100">
+                                <div className="card-header">Regional 5 Year Price Prediction</div>
+                                <div className="card-body"><Line data={this.getValuesForLine(this.state.valuation.regional_price_5y)} /></div>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                     <div className="row">
-                        <div className="col">
-                            <h2>Regional 5 Year Price Prediction</h2>
-                            <Line data={this.getValuesForLine(this.state.valuation.regional_price_5y)} />
-                        </div>
-                    </div>
-                    <h2>Regional House Type 5 Year Price Prediction</h2>
+                    <h2>Regional Values Based on Property Type</h2>
                     <div className="card-deck">
                     {
                         _.map(this.state.valuation.regional_housetype_price_5y, (ht, i) => (
@@ -354,6 +325,7 @@ class Valuation extends Component {
                             </div>
                         ))
                     }
+                    </div>
                     </div>
                     {
                         _.isEmpty(this.state.valuation.sales_history_analyze[1]) ? null : (
@@ -384,6 +356,49 @@ class Valuation extends Component {
                             </React.Fragment>
                         )
                     }
+                    <div className="row">
+                        <div className="col">
+                            {
+                                _.isEmpty(this.state.valuation.comparable_properties[1]) ? null : (
+                                    <React.Fragment>
+                                        <h2>Comparable Properties</h2>
+                                        <Table>
+                                            <thead>
+                                            <tr>
+                                                <th>Address</th>
+                                                <th>Current Valuation</th>
+                                                <th>Distance to valuated property</th>
+                                                <th>House Type</th>
+                                                <th>Postcode</th>
+                                                <th>Rooms</th>
+                                                <th>Size</th>
+                                                <th>Sold Date</th>
+                                                <th>Sold Price</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {
+                                                _.map(this.state.valuation.comparable_properties, (cp, i) => (
+
+                                                    <tr key={i}>
+                                                        <td>{cp.address_1}</td>
+                                                        <td>{cp.current_valuation}</td>
+                                                        <td>{cp.distance_to_query_property}</td>
+                                                        <td>{cp.house_type}</td>
+                                                        <td>{cp.postcode}</td>
+                                                        <td>{cp.rooms}</td>
+                                                        <td>{cp.size}</td>
+                                                        <td>{cp.sold_date}</td>
+                                                        <td>{cp.sold_price}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </Table>
+                                    </React.Fragment>
+                                )
+                            }
+                        </div>
+                    </div>
                 </React.Fragment>
             )
         }
