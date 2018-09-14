@@ -242,25 +242,25 @@ class Valuation extends Component {
                                                 <div className="card-body"><p>The accuracy of an automated valuation will vary according to a number of factors. The best method of calculating a valuation is by looking at comparable properties in the local area. Our report takes this information and takes over 100 external factors to predict a valuation.</p>
                                                 <p>Below you will see the comparable properties we believe are the most significant in estimating your property valuation. Whilst sold prices on a street are important we look at a much wider range of factors to collect the local properties most suited to use as supporting evidence.</p>
                                                 <p>Each property tile below shows the current market valuation, distance from the subject property, address & property characteristics. A full list of comparables can be found at the end of this report</p>
+                                                <div className="row">
+                                                    {
+                                                    _.map(this.state.valuation.comparable_properties, (cp, i) => (
+                                                    <div className="col-md-4">
+                                                    <div key={i}>
+                                                        <div className="card bg-light mb-3 text-left w-100">
+                                                            <div className="card-header text-white bg-info mb-3">{cp.address_1}{', '}{cp.postcode}</div>
+                                                            <div className="card-body">
+                                                                <h5 className="card-title text-center">{'Current Market Value'}<br />
+                                                                    {'£'}{cp.current_valuation}</h5>
+                                                                {cp.house_type}{' with '}{cp.rooms}{' bedrooms and '}{cp.size}{'sqm of living space was last sold for £'}{cp.sold_price}{' on '}{cp.sold_date}{'.'}<br />
+                                                            </div>
+                                                            <div className="card-footer text-muted"><strong>{'Located '}{cp.distance_to_query_property}{'m away'}</strong></div>
+                                                        </div><br />
+                                                    </div>
+                                                    </div>
+                                                    ))}
                                                 </div>
                                                 </div>
-                                            <div className="row">
-                                            {
-                                                _.map(this.state.valuation.comparable_properties, (cp, i) => (
-                                                <div className="col-md-4">
-                                                <div key={i}>
-                                                    <div className="card bg-light mb-3 text-left w-100">
-                                                        <div className="card-header text-white bg-info mb-3">{cp.address_1}{', '}{cp.postcode}</div>
-                                                        <div className="card-body">
-                                                            <h5 className="card-title text-center">{'Current Market Value'}<br />
-                                                                {'£'}{cp.current_valuation}</h5>
-                                                            {cp.house_type}{' with '}{cp.rooms}{' bedrooms and '}{cp.size}{'sqm of living space was last sold for £'}{cp.sold_price}{' on '}{cp.sold_date}{'.'}<br />
-                                                        </div>
-                                                        <div className="card-footer text-muted"><strong>{'Located '}{cp.distance_to_query_property}{'m away'}</strong></div>
-                                                    </div><br />
-                                                </div>
-                                                </div>
-                                                ))}
                                             </div>
                                         </div>
                                     </React.Fragment>
