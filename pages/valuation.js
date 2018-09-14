@@ -258,7 +258,7 @@ class Valuation extends Component {
                                                         </div><br />
                                                     </div>
                                                     </div>
-                                                    ))}
+                                                    )).slice(0,6)}
                                                 </div>
                                                 </div>
                                             </div>
