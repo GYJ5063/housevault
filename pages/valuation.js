@@ -155,6 +155,7 @@ class Valuation extends Component {
             datasets: [
                 {
                     label: label,
+                    maintainAspectRatio: false,
                     backgroundColor: 'rgba(255,99,132,0.2)',
                     borderColor: 'rgba(255,99,132,1)',
                     borderWidth: 1,
@@ -173,6 +174,7 @@ class Valuation extends Component {
             datasets: [
                 {
                     data: data,
+                    maintainAspectRatio: false,
                     backgroundColor: [
                         '#FF6384',
                         '#36A2EB',
@@ -199,6 +201,7 @@ class Valuation extends Component {
             datasets: [
               {
                 label: `Current Price ${currentPrice}`,
+                maintainAspectRatio: false,
                 fill: false,
                 lineTension: 0.1,
                 backgroundColor: 'rgba(75,192,192,0.4)',
@@ -270,25 +273,29 @@ class Valuation extends Component {
                                 <h2>Local Property Type Statistic</h2>
                                     <div className="card-deck">
                                     <div className="col-lg-6">
-                                        <div className="card bg-light mb-3 text-left w-100">
+                                        <div className="card valuation-chart-card bg-light mb-3 text-left w-100">
                                             <div className="card-header">Average Property Size</div>
-                                            <div className="card-body"><HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'average_size', 'Average Size')} /></div>
+                                            <div className="card-body">
+                                                <div className="contents-container">
+                                                <HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'average_size', 'Average Size')} />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="col-lg-6">
-                                        <div className="card bg-light mb-3 text-left w-100">
+                                        <div className="card valuation-chart-card bg-light mb-3 text-left w-100">
                                             <div className="card-header">Average Property Value</div>
                                             <div className="card-body"><HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'average_value', 'Average Value')} /></div>
                                         </div>
                                     </div>
                                     <div className="col-lg-6">
-                                        <div className="card bg-light mb-3 text-left w-100">
+                                        <div className="card valuation-chart-card bg-light mb-3 text-left w-100">
                                             <div className="card-header">Property Type Ratio</div>
                                             <div className="card-body"><Pie data={this.getValuesForPie(this.state.valuation.local_property_type_statistic, 'num_ratio')} /></div>
                                         </div>
                                     </div>
                                     <div className="col-lg-6">
-                                        <div className="card bg-light mb-3 text-left w-100">
+                                        <div className="card valuation-chart-card bg-light mb-3 text-left w-100">
                                             <div className="card-header">Value per SQM</div>
                                             <div className="card-body"><HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'per_size_value', 'Per Size Value')} /></div>
                                         </div>
@@ -301,13 +308,13 @@ class Valuation extends Component {
                         <h2>Property Performance V Regional Average</h2>
                         <div className="card-deck">
                         <div className="col-lg-6">
-                            <div className="card bg-light mb-3 text-left w-100">
+                            <div className="card valuation-chart-card bg-light mb-3 text-left w-100">
                                 <div className="card-header">This properties market value over 5 years</div>
                                 <div className="card-body"><Line data={this.getValuesForLine(this.state.valuation.predict_price_5y)} /></div>
                             </div>
                         </div>
                         <div className="col-lg-6">
-                            <div className="card bg-light mb-3 text-left w-100">
+                            <div className="card valuation-chart-card bg-light mb-3 text-left w-100">
                                 <div className="card-header">Regional 5 Year Price Prediction</div>
                                 <div className="card-body"><Line data={this.getValuesForLine(this.state.valuation.regional_price_5y)} /></div>
                             </div>
@@ -321,7 +328,7 @@ class Valuation extends Component {
                         _.map(this.state.valuation.regional_housetype_price_5y, (ht, i) => (
                             <div className="col-md-6">
                             <div key={i} className="row">
-                                <div className="card bg-light mb-3 text-left w-100">
+                                <div className="card valuation-chart-card bg-light mb-3 text-left w-100">
                                     <div className="card-header"><h3>{i}</h3></div>
                                     <Line data={this.getValuesForLine(ht)} />
                                 </div>
