@@ -280,12 +280,13 @@ class Valuation extends Component {
                                         <div className="card-deck">
                                             {
                                                 _.map(this.state.valuation.comparable_properties, (cp, i) => (
-                                                <div className="col-xl-4">
+                                                <div className="col-md-4">
                                                 <div key={i}>
                                                     <div className="card bg-light mb-3 text-left w-100">
-                                                        <div className="card-header">{cp.address_1}{', '}{cp.postcode}</div>
+                                                        <div className="card-header text-white bg-info mb-3">{cp.address_1}{', '}{cp.postcode}</div>
                                                         <div className="card-body">
-                                                            <h5 className="card-title">{'Current Market Value: £'}{cp.current_valuation}</h5>
+                                                            <h5 className="card-title text-center">{'Current Market Value'}<br />
+                                                                {'£'}{cp.current_valuation}</h5>
                                                             {cp.house_type}{' with '}{cp.rooms}{' bedrooms and '}{cp.size}{'sqm of living space was last sold for £'}{cp.sold_price}{' on '}{cp.sold_date}{'.'}<br />
                                                         </div>
                                                         <div className="card-footer text-muted"><strong>{'Located '}{cp.distance_to_query_property}{'m away'}</strong></div>
