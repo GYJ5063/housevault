@@ -264,35 +264,39 @@ class Valuation extends Component {
                                 )
                             }
                     </div>
-                    <div className="row">
-                         <h2>Local Property Type Statistic</h2>
-                             <div className="card-deck">
-                                <div className="col-lg-6">
-                                    <div className="card bg-light mb-3 text-left w-100">
-                                        <div className="card-header">Average Property Size</div>
-                                        <div className="card-body"><HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'average_size', 'Average Size')} /></div>
+                        {
+                            !this.state.valuation.local_property_type_statistic ? null : (
+                                <div className="row">
+                                <h2>Local Property Type Statistic</h2>
+                                    <div className="card-deck">
+                                    <div className="col-lg-6">
+                                        <div className="card bg-light mb-3 text-left w-100">
+                                            <div className="card-header">Average Property Size</div>
+                                            <div className="card-body"><HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'average_size', 'Average Size')} /></div>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-6">
+                                        <div className="card bg-light mb-3 text-left w-100">
+                                            <div className="card-header">Average Property Value</div>
+                                            <div className="card-body"><HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'average_value', 'Average Value')} /></div>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-6">
+                                        <div className="card bg-light mb-3 text-left w-100">
+                                            <div className="card-header">Property Type Ratio</div>
+                                            <div className="card-body"><Pie data={this.getValuesForPie(this.state.valuation.local_property_type_statistic, 'num_ratio')} /></div>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-6">
+                                        <div className="card bg-light mb-3 text-left w-100">
+                                            <div className="card-header">Value per SQM</div>
+                                            <div className="card-body"><HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'per_size_value', 'Per Size Value')} /></div>
+                                        </div>
+                                    </div>
                                     </div>
                                 </div>
-                                <div className="col-lg-6">
-                                    <div className="card bg-light mb-3 text-left w-100">
-                                        <div className="card-header">Average Property Value</div>
-                                        <div className="card-body"><HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'average_value', 'Average Value')} /></div>
-                                    </div>
-                                </div>
-                                <div className="col-lg-6">
-                                    <div className="card bg-light mb-3 text-left w-100">
-                                        <div className="card-header">Property Type Ratio</div>
-                                        <div className="card-body"><Pie data={this.getValuesForPie(this.state.valuation.local_property_type_statistic, 'num_ratio')} /></div>
-                                    </div>
-                                </div>
-                                <div className="col-lg-6">
-                                    <div className="card bg-light mb-3 text-left w-100">
-                                        <div className="card-header">Value per SQM</div>
-                                        <div className="card-body"><HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'per_size_value', 'Per Size Value')} /></div>
-                                    </div>
-                                </div>
-                              </div>
-                    </div>
+                            )
+                        }
                     <div className="row">
                         <h2>Property Performance V Regional Average</h2>
                         <div className="card-deck">
