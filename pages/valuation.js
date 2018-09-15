@@ -78,10 +78,10 @@ class Valuation extends Component {
             wall_type: '',
             number_habitable_rooms:'',
             total_floor_area: '',
-            report: '',
+            report: 1,
             validation: this.validator.valid(),
             hideLoadingSpinner: true,
-            valuation: {}
+            valuation: {"predict_results":{"predict_price":349500,"probability":0.609,"exist_in_epc":true,"predict_price_low":303000,"band":0.133,"predict_price_up":396500,"lat":51.63916499,"lng":-1.86261753,"confidence_level":6},"regional_price_5y":{"index_10":224000,"index_11":224000,"index_12":225500,"index_13":230000,"index_14":238000,"index_15":242500,"index_16":243500,"index_17":247000,"index_18":251000,"index_19":251000,"area_code":"E06000054","index_31":277500,"regionname":"Wiltshire","index_30":271000,"index_8":221500,"index_9":227500,"index_6":212500,"index_7":214500,"index_4":214500,"index_5":212000,"index_2":209000,"index_3":216500,"index_1":208500,"index_29":270500,"index_28":272000,"index_21":259000,"index_20":258500,"index_23":262000,"index_22":255000,"index_25":266500,"index_24":260000,"index_27":274000,"index_26":275500},"local_property_type_statistic":{"Flat_average_value":0,"Terrace_average_size":73,"Detached_average_size":116,"Terrace_average_value":239500,"Terrace_per_size_value":3283,"Detached_per_size_value":3692,"Flat_average_size":0,"Flat_per_size_value":0,"Flat_num_ratio":0.0,"Semi_Detached_average_value":258500,"Detached_num_ratio":0.742,"Terrace_num_ratio":0.097,"Semi_Detached_average_size":77,"Semi_Detached_num_ratio":0.161,"Detached_average_value":428000,"Semi_Detached_per_size_value":3357},"comparable_properties":{"1":{"address_id":24868684,"current_valuation":314000,"lat":51.638654,"postcode":"SN6 6BP","distance_to_query_property":116,"house_type":"Detached House","lng":-1.864093,"size":96,"sold_date":"2016-12-15","sold_price":290000,"address_1":"61, Deansfield","rooms":5},"2":{"address_id":24868641,"current_valuation":337500,"lat":51.638654,"postcode":"SN6 6BP","distance_to_query_property":116,"house_type":"Detached House","lng":-1.864093,"size":98,"sold_date":"2016-10-06","sold_price":315000,"address_1":"22, Deansfield","rooms":7},"3":{"address_id":24868657,"current_valuation":416000,"lat":51.638654,"postcode":"SN6 6BP","distance_to_query_property":116,"house_type":"Detached House","lng":-1.864093,"size":135,"sold_date":"2016-05-20","sold_price":375000,"address_1":"37, Deansfield","rooms":7},"4":{"address_id":24868681,"current_valuation":272500,"lat":51.638654,"postcode":"SN6 6BP","distance_to_query_property":116,"house_type":"Detached House","lng":-1.864093,"size":115,"sold_date":"2016-03-08","sold_price":245000,"address_1":"59, Deansfield","rooms":6},"5":{"address_id":24868639,"current_valuation":305000,"lat":51.638654,"postcode":"SN6 6BP","distance_to_query_property":116,"house_type":"Detached House","lng":-1.864093,"size":79,"sold_date":"2016-05-20","sold_price":275000,"address_1":"20, Deansfield","rooms":4},"6":{"address_id":24868645,"current_valuation":284500,"lat":51.638654,"postcode":"SN6 6BP","distance_to_query_property":116,"house_type":"Detached House","lng":-1.864093,"size":73,"sold_date":"2015-06-23","sold_price":235000,"address_1":"26, Deansfield","rooms":4},"7":{"address_id":24868628,"current_valuation":299000,"lat":51.638654,"postcode":"SN6 6BP","distance_to_query_property":116,"house_type":"Detached House","lng":-1.864093,"size":81,"sold_date":"2015-05-15","sold_price":245000,"address_1":"10, Deansfield","rooms":4},"8":{"address_id":24868656,"current_valuation":349000,"lat":51.638654,"postcode":"SN6 6BP","distance_to_query_property":116,"house_type":"Detached House","lng":-1.864093,"size":104,"sold_date":"2014-07-02","sold_price":270000,"address_1":"36, Deansfield","rooms":7},"9":{"address_id":24868660,"current_valuation":428000,"lat":51.638654,"postcode":"SN6 6BP","distance_to_query_property":116,"house_type":"Detached House","lng":-1.864093,"size":147,"sold_date":"2014-03-28","sold_price":325000,"address_1":"4, Deansfield","rooms":6},"10":{"address_id":24868649,"current_valuation":429000,"lat":51.638654,"postcode":"SN6 6BP","distance_to_query_property":116,"house_type":"Detached House","lng":-1.864093,"size":133,"sold_date":"2013-07-25","sold_price":315000,"address_1":"3, Deansfield","rooms":5}},"sales_history_analyze":{"1":{"sold_date":"2015-12-21","price_chage_percent":0.036,"sold_price":290000,"price_change":10500},"2":{"sold_date":"1999-11-10","price_chage_percent":1.404,"sold_price":125000,"price_change":175500}},"regional_housetype_price_5y":{"DetachedPrice":{"index_10":337500,"index_11":337500,"index_12":340500,"index_13":346500,"index_14":358000,"index_15":366500,"index_16":368000,"index_17":373500,"index_18":380000,"index_19":378000,"index_30":412000,"index_31":420000,"index_29":410500,"index_28":412000,"index_21":391500,"index_20":389500,"index_23":397000,"index_22":387500,"index_25":402000,"index_24":394000,"index_27":415000,"index_26":415500,"index_8":333000,"index_9":342500,"index_6":319000,"index_7":321000,"index_4":322500,"index_5":319000,"index_2":313500,"index_3":326500,"index_1":312500},"TerracedPrice":{"index_10":176000,"index_11":176000,"index_12":177000,"index_13":181000,"index_14":187000,"index_15":190500,"index_16":191000,"index_17":193000,"index_18":196500,"index_19":197500,"index_30":211000,"index_31":217000,"index_29":210500,"index_28":212000,"index_21":202500,"index_20":203000,"index_23":204000,"index_22":198500,"index_25":207500,"index_24":202000,"index_27":213500,"index_26":215000,"index_8":175000,"index_9":179500,"index_6":167500,"index_7":169500,"index_4":169000,"index_5":167000,"index_2":165500,"index_3":170500,"index_1":165000},"SemiDetachedPrice":{"index_10":214500,"index_11":214500,"index_12":216000,"index_13":221000,"index_14":228500,"index_15":232500,"index_16":233500,"index_17":237500,"index_18":241500,"index_19":241000,"index_30":261000,"index_31":268500,"index_29":260500,"index_28":262000,"index_21":248500,"index_20":247500,"index_23":251000,"index_22":244500,"index_25":255500,"index_24":249000,"index_27":263500,"index_26":264500,"index_8":212500,"index_9":218000,"index_6":203500,"index_7":205500,"index_4":205000,"index_5":203000,"index_2":199500,"index_3":206500,"index_1":199000},"FlatPrice":{"index_10":122000,"index_11":122000,"index_12":122500,"index_13":124500,"index_14":128500,"index_15":130500,"index_16":130500,"index_17":132500,"index_18":135500,"index_19":136000,"index_30":145500,"index_31":148000,"index_29":146500,"index_28":147500,"index_21":140500,"index_20":139500,"index_23":143000,"index_22":138500,"index_25":146500,"index_24":142500,"index_27":149000,"index_26":151000,"index_8":120000,"index_9":123500,"index_6":116000,"index_7":117000,"index_4":117000,"index_5":116000,"index_2":114000,"index_3":117500,"index_1":114500}},"predict_price_5y":{"index_10":281000,"index_11":281000,"index_12":283500,"index_13":288500,"index_14":298000,"index_15":305000,"index_16":306500,"index_17":311000,"index_18":316000,"index_19":314500,"index_30":343000,"index_31":349500,"index_29":342000,"index_28":343000,"index_21":326000,"index_20":324500,"index_23":330500,"index_22":322500,"index_25":335000,"index_24":328000,"index_27":345500,"index_26":346000,"index_8":277000,"index_9":285000,"index_6":265500,"index_7":267500,"index_4":268500,"index_5":265500,"index_2":261000,"index_3":272000,"index_1":260000}}
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -228,51 +228,45 @@ class Valuation extends Component {
     prepareVauesForRegional(regionalPrices){
 
     }
+
     renderReport(){
+
         if (this.state.report == 1) {
             return (
                 <React.Fragment>
-                    <div className="row">
-                            {
-                                _.isEmpty(this.state.valuation.comparable_properties[1]) ? null : (
-                                    <React.Fragment>
-                                        <div className="card-deck">
-                                            <div className="card border-light mb-3 w-100">
-                                                <div className="card-header"><h2>Comparable Properties</h2></div>
-                                                <div className="card-body"><p>The accuracy of an automated valuation will vary according to a number of factors. The best method of calculating a valuation is by looking at comparable properties in the local area. Our report takes this information and takes over 100 external factors to predict a valuation.</p>
-                                                <p>Below you will see the comparable properties we believe are the most significant in estimating your property valuation. Whilst sold prices on a street are important we look at a much wider range of factors to collect the local properties most suited to use as supporting evidence.</p>
-                                                <p>Each property tile below shows the current market valuation, distance from the subject property, address & property characteristics. A full list of comparables can be found at the end of this report</p>
-                                                <div className="row">
-                                                    {
-                                                    _.map(this.state.valuation.comparable_properties, (cp, i) => (
-                                                    <div className="col-md-4">
-                                                    <div key={i}>
-                                                        <div className="card bg-light mb-3 text-left w-100">
-                                                            <div className="card-header text-white bg-info mb-3">{cp.address_1}{', '}{cp.postcode}</div>
-                                                            <div className="card-body">
-                                                                <h5 className="card-title text-center">{'Current Market Value'}<br />
-                                                                    {'£'}{cp.current_valuation}</h5>
-                                                                {cp.house_type}{' with '}{cp.rooms}{' bedrooms and '}{cp.size}{'sqm of living space was last sold for £'}{cp.sold_price}{' on '}{cp.sold_date}{'.'}<br />
-                                                            </div>
-                                                            <div className="card-footer text-muted"><strong>{'Located '}{cp.distance_to_query_property}{'m away'}</strong></div>
-                                                        </div><br />
-                                                    </div>
-                                                    </div>
-                                                    )).slice(0,6)}
-                                                </div>
-                                                </div>
-                                            </div>
+                    <div >
+                        {
+                            _.isEmpty(this.state.valuation.comparable_properties[1]) ? null : (
+                                <div>
+                                    <div className="col-12 text-left">
+                                        <h2>Comparable Properties</h2>
+                                    </div>
+                                    <div className="card">
+                                        <div className="card-body"><p>The accuracy of an automated valuation will vary according to a number of factors. The best method of calculating a valuation is by looking at comparable properties in the local area. Our report takes this information and takes over 100 external factors to predict a valuation.</p>
+                                        <p>Below you will see the comparable properties we believe are the most significant in estimating your property valuation. Whilst sold prices on a street are important we look at a much wider range of factors to collect the local properties most suited to use as supporting evidence.</p>
+                                        <p>Each property tile below shows the current market valuation, distance from the subject property, address & property characteristics. A full list of comparables can be found at the end of this report</p>
                                         </div>
-                                    </React.Fragment>
-                                )
-                            }
+                                    </div>
+                                    <div className="card-deck">
+                                        {
+                                            _.map(this.state.valuation.comparable_properties, (cp, i) => {
+                                                return (
+                                                        <ComparablePropertyCard property={cp} key={i}/>
+                                                )
+                                            }).splice(6)
+                                        }
+                                    </div>
+                                </div>
+                            )
+                        }
                     </div>
                         {
                             !this.state.valuation.local_property_type_statistic ? null : (
                                 <div className="row">
-                                <h2>Local Property Type Statistic</h2>
-                                    <div className="card-deck">
-                                    <div className="col-lg-6">
+                                    <div className="col-12 text-left">
+                                        <h2>Local Property Type Statistic</h2>
+                                    </div>
+                                    <div className="col-6">
                                         <div className="card valuation-chart-card bg-light mb-3 text-left w-100">
                                             <div className="card-header">Average Property Size</div>
                                             <div className="card-body">
@@ -282,65 +276,70 @@ class Valuation extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-lg-6">
+                                    <div className="col-6">
                                         <div className="card valuation-chart-card bg-light mb-3 text-left w-100">
                                             <div className="card-header">Average Property Value</div>
                                             <div className="card-body"><HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'average_value', 'Average Value')} /></div>
                                         </div>
                                     </div>
-                                    <div className="col-lg-6">
+                                    <div className="col-6">
                                         <div className="card valuation-chart-card bg-light mb-3 text-left w-100">
                                             <div className="card-header">Property Type Ratio</div>
                                             <div className="card-body"><Pie data={this.getValuesForPie(this.state.valuation.local_property_type_statistic, 'num_ratio')} /></div>
                                         </div>
                                     </div>
-                                    <div className="col-lg-6">
+                                    <div className="col-6">
                                         <div className="card valuation-chart-card bg-light mb-3 text-left w-100">
                                             <div className="card-header">Value per SQM</div>
                                             <div className="card-body"><HorizontalBar data={this.getValuesForType(this.state.valuation.local_property_type_statistic, 'per_size_value', 'Per Size Value')} /></div>
                                         </div>
                                     </div>
-                                    </div>
                                 </div>
                             )
                         }
                     <div className="row">
-                        <h2>Property Performance V Regional Average</h2>
-                        <div className="card-deck">
-                        <div className="col-lg-6">
-                            <div className="card valuation-chart-card bg-light mb-3 text-left w-100">
+                        <div className="col-12 text-left">
+                            <h2>Property Performance V Regional Average</h2>
+                        </div>
+
+                        <div className="col-6">
+                            <div className="card ">
                                 <div className="card-header">This properties market value over 5 years</div>
                                 <div className="card-body"><Line data={this.getValuesForLine(this.state.valuation.predict_price_5y)} /></div>
                             </div>
                         </div>
-                        <div className="col-lg-6">
-                            <div className="card valuation-chart-card bg-light mb-3 text-left w-100">
+                        <div className="col-6">
+                            <div className="card ">
                                 <div className="card-header">Regional 5 Year Price Prediction</div>
                                 <div className="card-body"><Line data={this.getValuesForLine(this.state.valuation.regional_price_5y)} /></div>
                             </div>
                         </div>
                     </div>
-                    </div>
+
                     <div className="row">
-                    <h2>Regional Values Based on Property Type</h2>
-                    <div className="card-deck">
+                        <div className="col-12 text-left">
+                            <h2>Regional Values Based on Property Type</h2>
+                        </div>
+
                     {
                         _.map(this.state.valuation.regional_housetype_price_5y, (ht, i) => (
-                            <div className="col-md-6">
-                            <div key={i} className="row">
-                                <div className="card valuation-chart-card bg-light mb-3 text-left w-100">
-                                    <div className="card-header"><h3>{i}</h3></div>
+                            <div className="col-6">
+                            <div key={i} >
+                                <div className="card">
+                                    <div className="card-header">{i.replace("Price", " Price")}</div>
                                     <Line data={this.getValuesForLine(ht)} />
                                 </div>
                             </div>
                             </div>
                         ))
                     }
-                    </div>
+
                     </div>
                     {
                         _.isEmpty(this.state.valuation.sales_history_analyze[1]) ? null : (
                             <React.Fragment>
+                                <div className="card">
+                                    <div className="card-body">
                                 <h2>Sales History Analyze</h2>
                                 <Table>
                                     <thead>
@@ -364,6 +363,8 @@ class Valuation extends Component {
                                         }
                                     </tbody>
                                 </Table>
+                                    </div>
+                                </div>
                             </React.Fragment>
                         )
                     }
@@ -372,6 +373,10 @@ class Valuation extends Component {
                             {
                                 _.isEmpty(this.state.valuation.comparable_properties[1]) ? null : (
                                     <React.Fragment>
+                                        <div className="card">
+                                            <div className="card-body">
+
+
                                         <h2>Comparable Properties</h2>
                                         <Table>
                                             <thead>
@@ -405,6 +410,8 @@ class Valuation extends Component {
                                                 ))}
                                             </tbody>
                                         </Table>
+                                            </div>
+                                        </div>
                                     </React.Fragment>
                                 )
                             }
@@ -437,45 +444,20 @@ class Valuation extends Component {
                     <Layout>
                         <h1>Property Valuation</h1>
                         <div className="row">
-                            <div className="col-sm-4">
-                                <div className="card">
-                                    <div className="card-body">
-                                        Price Prediction<br/>
-                                    <h3>{this.state.valuation.predict_results.predict_price}</h3>
-                                    </div>
-                                </div>
+                            <div className="col-4">
+                                <SingleFigureCard name='Price Prediction' value={'£'+this.state.valuation.predict_results.predict_price.toLocaleString()}/>
                             </div>
-                            <div className="col-sm-4">
-                                <div className="card">
-                                    <div className="card-body">
-                                        Price Prediction Low<br/>
-                                    <h3>{this.state.valuation.predict_results.predict_price_low}</h3>
-                                    </div>
-                                </div>
+                            <div className="col-4">
+                                <SingleFigureCard name='Price Prediction Low' value={'£'+this.state.valuation.predict_results.predict_price_low.toLocaleString()}/>
                             </div>
-                            <div className="col-sm-4">
-                                <div className="card">
-                                    <div className="card-body">
-                                        Price Prediction High<br/>
-                                    <h3>{this.state.valuation.predict_results.predict_price_up}</h3>
-                                    </div>
-                                </div>
+                            <div className="col-4">
+                                <SingleFigureCard name='Price Prediction High' value={'£'+this.state.valuation.predict_results.predict_price_up.toLocaleString()}/>
                             </div>
-                            <div className="col-sm-4">
-                                <div className="card">
-                                    <div className="card-body">
-                                        Confidence Level<br/>
-                                    <h3>{this.state.valuation.predict_results.confidence_level}</h3>
-                                    </div>
-                                </div>
+                            <div className="col-4">
+                                <SingleFigureCard name='Confidence Level' value={this.state.valuation.predict_results.confidence_level}/>
                             </div>
-                            <div className="col-sm-4">
-                                <div className="card">
-                                    <div className="card-body">
-                                        Band<br/>
-                                    <h3>{this.state.valuation.predict_results.band}</h3>
-                                    </div>
-                                </div>
+                            <div className="col-4">
+                                <SingleFigureCard name='Band' value={this.state.valuation.predict_results.band}/>
                             </div>
                         </div>
                         {
@@ -488,7 +470,11 @@ class Valuation extends Component {
         return (
             <div className="container list-page-padding">
                 <Layout>
-                <h1>Request Valuation</h1>
+
+                    <div className="card">
+                        <div className="card-body">
+                            <h1>Request Valuation</h1>
+
                 <div className="row">
                     <div className="col">
                         <form onSubmit={this.handleSubmit}>
@@ -615,20 +601,50 @@ class Valuation extends Component {
                                 </select>
                             </div>
 
+                            <div className="row">
+                                <div className="col-sm">
+                                    <button onClick={this.handleSubmit} className="btn btn-primary pull-right">
+                                        Submit
+                                    </button>
+                                </div>
 
-                            <button onClick={this.handleSubmit} className="btn btn-primary pull-right">
-                                Submit
-                            </button>
+                            </div>
+
                         </form>
                     </div>
                 </div>
+                        </div>
+                    </div>
                 </Layout>
             </div>
         );
 
     }
 }
+function ComparablePropertyCard(props) {
+    return (
+        <div className="card comparable-property-card"  key={props.property.id}  >
+            <div className="card-header text-white bg-info mb-3">{props.property.address_1}{', '}{props.property.postcode}</div>
+            <div className="card-body">
+                <h5 className="card-title text-center">{'Current Market Value'}<br />
+                    {'£'}{props.property.current_valuation}</h5>
+                {props.property.house_type}{' with '}{props.property.rooms}{' bedrooms and '}{props.property.size}{'sqm of living space was last sold for £'}{props.property.sold_price}{' on '}{props.property.sold_date}{'.'}<br />
+            </div>
+            <div className="card-footer text-muted"><strong>{'Located '}{props.property.distance_to_query_property}{'m away'}</strong></div>
+        </div>
+    );
+}
 
+function SingleFigureCard(props) {
+    return (
+        <div className="card">
+            <div className="card-body">
+                {props.name}<br/>
+                <h3>{props.value}</h3>
+            </div>
+        </div>
+    );
+}
 
 
 
