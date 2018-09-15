@@ -1,6 +1,6 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
-import PropertySidebar from "../components/PropertySidebar";
+import PropertyMenu from "../components/PropertyMenu";
 import _ from "lodash"
 import moment from "moment";
 import Layout from '../components/Layout'
@@ -13,14 +13,17 @@ class Crime extends React.Component {
     render() {
 
         return (
-            <div className="container list-page-padding">
+
                 <Layout>
+                    <PropertyMenu url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
+                    <div className="container list-page-padding">
                     <div className="row">
-                        <PropertySidebar url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
+
 
                         <div className="col">
-                            <h4>Crime in {this.props.property.full_address} for {moment(this.props.month,"YYYY-MM").format("MMMM YYYY")}</h4>
-
+                            <h2>Crime in {this.props.property.full_address} for {moment(this.props.month,"YYYY-MM").format("MMMM YYYY")}</h2>
+                            <div className="card">
+                                <div className="card-body">
                             <table className="table">
                                 <thead>
                                 <tr>
@@ -41,8 +44,12 @@ class Crime extends React.Component {
                             </table>
                         </div>
                     </div>
+                        </div>
+                    </div>
+
+                    </div>
                 </Layout>
-            </div>
+
         );
 
     }

@@ -1,6 +1,6 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
-import PropertySidebar from "../components/PropertySidebar";
+import PropertyMenu from "../components/PropertyMenu";
 import Layout from '../components/Layout'
 
 
@@ -8,12 +8,19 @@ class Broadband extends React.Component {
     render() {
 
         return (
-            <div className="container list-page-padding">
+
                 <Layout>
-                <div className="row">
-                    <PropertySidebar url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
+                    <PropertyMenu url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
+                    <div className="container list-page-padding">
+                    <div className="row">
+
                     <div className="col">
-                        <h4>Broadband Speed Check for {this.props.property.full_address}</h4>
+                        <h2>Broadband Speed Check for {this.props.property.full_address}</h2>
+                        <div className="card">
+                            <div className="card-body">
+
+
+
                         <p>We collect broadband speed data from all the major UK providers including distance from exchange, fiber availability and service levels. Below are the current broadband speed stats for {this.props.property.full_address}. We have also found several companies who can offer broadband to homes located on this street if you're looking to switch.</p>
 
                         <table className="table">
@@ -51,9 +58,11 @@ class Broadband extends React.Component {
                             </ul>
 
                     </div>
-                </div>
+                </div>      </div>
+                    </div>
+                    </div>
                 </Layout>
-            </div>
+
         );
 
     }

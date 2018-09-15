@@ -25,17 +25,19 @@ class SearchVault extends Component {
         
         let url_postcode = process.env.BACKEND_URL + "postcode-exist/" + _.replace(postcode, ' ', '');
 
+
         fetch(url_postcode)
             .then(res => res.json())
             .then(
                 (status) => {
-                    console.log(status);
+
                     if(status) {
                         this.setState({
                             search_status: 'Found it, redirecting...'
                         });
 
-                        Router.pushRoute('/house-prices/' + _.upperCase(_.replace(postcode, ' ', '')));
+                        Router.pushRoute('/house-prices/' + _.replace(postcode, ' ', ''));
+
 
                     } else {
                         this.setState({
