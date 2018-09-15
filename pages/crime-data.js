@@ -20,6 +20,7 @@ class Crime extends React.Component {
           crimes: this.props.crimes,
           activeTab: null,
           visibleMarkers: this.props.markers,
+          totalCrimeCount: this.props.totalCrimeCount,
           categoriesToDisplay: {
             "Anti social behaviour": "fas fa-spray-can",
             "Criminal damage arson": "fas fa-fire",
@@ -43,11 +44,23 @@ class Crime extends React.Component {
             activeTab: tab
           });
         }
-        // this calls setState and will causes issues
-        // as component hasn't mounted yet
         this.filterMarkersByCategory(tab);
       }
-
+    toggleTabForAll() {
+        this.setState({
+            activeTab: "All"
+        });
+        const markers = 
+            _.reduce(this.state.crimes, (acc, cur) => acc.concat(cur), [])
+            .map(c => ({
+                lat: parseFloat(c.location.latitude),
+                lng: parseFloat(c.location.longitude)
+            }));
+            
+        this.setState({
+            visibleMarkers: markers
+        });
+    }
     filterMarkersByCategory(category) {
         const markers = this.state.crimes[category].map(c => ({
             lat: parseFloat(c.location.latitude),
@@ -106,6 +119,15 @@ class Crime extends React.Component {
                                 </DropdownMenu>
                             </ButtonDropdown>
                             <Nav className="crime-cat-tab" tabs>
+                                <NavItem>
+                                    <NavLink
+                                        className={this.state.activeTab === "All" ? 'active' : ''}
+                                        onClick={() => { this.toggleTabForAll(); }}
+                                    >
+                                    <i className="fas fa-globe"></i>
+                                    {`All (${this.state.totalCrimeCount})`}
+                                    </NavLink>
+                                </NavItem>
                                 {
                                     _.map(this.state.categoriesToDisplay, (val, key) => (
                                         <NavItem key={key}>
@@ -166,6 +188,7 @@ Crime.getCrimes = async function getCrimes(lat, lng, date){
 };
 
 Crime.processCrimes = function processCrimes(crimes){
+    console.log(crimes);
     // as the data set may be large 800+, this method only iterates the collection once
     const processedData = crimes.reduce((acc, crime) => {
         acc.markers.push({ 
@@ -183,7 +206,7 @@ Crime.processCrimes = function processCrimes(crimes){
         }
 
         return acc;
-    }, { markers: [], crimes: {}, firstCategory: null });
+    }, { markers: [], crimes: {}, firstCategory: null, totalCrimeCount: crimes.length });
 
     return processedData;
 }
@@ -196,7 +219,7 @@ Crime.getInitialProps = async ({ req, query: { postcode, address } }) => {
     const { lat, lng } = property;
 
     const unProcessedCrimes = await Crime.getCrimes(lat, lng);
-    const { crimes, markers, firstCategory } = Crime.processCrimes(unProcessedCrimes);
+    const { crimes, markers, firstCategory, totalCrimeCount } = Crime.processCrimes(unProcessedCrimes);
 
     const datesReq = await fetch("https://data.police.uk/api/crimes-street-dates");
     const datesWithCrimes = await datesReq.json();
@@ -206,7 +229,7 @@ Crime.getInitialProps = async ({ req, query: { postcode, address } }) => {
 
     return { 
         property, prices: property.prices.data, crimes, month,
-        markers, lat, lng, dates, firstCategory
+        markers, lat, lng, dates, firstCategory, totalCrimeCount
     }
 };
 
