@@ -3,7 +3,7 @@
 @import "~react-vis/dist/style";
 // Variables
 $font-color:#282D32;
-body {background:#F8F8F8; color:#282D32;font-family:'Source Sans Pro', sans-serif;}
+body {color:#282D32;font-family:'Source Sans Pro', sans-serif;}
 $banner-blue: #212C40;
 $company-purple: #4d2072;
 $logo-blue: #65D3FB;
@@ -1352,5 +1352,5 @@ footer {
     color: #BD10E0;
 }
 .comparable-property-card {
-    width:25%;
+    min-width:25%;
 }
