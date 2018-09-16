@@ -34,7 +34,13 @@ const GoogleMapsWithMarkerClusterer = compose(
 			{props.markers.map((marker, i) => (
 				<Marker
 					key={i}
-					position={{ lat: marker.lat, lng: marker.lng }}
+                    position={{ lat: marker.lat, lng: marker.lng }}
+                    label={marker.label}
+                    icon={{
+                        path: marker.path,
+                        fillOpacity: 0.8,
+                        scale: 0.05
+                    }}
 				/>
 			))}
 		</MarkerClusterer>
