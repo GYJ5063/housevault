@@ -139,7 +139,6 @@ class Crime extends React.Component {
                                         className={this.state.activeTab === "All" ? 'active' : ''}
                                         onClick={() => { this.toggleTabForAll(); }}
                                     >
-                                    <i className="fas fa-globe"></i>
                                     {`All (${this.state.totalCrimeCount})`}
                                     </NavLink>
                                 </NavItem>
@@ -163,9 +162,12 @@ class Crime extends React.Component {
                                     <i className="fas">{this.state.categoriesToDisplay[this.state.activeTab]}</i> {this.state.activeTab}
                                     </DropdownToggle>
                                     <DropdownMenu>
+                                        <DropdownItem onClick={() => this.toggleTabForAll()}>
+                                            All
+                                        </DropdownItem>
                                         {
                                             _.map(this.state.categoriesToDisplay, (val, key) => (
-                                                    <DropdownItem
+                                                <DropdownItem
                                                         key={key}
                                                         onClick={() => this.toggleTab(key)}>
                                                     <i className="fas">{val}</i> {key}
