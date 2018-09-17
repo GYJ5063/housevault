@@ -106,7 +106,7 @@ class Crime extends React.Component {
                     <div className="row">
                         <div className="col-12">
                             <h4>Crime in {this.props.property.full_address} for {this.state.month}</h4>
-                            By month:
+                            Month:
                             <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={() => this.toggleDropdown()}>
                                 <DropdownToggle caret>{this.state.month}</DropdownToggle>
                                 <DropdownMenu
@@ -156,28 +156,24 @@ class Crime extends React.Component {
                                         </NavItem>
                                 ))}
                             </Nav>
-                            <div className="row crime-cat-dropdown-container">
-                                <div className="col-2">
-                                        Category:
-                                </div>
-                                <div className="col-10">
-                                    <ButtonDropdown isOpen={this.state.catDropdownOpen} toggle={() => this.catDropdownToggle()}>
-                                        <DropdownToggle caret color="primary">
-                                        <i className="fas">{this.state.categoriesToDisplay[this.state.activeTab]}</i> {this.state.activeTab}
-                                        </DropdownToggle>
-                                        <DropdownMenu>
-                                            {
-                                                _.map(this.state.categoriesToDisplay, (val, key) => (
-                                                        <DropdownItem
-                                                            key={key}
-                                                            onClick={() => this.toggleTab(key)}>
-                                                        <i className="fas">{val}</i> {key}
-                                                    </DropdownItem>
-                                                ))
-                                            }
-                                        </DropdownMenu>
-                                    </ButtonDropdown>
-                                </div>
+                            <div className="crime-cat-dropdown-container">
+                                Category:
+                                <ButtonDropdown isOpen={this.state.catDropdownOpen} toggle={() => this.catDropdownToggle()}>
+                                    <DropdownToggle caret color="primary">
+                                    <i className="fas">{this.state.categoriesToDisplay[this.state.activeTab]}</i> {this.state.activeTab}
+                                    </DropdownToggle>
+                                    <DropdownMenu>
+                                        {
+                                            _.map(this.state.categoriesToDisplay, (val, key) => (
+                                                    <DropdownItem
+                                                        key={key}
+                                                        onClick={() => this.toggleTab(key)}>
+                                                    <i className="fas">{val}</i> {key}
+                                                </DropdownItem>
+                                            ))
+                                        }
+                                    </DropdownMenu>
+                                </ButtonDropdown>
                             </div>
                             <GoogleMapsWithMarkerClusterer markers={this.state.visibleMarkers} />
                             <TabContent activeTab={this.state.activeTab}>
