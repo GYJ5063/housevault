@@ -461,6 +461,9 @@ class Valuation extends Component {
                             <div className="col-4">
                                 <SingleFigureCard name='Band' value={this.state.valuation.predict_results.band}/>
                             </div>
+                            <div className="col-4">
+                                <SingleFigureCard name='Probability' value={this.state.valuation.predict_results.probability.toLocaleString("en", {style: "percent"})}/>
+                            </div>
                         </div>
                         {
                             this.renderReport(this.state.valuation)
@@ -612,8 +615,8 @@ function ComparablePropertyCard(props) {
             <div className="card-header text-white bg-info mb-3">{props.property.address_1}{', '}{props.property.postcode}</div>
             <div className="card-body">
                 <h5 className="card-title text-center">{'Current Market Value'}<br />
-                    {'£'}{props.property.current_valuation}</h5>
-                {props.property.house_type}{' with '}{props.property.rooms}{' bedrooms and '}{props.property.size}{'sqm of living space was last sold for £'}{props.property.sold_price}{' on the '}{moment(props.property.sold_date).format('Do MMMM YYYY')}{'.'}<br />
+                    {'£'}{props.property.current_valuation.toLocaleString()}</h5>
+                {props.property.house_type}{' with '}{props.property.rooms}{' bedrooms and '}{props.property.size}{'sqm of living space was last sold for £'}{props.property.sold_price.toLocaleString()}{' on the '}{moment(props.property.sold_date).format('Do MMMM YYYY')}{'.'}<br />
             </div>
             <div className="card-footer text-muted"><strong>{'Located '}{props.property.distance_to_query_property}{'m away'}</strong></div>
         </div>
