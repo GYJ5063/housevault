@@ -34,7 +34,8 @@ class Crime extends React.Component {
             "Other theft": "M512.949 192.003c-14.862-.108-29.14 2.322-42.434 6.874L437.589 144H520c13.255 0 24-10.745 24-24V88c0-13.255-10.745-24-24-24h-45.311a24 24 0 0 0-17.839 7.945l-37.496 41.663-22.774-37.956A24 24 0 0 0 376 64h-80c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h66.411l19.2 32H227.904c-17.727-23.073-44.924-40-99.904-40H72.54c-13.455 0-24.791 11.011-24.536 24.464C48.252 141.505 58.9 152 72 152h56c24.504 0 38.686 10.919 47.787 24.769l-11.291 20.529c-13.006-3.865-26.871-5.736-41.251-5.21C55.857 194.549 1.565 249.605.034 317.021-1.603 389.076 56.317 448 128 448c59.642 0 109.744-40.794 123.953-96h84.236c13.673 0 24.589-11.421 23.976-25.077-2.118-47.12 17.522-93.665 56.185-125.026l12.485 20.808c-27.646 23.654-45.097 58.88-44.831 98.179.47 69.556 57.203 126.452 126.758 127.11 71.629.678 129.839-57.487 129.234-129.099-.588-69.591-57.455-126.386-127.047-126.892zM128 400c-44.112 0-80-35.888-80-80s35.888-80 80-80c4.242 0 8.405.341 12.469.982L98.97 316.434C90.187 332.407 101.762 352 120 352h81.297c-12.37 28.225-40.56 48-73.297 48zm388.351-.116C470.272 402.337 432 365.554 432 320c0-21.363 8.434-40.781 22.125-55.144l49.412 82.352c4.546 7.577 14.375 10.034 21.952 5.488l13.72-8.232c7.577-4.546 10.034-14.375 5.488-21.952l-48.556-80.927A80.005 80.005 0 0 1 512 240c45.554 0 82.338 38.273 79.884 84.352-2.16 40.558-34.974 73.372-75.533 75.532z",
             "Public order": "M256 336h-.02c0-16.18 1.34-8.73-85.05-181.51-17.65-35.29-68.19-35.36-85.87 0C-2.06 328.75.02 320.33.02 336H0c0 44.18 57.31 80 128 80s128-35.82 128-80zM128 176l72 144H56l72-144zm511.98 160c0-16.18 1.34-8.73-85.05-181.51-17.65-35.29-68.19-35.36-85.87 0-87.12 174.26-85.04 165.84-85.04 181.51H384c0 44.18 57.31 80 128 80s128-35.82 128-80h-.02zM440 320l72-144 72 144H440zm88 128H352V153.25c23.51-10.29 41.16-31.48 46.39-57.25H528c8.84 0 16-7.16 16-16V48c0-8.84-7.16-16-16-16H383.64C369.04 12.68 346.09 0 320 0s-49.04 12.68-63.64 32H112c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h129.61c5.23 25.76 22.87 46.96 46.39 57.25V448H112c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h416c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z",
             "Violent crime": "M624 352h-16V243.9c0-12.7-5.1-24.9-14.1-33.9L494 110.1c-9-9-21.2-14.1-33.9-14.1H416V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h16c0 53 43 96 96 96s96-43 96-96h128c0 53 43 96 96 96s96-43 96-96h48c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zM160 464c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm144-248c0 4.4-3.6 8-8 8h-56v56c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8v-56h-56c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h56v-56c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v56h56c4.4 0 8 3.6 8 8v48zm176 248c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-208H416V144h44.1l99.9 99.9V256z"
-          }
+          },
+          catDropdownOpen: false
         };
     }
     componentDidMount(){
@@ -52,7 +53,12 @@ class Crime extends React.Component {
           });
         }
         this.filterMarkersByCategory(tab);
-      }
+    }
+    catDropdownToggle(){
+        this.setState({
+            catDropdownOpen: !this.state.catDropdownOpen
+          });
+    }
     toggleTabForAll() {
         this.setState({
             activeTab: "All"
@@ -98,7 +104,6 @@ class Crime extends React.Component {
                     <PropertyMenu url={this.props.url.pathname} postcode={this.props.property.postcode} number={this.props.property.house_number}/>
                     <div className="container list-page-padding">
                     <div className="row">
-
                         <div className="col-12">
                             <h4>Crime in {this.props.property.full_address} for {this.state.month}</h4>
                             By month:
@@ -151,6 +156,29 @@ class Crime extends React.Component {
                                         </NavItem>
                                 ))}
                             </Nav>
+                            <div className="row crime-cat-dropdown-container">
+                                <div className="col-2">
+                                        Category:
+                                </div>
+                                <div className="col-10">
+                                    <ButtonDropdown isOpen={this.state.catDropdownOpen} toggle={() => this.catDropdownToggle()}>
+                                        <DropdownToggle caret color="primary">
+                                        <i className="fas">{this.state.categoriesToDisplay[this.state.activeTab]}</i> {this.state.activeTab}
+                                        </DropdownToggle>
+                                        <DropdownMenu>
+                                            {
+                                                _.map(this.state.categoriesToDisplay, (val, key) => (
+                                                        <DropdownItem
+                                                            key={key}
+                                                            onClick={() => this.toggleTab(key)}>
+                                                        <i className="fas">{val}</i> {key}
+                                                    </DropdownItem>
+                                                ))
+                                            }
+                                        </DropdownMenu>
+                                    </ButtonDropdown>
+                                </div>
+                            </div>
                             <GoogleMapsWithMarkerClusterer markers={this.state.visibleMarkers} />
                             <TabContent activeTab={this.state.activeTab}>
                             {
@@ -181,8 +209,8 @@ class Crime extends React.Component {
                     </div>
                         </div>
                     </div>
-                    </Layout>
-                    </div>
+                </Layout>
+            </div>
 
         );
 

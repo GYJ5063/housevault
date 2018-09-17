@@ -650,6 +650,17 @@ footer {
             max-height: 100%;
         }
     }
+
+    .crime-cat-tab {
+        @include breakpoint($min: 0, $max: 1200px) {
+            display: none;
+        }
+    }
+    .crime-cat-dropdown-container {
+        @include breakpoint($min: 1200px, $max: 0) {
+            display: none;
+        }
+    }
 }
 
 .nopadding {
@@ -679,7 +690,7 @@ footer {
             flex:auto;
             >a{
                 border-radius:0;
-                color:#fff;
+                color:rgb(190, 88, 88);
                 font-size:12px;
                 text-transform:uppercase;
                 padding:20px 0;
