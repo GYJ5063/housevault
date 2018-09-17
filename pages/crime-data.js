@@ -145,10 +145,7 @@ class Crime extends React.Component {
                                     </NavLink>
                                 </NavItem>
                                 {
-                                    _.map(this.state.categoriesToDisplay, (val, key) => {
-                                        console.log(key);
-                                        console.log(this.state.crimes);
-                                        return (
+                                    _.map(this.state.categoriesToDisplay, (val, key) => (
                                         <NavItem key={key}>
                                             <NavLink
                                                 className={this.state.activeTab === key ? 'active' : ''}
@@ -158,8 +155,7 @@ class Crime extends React.Component {
                                             {`${key} (${this.state.crimes[key] ? this.state.crimes[key].length : 0})`}
                                             </NavLink>
                                         </NavItem>
-                                        );
-                                })}
+                                ))}
                             </Nav>
                             <div className="crime-cat-dropdown-container">
                                 Category:
