@@ -76,8 +76,10 @@ class Crime extends React.Component {
         });
     }
     filterMarkersByCategory(category) {
-
-        const markers = this.state.crimes[category].map(c => ({
+        const crimes = this.state.crimes[category];
+        const markers = !crimes
+        ? []
+        : crimes.map(c => ({
             lat: parseFloat(c.location.latitude),
             lng: parseFloat(c.location.longitude),
             path: this.state.categoriesIconData[category]
@@ -143,17 +145,21 @@ class Crime extends React.Component {
                                     </NavLink>
                                 </NavItem>
                                 {
-                                    _.map(this.state.categoriesToDisplay, (val, key) => (
+                                    _.map(this.state.categoriesToDisplay, (val, key) => {
+                                        console.log(key);
+                                        console.log(this.state.crimes);
+                                        return (
                                         <NavItem key={key}>
                                             <NavLink
                                                 className={this.state.activeTab === key ? 'active' : ''}
                                                 onClick={() => { this.toggleTab(key); }}
                                             >
                                             <i className="fas">{val}</i>
-                                            {`${key} (${this.state.crimes[key].length})`}
+                                            {`${key} (${this.state.crimes[key] ? this.state.crimes[key].length : 0})`}
                                             </NavLink>
                                         </NavItem>
-                                ))}
+                                        );
+                                })}
                             </Nav>
                             <div className="crime-cat-dropdown-container">
                                 Category:
