@@ -228,7 +228,7 @@ class Valuation extends Component {
     renderReport(){
        
         if (this.state.report == 1) {
-            const marker = {lng: _.toNumber(this.state.valuation.lng), lat: _.toNumber(this.state.valuation.lat) };
+            const marker = {lng: _.toNumber("-1.86261753"), lat: _.toNumber("51.63916499") };
             return (
                 <React.Fragment>
                     <div className="col">
