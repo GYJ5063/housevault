@@ -5,6 +5,7 @@ import _ from 'lodash';
 import { Table } from 'reactstrap';
 import { HorizontalBar, Line, Pie, Bar } from 'react-chartjs-2';
 import moment from 'moment/moment';
+import fetch from "isomorphic-fetch";
 import Layout from '../components/Layout'
 import StreetView from '../components/StreetView'
 
@@ -13,24 +14,6 @@ class Valuation extends Component {
     constructor(props) {
         super(props);
         this.validator = new FormValidator([
-            {
-                field: 'postcode',
-                method: 'isPostalCode',
-                args: ['GB'],
-                validWhen: true,
-                message: 'Postcode not valid.'
-            },
-            {
-                field: 'building_number',
-                method: (field, data) => {
-                    if(data.building_name || parseInt(data.building_number)) {
-                        return true;
-                    }
-                    return false;
-                },
-                validWhen: true,
-                message: 'Building number is required if building name is blank.'
-            },
             {
                 field: 'built_from',
                 method: 'isEmpty',
@@ -71,9 +54,9 @@ class Valuation extends Component {
         ]);
 
         this.state = {
-            postcode: '',
-            building_number: '',
-            building_name: '',
+            postcode: this.props.postcode,
+            building_number: this.props.building_number,
+            building_name: this.props.building_name,
             built_from: '',
             property_type: '',
             wall_type: '',
@@ -132,9 +115,6 @@ class Valuation extends Component {
         }
 
         if (validation.isValid) {
-            if(formData.building_name && !formData.building_number){
-                formData.building_number = 0;
-            }
 
             this.setState({hideLoadingSpinner: false});
             let self = this;
@@ -490,24 +470,6 @@ class Valuation extends Component {
                                         </div>
 
                                         <div className="form-group">
-                                            <span id="err_postcode" className="errText">{validation.postcode.message}</span>
-                                            <label htmlFor="postcode">Postcode</label>
-                                            <input type="text" name="postcode" id="postcode" value={this.state.postcode} className="form-control" placeholder="Postcode" onChange={this.handleChange} />
-                                        </div>
-
-                                        <div className="form-group">
-                                            <span id="err_building_number" className="errText">{validation.building_number.message}</span>
-                                            <label htmlFor="building_number">Building Number</label>
-                                            <input type="text" name="building_number" id="building_number" value={this.state.building_number} className="form-control" placeholder="Building number" onChange={this.handleChange} />
-                                        </div>
-
-                                        <div className="form-group">
-                                            <label htmlFor="building_name">Building Name</label>
-                                            <input type="text" name="building_name" id="building_name" value={this.state.building_name} className="form-control" placeholder="Building Name" onChange={this.handleChange} />
-                                            <p style={{ fontSize: 14, marginLeft: 200 }}>Can be left blank if building number is present</p>
-                                        </div>
-
-                                        <div className="form-group">
                                             <span id="err_built_from" className="errText">{validation.built_from.message}</span>
                                             <label htmlFor="built_from">Built From</label>
                                             <select name="built_from" className="form-control" id="built_from" onChange={this.handleChange}>
@@ -643,5 +605,9 @@ const GraphCard = (props) => (
     </div>
 );
 
-
+Valuation.getInitialProps = async ({req, query : { id }}) => {
+    const res = await fetch(`${process.env.API}/address/${id}`);
+    const json = await res.json();
+    return { building_number: json.building_number, postcode: json.postcode, building_name: json.building_name };
+}
 export default Valuation;
