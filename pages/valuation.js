@@ -606,7 +606,7 @@ const GraphCard = (props) => (
 );
 
 Valuation.getInitialProps = async ({req, query : { id }}) => {
-    const res = await fetch(`${process.env.API}/address/${id}`);
+    const res = await fetch(`${process.env.API}address/${id}`);
     const json = await res.json();
     return { building_number: json.building_number, postcode: json.postcode, building_name: json.building_name };
 }
