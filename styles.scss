@@ -3,7 +3,7 @@
 @import "~react-vis/dist/style";
 // Variables
 $font-color:#282D32;
-body {background:#F8F8F8; color:#282D32;font-family:'Source Sans Pro', sans-serif;}
+body {color:#282D32;font-family:'Source Sans Pro', sans-serif;}
 $banner-blue: #212C40;
 $company-purple: #4d2072;
 $logo-blue: #65D3FB;
@@ -221,7 +221,9 @@ header {
     display: block;
     background-repeat: no-repeat;
 }
-
+.valuation-chart-card {
+    max-width: 542px;
+}
 .property .icon-bar {
     background-image: url(/static/icon-property-valuation-report.svg);
     background-position: center 1px;
@@ -1348,4 +1350,7 @@ footer {
 }
 .home-marker {
     color: #BD10E0;
+}
+.comparable-property-card {
+    min-width:25%;
 }
