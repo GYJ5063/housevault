@@ -9,7 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   reports.associate = function(models) {
-    // associations can be defined here
+    // adds report_id to comparable_properties
+    reports.hasMany(models.comparable_properties);
   };
   return reports;
 };
