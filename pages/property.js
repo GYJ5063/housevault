@@ -58,20 +58,20 @@ class Property extends React.Component {
                             </div>
                             <div className="card">
                                 <div className="card-body">
-                                    EPC Rating<br/>
-                                    <h3>{(_.first(_.orderBy(this.props.address.epc.data, ['id'], ['desc']))) ? _.first(_.orderBy(this.props.address.epc.data, ['id'], ['desc'])).current_energy_rating : 'None'}</h3>
+                                    Living Space<br/>
+                                    <h3>{(_.first(_.orderBy(this.props.address.epc.data, ['id'], ['desc']))) ? _.first(_.orderBy(this.props.address.epc.data, ['id'], ['desc'])).total_floor_area +'sqm' : 'Awaiting'}</h3>
                                 </div>
                             </div>
                             <div className="card">
                                 <div className="card-body">
                                     Estimated Value<br />
-                                    <h3>{(typeof this.props.address.valuation !== "undefined") ? "£" + this.props.address.valuation.data.predicted_valuation : "None"}</h3>
+                                    <h3>{(typeof this.props.address.valuation !== "undefined") ? "£" + this.props.address.valuation.data.predicted_valuation.toLocaleString() : "None"}</h3>
                                 </div>
                             </div>
                             <div className="card">
                                 <div className="card-body">
                                     Last Sold Price<br />
-                                    <h3> {(!_.isEmpty(_.first(this.props.address.prices.data))) ? ("£" + _.first(this.props.address.prices.data).price) : 'Original Owner'}</h3>
+                                    <h3> {(!_.isEmpty(_.first(this.props.address.prices.data))) ? ("£" + _.first(this.props.address.prices.data).price.toLocaleString()) : 'Original Owner'}</h3>
                                 </div>
                             </div>
                         </div>
