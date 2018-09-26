@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER(10).UNSIGNED
+      type: DataTypes.INTEGER(10).UNSIGNED
     },
     report_id: {
       type: DataTypes.INTEGER(10).UNSIGNED,
