@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require("body-parser");
 const Sequelize = require('sequelize');
 
 const config = require('../sequelize/config/config.json');
@@ -15,16 +16,31 @@ const connection = new Sequelize(database, username, password, {
     }
 });
 
-const addresses = connection.import(`../sequelize/models/addresses.js`)
+const addresses = connection.import(`../sequelize/models/addresses.js`);
+const reports = connection.import(`../sequelize/models/reports.js`);
+
 const router = express.Router();
+
+router.use(bodyParser.urlencoded({
+    extended: true
+}));
+router.use(bodyParser.json());
 
 router.get("/address/:id", (req, res) => {
     //make sure you use false here. otherwise the total data 
     //from the impported models will get deleted and new tables will be created
     connection.sync({ force: false }).then(() => {
         addresses.findById(req.params.id)
-        .then(result => res.json(result))
-        .catch(err => console.log(err));
+            .then(result => res.json(result))
+            .catch(err => console.log(err));
+    });
+});
+
+router.post("/createReport", (req, res) => {
+    connection.sync({ force: false }).then(() => {
+        reports.create(req.body)
+            .then(result => res.json(result))
+            .catch(err => console.log(err));
     });
 });
 
