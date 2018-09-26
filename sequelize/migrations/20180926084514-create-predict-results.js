@@ -9,6 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER(10).UNSIGNED
       },
       report_id: {
+        type: Sequelize.INTEGER(10).UNSIGNED,
         allowNull: false,
         references: {
             model: "reports",
