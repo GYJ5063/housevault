@@ -105,6 +105,9 @@ module.exports = {
       },
       index_31: {
         type: Sequelize.INTEGER(11)
+      },
+      regional_housetype: {
+        type: Sequelize.STRING
       }
     });
   },

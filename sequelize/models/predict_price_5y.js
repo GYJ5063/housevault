@@ -45,7 +45,8 @@ module.exports = (sequelize, DataTypes) => {
     index_28: DataTypes.INTEGER(11),
     index_29: DataTypes.INTEGER(11),
     index_30: DataTypes.INTEGER(11),
-    index_31: DataTypes.INTEGER(11)
+    index_31: DataTypes.INTEGER(11),
+    regional_housetype: DataTypes.STRING
   }, {});
   predict_price_5y.associate = function(models) {
     // associations can be defined here
