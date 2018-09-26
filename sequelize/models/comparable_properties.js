@@ -7,7 +7,14 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true
     },
-    report_id: DataTypes.INTEGER(10).UNSIGNED,
+    report_id: {
+      type: DataTypes.INTEGER(10).UNSIGNED,
+      allowNull: false,
+      references: {
+          model: "reports",
+          key: "id"
+      }
+    },
     address_id: DataTypes.INTEGER(10).UNSIGNED,
     current_valuation: DataTypes.INTEGER(10).UNSIGNED,
     distance_to_query_property: DataTypes.INTEGER(10),

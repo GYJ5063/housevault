@@ -1,6 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const predict_price_5y = sequelize.define('predict_price_5y', {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER(10).UNSIGNED
+    },
     report_id: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,

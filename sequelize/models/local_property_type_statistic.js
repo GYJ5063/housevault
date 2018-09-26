@@ -1,6 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const local_property_type_statistic = sequelize.define('local_property_type_statistic', {
+    id: {
+        type: DataTypes.INTEGER(10).UNSIGNED,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true
+    },
     report_id: {
         type: DataTypes.INTEGER(10).UNSIGNED,
         allowNull: false,

@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
 
     reports.hasOne(models.local_property_type_statistic);
     reports.hasOne(models.predict_price_5y);
+    reports.hasOne(models.predict_results);
   };
   return reports;
 };

@@ -105,14 +105,6 @@ module.exports = {
       },
       index_31: {
         type: Sequelize.INTEGER(11)
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
     });
   },
