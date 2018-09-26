@@ -9,12 +9,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     report_id: DataTypes.INTEGER(10).UNSIGNED,
     address_id: DataTypes.INTEGER(10).UNSIGNED,
-    current_valuation: DataTypes.INTEGER,
-    distance_to_query_property: DataTypes.INTEGER,
+    current_valuation: DataTypes.INTEGER(10).UNSIGNED,
+    distance_to_query_property: DataTypes.INTEGER(10),
     sold_date: DataTypes.DATE,
-    sold_price: DataTypes.INTEGER,
-    rooms: DataTypes.INTEGER,
-    size: DataTypes.INTEGER,
+    sold_price: DataTypes.INTEGER(10).UNSIGNED,
+    rooms: DataTypes.INTEGER(3).UNSIGNED,
+    size: DataTypes.INTEGER(5),
     house_type: DataTypes.STRING
   }, {});
   comparable_properties.associate = function(models) {

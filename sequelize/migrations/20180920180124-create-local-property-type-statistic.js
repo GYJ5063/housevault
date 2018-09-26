@@ -9,63 +9,57 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       report_id: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        references: { model: 'reports', key: 'id'},
+        type: Sequelize.INTEGER(10).UNSIGNED,
       },
       Detached_num_ratio: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL(5, 3)
       },
       Detached_average_value: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(11)
       },
       Detached_average_size: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(5)
       },
       Detached_per_size_value: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(6)
       },
       Semi_Detached_num_ratio: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL(5, 3)
       },
       Semi_Detached_average_value: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(11)
       },
       Semi_Detached_average_size: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(5)
       },
       Semi_Detached_per_size_value: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(6)
       },
       Terrace_num_ratio: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL(5, 3)
       },
       Terrace_average_value: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(11)
       },
       Terrace_average_size: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(5)
       },
       Terrace_per_size_value: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(6)
       },
       Flat_num_ratio: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL(5, 3)
       },
       Flat_average_value: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(11)
       },
       Flat_average_size: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(5)
       },
       Flat_per_size_value: {
-        type: Sequelize.INTEGER
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.INTEGER(6)
       }
     });
   },
