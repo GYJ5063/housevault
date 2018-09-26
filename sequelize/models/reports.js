@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   reports.associate = function(models) {
 
     reports.hasMany(models.comparable_properties);
+    reports.hasMany(models.sales_history_analyze);
 
     reports.hasOne(models.local_property_type_statistic);
     reports.hasOne(models.predict_price_5y);
