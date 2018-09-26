@@ -9,8 +9,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   reports.associate = function(models) {
-    // adds report_id to comparable_properties
+
     reports.hasMany(models.comparable_properties);
+
+    reports.hasOne(models.local_property_type_statistic);
+    reports.hasOne(models.predict_price_5y);
   };
   return reports;
 };
