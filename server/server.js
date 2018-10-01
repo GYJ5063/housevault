@@ -14,6 +14,12 @@ app.prepare()
         
         server.use('/api', api);
 
+        server.get("/postcode/:postcode", (req, res) => {
+            res.writeHead(302, {
+                'Location': '/house-prices/' +req.params.postcode
+            });
+            res.end();
+        });
         server.get('*', (req, res) => {
             return handler(req, res);
         });

@@ -18,6 +18,8 @@ const connection = new Sequelize(database, username, password, {
 const addresses = connection.import(`../sequelize/models/addresses.js`)
 const router = express.Router();
 
+
+
 router.get("/address/:id", (req, res) => {
     //make sure you use false here. otherwise the total data 
     //from the impported models will get deleted and new tables will be created
