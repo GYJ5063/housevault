@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     sold_price: DataTypes.INTEGER(11)
   }, {});
   sales_history_analyze.associate = function(models) {
-    // associations can be defined here
+    sales_history_analyze.belongsTo(models.reports);
   };
   return sales_history_analyze;
 };

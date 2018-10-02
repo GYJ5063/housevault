@@ -23,8 +23,9 @@ module.exports = (sequelize, DataTypes) => {
     rooms: DataTypes.INTEGER(3).UNSIGNED,
     size: DataTypes.INTEGER(5),
     house_type: DataTypes.STRING
-  }, {});
+  }, { timestamps: false });
   comparable_properties.associate = function(models) {
+    comparable_properties.belongsTo(models.reports, { foreignKey: 'report_id', targetKey: 'id' });
   };
   return comparable_properties;
 };

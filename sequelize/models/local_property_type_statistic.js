@@ -51,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
     Flat_per_size_value: DataTypes.INTEGER(6)
   }, {});
   local_property_type_statistic.associate = function(models) {
-    // associations can be defined here
+    local_property_type_statistic.belongsTo(models.reports);
   };
   return local_property_type_statistic;
 };

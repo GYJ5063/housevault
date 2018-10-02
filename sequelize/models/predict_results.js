@@ -24,9 +24,10 @@ module.exports = (sequelize, DataTypes) => {
     predict_price_low: DataTypes.INTEGER(11),
     predict_price_up: DataTypes.INTEGER(11),
     probability: DataTypes.DECIMAL(5, 2)
-  }, {});
+  }, { timestamps: false });
+
   predict_results.associate = function(models) {
-    // associations can be defined here
+    predict_results.belongsTo(models.reports, { as: 'reports', foreignKey: 'report_id', targetKey: 'id' });
   };
   return predict_results;
 };

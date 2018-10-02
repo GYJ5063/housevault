@@ -49,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
     regional_housetype: DataTypes.STRING
   }, {});
   predict_price_5y.associate = function(models) {
-    // associations can be defined here
+    predict_price_5y.belongsTo(models.reports);
   };
   return predict_price_5y;
 };
