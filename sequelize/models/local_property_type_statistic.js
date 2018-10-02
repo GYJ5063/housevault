@@ -49,9 +49,9 @@ module.exports = (sequelize, DataTypes) => {
     Flat_average_value: DataTypes.INTEGER(11),
     Flat_average_size: DataTypes.INTEGER(5),
     Flat_per_size_value: DataTypes.INTEGER(6)
-  }, {});
+  }, { timestamps: false });
   local_property_type_statistic.associate = function(models) {
-    local_property_type_statistic.belongsTo(models.reports);
+    local_property_type_statistic.belongsTo(models.reports, { foreignKey: 'report_id', targetKey: 'id' });
   };
   return local_property_type_statistic;
 };

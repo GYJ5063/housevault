@@ -44,11 +44,11 @@ router.get("/address/:id", (req, res) => {
 router.post("/createReport", (req, res) => {
     connection.sync({ force: false }).then(() => {
         const report = {
-            comparable_properties: _.values(req.body.comparable_properties),
-            // sales_history_analyze: _.values(req.body.sales_history_analyze),
-            // local_property_type_statistic: req.body.local_property_type_statistic,
+            //comparable_properties: _.values(req.body.comparable_properties),
+            //sales_history_analyze: _.values(req.body.sales_history_analyze),
+            local_property_type_statistic: req.body.local_property_type_statistic,
             // predict_price_5y: req.body.predict_price_5y,
-            predict_results: req.body.predict_results
+            //predict_results: req.body.predict_results
             // predict_results: {
             //     band: '0.134',
             //     confidence_level: '6',
