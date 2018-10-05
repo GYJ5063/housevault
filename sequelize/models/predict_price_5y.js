@@ -47,9 +47,9 @@ module.exports = (sequelize, DataTypes) => {
     index_30: DataTypes.INTEGER(11),
     index_31: DataTypes.INTEGER(11),
     regional_housetype: DataTypes.STRING
-  }, {});
+  }, { timestamps: false });
   predict_price_5y.associate = function(models) {
-    predict_price_5y.belongsTo(models.reports);
+    predict_price_5y.belongsTo(models.reports, { foreignKey: 'report_id', targetKey: 'id' });
   };
   return predict_price_5y;
 };

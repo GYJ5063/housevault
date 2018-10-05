@@ -129,7 +129,6 @@ class Valuation extends Component {
                 .then(function (response) {
                     axios.post(`${process.env.API}createReport`, response.data)
                     .then(res => {
-                        console.log(res);
                         self.setState({ hideLoadingSpinner: true, valuation: response.data });
                     })
                     .catch(err => console.log(err));
