@@ -7,6 +7,14 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER(10).UNSIGNED
+      },
+      address_id: {
+        type: Sequelize.INTEGER(10).UNSIGNED,
+        allowNull: false,
+        references: {
+            model: "addresses",
+            key: "id"
+        }
       }
     });
   },

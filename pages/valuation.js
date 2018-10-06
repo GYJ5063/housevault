@@ -127,7 +127,9 @@ class Valuation extends Component {
 
             axios.post(process.env.PRICEPREDICTION_URL, formData, config)
                 .then(function (response) {
-                    axios.post(`${process.env.API}createReport`, response.data)
+                    const report = { ...response.data, address_id: self.props.addressId };
+
+                    axios.post(`${process.env.API}createReport`, report)
                     .then(res => {
                         self.setState({ hideLoadingSpinner: true, valuation: response.data });
                     })
@@ -613,6 +615,6 @@ const GraphCard = (props) => (
 Valuation.getInitialProps = async ({req, query : { id }}) => {
     const res = await fetch(`${process.env.API}address/${id}`);
     const json = await res.json();
-    return { building_number: json.building_number, postcode: json.postcode, building_name: json.building_name };
+    return { building_number: json.building_number, postcode: json.postcode, building_name: json.building_name, addressId: id };
 }
 export default Valuation;
