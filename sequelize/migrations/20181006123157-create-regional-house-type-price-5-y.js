@@ -16,7 +16,7 @@ module.exports = {
         },
         type: Sequelize.INTEGER(10).UNSIGNED,
       },
-      houseType: {
+      house_type: {
         type: Sequelize.ENUM,
         values: ['DetachedPrice', 'FlatPrice', 'SemiDetachedPrice', 'TerracedPrice']
       },
