@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
- const regional_housetype_price_5y = sequelize.define('regional_housetype_price_5y', {
+ const regional_house_type_price_5y = sequelize.define('regional_house_type_price_5y', {
    id: {
      allowNull: false,
      autoIncrement: true,
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
          key: "id"
      }
    },
-   houseType: {
+   house_type: {
        type: DataTypes.ENUM,
        values: ['DetachedPrice', 'FlatPrice', 'SemiDetachedPrice', 'TerracedPrice']
    },
@@ -50,9 +50,9 @@ module.exports = (sequelize, DataTypes) => {
    index_29: DataTypes.INTEGER(11),
    index_30: DataTypes.INTEGER(11),
    index_31: DataTypes.INTEGER(11)
- }, { timestamps: false, tableName: 'regional_housetype_price_5y' });
- regional_housetype_price_5y.associate = function(models) {
-   regional_housetype_price_5y.belongsTo(models.reports, { foreignKey: 'report_id', targetKey: 'id' });
+ }, { timestamps: false, tableName: 'regional_house_type_price_5y' });
+ regional_house_type_price_5y.associate = function(models) {
+   regional_house_type_price_5y.belongsTo(models.reports, { foreignKey: 'report_id', targetKey: 'id' });
  };
- return regional_housetype_price_5y;
+ return regional_house_type_price_5y;
 };

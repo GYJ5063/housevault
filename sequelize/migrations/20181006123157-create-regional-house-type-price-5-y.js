@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('regional_housetype_price_5y', {
+    return queryInterface.createTable('regional_house_type_price_5y', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -116,6 +116,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('regional_housetype_price_5y');
+    return queryInterface.dropTable('regional_house_type_price_5y');
   }
 };
