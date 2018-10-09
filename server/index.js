@@ -29,9 +29,10 @@ router.use(bodyParser.json());
 
 // routes
 const valuations = require('./valuations');
-
+const reports = require('./reports');
 
 router.use('/valuations', valuations);
+router.use('/reports', reports);
 
 router.get("/address/:id", (req, res) => {
     //make sure you use false here. otherwise the total data 
