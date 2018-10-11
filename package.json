@@ -44,7 +44,6 @@
     "build": "next build",
     "start": "NODE_ENV=production node server/server.js",
     "deploy": "next build && eb deploy housevault-env-clone"
-
   },
   "author": "",
   "license": "ISC"
