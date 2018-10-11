@@ -99,7 +99,7 @@ class Login extends Component {
                   </div>
                 </Layout>
             </div>
-            );
+        );
     }
 }
 

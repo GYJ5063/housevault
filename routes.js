@@ -24,6 +24,7 @@ routes.add('online-estate-agent-reviews', '/online-estate-agent-reviews')
     // signin
     .add('registration', '/registration')
     .add('login', '/login')
+    .add('private-homepage', '/private-homepage')
 
     .add('page', '/:page')
     .add('homepage', '/');
