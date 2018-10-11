@@ -7,7 +7,7 @@ import Layout from '../components/Layout'
 
 import "../styles/signin.scss"; //import page-specific styles from registration.scsss
 
-class Registration extends Component {
+class Login extends Component {
     constructor(props) {
         super(props);
 
@@ -30,33 +30,13 @@ class Registration extends Component {
                 method: 'isEmpty',
                 validWhen: false,
                 message: 'A password is required'
-            },
-            {
-                field: 'companyName',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'A company name is required'
-            },
-            {
-                field: 'companyAddress',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'A company address is required'
-            },
-            {
-                field: 'companyTelephone',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'A company telephone number is required'
             }
+
         ]);
 
         this.state = {
             email: '',
             password: '',
-            companyName: '',
-            companyAddress: '',
-            companyTelephone: '',
             validation: this.validator.valid(),
             // hideLoadingSpinner: true
         }
@@ -102,7 +82,7 @@ class Registration extends Component {
             <div>
                 <Layout>
                   <div className="registration-container">
-                      <h3>Create an account</h3>
+                      <h3>Log in</h3>
                       <Form>
                         <FormGroup>
                           <Input type="email" name="email" value={this.state.email} onChange={this.handleInputChange} id="exampleEmail" placeholder="email"/>
@@ -111,18 +91,6 @@ class Registration extends Component {
                         <FormGroup>
                           <Input type="password" name="password" value={this.state.password} onChange={this.handleInputChange} id="examplePassword" placeholder="password" />
                           <p className='input-error-text'>{this.state.validation.password.message}</p>
-                        </FormGroup>
-                        <FormGroup>
-                          <Input type="text" name="companyName" value={this.state.companyName} onChange={this.handleInputChange} id="examplePassword" placeholder="company name" />
-                          <p className='input-error-text'>{this.state.validation.companyName.message}</p>
-                        </FormGroup>
-                        <FormGroup>
-                          <Input type="text" name="companyAddress" value={this.state.companyAddress} onChange={this.handleInputChange} id="examplePassword" placeholder="company address" />
-                          <p className='input-error-text'>{this.state.validation.companyAddress.message}</p>
-                        </FormGroup>
-                        <FormGroup>
-                          <Input type="tel" name="companyTelephone" value={this.state.companyTelephone} onChange={this.handleInputChange} id="examplePassword" placeholder="company telephone" />
-                          <p className='input-error-text'>{this.state.validation.companyTelephone.message}</p>
                         </FormGroup>
 
                         <Button color='primary' onClick={this.handleSubmit}>Register</Button>
@@ -135,4 +103,4 @@ class Registration extends Component {
     }
 }
 
-export default Registration;
+export default Login;

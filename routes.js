@@ -20,6 +20,10 @@ routes.add('online-estate-agent-reviews', '/online-estate-agent-reviews')
     .add('valuation', '/valuation/:id')
     .add('subpage', '/:page/:sub')
     .add('about-us', '/about-us')
+
+    // signin
     .add('registration', '/registration')
+    .add('login', '/login')
+
     .add('page', '/:page')
     .add('homepage', '/');
