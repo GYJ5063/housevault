@@ -1,4 +1,5 @@
 /* jshint indent: 1 */
+const bcrypt = require('bcrypt-nodejs');
 
 module.exports = function(sequelize, DataTypes) {
 	const users = sequelize.define('users', {
@@ -37,16 +38,46 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.STRING(100),
 			allowNull: true
 		},
-		created_at: {
+		createdAt: {
+			field: 'created_at',
 			type: DataTypes.DATE,
 			allowNull: true
 		},
-		updated_at: {
+		updatedAt: {
+			field: 'updated_at',
 			type: DataTypes.DATE,
 			allowNull: true
 		}
 	}, { tableName: 'users' });
+
 	users.associate = function(models) {
 		users.belongsTo(models.companies, { foreignKey: 'company_id', targetKey: 'id' });
 	};
+
+	users.validPassword = function(password, hash, done, user) {
+		bcrypt.compare(password, hash, function(err, res) {
+			if (err) console.error(err);
+
+			if (res) {
+				return done(null, user);
+			}
+
+			return done(null, res);
+		});
+	};
+
+	users.hook('beforeCreate', function(user, options) {
+		return new Promise((resolve, reject) => {
+			var salt = bcrypt.genSaltSync(12);
+
+			bcrypt.hash(user.password, salt, null, function(err, hash) {
+				if (err) reject(err);
+
+				user.password = hash;
+				resolve(user);
+			});
+		});
+	});
+
+	return users;
 };

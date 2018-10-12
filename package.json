@@ -6,6 +6,7 @@
   "dependencies": {
     "@zeit/next-sass": "^0.2.0",
     "axios": "^0.18.0",
+    "bcrypt-nodejs": "0.0.3",
     "chart.js": "^2.7.2",
     "express": "^4.16.3",
     "fetch": "^1.1.0",
@@ -45,7 +46,6 @@
     "build": "next build",
     "start": "NODE_ENV=production node server/server.js",
     "deploy": "next build && eb deploy housevault-env-clone"
-
   },
   "author": "",
   "license": "ISC"
