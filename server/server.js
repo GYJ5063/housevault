@@ -66,7 +66,7 @@ app.prepare()
                 '/login',
                 passport.authenticate('local', {
                     successRedirect: '/',
-                    failureRedirect: '/notauth',
+                    failureRedirect: '/login',
                     failureFlash: true
                 }, function(req, res) {
                     console.log("hit: ", req, res);

@@ -4,30 +4,38 @@ const models = require('../sequelize/models');
 
 // create cookie
 passport.serializeUser(function(user, done) {
-    done(null, user);
+    console.log('serialize run: ', user, done);
+    done(null, user.id);
 });
 
 // delete cookie
-passport.deserializeUser(function(email, done) {
+passport.deserializeUser(function(id, done) {
+    console.log('deserialize run: ', id, done);
     models.users
-        .find({ where: { email: email} })
+        .find({ where: { id: id } })
         .then(user => done(null, user))
         .catch(err => done(err, null));
 });
 
 // authentication
-passport.use(new LocalStrategy(function(email, password, done) {
+passport.use(
+    'local',
+    new LocalStrategy(function(username, password, done) {
+        console.log('inside strat: ', username, password, done);
     models.users
-        .find({ where: { email: email } })
+        .find({ where: { email: username } })
         .then(user => {
             if(!user) {
-                console.log('no user: ', email, password, done);
+                console.log('no user: ', username, password, done);
                 return done(null, false);
             }
             const isMatch = models.users.validPassword(password, user.password, done, user);
             console.log('isMatch: ', isMatch);
         })
-        .catch(err => done(err, null));
+        .catch(err => {
+            console.log('error: ', username, password, done);
+            done(err, null);
+        });
 }));
 
 module.exports = passport;
