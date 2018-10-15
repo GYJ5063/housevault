@@ -4,6 +4,7 @@ const next = require('next');
 const expressValidator = require('express-validator');
 const { ApolloServer } = require('apollo-server');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const session = require('express-session');
 const uuid = require('node-uuid');
 
@@ -28,6 +29,12 @@ app.prepare()
             // populates req.cookies with any cookies that came along with the request
             server.use(cookieParser());
 
+            server.use(bodyParser.urlencoded({
+                extended: true
+            }));
+            
+            server.use(bodyParser.json());
+
             // passport's session piggy-backs on express-session
             server.use(
                 session({
@@ -51,6 +58,21 @@ app.prepare()
                 });
                 res.end();
             });
+
+            server.use('/login', bodyParser.urlencoded({ extended: true }));
+
+            // login
+            server.post(
+                '/login',
+                passport.authenticate('local', {
+                    successRedirect: '/',
+                    failureRedirect: '/notauth',
+                    failureFlash: true
+                }, function(req, res) {
+                    console.log("hit: ", req, res);
+                })
+            );
+
             server.get('*', (req, res) => {
                 return handler(req, res);
             });

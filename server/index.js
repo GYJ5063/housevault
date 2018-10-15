@@ -6,9 +6,6 @@ const config = require('../sequelize/config/config.json');
 const env = process.env.NODE_ENV === 'production' ? 'production' : "development";
 const { database, username, password, dialect, host } = config[env];
 
-const passport = require('./passport');
-
-
 const connection = new Sequelize(database, username, password, {
     dialect: dialect,
     host: host,
@@ -29,18 +26,6 @@ router.use(bodyParser.json());
 
 // TODO: move routes to modules
 // routes
-
-router.use('/login', bodyParser.urlencoded({ extended: true }));
-
-// login
-router.post(
-    '/login',
-    passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/notauth',
-        failureFlash: true
-    })
-);
 
 router.get("/address/:id", (req, res) => {
     //make sure you use false here. otherwise the total data 
