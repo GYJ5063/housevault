@@ -21,7 +21,6 @@ passport.deserializeUser(function(id, done) {
 passport.use(
     'local',
     new LocalStrategy(function(username, password, done) {
-        console.log('inside strat: ', username, password, done);
     models.users
         .find({ where: { email: username } })
         .then(user => {

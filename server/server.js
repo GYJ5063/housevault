@@ -2,7 +2,7 @@
 const express = require('express');
 const next = require('next');
 const expressValidator = require('express-validator');
-const { ApolloServer } = require('apollo-server');
+const { ApolloServer } = require('apollo-server-express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -74,19 +74,21 @@ app.prepare()
             );
 
             server.get('*', (req, res) => {
+                console.log('user is authenticated: ', req.isAuthenticated())
                 return handler(req, res);
             });
 
-            const apolloServer = new ApolloServer({ typeDefs, resolvers, server });
+            const apolloServer = new ApolloServer({ typeDefs, resolvers });
 
-            apolloServer.listen(port).then(({ url }) => {
-                console.log(`🚀 Server ready at ${url}`)
-              });
+            apolloServer.applyMiddleware({ app: server });
+            // apolloServer.listen(port).then(({ url }) => {
+            //     console.log(`🚀 Server ready at ${url}`)
+            //   });
 
-            // server.listen(port, (err) => {
-            //     if (err) throw err;
-            //     console.log(`> Ready on http://localhost:${port}`);
-            // });
+            server.listen(port, (err) => {
+                if (err) throw err;
+                console.log(`🚀 Server ready at http://localhost:${port}${apolloServer.graphqlPath}`)
+            });
         });
     })
     .catch(ex => {
