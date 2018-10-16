@@ -26,7 +26,6 @@
     "next": "^6.1.1",
     "next-routes": "^1.4.2",
     "node-sass": "^4.9.2",
-    "node-uuid": "^1.4.8",
     "npm": "^6.2.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
@@ -46,6 +45,7 @@
     "recompose": "^0.27.1",
     "sequelize": "^4.38.0",
     "sequelize-cli": "^4.1.1",
+    "uuid": "^3.3.2",
     "validator": "^10.4.0"
   },
   "devDependencies": {

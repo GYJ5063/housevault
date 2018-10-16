@@ -6,7 +6,7 @@ const { ApolloServer } = require('apollo-server-express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const uuid = require('node-uuid');
+const uuidv4 = require('uuid/v4');
 
 const passport = require('./passport');
 
@@ -39,7 +39,7 @@ app.prepare()
             server.use(
                 session({
                     genid: function(req) {
-                        return uuid.v4();
+                        return uuidv4();
                     },
                     secret: 'Z3]GJW!?9uP"/Kpe'
                 })
