@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "housevault_user",
-    "password": "UmrRLE.mJWYLoJaTxr8Vne$x",
+    "username": "root",
+    "password": "",
     "database": "housevault",
-    "host": "housevault.ct35gnupguen.eu-west-2.rds.amazonaws.com",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
