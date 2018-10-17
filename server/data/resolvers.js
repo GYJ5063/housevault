@@ -4,21 +4,29 @@ const jwt = require('jsonwebtoken');
 
 module.exports = {
     Query: {
-        profile: (root, { username, password }, req) => {
+        profile: (root, { username, password }, { user }) => {
             return new Promise((resolve, reject) => {
-                if(req.user) {
-                    console.log('no user: ', req);
-                    return resolve(req.user);
+                if(!user) {
+                    reject('Not Authenticated');
                 }
-                console.log(root, username, password , JSON.stringify(req));
-                return reject('Not Authenticated');
+
+                db.users.find({ where: { id: user.id }})
+                    .then(user => {
+                        if(!user) {
+                            throw new Error("user not found error");
+                        }
+                        resolve(user);
+                    })
+                    .catch(err => reject(err));
             });
         },
+        // this is for testing
         restrictedEndPoint: (root, args, { user }) => {
             if(!user) {
                 return new AuthenticationError('restricted endpoint');
             }
-            return "heck yes!";
+
+            return "Access to endpoint allowed, user is authenticated";
         }
     },
     Mutation: {
