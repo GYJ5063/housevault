@@ -5,16 +5,12 @@
   "main": "index.js",
   "dependencies": {
     "@zeit/next-sass": "^0.2.0",
-    "apollo-server": "^2.1.0",
     "apollo-server-express": "^2.1.0",
     "axios": "^0.18.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "chart.js": "^2.7.2",
-    "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
-    "express-session": "^1.15.6",
-    "express-validator": "^5.3.0",
     "fetch": "^1.1.0",
     "graphql": "^14.0.2",
     "i": "^0.3.6",
@@ -28,8 +24,6 @@
     "next-routes": "^1.4.2",
     "node-sass": "^4.9.2",
     "npm": "^6.2.0",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
     "react": "^16.4.1",
     "react-adsense": "0.0.6",
     "react-chartjs-2": "^2.7.2",
@@ -46,7 +40,6 @@
     "recompose": "^0.27.1",
     "sequelize": "^4.38.0",
     "sequelize-cli": "^4.1.1",
-    "uuid": "^3.3.2",
     "validator": "^10.4.0"
   },
   "devDependencies": {

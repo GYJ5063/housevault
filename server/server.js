@@ -1,14 +1,7 @@
-// server.js
 const express = require('express');
 const next = require('next');
-const expressValidator = require('express-validator');
 const { ApolloServer } = require('apollo-server-express');
-const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const session = require('express-session');
-const uuidv4 = require('uuid/v4');
-
-const passport = require('./passport');
 
 const port = process.env.PORT || 8081;
 const routes = require('../routes'); 
@@ -25,30 +18,12 @@ app.prepare()
     .then(() => {
         models.sequelize.sync().then(() => {
             const server = express();
-            // Exposes a bunch of methods for validating data. Used heavily on userController.validateRegister
-            server.use(expressValidator());
-
-            // populates req.cookies with any cookies that came along with the request
-            server.use(cookieParser());
 
             server.use(bodyParser.urlencoded({
                 extended: true
             }));
             
             server.use(bodyParser.json());
-
-            // passport's session piggy-backs on express-session
-            server.use(
-                session({
-                    genid: function(req) {
-                        return uuidv4();
-                    },
-                    secret: 'Z3]GJW!?9uP"/Kpe'
-                })
-            );
-            //Provide authentication and user information to all routes
-            server.use(passport.initialize());
-            server.use(passport.session());
 
             const api = require('./index.js');
 
@@ -60,19 +35,6 @@ app.prepare()
                 });
                 res.end();
             });
-
-            server.use('/login', bodyParser.urlencoded({ extended: true }));
-
-            // login
-            server.post(
-                '/login',
-                passport.authenticate('local', {
-                    successRedirect: '/',
-                    failureRedirect: '/login',
-                    failureFlash: true
-                },
-                console.log)
-            );
 
             server.get('*', (req, res) => {
                 return handler(req, res);
@@ -95,7 +57,7 @@ app.prepare()
                             console.log(error);
                         }
                     }
-                    // get the user token from the headers
+
                     return { user, SECRET };
                 } 
             });
