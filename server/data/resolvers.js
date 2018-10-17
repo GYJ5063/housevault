@@ -60,6 +60,18 @@ module.exports = {
                     })
                     .catch(err => reject(err));
             });
+        },
+        createCompany: (root, { name }, context) => {
+            return new Promise((resolve, reject) => {
+                db.companies.create({ name })
+                    .then(company => {
+                        if(!company) {
+                            reject('Error retrieving company');
+                        }
+                        resolve(company);
+                    })
+                    .catch(err => reject(err));
+            });
         }
     }
 };
