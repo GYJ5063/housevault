@@ -28,8 +28,11 @@ passport.use(
                 console.log('no user: ', username, password, done);
                 return done(null, false);
             }
-            const isMatch = models.users.validPassword(password, user.password, done, user);
-            console.log('isMatch: ', isMatch);
+            const validPassword = models.users.validPassword(password, user.password);
+            if(validPassword){
+                return done(null, user);
+            }
+            return done(null, res);
         })
         .catch(err => {
             console.log('error: ', username, password, done);

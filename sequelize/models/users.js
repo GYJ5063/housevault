@@ -54,15 +54,11 @@ module.exports = function(sequelize, DataTypes) {
 		users.belongsTo(models.companies, { foreignKey: 'company_id', targetKey: 'id' });
 	};
 
-	users.validPassword = function(password, hash, done, user) {
+	users.validPassword = function(password, hash) {
+		// TODO: use es6 async/await instead of callbacks
 		bcrypt.compare(password, hash, function(err, res) {
 			if (err) console.error(err);
-
-			if (res) {
-				return done(null, user);
-			}
-
-			return done(null, res);
+			return res;
 		});
 	};
 
