@@ -19,6 +19,8 @@ const models = require('../sequelize/models');
 const typeDefs = require('./data/schema');
 const resolvers = require('./data/resolvers');
 
+const SECRET = 'keyboard cat';
+
 app.prepare()
     .then(() => {
         models.sequelize.sync().then(() => {
@@ -68,22 +70,37 @@ app.prepare()
                     successRedirect: '/',
                     failureRedirect: '/login',
                     failureFlash: true
-                }, function(req, res) {
-                    console.log("hit: ", req, res);
-                })
+                },
+                console.log)
             );
 
             server.get('*', (req, res) => {
-                console.log('user is authenticated: ', req.isAuthenticated())
                 return handler(req, res);
             });
 
-            const apolloServer = new ApolloServer({ typeDefs, resolvers });
+            const apolloServer = new ApolloServer({
+                typeDefs,
+                resolvers,
+                context: ({ req }) => {
+                    let user = null;
+                    const token = req.headers.authorization;
+                    
+                    if(token) {
+                        const jwt = require('jsonwebtoken');
+                        try {
+                            user = jwt.verify(token, SECRET);
+                        } catch (error) {
+                            console.log(error);
+                        }
+
+                        console.log(`token: ${token}, user: ${user}`);
+                    }
+                    // get the user token from the headers
+                    return { user, SECRET };
+                } 
+            });
 
             apolloServer.applyMiddleware({ app: server });
-            // apolloServer.listen(port).then(({ url }) => {
-            //     console.log(`🚀 Server ready at ${url}`)
-            //   });
 
             server.listen(port, (err) => {
                 if (err) throw err;

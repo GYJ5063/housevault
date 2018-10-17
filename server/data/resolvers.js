@@ -1,5 +1,5 @@
 const db = require('../../sequelize/models');
-const passport = require('../passport');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
     Query: {
@@ -15,17 +15,21 @@ module.exports = {
         }
     },
     Mutation: {
-        login: (root, { email, password }, context) => {
-            return db.users.find({ where: { email: email }})
+        login: (root, { email, password }, { SECRET }) => {
+            return db.users.find({ where: { email }})
                 .then(user => {
                     if(!user) {
-                        return "user not found error";
+                        throw new Error("user not found error");
                     }
                     return db.users.validPassword(password, user.password).then(valid => {
                         if(valid) {
-                            return "token"
+                            const token = jwt.sign(
+                                { user: { id: user.id, email: user.email }},
+                                SECRET,
+                                { expiresIn: '1y' });
+                            return token;
                         }
-                        return "not valid error";
+                        throw new Error("password or username incorrect");
                     });
 
                 });
