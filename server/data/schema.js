@@ -1,5 +1,3 @@
-// const makeExecutableSchema = require('graphql-tools').makeExecutableSchema;
-// const resolvers = require('./resolvers');
 const { gql } = require ('apollo-server-express');
 
 const typeDefs = gql`
@@ -11,9 +9,8 @@ const typeDefs = gql`
         profile: User
     }
     type Mutation {
-        login(username: String!, password: String!): User
+        login(email: String!, password: String!): String
     }
 `;
 
-// module.exports = makeExecutableSchema({ typeDefs, resolvers });
 module.exports = typeDefs;

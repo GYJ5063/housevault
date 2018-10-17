@@ -55,10 +55,14 @@ module.exports = function(sequelize, DataTypes) {
 	};
 
 	users.validPassword = function(password, hash) {
-		// TODO: use es6 async/await instead of callbacks
-		bcrypt.compare(password, hash, function(err, res) {
-			if (err) console.error(err);
-			return res;
+		return new Promise((resolve, reject) => {
+			bcrypt.compare(password, hash, function(err, isValid) {
+				if(err) {
+					console.log(err);
+					reject(err);
+				}
+				resolve(isValid);
+			});
 		});
 	};
 
