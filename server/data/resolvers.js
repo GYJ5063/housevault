@@ -13,7 +13,7 @@ module.exports = {
                 db.users.find({ where: { id: user.id }})
                     .then(user => {
                         if(!user) {
-                            throw new Error("user not found error");
+                            throw new Error('user not found error');
                         }
                         resolve(user);
                     })
@@ -26,7 +26,7 @@ module.exports = {
                 return new AuthenticationError('restricted endpoint');
             }
 
-            return "Access to endpoint allowed, user is authenticated";
+            return 'Access to endpoint allowed, user is authenticated';
         }
     },
     Mutation: {
@@ -34,7 +34,7 @@ module.exports = {
             return db.users.find({ where: { email }})
                 .then(user => {
                     if(!user) {
-                        throw new Error("user not found error");
+                        throw new Error('user not found error');
                     }
                     return db.users.validPassword(password, user.password).then(valid => {
                         if(valid) {
@@ -44,10 +44,22 @@ module.exports = {
                                 { expiresIn: '1y' });
                             return token;
                         }
-                        throw new Error("password or username incorrect");
+                        throw new Error('password or username incorrect');
                     });
 
                 });
+        },
+        createUser: (root, args, context) => {
+            return new Promise((resolve, reject) => {
+                db.users.create(args)
+                    .then(user => {
+                        if(!user) {
+                            reject('Error retrieving user');
+                        }
+                        resolve(user);
+                    })
+                    .catch(err => reject(err));
+            });
         }
     }
 };
