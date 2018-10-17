@@ -7,6 +7,7 @@ const typeDefs = gql`
     }
     type Query {
         profile: User
+        restrictedEndPoint: String!
     }
     type Mutation {
         login(email: String!, password: String!): String!

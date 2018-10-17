@@ -83,17 +83,17 @@ app.prepare()
                 resolvers,
                 context: ({ req }) => {
                     let user = null;
+                    let bearer = null;
                     const token = req.headers.authorization;
-                    
+
                     if(token) {
                         const jwt = require('jsonwebtoken');
                         try {
-                            user = jwt.verify(token, SECRET);
+                            bearer = jwt.verify(token, SECRET);
+                            user = bearer.user;
                         } catch (error) {
                             console.log(error);
                         }
-
-                        console.log(`token: ${token}, user: ${user}`);
                     }
                     // get the user token from the headers
                     return { user, SECRET };

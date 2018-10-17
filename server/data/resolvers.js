@@ -1,3 +1,4 @@
+const { AuthenticationError } = require('apollo-server-express');
 const db = require('../../sequelize/models');
 const jwt = require('jsonwebtoken');
 
@@ -12,6 +13,12 @@ module.exports = {
                 console.log(root, username, password , JSON.stringify(req));
                 return reject('Not Authenticated');
             });
+        },
+        restrictedEndPoint: (root, args, { user }) => {
+            if(!user) {
+                return new AuthenticationError('restricted endpoint');
+            }
+            return "heck yes!";
         }
     },
     Mutation: {
