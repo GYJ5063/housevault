@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
-import FormValidator from '../components/FormValidator';
-import Layout from '../components/Layout'
+import FormValidator from './FormValidator';
+import Layout from './Layout'
 
 import "../styles/signin.scss"; //import page-specific styles from registration.scsss
 
