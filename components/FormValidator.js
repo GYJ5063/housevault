@@ -35,8 +35,6 @@ class FormValidator {
         ));
 
 
-        console.log('== valid() ==');
-        console.log({ isValid: true, ...validation });
 
         return { isValid: true, ...validation };
     }
