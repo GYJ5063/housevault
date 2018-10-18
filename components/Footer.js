@@ -23,6 +23,9 @@ class Footer extends Component {
                                         <li><a href="/about-us">About us</a></li>
                                         <li><a href="#">More stuff here</a></li>
                                         <li><a href="#">Other info</a></li>
+                                        <li><a href="/login">Login</a></li>
+                                        <li><a href="/registration">Registration</a></li>
+                                        <li><a href="/private-homepage">Private Homepage</a></li>
                                     </ul>
                                 </div>
                                 <div className="col-md-4 footer-links">

@@ -34,6 +34,10 @@ class FormValidator {
             validation[rule.field] = { isInvalid: false, message: '' }
         ));
 
+
+        console.log('== valid() ==');
+        console.log({ isValid: true, ...validation });
+
         return { isValid: true, ...validation };
     }
 }
