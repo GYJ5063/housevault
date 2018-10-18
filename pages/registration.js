@@ -1,6 +1,6 @@
-import withData from '../lib/withData';
+import withData from '../lib/apollo';
 import Registration from '../components/Registration';
 
-export default withData(() => (
+export default withData(props => (
     <Registration />
 ));
