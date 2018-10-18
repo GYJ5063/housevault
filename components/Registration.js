@@ -189,4 +189,3 @@ const mutator = gql`
 `;
 
 export default graphql(mutator)(Registration);
-;

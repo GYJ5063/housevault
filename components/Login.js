@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+
 import FormValidator from './FormValidator';
 import Layout from './Layout'
 
@@ -18,12 +21,6 @@ class Login extends Component {
                 method: 'isEmpty',
                 validWhen: false,
                 message: 'An email is required'
-            },
-            {
-                field: 'email',
-                method: 'isEmail',
-                validWhen: true,
-                message: 'The email you entered in invalid'
             },
             {
                 field: 'password',
@@ -70,14 +67,27 @@ class Login extends Component {
 
       // Send data to database via API call
       if (validation.isValid) {
-          // this.setState({hideLoadingSpinner: false});
-          alert('form is valid - perform submit action')
+        console.log(this.state.email, this.state.password);
+        this.props.mutate({
+            variables: {
+                email: this.state.email,
+                password: this.state.password
+            }
+        })
+        .then(res => {
+            // store token to local storage
+            if(res.data.login) {
+                localStorage.setItem('token', res.data.login);
+            }
+            // redirect somewhere?
+            console.log('token stored');
+        })
+        .catch(err => console.log(err));
       }
     }
 
 
     render() {
-      console.log("-- The state is: --", this.state);
         return (
             <div>
                 <Layout>
@@ -85,11 +95,11 @@ class Login extends Component {
                       <h3>Log in</h3>
                       <Form>
                         <FormGroup>
-                          <Input type="email" name="email" value={this.state.email} onChange={this.handleInputChange} id="exampleEmail" placeholder="email"/>
+                          <Input type="email" name="email" value={this.state.email} onChange={this.handleInputChange} id="email" placeholder="email"/>
                           <p className='input-error-text'>{this.state.validation.email.message}</p>
                         </FormGroup>
                         <FormGroup>
-                          <Input type="password" name="password" value={this.state.password} onChange={this.handleInputChange} id="examplePassword" placeholder="password" />
+                          <Input type="password" name="password" value={this.state.password} onChange={this.handleInputChange} id="password" placeholder="password" />
                           <p className='input-error-text'>{this.state.validation.password.message}</p>
                         </FormGroup>
 
@@ -103,4 +113,10 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const mutator = gql`
+    mutation login($email: String!, $password: String!) {
+        login(email: $email, password: $password)
+    }
+`;
+
+export default graphql(mutator)(Login);
