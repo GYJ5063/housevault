@@ -87,7 +87,9 @@ class Registration extends Component {
 
         this.submitted = false;
     }
-
+    componentDidMount() {
+        console.log(this.props);
+    }
     handleInputChange(event) {
       const target = event.target;
       const value = target.value;

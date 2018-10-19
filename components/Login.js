@@ -7,6 +7,8 @@ import gql from 'graphql-tag';
 
 import FormValidator from './FormValidator';
 import Layout from './Layout'
+import {Router} from '../routes';
+
 
 import "../styles/signin.scss"; //import page-specific styles from registration.scsss
 
@@ -78,6 +80,7 @@ class Login extends Component {
             // store token to local storage
             if(res.data.login) {
                 localStorage.setItem('token', res.data.login);
+                Router.pushRoute('/profile');
             }
             // redirect somewhere?
             console.log('token stored');
