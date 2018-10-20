@@ -32,7 +32,7 @@ class Profile extends Component {
         return false;
     }
 
-    renderProfile() {
+    renderProfileOrRedirect() {
         if(this.userIsAuthenticated()) {
             return (
                 <div>
@@ -45,7 +45,8 @@ class Profile extends Component {
         }
     }
     render() {
-        // the first of 2 times render is called it hasn't got the response from the api
+        // this is needed because the first of 2 times render is called
+        // it hasn't got the response from the api
         if(this.isDataLoading()) {
             return (
                 <div className="container list-page-padding">
@@ -58,7 +59,7 @@ class Profile extends Component {
             );
         }
 
-        return (this.renderProfile());
+        return (this.renderProfileOrRedirect());
     }
 };
 
