@@ -10,10 +10,17 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            profile: null,
+            profile: {},
             hideLoadingSpinner: true
         }
     }
+
+    // componentDidUpdate(prevProps){
+    //     if(!this.isDataLoading() && this.props.data.profile) {
+    //         const { profile } = this.props.data;
+    //         this.setState({ profile });
+    //     }
+    // }
 
     userIsAuthenticated() {
         const { error } = this.props.data;
@@ -34,9 +41,14 @@ class Profile extends Component {
 
     renderProfileOrRedirect() {
         if(this.userIsAuthenticated()) {
+            const { profile } = this.props.data;
             return (
                 <div>
-                    Profile!!!!!
+                    <div>{profile.id}</div>
+                    <div>{profile.first_name}</div>
+                    <div>{profile.last_name}</div>
+                    <div>{profile.email}</div>
+                    <div>{profile.company_id}</div>
                 </div>
             );
         }
