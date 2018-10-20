@@ -1,28 +1,64 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import withData from '../lib/apollo';
+import { Router } from '../routes'
 
 class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {
-                first_name: ''
-            }
+            profile: null,
+            hideLoadingSpinner: true
         }
     }
 
-    componentDidMount() {
-        //console.log(this.props);
+    userIsAuthenticated() {
+        const { error } = this.props.data;
+        return !(error && error.graphQLErrors[0].message === 'Not Authenticated');
     }
 
+    isDataLoading() {
+        const { profile, error } = this.props.data;
+        if(error) {
+            return false;
+        }
+        if(!profile && !error) {
+            return true;
+        }
+
+        return false;
+    }
+
+    renderProfile() {
+        if(this.userIsAuthenticated()) {
+            return (
+                <div>
+                    Profile!!!!!
+                </div>
+            );
+        }
+        else {
+            Router.push('/login');
+        }
+    }
     render() {
-        return (
-        <div>{this.state.user.first_name || 'blah'}</div>
-        );
+        // the first of 2 times render is called it hasn't got the response from the api
+        if(this.isDataLoading()) {
+            return (
+                <div className="container list-page-padding">
+                    <div className="row">
+                        <div className="col text-center">
+                            <i className="fa fa-spinner fa-spin fa-4x"></i>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        return (this.renderProfile());
     }
 };
 
@@ -38,6 +74,4 @@ const query = gql`
     }
 `;
 
-export default graphql(query, {
-
-})(Profile);
+export default graphql(query)(Profile);
