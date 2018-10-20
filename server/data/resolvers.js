@@ -10,14 +10,18 @@ module.exports = {
                     reject('Not Authenticated');
                 }
 
-                db.users.find({ where: { id: user.id }})
-                    .then(user => {
-                        if(!user) {
-                            throw new Error('user not found error');
-                        }
-                        resolve(user);
-                    })
-                    .catch(err => reject(err));
+                db.users.find({
+                    where: { id: user.id },
+                    include: { model: db.companies }
+
+                })
+                .then(user => {
+                    if(!user) {
+                        throw new Error('user not found error');
+                    }
+                    resolve(user);
+                })
+                .catch(err => reject(err));
             });
         },
         // this is for testing

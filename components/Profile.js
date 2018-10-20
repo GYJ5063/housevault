@@ -44,11 +44,9 @@ class Profile extends Component {
             const { profile } = this.props.data;
             return (
                 <div>
-                    <div>{profile.id}</div>
-                    <div>{profile.first_name}</div>
-                    <div>{profile.last_name}</div>
-                    <div>{profile.email}</div>
-                    <div>{profile.company_id}</div>
+                    <div>Name: {profile.first_name} {profile.last_name}</div>
+                    <div>Email: {profile.email}</div>
+                    <div>Company: {profile.company.name}</div>
                 </div>
             );
         }
@@ -81,7 +79,10 @@ const query = gql`
             id
             first_name
             last_name
-            company_id
+            company {
+                id
+                name
+            }
             email
         }
     }
