@@ -5,7 +5,7 @@ const typeDefs = gql`
         id: Int!
         first_name: String!
         last_name: String!
-        company: Company!
+        company: Company
         email: String!
     }
     type Company {

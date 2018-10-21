@@ -60,7 +60,7 @@ class Profile extends Component {
                 <div>
                     <div>Name: {profile.first_name} {profile.last_name}</div>
                     <div>Email: {profile.email}</div>
-                    <div>Company: {profile.company.name}</div>
+                    <div>Company: {profile.company ? profile.company.name : 'None'}</div>
                 </div>
             );
         }
