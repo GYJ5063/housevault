@@ -15,13 +15,6 @@ class Profile extends Component {
         }
     }
 
-    // componentDidUpdate(prevProps){
-    //     if(!this.isDataLoading() && this.props.data.profile) {
-    //         const { profile } = this.props.data;
-    //         this.setState({ profile });
-    //     }
-    // }
-
     userIsAuthenticated() {
         const { error } = this.props.data;
         return !(error && error.graphQLErrors[0].message === 'Not Authenticated');
@@ -39,9 +32,28 @@ class Profile extends Component {
         return false;
     }
 
-    renderProfileOrRedirect() {
+    renderLoadingSpinner() {
+        return (
+            <div className="container list-page-padding">
+                <div className="row">
+                    <div className="col text-center">
+                        <i className="fa fa-spinner fa-spin fa-4x"></i>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    render() {
+        // this is needed because the first of 2 times render is called
+        // it hasn't got the response from the api
+        if(this.isDataLoading()) {
+            return this.renderLoadingSpinner();
+        }
+
         if(this.userIsAuthenticated()) {
             const { profile } = this.props.data;
+
             return (
                 <div>
                     <div>Name: {profile.first_name} {profile.last_name}</div>
@@ -52,24 +64,10 @@ class Profile extends Component {
         }
         else {
             Router.push('/login');
-        }
-    }
-    render() {
-        // this is needed because the first of 2 times render is called
-        // it hasn't got the response from the api
-        if(this.isDataLoading()) {
-            return (
-                <div className="container list-page-padding">
-                    <div className="row">
-                        <div className="col text-center">
-                            <i className="fa fa-spinner fa-spin fa-4x"></i>
-                        </div>
-                    </div>
-                </div>
-            );
-        }
 
-        return (this.renderProfileOrRedirect());
+            // push is async so display spinner until there is a result
+            return this.renderLoadingSpinner();
+        }
     }
 };
 
