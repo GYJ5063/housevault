@@ -7,7 +7,7 @@ module.exports = {
       'company_id',
       {
         type: Sequelize.INTEGER(10).UNSIGNED,
-        allowNull: false,
+        allowNull: true,
         references: {
           model: "companies",
           key: "id"
