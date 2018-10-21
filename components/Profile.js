@@ -22,9 +22,7 @@ class Profile extends Component {
 
     isDataLoading() {
         const { profile, error } = this.props.data;
-        if(error) {
-            return false;
-        }
+
         if(!profile && !error) {
             return true;
         }
@@ -52,8 +50,12 @@ class Profile extends Component {
         }
 
         if(this.userIsAuthenticated()) {
-            const { profile } = this.props.data;
+            const { profile, error } = this.props.data;
+            if(error) {
+                Router.push('/login');
 
+                return this.renderLoadingSpinner();
+            }
             return (
                 <div>
                     <div>Name: {profile.first_name} {profile.last_name}</div>
