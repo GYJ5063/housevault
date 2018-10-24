@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, Alert  } from 'reactstrap';
+
 
 import FormValidator from '../components/FormValidator';
 import Layout from '../components/Layout'
@@ -81,6 +82,8 @@ class Registration extends Component {
         ]);
 
         this.state = {
+            newUser: null,
+            error: null,
             email: '',
             firstName: '',
             lastName: '',
@@ -98,7 +101,19 @@ class Registration extends Component {
 
         this.submitted = false;
     }
-
+    resetInputFields() {
+        this.setState({
+            email: '',
+            firstName: '',
+            lastName: '',
+            password: '',
+            companyName: '',
+            companyPostcode: '',
+            companyTown: '',
+            companyBuildingNumber: '',
+            companyTelephone: '',
+        });
+    }
     handleInputChange(event) {
       const target = event.target;
       const value = target.value;
@@ -135,15 +150,49 @@ class Registration extends Component {
             }
         })
         .then(res => {
+            this.setState({ newUser: res.data.createUser, error: null });
+            this.resetInputFields();
             console.log('success! ', res);
         })
         .catch(err => {
-            console.log('oh no! ', err);
+            this.setState({ error: err.graphQLErrors[0].message });
+            console.error(err.graphQLErrors[0]);
         });
 
       }
     }
-
+    renderRegistrationResult(){
+        if(this.state.newUser) {
+            const usr = this.state.newUser;
+            const { company } = this.state.newUser;
+            return (
+                <div>
+                  <Alert color="success">
+                    <h4 className="alert-heading">New User successfully created</h4>
+                    <h3>User:</h3>
+                    <p>Id: {usr.id}</p>
+                    <p>Name: {usr.first_name}{usr.last_name}</p>
+                    <p>Email: {usr.email}</p>
+                    <hr />
+                    <h3>Company:</h3>
+                    <p>Id: {company.id}</p>
+                    <p>Name: {company.name}</p>
+                  </Alert>
+                </div>
+              );
+        }
+        if(this.state.error) {
+            return (
+                <div>
+                <Alert color="danger">
+                    <h4 className="alert-heading">An error occurred</h4>
+                    <p>See console for details.</p>
+                </Alert>
+              </div>
+            );
+        }
+        return null;
+    }
     renderLoadingSpinner() {
         return (
             <div className="container list-page-padding">
@@ -169,6 +218,7 @@ class Registration extends Component {
                     <div>
                         <Layout>
                           <div className="registration-container">
+                              { this.renderRegistrationResult() }
                               <h3>Create an account</h3>
                               <Form>
                                   User:
@@ -251,7 +301,14 @@ const mutator = gql`
                     email: $email, first_name: $first_name, last_name: $last_name, password: $password,
                     company_name: $company_name, company_telephone: $company_telephone, company_postcode: $company_postcode,
                     company_town: $company_town, company_building_number: $company_building_number) {
+                        id
+                        first_name
+                        last_name
                         email
+                        company {
+                            id
+                            name
+                        }
                     }
                 }
 `;
