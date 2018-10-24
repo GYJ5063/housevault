@@ -5,7 +5,7 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import FormValidator from '../components/FormValidator';
 import Layout from '../components/Layout'
 
-import { graphql, getDataFromTree } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import { Router } from '../routes'
@@ -18,6 +18,18 @@ class Registration extends Component {
 
         // Set rules for input fields
         this.validator = new FormValidator([
+            {
+                field: 'firstName',
+                method: 'isEmpty',
+                validWhen: false,
+                message: 'First name is required'
+            },
+            {
+                field: 'lastName',
+                method: 'isEmpty',
+                validWhen: false,
+                message: 'Last name is required'
+            },
             {
                 field: 'email',
                 method: 'isEmpty',
@@ -43,10 +55,22 @@ class Registration extends Component {
                 message: 'A company name is required'
             },
             {
-                field: 'companyAddress',
+                field: 'companyPostcode',
                 method: 'isEmpty',
                 validWhen: false,
-                message: 'A company address is required'
+                message: 'A company postcode is required'
+            },
+            {
+                field: 'companyTown',
+                method: 'isEmpty',
+                validWhen: false,
+                message: 'A company town is required'
+            },
+            {
+                field: 'companyBuildingNumber',
+                method: 'isEmpty',
+                validWhen: false,
+                message: 'A company building number is required'
             },
             {
                 field: 'companyTelephone',
@@ -58,12 +82,15 @@ class Registration extends Component {
 
         this.state = {
             email: '',
+            firstName: '',
+            lastName: '',
             password: '',
             companyName: '',
-            companyAddress: '',
+            companyPostcode: '',
+            companyTown: '',
+            companyBuildingNumber: '',
             companyTelephone: '',
             validation: this.validator.valid(),
-            // hideLoadingSpinner: true
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -93,10 +120,27 @@ class Registration extends Component {
 
       this.submitted = true;
 
-      // Send data to database via API call
       if (validation.isValid) {
-          // this.setState({hideLoadingSpinner: false});
-          alert('form is valid - perform submit action')
+        this.props.mutate({
+            variables: {
+                email: this.state.email,
+                first_name: this.state.firstName,
+                last_name: this.state.lastName,
+                password: this.state.password,
+                company_name: this.state.companyName,
+                company_postcode: this.state.companyPostcode,
+                company_town: this.state.companyTown,
+                company_building_number: this.state.companyBuildingNumber,
+                company_telephone: this.state.companyTelephone
+            }
+        })
+        .then(res => {
+            console.log('success! ', res);
+        })
+        .catch(err => {
+            console.log('oh no! ', err);
+        });
+
       }
     }
 
@@ -113,13 +157,13 @@ class Registration extends Component {
     }
 
     render() {
-        console.log(this.props);
         const { loading } = this.props.data;
+
         if(loading) {
-            console.log('loading!!!!!!');
             return this.renderLoadingSpinner();
         } else {
             const { profile } = this.props.data;
+
             if(profile) {
                 return (
                     <div>
@@ -127,26 +171,45 @@ class Registration extends Component {
                           <div className="registration-container">
                               <h3>Create an account</h3>
                               <Form>
+                                  User:
                                 <FormGroup>
-                                  <Input type="email" name="email" value={this.state.email} onChange={this.handleInputChange} id="exampleEmail" placeholder="email"/>
+                                    <Input type="text" name="firstName" value={this.state.firstName} onChange={this.handleInputChange} id="firstName" placeholder="first name"/>
+                                    <p className='input-error-text'>{this.state.validation.firstName.message}</p>
+                                </FormGroup>
+                                <FormGroup>
+                                    <Input type="text" name="lastName" value={this.state.lastName} onChange={this.handleInputChange} id="lastName" placeholder="last name"/>
+                                    <p className='input-error-text'>{this.state.validation.lastName.message}</p>
+                                </FormGroup>
+                                <FormGroup>
+                                  <Input type="email" name="email" value={this.state.email} onChange={this.handleInputChange} id="email" placeholder="email"/>
                                   <p className='input-error-text'>{this.state.validation.email.message}</p>
                                 </FormGroup>
                                 <FormGroup>
-                                  <Input type="password" name="password" value={this.state.password} onChange={this.handleInputChange} id="examplePassword" placeholder="password" />
+                                  <Input type="password" name="password" value={this.state.password} onChange={this.handleInputChange} id="password" placeholder="password" />
                                   <p className='input-error-text'>{this.state.validation.password.message}</p>
                                 </FormGroup>
+                                Company:
                                 <FormGroup>
-                                  <Input type="text" name="companyName" value={this.state.companyName} onChange={this.handleInputChange} id="exampleCompanyName" placeholder="company name" />
+                                  <Input type="text" name="companyName" value={this.state.companyName} onChange={this.handleInputChange} id="companyName" placeholder="company name" />
                                   <p className='input-error-text'>{this.state.validation.companyName.message}</p>
                                 </FormGroup>
                                 <FormGroup>
-                                  <Input type="text" name="companyAddress" value={this.state.companyAddress} onChange={this.handleInputChange} id="exampleCompanyAddress" placeholder="company address" />
-                                  <p className='input-error-text'>{this.state.validation.companyAddress.message}</p>
+                                  <Input type="text" name="companyPostcode" value={this.state.companyPostcode} onChange={this.handleInputChange} id="companyPostcode" placeholder="company postcode" />
+                                  <p className='input-error-text'>{this.state.validation.companyPostcode.message}</p>
                                 </FormGroup>
                                 <FormGroup>
-                                  <Input type="tel" name="companyTelephone" value={this.state.companyTelephone} onChange={this.handleInputChange} id="exampleTelephone" placeholder="company telephone" />
+                                  <Input type="text" name="companyTown" value={this.state.companyTown} onChange={this.handleInputChange} id="companyTown" placeholder="company town" />
+                                  <p className='input-error-text'>{this.state.validation.companyTown.message}</p>
+                                </FormGroup>
+                                <FormGroup>
+                                  <Input type="text" name="companyBuildingNumber" value={this.state.companyBuildingNumber} onChange={this.handleInputChange} id="companyBuildingNumber" placeholder="company building number" />
+                                  <p className='input-error-text'>{this.state.validation.companyBuildingNumber.message}</p>
+                                </FormGroup>
+                                <FormGroup>
+                                  <Input type="tel" name="companyTelephone" value={this.state.companyTelephone} onChange={this.handleInputChange} id="companyTelephone" placeholder="company telephone" />
                                   <p className='input-error-text'>{this.state.validation.companyTelephone.message}</p>
                                 </FormGroup>
+
         
                                 <Button color='primary' onClick={this.handleSubmit}>Register</Button>
         
@@ -156,7 +219,6 @@ class Registration extends Component {
                     </div>
                     );
             } else {
-                console.log('no profile, redirect!!!!!!');
                 Router.push('/login');
 
                 // push is async so display spinner until there is a result
@@ -181,4 +243,20 @@ const query = gql`
     }
 `;
 
-export default graphql(query)(Registration);
+const mutator = gql`
+    mutation createUser(
+            $email: String!, $first_name: String!, $last_name: String!, $password: String!,
+            $company_name: String!, $company_telephone: String!, $company_postcode: String!, $company_town: String!, $company_building_number: String!) {
+                createUser(
+                    email: $email, first_name: $first_name, last_name: $last_name, password: $password,
+                    company_name: $company_name, company_telephone: $company_telephone, company_postcode: $company_postcode,
+                    company_town: $company_town, company_building_number: $company_building_number) {
+                        email
+                    }
+                }
+`;
+
+export default compose(
+    graphql(query),
+    graphql(mutator)
+)(Registration);
