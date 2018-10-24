@@ -5,8 +5,12 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import FormValidator from '../components/FormValidator';
 import Layout from '../components/Layout'
 
-import { graphql } from 'react-apollo';
+import { graphql, getDataFromTree } from 'react-apollo';
 import gql from 'graphql-tag';
+
+
+
+import { Router } from '../routes'
 
 import "../styles/signin.scss"; //import page-specific styles from registration.scsss
 
@@ -98,43 +102,69 @@ class Registration extends Component {
       }
     }
 
+    renderLoadingSpinner() {
+        return (
+            <div className="container list-page-padding">
+                <div className="row">
+                    <div className="col text-center">
+                        <i className="fa fa-spinner fa-spin fa-4x"></i>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     render() {
-        console.log('user: ', this.props);
-        return (
-            <div>
-                <Layout>
-                  <div className="registration-container">
-                      <h3>Create an account</h3>
-                      <Form>
-                        <FormGroup>
-                          <Input type="email" name="email" value={this.state.email} onChange={this.handleInputChange} id="exampleEmail" placeholder="email"/>
-                          <p className='input-error-text'>{this.state.validation.email.message}</p>
-                        </FormGroup>
-                        <FormGroup>
-                          <Input type="password" name="password" value={this.state.password} onChange={this.handleInputChange} id="examplePassword" placeholder="password" />
-                          <p className='input-error-text'>{this.state.validation.password.message}</p>
-                        </FormGroup>
-                        <FormGroup>
-                          <Input type="text" name="companyName" value={this.state.companyName} onChange={this.handleInputChange} id="examplePassword" placeholder="company name" />
-                          <p className='input-error-text'>{this.state.validation.companyName.message}</p>
-                        </FormGroup>
-                        <FormGroup>
-                          <Input type="text" name="companyAddress" value={this.state.companyAddress} onChange={this.handleInputChange} id="examplePassword" placeholder="company address" />
-                          <p className='input-error-text'>{this.state.validation.companyAddress.message}</p>
-                        </FormGroup>
-                        <FormGroup>
-                          <Input type="tel" name="companyTelephone" value={this.state.companyTelephone} onChange={this.handleInputChange} id="examplePassword" placeholder="company telephone" />
-                          <p className='input-error-text'>{this.state.validation.companyTelephone.message}</p>
-                        </FormGroup>
+        console.log(this.props);
+        const { loading } = this.props.data;
+        if(loading) {
+            console.log('loading!!!!!!');
+            return this.renderLoadingSpinner();
+        } else {
+            const { profile } = this.props.data;
+            if(profile) {
+                return (
+                    <div>
+                        <Layout>
+                          <div className="registration-container">
+                              <h3>Create an account</h3>
+                              <Form>
+                                <FormGroup>
+                                  <Input type="email" name="email" value={this.state.email} onChange={this.handleInputChange} id="exampleEmail" placeholder="email"/>
+                                  <p className='input-error-text'>{this.state.validation.email.message}</p>
+                                </FormGroup>
+                                <FormGroup>
+                                  <Input type="password" name="password" value={this.state.password} onChange={this.handleInputChange} id="examplePassword" placeholder="password" />
+                                  <p className='input-error-text'>{this.state.validation.password.message}</p>
+                                </FormGroup>
+                                <FormGroup>
+                                  <Input type="text" name="companyName" value={this.state.companyName} onChange={this.handleInputChange} id="exampleCompanyName" placeholder="company name" />
+                                  <p className='input-error-text'>{this.state.validation.companyName.message}</p>
+                                </FormGroup>
+                                <FormGroup>
+                                  <Input type="text" name="companyAddress" value={this.state.companyAddress} onChange={this.handleInputChange} id="exampleCompanyAddress" placeholder="company address" />
+                                  <p className='input-error-text'>{this.state.validation.companyAddress.message}</p>
+                                </FormGroup>
+                                <FormGroup>
+                                  <Input type="tel" name="companyTelephone" value={this.state.companyTelephone} onChange={this.handleInputChange} id="exampleTelephone" placeholder="company telephone" />
+                                  <p className='input-error-text'>{this.state.validation.companyTelephone.message}</p>
+                                </FormGroup>
+        
+                                <Button color='primary' onClick={this.handleSubmit}>Register</Button>
+        
+                              </Form>
+                          </div>
+                        </Layout>
+                    </div>
+                    );
+            } else {
+                console.log('no profile, redirect!!!!!!');
+                Router.push('/login');
 
-                        <Button color='primary' onClick={this.handleSubmit}>Register</Button>
-
-                      </Form>
-                  </div>
-                </Layout>
-            </div>
-            );
+                // push is async so display spinner until there is a result
+                return this.renderLoadingSpinner();
+            }
+        }
     }
 }
 
