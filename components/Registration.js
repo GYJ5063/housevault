@@ -8,8 +8,6 @@ import Layout from '../components/Layout'
 import { graphql, getDataFromTree } from 'react-apollo';
 import gql from 'graphql-tag';
 
-
-
 import { Router } from '../routes'
 
 import "../styles/signin.scss"; //import page-specific styles from registration.scsss

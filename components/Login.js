@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+
+import { Router } from '../routes'
+
 import FormValidator from '../components/FormValidator';
 import Layout from '../components/Layout'
 
@@ -68,16 +73,28 @@ class Login extends Component {
 
       this.submitted = true;
 
-      // Send data to database via API call
       if (validation.isValid) {
-          // this.setState({hideLoadingSpinner: false});
-          alert('form is valid - perform submit action')
+        this.props.mutate({
+            variables: {
+                email: this.state.email,
+                password: this.state.password
+            }
+        })
+        .then(res => {
+            // store token to local storage
+            if(res.data.login) {
+                localStorage.setItem('token', res.data.login);
+                // TODO: redirect to a profile ??
+                Router.push('/registration');
+            }
+        })
+        .catch(err => console.log(err));
+
       }
     }
 
 
     render() {
-      console.log("-- The state is: --", this.state);
         return (
             <div>
                 <Layout>
@@ -103,4 +120,10 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const mutator = gql`
+    mutation login($email: String!, $password: String!) {
+        login(email: $email, password: $password)
+    }
+`;
+
+export default graphql(mutator)(Login);
