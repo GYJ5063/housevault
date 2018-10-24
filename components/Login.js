@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, Alert } from 'reactstrap';
 
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -88,17 +88,34 @@ class Login extends Component {
                 Router.push('/registration');
             }
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            this.setState({ error: err.graphQLErrors[0].message });
+            console.error(err.graphQLErrors[0]);
+        });
 
       }
     }
 
+    renderLoginResult(){
+        if(this.state.error) {
+            return (
+                <div>
+                <Alert color="danger">
+                    <h4 className="alert-heading">An error occurred</h4>
+                    <p>{this.state.error}</p>
+                </Alert>
+              </div>
+            );
+        }
+        return null;
+    }
 
     render() {
         return (
             <div>
                 <Layout>
                   <div className="registration-container">
+                      {this.renderLoginResult()}
                       <h3>Log in</h3>
                       <Form>
                         <FormGroup>

@@ -152,7 +152,6 @@ class Registration extends Component {
         .then(res => {
             this.setState({ newUser: res.data.createUser, error: null });
             this.resetInputFields();
-            console.log('success! ', res);
         })
         .catch(err => {
             this.setState({ error: err.graphQLErrors[0].message });
