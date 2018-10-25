@@ -7,11 +7,11 @@ export default (props) => {
     return (
       <tr>
         <th scope="row">{r.date}</th>
-        <td>{r.name}</td>
-        <td>{r.email}</td>
-        <td>{r.phone}</td>
-        <td>{r.salesVal}</td>
-        <td>{r.rentalVal}</td>
+        <td>{r.first_name}</td>
+        <td>{r.last_name}</td>
+        <td>{r.phone_number}</td>
+        <td>{r.sales_valuation}</td>
+        <td>{r.rental_valuation}</td>
         <td>{r.link}</td>
       </tr>
     )
