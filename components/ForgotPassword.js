@@ -4,10 +4,8 @@ import { Button, Form, FormGroup, Label, Input, FormText, Alert } from 'reactstr
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import { Router } from '../routes'
-
-import FormValidator from '../components/FormValidator';
-import Layout from '../components/Layout'
+import FormValidator from './FormValidator';
+import Layout from './Layout'
 
 class ForgotPassword extends React.Component {
     constructor(props) {

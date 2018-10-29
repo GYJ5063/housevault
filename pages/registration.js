@@ -3,4 +3,4 @@ import Registration from '../components/Registration';
 
 export default withData(props => (
     <Registration />
-));
+)); 

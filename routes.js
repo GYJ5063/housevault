@@ -18,13 +18,16 @@ routes.add('online-estate-agent-reviews', '/online-estate-agent-reviews')
     .add('school', '/school/:school')
     .add('street', '/house-prices/:postcode')
     .add('valuation', '/valuation/:id')
+    .add('reset', '/reset/:token')
+
+    // anything under here is sub page
     .add('subpage', '/:page/:sub')
     .add('about-us', '/about-us')
 
     // signin
-    .add('registration', '/registration')
-    .add('login', '/login')
-    .add('forgot-password', '/reset')
+    //.add('registration', '/registration')
+    //.add('login', '/login')
+    .add('forgot-password', '/forgot-password')
     .add('private-homepage', '/private-homepage')
 
     .add('page', '/:page')
