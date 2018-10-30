@@ -81,6 +81,9 @@ class Reset extends React.Component {
     }
 
     render() {
+        if (!this.props.validToken) {
+            Router.push('/forgot-password', { error: this.props.error });
+        }
         return(
             <div>
             <Layout>
@@ -113,19 +116,30 @@ const mutator = gql`
     }
 `;
 
-Reset.getInitialProps = async (context) => {
+Reset.getInitialProps = (context) => {
     const { token } = context.query;
-    context.apolloClient.mutate({
+    const props = {
+        validToken: false,
+        error: null,
+        token: token
+    };
+
+
+   return context.apolloClient.mutate({
         mutation: mutator,
         variables: { token }
     })
     .then(res => {
-        console.log('res: ', res)
+        props.validToken = res.data.verifyToken;
+        if(!props.validToken) {
+            props.error = 'Token not valid.';
+        }
+        return props;
     })
     .catch(err => {
-        console.error('err: ', err);
+        console.error(err);
+        return props;
     });
-    return {};
 };
 
 export default Reset;
