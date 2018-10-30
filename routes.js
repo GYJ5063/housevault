@@ -19,6 +19,7 @@ routes.add('online-estate-agent-reviews', '/online-estate-agent-reviews')
     .add('street', '/house-prices/:postcode')
     .add('valuation', '/valuation/:id')
     .add('reset', '/reset/:token')
+    .add('forgot-password', '/forgot-password')
 
     // anything under here is sub page
     .add('subpage', '/:page/:sub')
@@ -27,7 +28,6 @@ routes.add('online-estate-agent-reviews', '/online-estate-agent-reviews')
     // signin
     //.add('registration', '/registration')
     //.add('login', '/login')
-    .add('forgot-password', '/forgot-password')
     .add('private-homepage', '/private-homepage')
 
     .add('page', '/:page')

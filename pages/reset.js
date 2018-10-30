@@ -5,7 +5,7 @@ import { Button, Form, FormGroup, Label, Input, FormText, Alert } from 'reactstr
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import { Router } from '../routes'
+import { Router } from '../routes';
 
 import FormValidator from '../components/FormValidator';
 import Layout from '../components/Layout'
@@ -42,7 +42,11 @@ class Reset extends React.Component {
 
         this.submitted = false;
     }
-
+    componentDidMount() {
+        if (!this.props.validToken) {
+            Router.pushRoute('forgot-password', { error: this.props.error });
+        }
+    }
     handleInputChange(event) {
         const target = event.target;
         const value = target.value;
@@ -81,9 +85,6 @@ class Reset extends React.Component {
     }
 
     render() {
-        if (!this.props.validToken) {
-            Router.push('/forgot-password', { error: this.props.error });
-        }
         return(
             <div>
             <Layout>
