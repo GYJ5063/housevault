@@ -77,9 +77,7 @@ class ForgotPassword extends React.Component {
 
         if (validation.isValid) {
             this.props.mutate({
-                variables: {
-                    email: this.state.email
-                }
+                variables: { email: this.state.email }
             })
             .then(res => {
                 this.setState({ resetResult: res.data.forgotPassword, error: null });
@@ -125,4 +123,4 @@ ForgotPassword.getInitialProps = async ({ query: { error }}) => {
     return { error };
 };
 
-export default ForgotPassword;
+export default graphql(mutator)(ForgotPassword);

@@ -32,6 +32,7 @@ class Reset extends React.Component {
         ]);
 
         this.state = {
+            result: null,
             password: '',
             confirmPassword: '',
             validation: this.validator.valid()
@@ -70,6 +71,16 @@ class Reset extends React.Component {
               </div>
             );
         }
+        if (this.state.result) {
+            return (
+                <div>
+                <Alert color="success">
+                    <h4 className="alert-heading">Success</h4>
+                    <p>{this.state.result}</p>
+                </Alert>
+              </div>
+            );
+        }
         return null;
     }
 
@@ -80,7 +91,15 @@ class Reset extends React.Component {
         this.setState({ validation });
 
         if(validation.isValid) {
-            // api
+            this.props.mutate({
+                variables: {
+                    token: this.props.token,
+                    password: this.state.password,
+                    confirmPassword: this.state.confirmPassword
+                }
+            })
+            .then(res => this.setState({ result: res }))
+            .catch(err => console.error(err));
         }
     }
 
@@ -111,9 +130,15 @@ class Reset extends React.Component {
     }
 }
 
-const mutator = gql`
+const verifyTokenMutator = gql`
     mutation verifyToken($token: String!) {
         verifyToken(token: $token)
+    }
+`;
+
+const resetPasswordMutator = gql`
+    mutation resetPassword($token: String!, $password: String!, $confirmPassword: String!) {
+        resetPassword(token: $token, password: $password, confirmPassword: $confirmPassword)
     }
 `;
 
@@ -127,7 +152,7 @@ Reset.getInitialProps = (context) => {
 
 
    return context.apolloClient.mutate({
-        mutation: mutator,
+        mutation: verifyTokenMutator,
         variables: { token }
     })
     .then(res => {
@@ -143,4 +168,4 @@ Reset.getInitialProps = (context) => {
     });
 };
 
-export default Reset;
+export default graphql(resetPasswordMutator)(Reset);
