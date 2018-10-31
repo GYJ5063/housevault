@@ -98,7 +98,7 @@ class Reset extends React.Component {
                     confirmPassword: this.state.confirmPassword
                 }
             })
-            .then(res => this.setState({ result: res }))
+            .then(res => this.setState({ result: res.data.resetPassword }))
             .catch(err => console.error(err));
         }
     }
