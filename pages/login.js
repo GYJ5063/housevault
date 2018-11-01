@@ -8,6 +8,8 @@ import gql from 'graphql-tag';
 import FormValidator from '../components/FormValidator';
 import Layout from '../components/Layout'
 
+import { Router } from '../routes';
+
 import "../styles/signin.scss"; //import page-specific styles from registration.scsss
 
 class Login extends Component {
@@ -82,14 +84,15 @@ class Login extends Component {
             // store token to local storage
             if(res.data.login) {
                 localStorage.setItem('token', res.data.login);
-                console.log('token set');
                 // TODO: redirect to a profile ??
                 Router.push('/registration');
             }
         })
         .catch(err => {
-            this.setState({ error: err.graphQLErrors[0].message });
-            console.error(err.graphQLErrors[0]);
+            if(err && err.graphQLErrors) {
+                this.setState({ error: err.graphQLErrors[0].message });
+                console.error(err.graphQLErrors[0]);
+            }
         });
 
       }
