@@ -25,12 +25,6 @@ class Login extends Component {
                 message: 'An email is required'
             },
             {
-                field: 'email',
-                method: 'isEmail',
-                validWhen: true,
-                message: 'The email you entered in invalid'
-            },
-            {
                 field: 'password',
                 method: 'isEmpty',
                 validWhen: false,
