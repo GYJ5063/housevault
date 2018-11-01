@@ -84,7 +84,7 @@ class Login extends Component {
                 localStorage.setItem('token', res.data.login);
                 console.log('token set');
                 // TODO: redirect to a profile ??
-                //Router.push('/registration');
+                Router.push('/registration');
             }
         })
         .catch(err => {

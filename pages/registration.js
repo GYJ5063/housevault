@@ -44,12 +44,6 @@ class Registration extends Component {
                 message: 'The email you entered in invalid'
             },
             {
-                field: 'password',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'A password is required'
-            },
-            {
                 field: 'companyName',
                 method: 'isEmpty',
                 validWhen: false,
@@ -87,7 +81,6 @@ class Registration extends Component {
             email: '',
             firstName: '',
             lastName: '',
-            password: '',
             companyName: '',
             companyPostcode: '',
             companyTown: '',
@@ -106,7 +99,6 @@ class Registration extends Component {
             email: '',
             firstName: '',
             lastName: '',
-            password: '',
             companyName: '',
             companyPostcode: '',
             companyTown: '',
@@ -141,7 +133,6 @@ class Registration extends Component {
                 email: this.state.email,
                 first_name: this.state.firstName,
                 last_name: this.state.lastName,
-                password: this.state.password,
                 company_name: this.state.companyName,
                 company_postcode: this.state.companyPostcode,
                 company_town: this.state.companyTown,
@@ -172,10 +163,6 @@ class Registration extends Component {
                     <p>Id: {usr.id}</p>
                     <p>Name: {usr.first_name}{usr.last_name}</p>
                     <p>Email: {usr.email}</p>
-                    <hr />
-                    <h3>Company:</h3>
-                    <p>Id: {company.id}</p>
-                    <p>Name: {company.name}</p>
                   </Alert>
                 </div>
               );
@@ -232,10 +219,6 @@ class Registration extends Component {
                                 <FormGroup>
                                   <Input type="email" name="email" value={this.state.email} onChange={this.handleInputChange} id="email" placeholder="email"/>
                                   <p className='input-error-text'>{this.state.validation.email.message}</p>
-                                </FormGroup>
-                                <FormGroup>
-                                  <Input type="password" name="password" value={this.state.password} onChange={this.handleInputChange} id="password" placeholder="password" />
-                                  <p className='input-error-text'>{this.state.validation.password.message}</p>
                                 </FormGroup>
                                 Company:
                                 <FormGroup>
@@ -294,10 +277,10 @@ const query = gql`
 
 const mutator = gql`
     mutation createUser(
-            $email: String!, $first_name: String!, $last_name: String!, $password: String!,
+            $email: String!, $first_name: String!, $last_name: String!,
             $company_name: String!, $company_telephone: String!, $company_postcode: String!, $company_town: String!, $company_building_number: String!) {
                 createUser(
-                    email: $email, first_name: $first_name, last_name: $last_name, password: $password,
+                    email: $email, first_name: $first_name, last_name: $last_name,
                     company_name: $company_name, company_telephone: $company_telephone, company_postcode: $company_postcode,
                     company_town: $company_town, company_building_number: $company_building_number) {
                         id
