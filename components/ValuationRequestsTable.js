@@ -1,24 +1,24 @@
 import { Table } from 'reactstrap';
-
-export default (props) => {
+import moment from 'moment';
+export default  (props) => {
 
   // Build each row
   const rows = props.requests.map((r) => {
     return (
       <tr>
-        <th scope="row">{r.date}</th>
+        <th scope="row">{ moment(r.createdAt,"x").format('DD MMMM YYYY')}</th>
         <td>{r.first_name}</td>
         <td>{r.last_name}</td>
         <td>{r.phone_number}</td>
-        <td>{r.sales_valuation}</td>
-        <td>{r.rental_valuation}</td>
-        <td>{r.link}</td>
+        <td>&pound;{r.sales_valuation}</td>
+        <td>&pound;{r.rental_valuation}</td>
+        <td>View record</td>
       </tr>
     )
   })
 
   return (
-        <Table>
+        <Table striped>
           <thead>
             <tr>
               <th>Date completed</th>

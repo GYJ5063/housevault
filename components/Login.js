@@ -84,8 +84,8 @@ class Login extends Component {
             // store token to local storage
             if(res.data.login) {
                 localStorage.setItem('token', res.data.login);
-                // TODO: redirect to a profile ??
-                Router.push('/registration');
+
+                Router.push('/dashboard');
             }
         })
         .catch(err => {
@@ -127,7 +127,7 @@ class Login extends Component {
                           <p className='input-error-text'>{this.state.validation.password.message}</p>
                         </FormGroup>
 
-                        <Button color='primary' onClick={this.handleSubmit}>Register</Button>
+                        <Button color='primary' onClick={this.handleSubmit}>Login</Button>
 
                       </Form>
                   </div>
