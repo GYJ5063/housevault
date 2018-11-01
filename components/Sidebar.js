@@ -1,9 +1,9 @@
 import { Nav, NavItem, NavLink } from 'reactstrap';
 import { Link } from '../routes';
-
+import '../styles/admin-sidebar.scss'
 export default (props) =>
-    <div className="col-2">
-        <Nav vertical>
+    <div className="col-2 admin-sidebar">
+        <Nav vertical >
             <NavItem>
                 <Link route='/dashboard'>
                 <NavLink href="#">Dashboard</NavLink>

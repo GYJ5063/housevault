@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import ValuationRequestsTable from './ValuationRequestsTable'
-import withData from '../lib/apollo';
-import { Container, Row, Column } from 'reactstrap'
+import { Column} from 'reactstrap'
 import Sidebar from './Sidebar'
 import '../styles/private-homepage.scss'
 import { Query } from "react-apollo";
@@ -30,23 +29,26 @@ class Dashboard extends Component {
     }
     render() {
         return (
-            <div>
-            <Sidebar />
-            <Query query={GET_LEADS}>
-                {({ loading, error, data }) => {
-                    if (loading) return "Loading...";
+            <div className="row">
+                <Sidebar />
+                <div className="col">
+                    <Query query={GET_LEADS}>
+                        {({ loading, error, data }) => {
+                            if (loading) return "Loading...";
 
-                    if (error) return `Error! ${error.message}`;
+                            if (error) return `Error! ${error.message}`;
 
-                    return (
-                        <div className='homepage-container'>
-                            <h3>Welcome! </h3>
-                            <div className='requests-table'>
-                                <ValuationRequestsTable requests={data.leads}/>
-                            </div>
-                        </div>)
-                }}
-            </Query>
+                            return (
+                                <div className='homepage-container'>
+                                    <h3>Welcome! Username</h3>
+                                    You have had {data.leads.length } leads in this period
+                                    <div className='requests-table'>
+                                        <ValuationRequestsTable requests={data.leads}/>
+                                    </div>
+                                </div>)
+                        }}
+                    </Query>
+                </div>
             </div>
         );
     }

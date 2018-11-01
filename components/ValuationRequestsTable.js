@@ -1,4 +1,4 @@
-import { Table } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 import moment from 'moment';
 export default  (props) => {
 
@@ -12,7 +12,7 @@ export default  (props) => {
         <td>{r.phone_number}</td>
         <td>&pound;{r.sales_valuation}</td>
         <td>&pound;{r.rental_valuation}</td>
-        <td>View record</td>
+        <td className="text-right"> <Button color="primary">View Lead</Button></td>
       </tr>
     )
   })
@@ -27,7 +27,7 @@ export default  (props) => {
               <th>Phone Number</th>
               <th>Sales valuation</th>
               <th>Rental valuation</th>
-              <th>Link to record</th>
+              <th className="text-right">Link to record</th>
             </tr>
           </thead>
           <tbody>
