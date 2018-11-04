@@ -13,17 +13,17 @@ export default () =>
                 <img src="/static/banner-bg.jpg" alt="Banner"/>
                 <h1 className="note">What’s important to you? Your perfect home is only a search away…</h1>
             </div>
-            <div className="searchBox">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-3"></div>
-                        <div className="col-md-6">
-                            <SearchVault />
-                        </div>
-                        <div className="col-md-3"></div>
-                    </div>
-                </div>
-            </div>
+            {/*<div className="searchBox">*/}
+                {/*<div className="container">*/}
+                    {/*<div className="row">*/}
+                        {/*<div className="col-md-3"></div>*/}
+                        {/*<div className="col-md-6">*/}
+                            {/*<SearchVault />*/}
+                        {/*</div>*/}
+                        {/*<div className="col-md-3"></div>*/}
+                    {/*</div>*/}
+                {/*</div>*/}
+            {/*</div>*/}
             <div className="research-area">
                 <div className="container">
                     <div className="col-md-12 top-box">
@@ -175,10 +175,10 @@ export default () =>
                         </div>
                         <div className="col-md-6">
                             <div className="illustration-3"></div>
-                            <div className="col-ld-8 col-sm-12 give-it">
-                                <p>Sounds great? Give it a go…</p>
-                                <SearchVault />
-                            </div>
+                            {/*<div className="col-ld-8 col-sm-12 give-it">*/}
+                                {/*/!*<p>Sounds great? Give it a go…</p>*!/*/}
+                                {/*/!*<SearchVault />*!/*/}
+                            {/*</div>*/}
                         </div>
                     </div>
                 </div>

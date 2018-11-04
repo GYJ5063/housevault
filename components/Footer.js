@@ -8,7 +8,7 @@ class Footer extends Component {
                     <div className="container">
                         <div className="row col-md-12">
                             <div className="col-md-6 row">
-                                <SearchVault />
+                                {/*<SearchVault />*/}
                                 <div className="col-md-4 footer-links padding-left-0">
                                     <h4>Features? </h4>
                                     <ul>
@@ -36,14 +36,14 @@ class Footer extends Component {
                                     </ul>
                                 </div>
                             </div>
-                            <div className="col-md-1">
-                            </div>
-                            <div className="col-md-5 subscribe-section">
-                                <h4>Get updates from housevault</h4>
-                                <input type="text" name="name" id="name" placeholder="Name:" className="subscribefield"/>
-                                <input type="email" name="email" id="email" placeholder="Email:" className="subscribefield"/>
-                                <input type="submit" value="Submit" className="subscribe-submit" id="subscribeajaxSubmit"/>
-                            </div>
+                            {/*<div className="col-md-1">*/}
+                            {/*</div>*/}
+                            {/*<div className="col-md-5 subscribe-section">*/}
+                                {/*<h4>Get updates from housevault</h4>*/}
+                                {/*<input type="text" name="name" id="name" placeholder="Name:" className="subscribefield"/>*/}
+                                {/*<input type="email" name="email" id="email" placeholder="Email:" className="subscribefield"/>*/}
+                                {/*<input type="submit" value="Submit" className="subscribe-submit" id="subscribeajaxSubmit"/>*/}
+                            {/*</div>*/}
                         </div>
                         <div className="row col-md-12">
                             <p className="copyright">© Housevault Ltd. All rights reserved</p>
