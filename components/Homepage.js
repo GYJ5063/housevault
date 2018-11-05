@@ -5,13 +5,13 @@ import SearchVault from '../components/SearchVault'
 export default () =>
     <main role="main">
         <Head>
-            <title>Search the house vault for the latest property information | House Vault</title>
+            <title>Accurate property valuations for any sale and rental properties | House Vault</title>
             <meta name="description" content="View Local information about an address including epc, population, house prices, crime and much more." />
         </Head>
         <Layout>
             <div className="banner">
                 <img src="/static/banner-bg.jpg" alt="Banner"/>
-                <h1 className="note">What’s important to you? Your perfect home is only a search away…</h1>
+                <h1 className="note">The most comprehensive & accurate sales and rental valuation data</h1>
             </div>
             {/*<div className="searchBox">*/}
                 {/*<div className="container">*/}
@@ -27,10 +27,7 @@ export default () =>
             <div className="research-area">
                 <div className="container">
                     <div className="col-md-12 top-box">
-                        <div className="col-md-12"><p className="hd">Research in detail any area in the UK, using
-                            our
-                            powerful
-                            database.</p></div>
+                        <div className="col-md-12"><p className="hd">Offer your prospective clients a free personalised report instantly with your branding.</p></div>
                         <div className="col-md-12 area-link row">
                             <div className="col-lg-2"></div>
                             <div className="col-md-12 col-lg-8">
@@ -69,9 +66,7 @@ export default () =>
                     <div className="col-md-12 bottom-box illustration-1 row">
                         <div className="col-md-6">
                             <h4 className="sec-heading">WHAT IS THE HOUSEVAULT?</h4>
-                            <h3>HouseVault, as the name suggests, is the largest known database of property and
-                                local
-                                information.</h3>
+                            <h3>HouseVault, as the name suggests, is the largest known database of property and valuation data</h3>
                             <p>Accessing the HouseVault, which uses our leading Machine Learning & Artificial
                                 Intelligence
                                 technology, gives you free unrestricted access to interactive tools, in-depth
