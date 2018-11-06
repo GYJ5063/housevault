@@ -8,7 +8,7 @@ import axios from "axios";
 class ValuationForm extends React.Component {
     constructor(props) {
         super(props);
-     
+
         this.handleChange = this.handleChange.bind(this);
         this.valuationSubmit = this.valuationSubmit.bind(this);
         this.validator = new FormValidator([
@@ -272,7 +272,9 @@ class ValuationForm extends React.Component {
 
                 </div>
                 : ''}
-
+                {(this.state.step === 3) ?
+                    <h1>Your valuation is on its way</h1>
+                    :''}
 
                 <div className="row">
                     <div className="col-sm">
