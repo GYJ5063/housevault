@@ -4,13 +4,13 @@ import Layout from '../components/Layout'
 export default () =>
     <main role="main">
         <Head>
-            <title>Search the house vault for the latest property information | House Vault</title>
+            <title>Accurate property valuations for any sale and rental properties | House Vault</title>
             <meta name="description" content="View Local information about an address including epc, population, house prices, crime and much more." />
         </Head>
         <Layout>
             <div className="banner">
                 <img src="/static/banner-bg.jpg" alt="Banner"/>
-                <h1 className="note">What’s important to you? Your perfect home is only a search away…</h1>
+                <h1 className="note">The most comprehensive & accurate sales and rental valuation data</h1>
             </div>
             <div className="searchBox">
                 <div className="container">
@@ -26,10 +26,7 @@ export default () =>
             <div className="research-area">
                 <div className="container">
                     <div className="col-md-12 top-box">
-                        <div className="col-md-12"><p className="hd">Research in detail any area in the UK, using
-                            our
-                            powerful
-                            database.</p></div>
+                        <div className="col-md-12"><p className="hd">Offer your prospective clients a free personalised report instantly with your branding.</p></div>
                         <div className="col-md-12 area-link row">
                             <div className="col-lg-2"></div>
                             <div className="col-md-12 col-lg-8">
@@ -68,24 +65,16 @@ export default () =>
                     <div className="col-md-12 bottom-box illustration-1 row">
                         <div className="col-md-6">
                             <h4 className="sec-heading">WHAT IS THE HOUSEVAULT?</h4>
-                            <h3>HouseVault, as the name suggests, is the largest known database of property and
-                                local
-                                information.</h3>
+                            <h3>HouseVault, as the name suggests, is the largest known database of property and valuation data</h3>
                             <p>Accessing the HouseVault, which uses our leading Machine Learning & Artificial
                                 Intelligence
                                 technology, gives you free unrestricted access to interactive tools, in-depth
                                 reports,
                                 statistic
                                 and data on every home and location within the UK.</p>
-                            <p>We believe transparent, accurate and free access will help owners, buyers, tenants,
-                                investors
-                                and
-                                professionals make better informed decisions when researching a home or area. </p>
-                            <p>Just enter an address above for free access to our unbiased tools, reports & stats or
-                                learn
-                                more
-                                about our service and the technology behind it below.</p>
-                            <a href="#" title="Learn More" className="learn-more">Learn more</a>
+                            <p>Use our API or whitelabel site to offer clinets the most comprehensive and accurate reports available on the market. Generate leads from potential sellers and buyers alike whilst making a great first impression.</p>
+                            <p>Don't just take our word for it. Generate our report for free below to see how much value you can offer your clients today.</p>
+                            <a href="#" title="Learn More" className="learn-more">Free Report</a>
                         </div>
                         <div className="col-md-6">
                         </div>
@@ -100,28 +89,15 @@ export default () =>
                         </div>
                         <div className="col-md-6 out-tech-inner">
                             <h4 className="tech-heading">OUR TECHNOLOGY</h4>
-                            <h5>Our experienced team of PhD researchers, data scientists, statisticians, economists
-                                and
-                                software
-                                developers dedicate their time to building the most accurate, unbiased & efficient
-                                tools
-                                on
-                                homes and locations throughout the UK.</h5>
+                            <h5>Our experienced team of PhD researchers, data scientists and software
+                                developers dedicate their time and knowledge to building the most accurate, unbiased & efficient
+                                tools for the property and energy sectors.</h5>
                             <p>At the core of our technology sits our Machine Learning & Artificial Intelligence
                                 algorithms
-                                built in-house by our team of PhD researchers and graduates. Thanks in a great part
-                                to
-                                the
-                                UK
-                                government’s decision to open up millions of data sets and relationships with
-                                private
-                                property
-                                companies, we have been able to use our skill set to build industry leading models
-                                to
-                                help
-                                UK
-                                property professionals and residents make informed decisions at little to no
-                                cost.</p>
+                                built in-house by our team. Thanks in a great part to the UK's open data policy and our relationships
+                                to collate data from within the private and public sector. We have been able to use our expertise to build industry leading tools
+                                to help property and energy companies offer superior products and services.</p>
+                            <p>Learn more about our technology.</p>
                         </div>
                     </div>
                 </div>
@@ -136,38 +112,22 @@ export default () =>
                                     <span className="icon-predict"></span>
                                     <div className="name">PREDICT</div>
                                     <p className="info">Our Property Valuation Algorithm can accurately predict a
-                                        property
-                                        valuation on any UK home. With up to 95% accuracy and covering 25 million
-                                        homes
-                                        in
-                                        the
-                                        UK.</p>
+                                        properties sale and rental valuation instantly. With up to 95% accuracy and covering over 25m addresses.</p>
                                 </div>
                                 <div className="col-md-6">
                                     <span className="icon-interactive"></span>
                                     <div className="name">INTERACTIVE</div>
-                                    <p className="info">Interactive maps showing detailed information on local
-                                        areas,
-                                        properties
-                                        and people.</p>
+                                    <p className="info">Our interactive data allows you or your clients visual data presentations making it easy to digest the large amount of data we hold.</p>
                                 </div>
                                 <div className="col-md-6">
                                     <span className="icon-calculate"></span>
                                     <div className="name">CALCULATE</div>
-                                    <p className="info">Find out the likely energy cost based on a properties
-                                        characteristics
-                                        and predict energy costs if certain measures are carried out. Take control
-                                        of
-                                        your
-                                        future finances.</p>
+                                    <p className="info">Predict sales valuation, rental valuation, yield, comparable properties, energy pricing, future price prediction, historic data and much more.</p>
                                 </div>
                                 <div className="col-md-6">
                                     <span className="icon-research"></span>
                                     <div className="name">RESEARCH</div>
-                                    <p className="info">Find property specific information such as age, size, type
-                                        and
-                                        compare
-                                        to the local area</p>
+                                    <p className="info">Compare property characteristics and area stats such as crime and schooling. Use our data internally or offer to your customers in your own products & services</p>
                                 </div>
                             </div>
 
@@ -187,13 +147,14 @@ export default () =>
                     <div className="container">
                         <div className="col-md-12">
                             <div className="col-md-6">
-                                <h4 className="sec-heading">GET TO KNOW YOUR NEIGHBOURS</h4>
+                                <h4 className="sec-heading">WHAT DATA CAN YOU ACCESS</h4>
                                 <p>With Housevault you can search for the following information</p>
                                 <ul>
-                                    <li>Current house prices</li>
-                                    <li>Sold house prices</li>
+                                    <li>Current house values</li>
+                                    <li>Historic sold price data</li>
+                                    <li>Rental Valuation & Yield</li>
                                     <li>Types of property in an area</li>
-                                    <li>EPC energy ratings</li>
+                                    <li>Energy Efficiency and Pricing</li>
                                     <li>Local schools and hospitals</li>
                                     <li>Detailed Demographics</li>
                                     <li>Culture</li>
