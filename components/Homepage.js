@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
-import SearchVault from '../components/SearchVault'
 
 export default () =>
     <main role="main">
@@ -13,17 +12,17 @@ export default () =>
                 <img src="/static/banner-bg.jpg" alt="Banner"/>
                 <h1 className="note">What’s important to you? Your perfect home is only a search away…</h1>
             </div>
-            {/*<div className="searchBox">*/}
-                {/*<div className="container">*/}
-                    {/*<div className="row">*/}
-                        {/*<div className="col-md-3"></div>*/}
-                        {/*<div className="col-md-6">*/}
-                            {/*<SearchVault />*/}
-                        {/*</div>*/}
-                        {/*<div className="col-md-3"></div>*/}
-                    {/*</div>*/}
-                {/*</div>*/}
-            {/*</div>*/}
+            <div className="searchBox">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-3"></div>
+                        <div className="col-md-6">
+                            <a href="/quick-valuation">Get a valuation</a>
+                        </div>
+                        <div className="col-md-3"></div>
+                    </div>
+                </div>
+            </div>
             <div className="research-area">
                 <div className="container">
                     <div className="col-md-12 top-box">

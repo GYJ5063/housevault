@@ -24,7 +24,7 @@ class Footer extends Component {
                                         <li><a href="#">More stuff here</a></li>
                                         <li><a href="#">Other info</a></li>
                                         <li><a href="/login">Login</a></li>
-                                        <li><a href="/registration">Registration</a></li>
+                                        <li><a href="/`">Registration</a></li>
                                         <li><a href="/private-homepage">Private Homepage</a></li>
                                     </ul>
                                 </div>

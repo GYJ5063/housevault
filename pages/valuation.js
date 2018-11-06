@@ -95,7 +95,6 @@ class Valuation extends Component {
         newState[e.target.name] = e.target.value;
         this.setState(newState);
     }
-
     handleSubmit (e, message) {
         e.preventDefault();
 
