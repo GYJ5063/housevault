@@ -3,10 +3,12 @@ import FormValidator from "../../components/FormValidator";
 import { ButtonGroup, Button } from 'reactstrap'
 
 import _ from "lodash";
+import axios from "axios";
 
 class ValuationForm extends React.Component {
     constructor(props) {
         super(props);
+     
         this.handleChange = this.handleChange.bind(this);
         this.valuationSubmit = this.valuationSubmit.bind(this);
         this.validator = new FormValidator([
@@ -15,6 +17,12 @@ class ValuationForm extends React.Component {
                 method: 'isEmpty',
                 validWhen: false,
                 message: 'Building Number is required.'
+            },
+            {
+                field: 'address_list',
+                method: 'isEmpty',
+                validWhen: false,
+                message: 'Address is required.'
             },
             {
                 field: 'postcode',
@@ -41,10 +49,16 @@ class ValuationForm extends React.Component {
                 message: 'Wall type is required.'
             },
             {
-                field: 'number_habitable_rooms',
+                field: 'bedrooms',
                 method: 'isEmpty',
                 validWhen: false,
-                message: 'Number of habitable rooms is required.'
+                message: 'Number of bedrooms is required.'
+            },
+            {
+                field: 'reception_rooms',
+                method: 'isEmpty',
+                validWhen: false,
+                message: 'Number of reception_rooms is required.'
             },
             {
                 field: 'total_floor_area',
@@ -63,8 +77,14 @@ class ValuationForm extends React.Component {
             property_type: '',
             wall_type: '',
             number_habitable_rooms:'',
-            total_floor_area: 0,
+            total_floor_area: 100,
             validation: this.validator.valid(),
+            valuation:{},
+            address_picker_hidden:true,
+            bedrooms:0,
+            reception_rooms:0,
+            step:1
+
         }
 
     }
@@ -78,10 +98,16 @@ class ValuationForm extends React.Component {
 
     valuationSubmit(e, message) {
         e.preventDefault();
-        console.log(this.state, );
+
+        if(this.state.step === 1) {
+            this.setState({"step":2});
+        }
+        if(this.state.step === 2) {
+            this.setState({"step":3});
+        }
         const validation = this.validator.validate(this.state);
-        // this.setState({ validation });
         this.submitted = true;
+
         let formData = {
             postcode: this.state.postcode,
             building_number: this.state.building_number,
@@ -89,11 +115,38 @@ class ValuationForm extends React.Component {
             built_from: this.state.built_from,
             property_type: this.state.property_type,
             wall_type: this.state.wall_type,
-            number_habitable_rooms: this.state.number_habitable_rooms,
+            number_habitable_rooms: this.state.reception_rooms + this.state.bedrooms ,
             total_floor_area: this.state.total_floor_area,
             report: 1
+        };
+
+        if (validation.isValid) {
+
+            this.setState({hideLoadingSpinner: false});
+            let self = this;
+            let config = {
+                headers: {
+                    "Authorization": process.env.PRICEPREDICTION_TOKEN
+                }
+            };
+
+            axios.post(process.env.PRICEPREDICTION_URL, formData, config)
+                .then(function (response) {
+                    console.log(response.data);
+                    self.setState({ hideLoadingSpinner: true, valuation: response.data });
+                })
+                .catch(function (error) {
+                    self.setState({ hideLoadingSpinner: true});
+                });
         }
 
+    }
+    setPropertyType(type) {
+        this.setState({property_type:type});
+    }
+
+    findAddress() {
+        this.setState({address_picker_hidden:false});
     }
     render() {
         let validation = this.submitted ?
@@ -108,21 +161,78 @@ class ValuationForm extends React.Component {
                     <ul id="errMsg">
                     </ul>
                 </div>
+                {(this.state.step === 1) ?
+                    <div>
+                        <h1>Free Instant Online Valuation</h1>
+                        <p>We offer instant online valuations, simply enter your post code below for an indication of what your property is worth.</p>
+                        <div className="form-group">
+                            <span id="postcode" className="errText">{validation.postcode.message}</span>
+                            <label htmlFor="postcode">Postcode</label>
+                            <input type="text" name="postcode" id="postcode" value={this.state.postcode} className="form-control" placeholder="Post Code" onChange={this.handleChange} />
+                        </div>
+                        <Button color="danger" block onClick={() => {this.findAddress()}}> Find Address</Button>
+
+                        <div className={(this.state.address_picker_hidden) ? "d-none" : "" } >
+                            <div className="form-group">
+                                <br />
+                                <select name="address_list" className="form-control" id="address_list" onChange={this.handleChange}>
+                                    <option value="">Choose Address</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <span id="err_bedrooms" className=" errText">{validation.bedrooms.message}</span>
+                            <label htmlFor="bedrooms">Number Bedrooms</label>
+                            <select name="bedrooms" className="form-control" id="bedrooms" onChange={this.handleChange}>
+                                <option value="">Choose number of bedrooms</option>
+                                <option value="0">Studio</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6+</option>
+
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <span id="err_reception_rooms" className=" errText">{validation.reception_rooms.message}</span>
+                            <label htmlFor="reception_rooms">Number Reception Rooms</label>
+                            <select name="reception_rooms" className="form-control" id="reception_rooms" onChange={this.handleChange}>
+                                <option value="">Choose number of reception rooms</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                    </div> : ''}
+
+                {(this.state.step === 2) ?
+                <div>
+                    <h1>Free Instant Online Valuation</h1>
+                    <p>We offer instant online valuations, simply enter your post code below for an indication of what your property is worth.</p>
                 <div className="form-group">
-                    <span id="building_number" className="errText">{validation.building_number.message}</span>
-                    <label htmlFor="building_number">Building Number</label>
-                    <input type="text" name="building_number" id="building_number" value={this.state.building_number} className="form-control" placeholder="Building Number" onChange={this.handleChange} />
+                    <div className="row">
+                        <div className="col">
+                            Choose a property type
+                        </div>
+                    </div>
+
+                    <ButtonGroup>
+                        <Button color="primary" active={(this.state.property_type === "Flat")}  onClick={() => {this.setPropertyType('Flat')}} >Flat</Button>
+                        <Button color="primary" active={(this.state.property_type === "Maisonette")} onClick={() => {this.setPropertyType('Maisonette')}} >Maisonette</Button>
+                        <Button color="primary" active={(this.state.property_type === "Bungalow")} onClick={() => {this.setPropertyType('Bungalow')}} >Bungalow</Button>
+                        <Button color="primary" active={(this.state.property_type === "House")} onClick={() => {this.setPropertyType('House')}}>House</Button>
+                    </ButtonGroup>
                 </div>
-                <div className="form-group">
-                    <span id="postcode" className="errText">{validation.postcode.message}</span>
-                    <label htmlFor="postcode">Postcode</label>
-                    <input type="text" name="postcode" id="postcode" value={this.state.postcode} className="form-control" placeholder="Post Code" onChange={this.handleChange} />
-                </div>
-                <div className="form-group">
-                    <span id="err_total_floor_area" className="errText">{validation.total_floor_area.message}</span>
-                    <label htmlFor="total_floor_area">Approximate Size (Between 10 - 600 sqm)</label>
-                    <input type="text" name="total_floor_area" id="total_floor_area" value={this.state.total_floor_area} className="form-control" placeholder="Total Floor Area" onChange={this.handleChange} />
-                </div>
+
                 <div className="form-group">
                     <span id="err_built_from" className="errText">{validation.built_from.message}</span>
                     <label htmlFor="built_from">Built From</label>
@@ -138,29 +248,16 @@ class ValuationForm extends React.Component {
                 </div>
 
                 <div className="form-group">
-                    <span id="err_property_type" className=" errText">{validation.property_type.message}</span>
-                    <label htmlFor="property_type">Property Type</label>
-                    <select name="property_type" className="form-control" id="property_type" onChange={this.handleChange}>
-                        <option value="">Choose Property Type</option>
-                        <option value="Flat">Flat</option>
-                        <option value="Maisonette">Maisonette</option>
-                        <option value="Bungalow">Bungalow</option>
-                        <option value="House">House</option>
-                    </select>
-                    {/*<ButtonGroup>*/}
-                        {/*<Button>Flat</Button>*/}
-                        {/*<Button>Maisonette</Button>*/}
-                        {/*<Button>Bungalow</Button>*/}
-                        {/*<Button>House</Button>*/}
-                    {/*</ButtonGroup>*/}
+                    <span id="err_total_floor_area" className="errText">{validation.total_floor_area.message}</span>
+                    <label htmlFor="total_floor_area">Approximate Size (Between 10 - 600 sqm)</label>
+                    <input type="text" name="total_floor_area" id="total_floor_area" value={this.state.total_floor_area} className="form-control" placeholder="Total Floor Area" onChange={this.handleChange} />
                 </div>
 
                 <div className="form-group">
                     <span id="err_wall_type" className="errText">{validation.wall_type.message}</span>
-                    <label htmlFor="wall_type">Wall type</label>
+                    <label htmlFor="wall_type">Construction type</label>
                     <select name="wall_type" className="form-control" id="wall_type" onChange={this.handleChange}>
-                        <option value="">Choose Wall Type</option>
-                        <option value="system">System</option>
+                        <option value="">Choose Construction Type</option>
                         <option value="brick">Brick</option>
                         <option value="cavity wall">Cavity Wall</option>
                         <option value="timber">Timber</option>
@@ -171,36 +268,16 @@ class ValuationForm extends React.Component {
                 </div>
 
 
-                <div className="form-group">
-                    <span id="err_number_habitable_rooms" className=" errText">{validation.number_habitable_rooms.message}</span>
-                    <label htmlFor="number_habitable_rooms">Number Habitable Rooms</label>
-                    <select name="number_habitable_rooms" className="form-control" id="number_habitable_rooms" onChange={this.handleChange}>
-                        <option value="">Choose number of habitale rooms</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                    </select>
+
+
                 </div>
-
-                <div className="form-group">
-                    <span id="err_total_floor_area" className="errText">{validation.total_floor_area.message}</span>
-                    <label htmlFor="total_floor_area">Approximate Size (Between 10 - 600 sqm)</label>
-                    <input type="text" name="total_floor_area" id="total_floor_area" value={this.state.total_floor_area} className="form-control" placeholder="Total Floor Area" onChange={this.handleChange} />
-                </div>
-
-
+                : ''}
 
 
                 <div className="row">
                     <div className="col-sm">
                         <button onClick={this.handleSubmit} className="btn btn-primary pull-right">
-                            Submit
+                            {(this.state.step ===2) ? 'Submit' : 'Next'}
                         </button>
                     </div>
 

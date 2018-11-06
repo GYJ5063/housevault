@@ -1,21 +1,33 @@
 import React from "react";
 import ValuationForm from '../components/forms/ValuationForm'
+import "../styles/valuation.scss";
 
 class QuickValuation extends React.Component {
 
     constructor(props) {
         super(props);
+
     }
 
     render() {
      return (
-        <div className="row justify-content-center">
-            <div className="col-6">
-                <h1>Get a valuation </h1>
-                <ValuationForm />
+         <div className="rooftop-image">
+             <div className="valuation">
+                <div className="row  ">
+                <div className="col-4">
+                    <div className="card valuation-card">
+                        <div className="card-body">
+                            {/*<img src="/static/housevault-logo.svg" alt="Logo" width="200"/>*/}
+
+                            <ValuationForm />
+                        </div>
+
+                    </div>
+                </div>
             </div>
 
         </div>
+         </div>
      );
     }
 }

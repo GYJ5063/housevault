@@ -7,6 +7,10 @@ import "../styles.scss"
 
 
 export default class MyDocument extends Document {
+    static async getInitialProps(ctx) {
+        const initialProps = await Document.getInitialProps(ctx);
+        return { ...initialProps }
+    }
     render() {
         return (
             <html>
@@ -53,7 +57,9 @@ export default class MyDocument extends Document {
                 <meta name="twitter:image:src" content="https://housevault.co.uk/static/housevault-logo.svg" />
 
             </Head>
+            {(this.props.url.pathname !== '/quick-valuation') ?
             <Header />
+                : ''}
             <body>
                 <Main />
                 {/*<Footer />*/}

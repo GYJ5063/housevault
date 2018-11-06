@@ -1,11 +1,13 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
+import Header from "./Header";
 
 export default () =>
     <main role="main">
         <Head>
             <title>Accurate property valuations for any sale and rental properties | House Vault</title>
             <meta name="description" content="View Local information about an address including epc, population, house prices, crime and much more." />
+            <Header />
         </Head>
         <Layout>
             <div className="banner">
