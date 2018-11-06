@@ -275,7 +275,7 @@ class ValuationForm extends React.Component {
                 {(this.state.step === 3) ?
                     <h1>Your valuation is on its way</h1>
                     :''}
-
+                {(this.state.step !== 3) ?
                 <div className="row">
                     <div className="col-sm">
                         <button onClick={this.handleSubmit} className="btn btn-primary pull-right">
@@ -284,6 +284,7 @@ class ValuationForm extends React.Component {
                     </div>
 
                 </div>
+                    : '' }
 
             </form>
         );
