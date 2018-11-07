@@ -1,9 +1,9 @@
 import React from "react";
 import FormValidator from "../../components/FormValidator";
 import { ButtonGroup, Button } from 'reactstrap'
-
 import _ from "lodash";
 import axios from "axios";
+import ValuationReport from "../valuation/ValuationReport";
 
 class ValuationForm extends React.Component {
     constructor(props) {
@@ -18,12 +18,12 @@ class ValuationForm extends React.Component {
                 validWhen: false,
                 message: 'Building Number is required.'
             },
-            {
-                field: 'address_list',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'Address is required.'
-            },
+            // {
+            //     field: 'address_list',
+            //     method: 'isEmpty',
+            //     validWhen: false,
+            //     message: 'Address is required.'
+            // },
             {
                 field: 'postcode',
                 method: 'isEmpty',
@@ -71,12 +71,11 @@ class ValuationForm extends React.Component {
 
         this.state = {
             postcode: '',
-            building_number: '',
+            building_number: 62,
             building_name: '',
             built_from: '',
             property_type: '',
             wall_type: '',
-            number_habitable_rooms:'',
             total_floor_area: 100,
             validation: this.validator.valid(),
             valuation:{},
@@ -102,10 +101,9 @@ class ValuationForm extends React.Component {
         if(this.state.step === 1) {
             this.setState({"step":2});
         }
-        if(this.state.step === 2) {
-            this.setState({"step":3});
-        }
+
         const validation = this.validator.validate(this.state);
+
         this.submitted = true;
 
         let formData = {
@@ -115,7 +113,7 @@ class ValuationForm extends React.Component {
             built_from: this.state.built_from,
             property_type: this.state.property_type,
             wall_type: this.state.wall_type,
-            number_habitable_rooms: this.state.reception_rooms + this.state.bedrooms ,
+            number_habitable_rooms: (parseInt(this.state.reception_rooms) + parseInt(this.state.bedrooms)) ,
             total_floor_area: this.state.total_floor_area,
             report: 1
         };
@@ -132,8 +130,9 @@ class ValuationForm extends React.Component {
 
             axios.post(process.env.PRICEPREDICTION_URL, formData, config)
                 .then(function (response) {
-                    console.log(response.data);
-                    self.setState({ hideLoadingSpinner: true, valuation: response.data });
+
+
+                    self.setState({ hideLoadingSpinner: true, valuation: response.data, step:3 });
                 })
                 .catch(function (error) {
                     self.setState({ hideLoadingSpinner: true});
@@ -148,6 +147,8 @@ class ValuationForm extends React.Component {
     findAddress() {
         this.setState({address_picker_hidden:false});
     }
+
+
     render() {
         let validation = this.submitted ?
             this.validator.validate(this.state) :
@@ -266,20 +267,21 @@ class ValuationForm extends React.Component {
                         <option value="unknown">Unknown</option>
                     </select>
                 </div>
-
-
-
-
                 </div>
                 : ''}
-                {(this.state.step === 3) ?
-                    <h1>Your valuation is on its way</h1>
+                { (this.state.step === 3 ) ?
+                    <div>
+                        <h1>Your valuation is on its way</h1>
+                        <ValuationReport valuation={this.state.valuation} />
+                    </div>
                     :''}
+
                 {(this.state.step !== 3) ?
                 <div className="row">
                     <div className="col-sm">
-                        <button onClick={this.handleSubmit} className="btn btn-primary pull-right">
-                            {(this.state.step ===2) ? 'Submit' : 'Next'}
+
+                        <button onClick={this.valuationSubmit} className="btn btn-primary pull-right">
+                            {(this.state.step === 2) ? 'Submit' : 'Next'}
                         </button>
                     </div>
 
