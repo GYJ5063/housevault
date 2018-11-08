@@ -51,7 +51,6 @@ class ValuationForm extends React.Component {
             {
                 field: 'reception_rooms',
                 method: (value, args) => {
-                    console.log(value + args.bedrooms);
                     return parseInt(value) + parseInt(args.bedrooms) > 1;
                 },
                 validWhen: true,
@@ -99,7 +98,7 @@ class ValuationForm extends React.Component {
         const prevStepIsValid = 
             !!this.state.postcode &&
             !!this.state.address_id &&
-            !!(parseInt(this.state.bedrooms) + parseInt(this.state.reception_rooms)) > 1;
+            (parseInt(this.state.bedrooms) + parseInt(this.state.reception_rooms)) > 1;
 
         if(this.state.step === 1 && prevStepIsValid) {
             this.setState({"step":2});
@@ -107,7 +106,7 @@ class ValuationForm extends React.Component {
 
         const validation = this.validator.validate(this.state);
         this.setState({ validation });
-        console.log(validation);
+
         if(!prevStepIsValid) {
             console.log('step 1 is invalid');
             return;
@@ -169,7 +168,7 @@ class ValuationForm extends React.Component {
         let validation = this.submitted ?
             this.validator.validate(this.state) :
             this.state.validation;
-        console.log(validation);
+        // console.log(validation);
         return (
             <form onSubmit={this.valuationSubmit}>
                 <div className="alert alert-danger d-none">
