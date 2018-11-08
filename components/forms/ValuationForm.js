@@ -18,12 +18,12 @@ class ValuationForm extends React.Component {
                 validWhen: false,
                 message: 'Building Number is required.'
             },
-            // {
-            //     field: 'address_list',
-            //     method: 'isEmpty',
-            //     validWhen: false,
-            //     message: 'Address is required.'
-            // },
+            {
+                field: 'address_id',
+                method: 'isEmpty',
+                validWhen: false,
+                message: 'Address is required.'
+            },
             {
                 field: 'postcode',
                 method: 'isEmpty',
@@ -71,6 +71,7 @@ class ValuationForm extends React.Component {
 
         this.state = {
             postcode: '',
+            address_id: '',
             building_number: 62,
             building_name: '',
             built_from: '',
@@ -80,9 +81,10 @@ class ValuationForm extends React.Component {
             validation: this.validator.valid(),
             valuation:{},
             address_picker_hidden:true,
-            bedrooms:0,
-            reception_rooms:0,
+            bedrooms: '',
+            reception_rooms: '',
             step:1,
+            validation: this.validator.valid(),
             addressList: []
         }
 
@@ -98,12 +100,19 @@ class ValuationForm extends React.Component {
     valuationSubmit(e, message) {
         e.preventDefault();
 
-        if(this.state.step === 1) {
+        const prevStepIsValid = 
+            this.state.postcode &&
+            this.state.address_id &&
+            (parseInt(this.state.reception_rooms) + parseInt(this.state.bedrooms));
+
+        if(this.state.step === 1 && prevStepIsValid) {
             this.setState({"step":2});
         }
 
-        const validation = this.validator.validate(this.state);
-
+        this.setState({ validation: this.validator.validate(this.state) });
+        if(!prevStepIsValid) {
+            return;
+        }
         this.submitted = true;
 
         let formData = {
@@ -183,7 +192,8 @@ class ValuationForm extends React.Component {
                         <div className={(this.state.address_picker_hidden) ? "d-none" : "" } >
                             <div className="form-group">
                                 <br />
-                                <select name="address_list" className="form-control" id="address_list" onChange={this.handleChange}>
+                                <span id="postcode" className="errText">{validation.address_id.message}</span>
+                                <select name="address_id" className="form-control" id="address_id" onChange={this.handleChange}>
                                     <option value="">Choose Address</option>
                                     {
                                         _.map(this.state.addressList, adr => (
@@ -196,7 +206,7 @@ class ValuationForm extends React.Component {
                             </div>
                         </div>
                         <div className="form-group">
-                            <span id="err_bedrooms" className=" errText">{validation.bedrooms.message}</span>
+                            <span id="bedrooms" className=" errText">{validation.bedrooms.message}</span>
                             <label htmlFor="bedrooms">Number Bedrooms</label>
                             <select name="bedrooms" className="form-control" id="bedrooms" onChange={this.handleChange}>
                                 <option value="">Choose number of bedrooms</option>
