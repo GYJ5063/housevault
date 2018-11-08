@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Button, Form, FormGroup, Label, Input, FormText, Alert } from 'reactstrap';
-
+import Header from '../components/Header'
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -114,6 +114,8 @@ class Login extends Component {
         return (
             <div>
                 <Layout>
+
+                <Header/>
                   <div className="registration-container">
                       {this.renderLoginResult()}
                       <h3>Log in</h3>

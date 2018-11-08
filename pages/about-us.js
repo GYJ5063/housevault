@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
+import Header from '../components/Header'
 export default () =>
     <div>
         <Head>
@@ -7,6 +8,7 @@ export default () =>
             <meta name="description" content="About House Vault and our bespoke property Machine Learning Algorithms" />
         </Head>
         <Layout>
+            <Header/>
         <div className="container list-page-padding">
             <h1>About Us</h1>
             <p>Our experienced team of PHD researchers, data scientists, statistician’s, economists and software developers

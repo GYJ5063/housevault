@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
+import Header from '../components/Header'
 export default () =>
     <div>
         <Head>
@@ -7,8 +8,10 @@ export default () =>
             <meta name="description" content="About House Vault and our bespoke property Machine Learning Algorithms" />
         </Head>
         <Layout>
+            <Header />
         <div className="container list-page-padding">
             <h1>Product Features & Applications</h1>
+
             <h3>Sales Valuation</h3>
             <p>Give your potential clients a free in-depth valuation report in exchange for submitting their details on your website.
                 Visitors will get an accurate idea on the properties valuation along with a detailed report on the comparable properties used
