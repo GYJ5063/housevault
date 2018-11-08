@@ -12,6 +12,15 @@ export default () =>
 
                 <ul className="nav navbar-nav navbar-right">
                     <li >
+                        <a href="/trial">Free Trial</a>
+                    </li>
+                    <li >
+                        <a href="/products">Products</a>
+                    </li>
+                    <li >
+                        <a href="/about-us">About Us</a>
+                    </li>
+                    <li >
                         <a href="/login">Login</a>
                     </li>
                 </ul>
