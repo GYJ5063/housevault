@@ -13,17 +13,11 @@ class ValuationForm extends React.Component {
         this.valuationSubmit = this.valuationSubmit.bind(this);
         this.validator = new FormValidator([
             {
-                field: 'building_number',
+                field: 'address_id',
                 method: 'isEmpty',
                 validWhen: false,
-                message: 'Building Number is required.'
+                message: 'Address is required.'
             },
-            // {
-            //     field: 'address_list',
-            //     method: 'isEmpty',
-            //     validWhen: false,
-            //     message: 'Address is required.'
-            // },
             {
                 field: 'postcode',
                 method: 'isEmpty',
@@ -56,9 +50,11 @@ class ValuationForm extends React.Component {
             },
             {
                 field: 'reception_rooms',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'Number of reception_rooms is required.'
+                method: (value, args) => {
+                    return parseInt(value) + parseInt(args.bedrooms) > 1;
+                },
+                validWhen: true,
+                message: 'Total rooms must be greater than 1.'
             },
             {
                 field: 'total_floor_area',
@@ -71,7 +67,8 @@ class ValuationForm extends React.Component {
 
         this.state = {
             postcode: '',
-            building_number: 62,
+            address_id: '',
+            building_number: '',
             building_name: '',
             built_from: '',
             property_type: '',
@@ -79,11 +76,11 @@ class ValuationForm extends React.Component {
             total_floor_area: 100,
             validation: this.validator.valid(),
             valuation:{},
-            address_picker_hidden:true,
-            bedrooms:0,
-            reception_rooms:0,
-            step:1
-
+            address_picker_hidden: true,
+            bedrooms: '',
+            reception_rooms: '',
+            step:1,
+            addressList: []
         }
 
     }
@@ -98,28 +95,39 @@ class ValuationForm extends React.Component {
     valuationSubmit(e, message) {
         e.preventDefault();
 
-        if(this.state.step === 1) {
+        const prevStepIsValid = 
+            !!this.state.postcode &&
+            !!this.state.address_id &&
+            (parseInt(this.state.bedrooms) + parseInt(this.state.reception_rooms)) > 1;
+
+        if(this.state.step === 1 && prevStepIsValid) {
             this.setState({"step":2});
         }
 
         const validation = this.validator.validate(this.state);
+        this.setState({ validation });
+
+        if(!prevStepIsValid) {
+            console.log('step 1 is invalid');
+            return;
+        }
 
         this.submitted = true;
+        const address = _.find(this.state.addressList, (a) => a.id == this.state.address_id);
 
         let formData = {
-            postcode: this.state.postcode,
-            building_number: this.state.building_number,
-            building_name: this.state.building_name,
+            postcode: address.postcode,
+            building_number: address.building_number,
+            building_name: address.building_name,
             built_from: this.state.built_from,
             property_type: this.state.property_type,
             wall_type: this.state.wall_type,
-            number_habitable_rooms: (parseInt(this.state.reception_rooms) + parseInt(this.state.bedrooms)) ,
+            number_habitable_rooms: (parseInt(this.state.reception_rooms) + parseInt(this.state.bedrooms)),
             total_floor_area: this.state.total_floor_area,
             report: 1
         };
 
         if (validation.isValid) {
-
             this.setState({hideLoadingSpinner: false});
             let self = this;
             let config = {
@@ -145,7 +153,14 @@ class ValuationForm extends React.Component {
     }
 
     findAddress() {
-        this.setState({address_picker_hidden:false});
+        axios.get(`${process.env.API}addresses/${this.state.postcode}`)
+            .then(addresses => {
+                this.setState({
+                    address_picker_hidden: false,
+                    addressList: addresses.data
+                });
+            })
+            .catch(err => console.error(err));
     }
 
 
@@ -153,7 +168,7 @@ class ValuationForm extends React.Component {
         let validation = this.submitted ?
             this.validator.validate(this.state) :
             this.state.validation;
-
+        // console.log(validation);
         return (
             <form onSubmit={this.valuationSubmit}>
                 <div className="alert alert-danger d-none">
@@ -176,13 +191,22 @@ class ValuationForm extends React.Component {
                         <div className={(this.state.address_picker_hidden) ? "d-none" : "" } >
                             <div className="form-group">
                                 <br />
-                                <select name="address_list" className="form-control" id="address_list" onChange={this.handleChange}>
+                                <span id="postcode" className="errText">{validation.address_id.message}</span>
+                                <select name="address_id" className="form-control" id="address_id" onChange={this.handleChange}>
                                     <option value="">Choose Address</option>
+                                    {
+                                        _.map(this.state.addressList, address => (
+                                            <option key={address.id} value={address.id}>
+                                                {address.building_number} {address.thoroughfare}
+                                            </option>
+                                        ))
+                                    }
                                 </select>
                             </div>
                         </div>
                         <div className="form-group">
-                            <span id="err_bedrooms" className=" errText">{validation.bedrooms.message}</span>
+                            <span id="bedrooms" className=" errText">{validation.bedrooms.message}</span>
+                            <br />
                             <label htmlFor="bedrooms">Number Bedrooms</label>
                             <select name="bedrooms" className="form-control" id="bedrooms" onChange={this.handleChange}>
                                 <option value="">Choose number of bedrooms</option>
@@ -198,6 +222,7 @@ class ValuationForm extends React.Component {
                         </div>
                         <div className="form-group">
                             <span id="err_reception_rooms" className=" errText">{validation.reception_rooms.message}</span>
+                            <br />
                             <label htmlFor="reception_rooms">Number Reception Rooms</label>
                             <select name="reception_rooms" className="form-control" id="reception_rooms" onChange={this.handleChange}>
                                 <option value="">Choose number of reception rooms</option>
@@ -236,6 +261,7 @@ class ValuationForm extends React.Component {
 
                 <div className="form-group">
                     <span id="err_built_from" className="errText">{validation.built_from.message}</span>
+                    <br />
                     <label htmlFor="built_from">Built From</label>
                     <select name="built_from" className="form-control" id="built_from" onChange={this.handleChange}>
                         <option value="">Choose Built From</option>
@@ -256,6 +282,7 @@ class ValuationForm extends React.Component {
 
                 <div className="form-group">
                     <span id="err_wall_type" className="errText">{validation.wall_type.message}</span>
+                    <br/>
                     <label htmlFor="wall_type">Construction type</label>
                     <select name="wall_type" className="form-control" id="wall_type" onChange={this.handleChange}>
                         <option value="">Choose Construction Type</option>

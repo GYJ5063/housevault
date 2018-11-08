@@ -26,7 +26,20 @@ router.get("/address/:id", (req, res) => {
     connection.sync({ force: false }).then(() => {
         addresses.findById(req.params.id)
         .then(result => res.json(result))
-        .catch(err => console.log(err));
+        .catch(err => { throw err }); // catch on frontend
+    });
+});
+
+router.get('/addresses/:postcode', (req, res) => {
+    connection.sync({ force: false }).then(() => {
+        addresses.findAll({ 
+            where: { 
+                postcode: req.params.postcode,
+                organisation_name: ''
+            }
+        })
+        .then(addresses => res.json(addresses))
+        .catch(err => { throw err }); // catch on frontend
     });
 });
 
