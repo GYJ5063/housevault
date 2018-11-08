@@ -82,8 +82,8 @@ class ValuationForm extends React.Component {
             address_picker_hidden:true,
             bedrooms:0,
             reception_rooms:0,
-            step:1
-
+            step:1,
+            addressList: []
         }
 
     }
@@ -145,7 +145,14 @@ class ValuationForm extends React.Component {
     }
 
     findAddress() {
-        this.setState({address_picker_hidden:false});
+        axios.get(`${process.env.API}addresses/${this.state.postcode}`)
+            .then(addresses => {
+                this.setState({
+                    address_picker_hidden: false,
+                    addressList: addresses.data
+                });
+            })
+            .catch(err => console.error(err));
     }
 
 
@@ -178,6 +185,13 @@ class ValuationForm extends React.Component {
                                 <br />
                                 <select name="address_list" className="form-control" id="address_list" onChange={this.handleChange}>
                                     <option value="">Choose Address</option>
+                                    {
+                                        _.map(this.state.addressList, adr => (
+                                            <option key={adr.id} value={adr.id}>
+                                                {adr.building_number} {adr.thoroughfare}
+                                            </option>
+                                        ))
+                                    }
                                 </select>
                             </div>
                         </div>
