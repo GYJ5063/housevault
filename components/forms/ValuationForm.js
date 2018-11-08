@@ -71,7 +71,7 @@ class ValuationForm extends React.Component {
 
         this.state = {
             postcode: '',
-            address_id: '',
+            address: null,
             building_number: 62,
             building_name: '',
             built_from: '',
@@ -91,7 +91,7 @@ class ValuationForm extends React.Component {
     }
 
     handleChange (e) {
-        // console.log(e.target.name,e.target.value);
+        console.log(e.target.name,e.target.value);
         let newState = {};
         newState[e.target.name] = e.target.value;
         this.setState(newState);
@@ -110,15 +110,18 @@ class ValuationForm extends React.Component {
         }
 
         this.setState({ validation: this.validator.validate(this.state) });
+
+        const address = _.find(this.state.addressList, (a) => a.id == this.state.address_id);
+
         if(!prevStepIsValid) {
             return;
         }
         this.submitted = true;
 
         let formData = {
-            postcode: this.state.postcode,
-            building_number: this.state.building_number,
-            building_name: this.state.building_name,
+            postcode: address.postcode,
+            building_number: address.building_number,
+            building_name: address.building_name,
             built_from: this.state.built_from,
             property_type: this.state.property_type,
             wall_type: this.state.wall_type,
@@ -126,8 +129,8 @@ class ValuationForm extends React.Component {
             total_floor_area: this.state.total_floor_area,
             report: 1
         };
-
-        if (validation.isValid) {
+        console.log(formData);
+        if (this.state.validation.isValid) {
 
             this.setState({hideLoadingSpinner: false});
             let self = this;
@@ -196,9 +199,9 @@ class ValuationForm extends React.Component {
                                 <select name="address_id" className="form-control" id="address_id" onChange={this.handleChange}>
                                     <option value="">Choose Address</option>
                                     {
-                                        _.map(this.state.addressList, adr => (
-                                            <option key={adr.id} value={adr.id}>
-                                                {adr.building_number} {adr.thoroughfare}
+                                        _.map(this.state.addressList, address => (
+                                            <option key={address.id} value={address.id}>
+                                                {address.building_number} {address.thoroughfare}
                                             </option>
                                         ))
                                     }
@@ -207,6 +210,7 @@ class ValuationForm extends React.Component {
                         </div>
                         <div className="form-group">
                             <span id="bedrooms" className=" errText">{validation.bedrooms.message}</span>
+                            <br />
                             <label htmlFor="bedrooms">Number Bedrooms</label>
                             <select name="bedrooms" className="form-control" id="bedrooms" onChange={this.handleChange}>
                                 <option value="">Choose number of bedrooms</option>
