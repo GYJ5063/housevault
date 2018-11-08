@@ -139,7 +139,7 @@ class ValuationForm extends React.Component {
             axios.post(process.env.PRICEPREDICTION_URL, formData, config)
                 .then(function (response) {
 
-
+                    self.props.report(response.data);
                     self.setState({ hideLoadingSpinner: true, valuation: response.data, step:3 });
                 })
                 .catch(function (error) {
@@ -168,7 +168,6 @@ class ValuationForm extends React.Component {
         let validation = this.submitted ?
             this.validator.validate(this.state) :
             this.state.validation;
-        // console.log(validation);
         return (
             <form onSubmit={this.valuationSubmit}>
                 <div className="alert alert-danger d-none">
@@ -178,7 +177,7 @@ class ValuationForm extends React.Component {
                     </ul>
                 </div>
                 {(this.state.step === 1) ?
-                    <div>
+                    <div >
                         <h1>Free Instant Online Valuation</h1>
                         <p>We offer instant online valuations, simply enter your post code below for an indication of what your property is worth.</p>
                         <div className="form-group">
@@ -296,12 +295,7 @@ class ValuationForm extends React.Component {
                 </div>
                 </div>
                 : ''}
-                { (this.state.step === 3 ) ?
-                    <div>
-                        <h1>Your valuation is on its way</h1>
-                        <ValuationReport valuation={this.state.valuation} />
-                    </div>
-                    :''}
+
 
                 {(this.state.step !== 3) ?
                 <div className="row">
