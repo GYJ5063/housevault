@@ -1,9 +1,9 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 import _ from "lodash";
-import PropertyMenu from "../components/PropertyMenu";
+import PropertyMenu from "../../components/PropertyMenu";
 import moment from "moment";
-import Layout from '../components/Layout'
+import Layout from '../../components/Layout'
 class SoldPrices extends React.Component {
 
     render() {

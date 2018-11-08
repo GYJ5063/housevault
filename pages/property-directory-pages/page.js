@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {Router} from '../routes';
-import Homepage from '../components/Homepage'
-import Post from '../components/Post'
+import {Router} from '../../routes';
+import Homepage from '../../components/Homepage'
+import Post from '../../components/Post'
 import fetch from "isomorphic-fetch";
-import AdSense from 'react-adsense';
+import AdSense from "react-adsense";
 
-class SubPage extends Component {
+class Page extends Component {
 
     constructor(props) {
         super(props)
@@ -33,9 +33,9 @@ class SubPage extends Component {
         );
     }
 }
-SubPage.getInitialProps = async ({  query: { page , sub } }) => {
+Page.getInitialProps = async ({  query: { page  } }) => {
 
-    let url = process.env.BACKEND_URL + 'page/' + page + '/' + sub;
+    let url = process.env.BACKEND_URL + 'page/' + page;
 
     if(typeof page !== 'undefined') {
         const res = await fetch(url);
@@ -47,4 +47,4 @@ SubPage.getInitialProps = async ({  query: { page , sub } }) => {
 };
 
 
-export default SubPage;
+export default Page;

@@ -1,7 +1,7 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
-import PropertyMenu from "../components/PropertyMenu";
-import Layout from '../components/Layout'
+import PropertyMenu from "../../components/PropertyMenu";
+import Layout from '../../components/Layout'
 
 
 class Broadband extends React.Component {

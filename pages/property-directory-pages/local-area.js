@@ -1,8 +1,8 @@
 import React from "react";
-import LocalAreaList from "../components/LocalAreaList";
-import PropertyMenu from "../components/PropertyMenu"
+import LocalAreaList from "../../components/LocalAreaList";
+import PropertyMenu from "../../components/PropertyMenu"
 import fetch from "isomorphic-fetch";
-import Layout from '../components/Layout'
+import Layout from '../../components/Layout'
 import _ from 'lodash'
 class LocalArea extends React.Component {
 

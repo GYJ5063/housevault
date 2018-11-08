@@ -2,11 +2,11 @@ import React from "react";
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Table,
          Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import fetch from "isomorphic-fetch";
-import PropertyMenu from "../components/PropertyMenu";
+import PropertyMenu from "../../components/PropertyMenu";
 import _ from "lodash"
 import moment from "moment";
-import Layout from '../components/Layout';
-import GoogleMapsWithMarkerClusterer from "../components/GoogleMapsWithMarkerClusterer";
+import Layout from '../../components/Layout';
+import GoogleMapsWithMarkerClusterer from "../../components/google/GoogleMapsWithMarkerClusterer";
 
 class Crime extends React.Component {
 

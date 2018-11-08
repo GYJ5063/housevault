@@ -1,10 +1,10 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 import _ from "lodash";
-import EpcEnergyEfficiencyGraph from "../components/EpcEnergyEfficiencyGraph";
-import EpcEnvironmentalImpactGraph from "../components/EpcEnvironmentalImpactGraph";
-import PropertyMenu from "../components/PropertyMenu";
-import Layout from '../components/Layout'
+import EpcEnergyEfficiencyGraph from "../../components/EpcEnergyEfficiencyGraph";
+import EpcEnvironmentalImpactGraph from "../../components/EpcEnvironmentalImpactGraph";
+import PropertyMenu from "../../components/PropertyMenu";
+import Layout from '../../components/Layout'
 class Epc extends React.Component {
     render( ) {
 

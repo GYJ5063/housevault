@@ -1,8 +1,8 @@
 import fetch from "isomorphic-fetch";
 import React, {Component} from 'react';
-import {Router} from '../routes';
+import {Router} from '../../routes';
 import Head from 'next/head';
-import CompanyTableRow from '../components/CompanyTableRow';
+import CompanyTableRow from '../../components/CompanyTableRow';
 import OnlineEstateAgentReviews from "./online-estate-agent-reviews";
 
 class PropertyBuyingCompanyReviews extends Component {

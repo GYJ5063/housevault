@@ -1,8 +1,8 @@
 import fetch from "isomorphic-fetch";
 import React, {Component} from 'react';
-import {Router} from '../routes';
+import {Router} from '../../routes';
 import Head from 'next/head';
-import AgentTableRow from '../components/AgentTableRow';
+import AgentTableRow from '../../components/AgentTableRow';
 import LocalArea from "./local-area";
 
 class OnlineEstateAgentReviews extends Component {

@@ -1,8 +1,8 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 import _ from "lodash";
-import PropertyMenu from "../components/PropertyMenu";
-import Layout from '../components/Layout'
+import PropertyMenu from "../../components/PropertyMenu";
+import Layout from '../../components/Layout'
 class People extends React.Component {
 
     render() {

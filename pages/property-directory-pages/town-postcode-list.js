@@ -2,7 +2,7 @@ import fetch from "isomorphic-fetch";
 import React from "react";
 import _ from 'lodash';
 import Link from 'next/link'
-import Layout from '../components/Layout'
+import Layout from '../../components/Layout'
 
 
 class TownPostcodeList extends React.Component {
