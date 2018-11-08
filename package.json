@@ -38,6 +38,7 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-router-native": "^4.3.0",
+    "react-strap": "0.0.1",
     "react-vis": "^1.10.1",
     "reactstrap": "^6.3.0",
     "recompose": "^0.27.1",
@@ -51,6 +52,7 @@
     "dev": "node server/server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server/server.js",
+    "production": "NODE_ENV=production next build && node server/server.js",
     "deploy": "next build && eb deploy housevault-env-clone"
   },
   "author": "",

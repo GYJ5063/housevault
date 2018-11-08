@@ -1,5 +1,6 @@
 // ./pages/_document.js
 import Document, { Head, Main, NextScript } from 'next/document'
+
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import moment from "moment"
@@ -7,6 +8,15 @@ import "../styles.scss"
 
 
 export default class MyDocument extends Document {
+    constructor(props) {
+        super(props);
+
+    }
+    static async getInitialProps(ctx) {
+        const initialProps = await Document.getInitialProps(ctx);
+        console.log(ctx);
+        return { ...initialProps }
+    }
     render() {
         return (
             <html>
@@ -53,10 +63,9 @@ export default class MyDocument extends Document {
                 <meta name="twitter:image:src" content="https://housevault.co.uk/static/housevault-logo.svg" />
 
             </Head>
-            <Header />
             <body>
                 <Main />
-                <Footer />
+                {/*<Footer />*/}
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
                         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                         crossOrigin="anonymous"></script>

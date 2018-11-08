@@ -16,7 +16,7 @@ app.prepare()
 
         server.get("/postcode/:postcode", (req, res) => {
             res.writeHead(302, {
-                'Location': '/house-prices/' +req.params.postcode
+                'Location': '/'
             });
             res.end();
         });

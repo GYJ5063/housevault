@@ -9,6 +9,9 @@ $company-purple: #4d2072;
 $logo-blue: #65D3FB;
 $logo-red: #FF4E54;
 
+body, html {
+    height: 100%;
+}
 
 @mixin breakpoint($class) {
     @if $class == xs {
@@ -1361,9 +1364,7 @@ footer {
     }
 }
 
-.footer {
-    margin-top:20px;
-}
+
 
 .card {
     margin-top:10px;
