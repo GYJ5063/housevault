@@ -1,9 +1,15 @@
 import React from "react";
-import FormValidator from "../../components/FormValidator";
 import { ButtonGroup, Button } from 'reactstrap'
 import _ from "lodash";
 import axios from "axios";
+
+import { graphql, Query } from 'react-apollo';
+import gql from 'graphql-tag';
+
+import FormValidator from "../../components/FormValidator";
 import ValuationReport from "../valuation/ValuationReport";
+// import AddressSearch from '../AddressSearch';
+
 
 class ValuationForm extends React.Component {
     constructor(props) {
@@ -186,7 +192,7 @@ class ValuationForm extends React.Component {
                             <input type="text" name="postcode" id="postcode" value={this.state.postcode} className="form-control" placeholder="Post Code" onChange={this.handleChange} />
                         </div>
                         <Button color="danger" block onClick={() => {this.findAddress()}}> Find Address</Button>
-
+                        {/* <AddressSearch /> */}
                         <div className={(this.state.address_picker_hidden) ? "d-none" : "" } >
                             <div className="form-group">
                                 <br />
@@ -313,4 +319,16 @@ class ValuationForm extends React.Component {
         );
     }
 }
+
+// const query = gql`
+//         query addresses($postcode: String!) {
+//             addresses(postcode: $postcode) {
+//                 id
+//                 building_number
+//                 building_name
+//                 thoroughfare
+//             }
+//         }
+// `;
+
 export default ValuationForm;
