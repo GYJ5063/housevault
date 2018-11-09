@@ -113,11 +113,11 @@ class ValuationReport extends React.Component {
                         <h3>Current Capital Value</h3>
                         <h4>{'£'+(this.props.valuation.predict_results.predict_price).toLocaleString()}</h4>
                         <h3>Rental Value</h3>
-                        <h4>{'£'+(this.props.valuation.predict_results.predict_price * 0.055 / 12).toLocaleString()+' per month | £'+(this.props.valuation.predict_results.predict_price * 0.055 / 52).toLocaleString()+' per week'}</h4>
+                        <h4>{'£'+(this.props.valuation.predict_results.predict_price * 0.055 / 12).toFixed(0)+' per month | £'+(this.props.valuation.predict_results.predict_price * 0.055 / 52).toFixed(0)+' per week'}</h4>
                         <h3>Investment Yield</h3>
                         <h4>5.5%</h4>
                         <h3>12 Month Capital Growth</h3>
-                        <h4>{(((this.props.valuation.predict_price_5y.index_31)-(this.props.valuation.predict_price_5y.index_30))/(this.props.valuation.predict_price_5y.index_30)*100).toLocaleString()+'%'}</h4>
+                        <h4>{(((this.props.valuation.predict_price_5y.index_31)-(this.props.valuation.predict_price_5y.index_30))/(this.props.valuation.predict_price_5y.index_30)*100).toFixed(1)+'%'}</h4>
                     </GraphCard>
                     <GraphCard title={'Property Street View'}>
                         <div className="streeview">
