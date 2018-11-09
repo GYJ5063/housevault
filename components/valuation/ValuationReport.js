@@ -209,27 +209,27 @@ class ValuationReport extends React.Component {
                 {
                     _.isEmpty(this.props.valuation.sales_history_analyze[1]) ? null : (
                         <React.Fragment>
-                            <h2 className='mt-3'>Sales History Analyze</h2>
+                            <h2 className='mt-3'>Historic Sales Data</h2>
                             <div className="card">
                                 <div className="card-body">
 
                                     <Table>
                                         <thead>
                                         <tr>
-                                            <th>Price Change Percentage</th>
-                                            <th>Price Change</th>
-                                            <th>Sold Date</th>
-                                            <th>Sold Price</th>
+                                            <th>Last Sold Date</th>
+                                            <th>Last Sold Price</th>
+                                            <th>Price Change (£)</th>
+                                            <th>Price Change (%)</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         {
                                             _.map(this.props.valuation.sales_history_analyze, (val, key) => (
                                                 <tr key={key}>
-                                                    <td>{val.price_chage_percent}%</td>
-                                                    <td>£{val.price_change.toLocaleString()}</td>
                                                     <td>{moment(val.sold_date).format('Do MMM YYYY')}</td>
                                                     <td>£{val.sold_price.toLocaleString()}</td>
+                                                    <td>£{val.price_change.toLocaleString()}</td>
+                                                    <td>{(val.price_chage_percent*100).toFixed(1)+'%'}</td>
                                                 </tr>
                                             ))
                                         }
