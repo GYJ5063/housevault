@@ -117,7 +117,7 @@ class ValuationReport extends React.Component {
                         <h3>Investment Yield</h3>
                         <h4>5.5%</h4>
                         <h3>12 Month Capital Growth</h3>
-                        <h4>{(((this.props.valuation.predict_price_5y.index_31)-(this.props.valuation.predict_price_5y.index_30))/(this.props.valuation.predict_price_5y.index_30)*100).toFixed(1)+'%'}</h4>
+                        <h4>{(((this.props.valuation.predict_price_5y.index_31)-(this.props.valuation.predict_price_5y.index_25))/(this.props.valuation.predict_price_5y.index_25)*100).toFixed(1)+'%'}</h4>
                     </GraphCard>
                     <GraphCard title={'Property Street View'}>
                         <div className="streeview">
@@ -137,9 +137,10 @@ class ValuationReport extends React.Component {
                             <div>
                                 <div className="col-12 text-left">
                                     <h2 className='mt-3'>Comparable Properties</h2>
-                                    <p>The accuracy of an automated valuation will vary according to a number of factors. The best method of calculating a valuation is by looking at comparable properties in the local area. Our report takes this information and takes over 100 external factors to predict a valuation.</p>
-                                    <p>Below you will see the comparable properties we believe are the most significant in estimating your property valuation. Whilst sold prices on a street are important we look at a much wider range of factors to collect the local properties most suited to use as supporting evidence.</p>
-                                    <p>Each property tile below shows the current market valuation, distance from the subject property, address & property characteristics. A full list of comparables can be found at the end of this report</p>
+                                    <p>Our online valuation works by finding a range of local properties that we believe are similar to your enquiry. We asses a number of factors
+                                        before choosing a comparable such as distance from your enquiry, number of bedrooms, size, property type & sales history before selecting
+                                        the best fitting comparables to use - this is the same process used by the majority of professional surveyors.</p>
+                                    <p>We have found the following 6 properties to be the most similar to your search, with a full list of comparables listed further down this report</p>
                                 </div>
                                 <div className="card-deck">
                                     {
@@ -218,8 +219,8 @@ class ValuationReport extends React.Component {
                                         <tr>
                                             <th>Last Sold Date</th>
                                             <th>Last Sold Price</th>
-                                            <th>Price Change (£)</th>
-                                            <th>Price Change (%)</th>
+                                            <th>Total Growth (£)</th>
+                                            <th>Total Return (%)</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -253,14 +254,11 @@ class ValuationReport extends React.Component {
                                                 <thead>
                                                 <tr>
                                                     <th>Address</th>
-                                                    <th>Current Valuation</th>
-                                                    <th>Distance to valuated property</th>
-                                                    <th>House Type</th>
                                                     <th>Postcode</th>
-                                                    <th>Rooms</th>
-                                                    <th>Size</th>
-                                                    <th>Sold Date</th>
-                                                    <th>Sold Price</th>
+                                                    <th>House Type</th>
+                                                    <th>Beds</th>
+                                                    <th>Property Size</th>
+                                                    <th>Current Value</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -269,14 +267,11 @@ class ValuationReport extends React.Component {
 
                                                         <tr key={i}>
                                                             <td>{cp.address_1}</td>
-                                                            <td>£{cp.current_valuation.toLocaleString()}</td>
-                                                            <td>{cp.distance_to_query_property}</td>
-                                                            <td>{cp.house_type}</td>
                                                             <td>{cp.postcode}</td>
-                                                            <td>{cp.rooms}</td>
-                                                            <td>{cp.size}</td>
-                                                            <td>{moment(cp.sold_date).format('DD-MM-YYYY')}</td>
-                                                            <td>£{cp.sold_price.toLocaleString()}</td>
+                                                            <td>{cp.house_type}</td>
+                                                            <td>{(cp.rooms)-2}</td>
+                                                            <td>{(cp.size)+' sqm'}</td>
+                                                            <td>£{cp.current_valuation.toLocaleString()}</td>
                                                         </tr>
                                                     ))}
                                                 </tbody>
