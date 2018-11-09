@@ -3,7 +3,7 @@
     "username": "root",
     "password": "",
     "database": "housevault_min",
-    "host": "localhost`",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
