@@ -158,6 +158,10 @@ class ValuationReport extends React.Component {
                         <div className="row">
                             <div className="col-12 text-left">
                                 <h2 className='mt-3'>Local Property Value Factors</h2>
+                                <p>This section of the report digs a little deeper into the local area surrounding the subject property. We have collated data on average
+                                property sizes, market values & property types. Our local research shows that the internal property size typically has the largest affect
+                                on market value which is why we also calculate the average value per square meter. If the subject property is outside these 'norms' it normally
+                                results in a positive/negative effect on the value.</p>
                             </div>
                             <div className="card-deck">
                                 <GraphCard title={'Average Property Size'}>
