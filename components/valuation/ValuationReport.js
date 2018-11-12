@@ -30,13 +30,22 @@ class ValuationReport extends React.Component {
             ]
         };
     }
-    getValuesForLine(regPriceFiveYear){
+    getValuesForLine(regPriceFiveYear, predictPriceFiveYear){ //takes an arr
+        // repeat this for each element and create { currentPrice: 1, price: [1,2,3]}
         const keys = Object.keys(regPriceFiveYear);
         // filter out empty values
         const prices = keys
             .map((k, i) => regPriceFiveYear[`index_${++i}`])
             .filter(v => v);
         const currentPrice = regPriceFiveYear['index_31'];
+        console.log(prices);
+        const keys2 = Object.keys(predictPriceFiveYear);
+        // filter out empty values
+        const prices2 = keys2
+            .map((k, i) => predictPriceFiveYear[`index_${++i}`])
+            .filter(v => v);
+        const currentPrice2 = predictPriceFiveYear['index_31'];
+        console.log(prices2);
         const data = {
             labels: this.createMonthLabels(prices),
             datasets: [
@@ -61,6 +70,28 @@ class ValuationReport extends React.Component {
                     pointRadius: 1,
                     pointHitRadius: 10,
                     data: prices
+                },
+                {
+                    label: `Current Price 2: £${currentPrice2}`,
+                    maintainAspectRatio: false,
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: 'rgba(75,192,192,0.4)',
+                    borderColor: 'rgba(75,192,192,1)',
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: 'rgba(75,192,192,1)',
+                    pointBackgroundColor: '#fff',
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                    pointHoverBorderColor: 'rgba(220,220,220,1)',
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: prices2
                 }
             ]
         };
@@ -190,11 +221,11 @@ class ValuationReport extends React.Component {
                         <h2 className='mt-3'>Property Performance V Regional Average</h2>
                     </div>
                     <GraphCard title={'This properties market value over 5 years'}>
-                        <Line data={this.getValuesForLine(this.props.valuation.predict_price_5y)} />
+                        <Line data={this.getValuesForLine(this.props.valuation.predict_price_5y,this.props.valuation.regional_price_5y)} />
                     </GraphCard>
-                    <GraphCard title={'Regional 5 Year Price Prediction'}>
+                    {/*  <GraphCard title={'Regional 5 Year Price Prediction'}>
                         <Line data={this.getValuesForLine(this.props.valuation.regional_price_5y)} />
-                    </GraphCard>
+                    </GraphCard> */}
                 </div>
 
                 <div className="row">
@@ -202,13 +233,13 @@ class ValuationReport extends React.Component {
                         <h2 className='mt-3'>Regional Values Based on Property Type</h2>
                     </div>
 
-                    {
+                    {/* {
                         _.map(this.props.valuation.regional_housetype_price_5y, (ht, i) => (
                             <GraphCard title={i.replace("Price", " Price")}  key={i}>
                                 <Line data={this.getValuesForLine(ht)} />
                             </GraphCard>
                         ))
-                    }
+                    }  */}
 
                 </div>
                 {
