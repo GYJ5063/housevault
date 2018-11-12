@@ -30,17 +30,4 @@ router.get("/address/:id", (req, res) => {
     });
 });
 
-router.get('/addresses/:postcode', (req, res) => {
-    connection.sync({ force: false }).then(() => {
-        addresses.findAll({ 
-            where: { 
-                postcode: req.params.postcode,
-                organisation_name: ''
-            }
-        })
-        .then(addresses => res.json(addresses))
-        .catch(err => { throw err }); // catch on frontend
-    });
-});
-
 module.exports = router;
