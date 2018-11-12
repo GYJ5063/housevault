@@ -20,18 +20,6 @@ class ValuationForm extends React.Component {
         this.selectAddress = this.selectAddress.bind(this);
         this.validator = new FormValidator([
             {
-                field: 'address_id',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'Address is required.'
-            },
-            {
-                field: 'postcode',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'Post Code is required.'
-            },
-            {
                 field: 'built_from',
                 method: 'isEmpty',
                 validWhen: false,
@@ -74,7 +62,7 @@ class ValuationForm extends React.Component {
 
         this.state = {
             postcode: '',
-            address_id: '',
+            address: null,
             building_number: '',
             building_name: '',
             built_from: '',
@@ -103,7 +91,7 @@ class ValuationForm extends React.Component {
         e.preventDefault();
 
         const prevStepIsValid = 
-            !!this.state.address_id &&
+            !!this.state.address &&
             (parseInt(this.state.bedrooms) + parseInt(this.state.reception_rooms)) > 1;
 
         if(this.state.step === 1 && prevStepIsValid) {
@@ -119,8 +107,8 @@ class ValuationForm extends React.Component {
         }
 
         this.submitted = true;
-        const address = _.find(this.state.addressList, (a) => a.id == this.state.address_id);
-
+        
+        const { address } = this.state;
         let formData = {
             postcode: address.postcode,
             building_number: address.building_number,
@@ -160,7 +148,7 @@ class ValuationForm extends React.Component {
 
     selectAddress(address) {
         console.log(address);
-        //this.setState({ address_id: event.target.value });
+        this.setState({ address });
     }
     render() {
         let validation = this.submitted ?

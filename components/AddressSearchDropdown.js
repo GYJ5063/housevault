@@ -9,6 +9,7 @@ const QUERY = gql`
                 building_number
                 building_name
                 thoroughfare
+                postcode
             }
         }
 `;
@@ -23,9 +24,13 @@ export default ({ postcode, onSelectAddress }) => {
                 return(
                     <div className="form-group">
                         <br />
-                        <select name="address_id" className="form-control" id="address_id" onChange={(event) => {
-                            onSelectAddress(_.find(data.addresses, { 'id': parseInt(event.target.value) }))
-                            }}>
+                        <select 
+                            name="address_id"
+                            className="form-control"
+                            id="address_id" 
+                            onChange={event => {
+                                onSelectAddress(_.find(data.addresses, adr =>  adr.id == event.target.value ))}}
+                        >
                             <option value="">Choose Address</option>
                             {
                                 _.map(data.addresses, address => (
