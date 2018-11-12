@@ -41,7 +41,7 @@ class ValuationReport extends React.Component {
             labels: this.createMonthLabels(prices),
             datasets: [
                 {
-                    label: `Current Price ${currentPrice}`,
+                    label: `Current Valuation: £${currentPrice}`,
                     maintainAspectRatio: false,
                     fill: false,
                     lineTension: 0.1,
@@ -112,9 +112,9 @@ class ValuationReport extends React.Component {
                     <GraphCard title={'Property Overview'}>
                         <h3>Current Capital Value</h3>
                         <h4>{'£'+(this.props.valuation.predict_results.predict_price).toLocaleString()}</h4>
-                        <h3>Rental Value</h3>
+                        <h3>Rental Value</h3> {/*replace placeholder with rental_data API*/}
                         <h4>{'£'+(this.props.valuation.predict_results.predict_price * 0.055 / 12).toFixed(0)+' per month | £'+(this.props.valuation.predict_results.predict_price * 0.055 / 52).toFixed(0)+' per week'}</h4>
-                        <h3>Investment Yield</h3>
+                        <h3>Investment Yield</h3> {/*replace placeholder with rental_data API*/}
                         <h4>5.5%</h4>
                         <h3>12 Month Capital Growth</h3>
                         <h4>{(((this.props.valuation.predict_price_5y.index_31)-(this.props.valuation.predict_price_5y.index_25))/(this.props.valuation.predict_price_5y.index_25)*100).toFixed(1)+'%'}</h4>
