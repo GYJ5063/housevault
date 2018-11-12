@@ -7,10 +7,10 @@ export default (props) => {
             <div className="card-header text-white bg-info mb-3">{props.property.address_1}{', '}{props.property.postcode}</div>
             <div className="card-body">
                 <h5 className="card-title text-center">{'Current Market Value'}<br />
-                    {'£'}{props.property.current_valuation.toLocaleString()}</h5>
+                    {'£'}{props.property.current_valuation.toLocaleString()}</h5> {/*minus 2 from below property.room (habitable rooms) to estimate number of bedrooms*/}
                 {props.property.house_type}{' with '}{(props.property.rooms)-2}{' bedrooms and '}{props.property.size}{'sqm of living space was last sold for £'}{props.property.sold_price.toLocaleString()}{' on the '}{moment(props.property.sold_date).format('Do MMMM YYYY')}{'.'}<br />
             </div>
-            <div className="card-footer text-muted"><strong>{'Located '}{props.property.distance_to_query_property}{'m away'}</strong></div>
+        <div className="card-footer text-muted"><strong>Located {props.property.distance_to_query_property < 1 ? ' within 25 meters' : props.property.distance_to_query_property + 'm away'}</strong></div>
         </div>
     );
 }
