@@ -20,6 +20,12 @@ class ValuationForm extends React.Component {
         this.selectAddress = this.selectAddress.bind(this);
         this.validator = new FormValidator([
             {
+                field: 'address',
+                method: 'isEmpty',
+                validWhen: false,
+                message: 'Postcode and address required.'
+            },
+            {
                 field: 'built_from',
                 method: 'isEmpty',
                 validWhen: false,
@@ -62,7 +68,7 @@ class ValuationForm extends React.Component {
 
         this.state = {
             postcode: '',
-            address: null,
+            address: '',
             building_number: '',
             building_name: '',
             built_from: '',
@@ -166,6 +172,8 @@ class ValuationForm extends React.Component {
                     <div >
                         <h1>Free Instant Online Valuation</h1>
                         <p>We offer instant online valuations, simply enter your post code below for an indication of what your property is worth.</p>
+                        <span id="address" className=" errText">{validation.address.message}</span>
+                        <br />
                         <AddressSearch onSelectAddress={this.selectAddress}/>
                         <div className="form-group">
                             <span id="bedrooms" className=" errText">{validation.bedrooms.message}</span>

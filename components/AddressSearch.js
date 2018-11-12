@@ -44,15 +44,3 @@ class AddressSearch extends React.Component {
 }
 
 export default AddressSearch;
-
-    // client.query({
-    //     query,
-    //     variables: { postcode: this.state.postcode }
-    // })
-    // .then(res => {
-    //     this.setState({
-    //         address_picker_hidden: false,
-    //         addressList: res.data.addresses
-    //     });
-    // })
-    // .catch(err => console.error(err));
