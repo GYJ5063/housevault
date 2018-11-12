@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 
 import FormValidator from "../../components/FormValidator";
 import ValuationReport from "../valuation/ValuationReport";
-// import AddressSearch from '../AddressSearch';
+import AddressSearch from '../../components/AddressSearch';
 
 
 class ValuationForm extends React.Component {
@@ -186,13 +186,13 @@ class ValuationForm extends React.Component {
                     <div >
                         <h1>Free Instant Online Valuation</h1>
                         <p>We offer instant online valuations, simply enter your post code below for an indication of what your property is worth.</p>
-                        <div className="form-group">
+                        <AddressSearch/>
+                        {/* <div className="form-group">
                             <span id="postcode" className="errText">{validation.postcode.message}</span>
                             <label htmlFor="postcode">Postcode</label>
                             <input type="text" name="postcode" id="postcode" value={this.state.postcode} className="form-control" placeholder="Post Code" onChange={this.handleChange} />
                         </div>
                         <Button color="danger" block onClick={() => {this.findAddress()}}> Find Address</Button>
-                        {/* <AddressSearch /> */}
                         <div className={(this.state.address_picker_hidden) ? "d-none" : "" } >
                             <div className="form-group">
                                 <br />
@@ -208,7 +208,7 @@ class ValuationForm extends React.Component {
                                     }
                                 </select>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="form-group">
                             <span id="bedrooms" className=" errText">{validation.bedrooms.message}</span>
                             <br />

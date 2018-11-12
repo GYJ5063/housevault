@@ -3,66 +3,47 @@ import { ButtonGroup, Button } from 'reactstrap';
 
 import { ApolloConsumer, Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import AddressSearchDropdown from './AddressSearchDropdown';
 
 class AddressSearch extends React.Component {
     constructor(props) {
         super(props);
 
+        this.handleChange = this.handleChange.bind(this);
+
         this.state = {
-            postcode: null
+            postcode: '',
+            postcodeEntered: false
         };
     }
 
-    findAddress() {
+    submitPostcode() {
+        if (this.state.postcode) {
+            this.setState({ postcodeEntered: true });
+        }
     }
-    handleChange() {
-
+    handleChange (e) {
+        let newState = {};
+        newState[e.target.name] = e.target.value;
+        this.setState(newState);
     }
     render() {
         return (
-            <ApolloConsumer>
-                { client => (
-                    <React.Fragment>
-                    <div className="form-group">
-                        <label htmlFor="postcode">Postcode</label>
-                        <input type="text" name="postcode" id="postcode" value={this.props.postcode} className="form-control" placeholder="Post Code" onChange={this.handleChange} />
-                    </div>
-                    <Button color="danger" block onClick={() => {this.findAddress()}}> Find Address</Button>
-                    <AddressSearch/>
-                    <div>
-                        <div className="form-group">
-                            <br />
-                            <select name="address_id" className="form-control" id="address_id" onChange={this.handleChange}>
-                                <option value="">Choose Address</option>
-                                {/* {
-                                    _.map(this.state.addressList, address => (
-                                        <option key={address.id} value={address.id}>
-                                            {address.building_number} {address.thoroughfare}
-                                        </option>
-                                    ))
-                                } */}
-                            </select>
-                        </div>
-                    </div>
-                    </React.Fragment>
-                )}
-            </ApolloConsumer>
+            <React.Fragment>
+                <div className="form-group">
+                    <label htmlFor="postcode">Postcode</label>
+                    <input type="text" name="postcode" id="postcode" value={this.state.postcode} className="form-control" placeholder="Post Code" onChange={this.handleChange} />
+                </div>
+                <Button color="danger" block onClick={() => {this.submitPostcode()}}> Find Address</Button>
+                    {
+                        this.state.postcodeEntered ? <AddressSearchDropdown postcode={this.state.postcode}/> : null
+                    }
+            </React.Fragment>
         );
     }
 }
 
 export default AddressSearch;
-
-const QUERY = gql`
-        query addresses($postcode: String!) {
-            addresses(postcode: $postcode) {
-                id
-                building_number
-                building_name
-                thoroughfare
-            }
-        }
-`;
 
     // client.query({
     //     query,
