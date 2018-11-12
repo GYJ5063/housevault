@@ -36,7 +36,7 @@ class AddressSearch extends React.Component {
                 </div>
                 <Button color="danger" block onClick={() => {this.submitPostcode()}}> Find Address</Button>
                     {
-                        this.state.postcodeEntered ? <AddressSearchDropdown postcode={this.state.postcode}/> : null
+                        this.state.postcodeEntered ? <AddressSearchDropdown postcode={this.state.postcode} onSelectAddress={this.props.onSelectAddress}/> : null
                     }
             </React.Fragment>
         );

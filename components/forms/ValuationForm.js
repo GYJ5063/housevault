@@ -17,6 +17,7 @@ class ValuationForm extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.valuationSubmit = this.valuationSubmit.bind(this);
+        this.selectAddress = this.selectAddress.bind(this);
         this.validator = new FormValidator([
             {
                 field: 'address_id',
@@ -102,7 +103,6 @@ class ValuationForm extends React.Component {
         e.preventDefault();
 
         const prevStepIsValid = 
-            !!this.state.postcode &&
             !!this.state.address_id &&
             (parseInt(this.state.bedrooms) + parseInt(this.state.reception_rooms)) > 1;
 
@@ -158,18 +158,10 @@ class ValuationForm extends React.Component {
         this.setState({property_type:type});
     }
 
-    findAddress() {
-        axios.get(`${process.env.API}addresses/${this.state.postcode}`)
-            .then(addresses => {
-                this.setState({
-                    address_picker_hidden: false,
-                    addressList: addresses.data
-                });
-            })
-            .catch(err => console.error(err));
+    selectAddress(address) {
+        console.log(address);
+        //this.setState({ address_id: event.target.value });
     }
-
-
     render() {
         let validation = this.submitted ?
             this.validator.validate(this.state) :
@@ -186,29 +178,7 @@ class ValuationForm extends React.Component {
                     <div >
                         <h1>Free Instant Online Valuation</h1>
                         <p>We offer instant online valuations, simply enter your post code below for an indication of what your property is worth.</p>
-                        <AddressSearch/>
-                        {/* <div className="form-group">
-                            <span id="postcode" className="errText">{validation.postcode.message}</span>
-                            <label htmlFor="postcode">Postcode</label>
-                            <input type="text" name="postcode" id="postcode" value={this.state.postcode} className="form-control" placeholder="Post Code" onChange={this.handleChange} />
-                        </div>
-                        <Button color="danger" block onClick={() => {this.findAddress()}}> Find Address</Button>
-                        <div className={(this.state.address_picker_hidden) ? "d-none" : "" } >
-                            <div className="form-group">
-                                <br />
-                                <span id="postcode" className="errText">{validation.address_id.message}</span>
-                                <select name="address_id" className="form-control" id="address_id" onChange={this.handleChange}>
-                                    <option value="">Choose Address</option>
-                                    {
-                                        _.map(this.state.addressList, address => (
-                                            <option key={address.id} value={address.id}>
-                                                {address.building_number} {address.thoroughfare}
-                                            </option>
-                                        ))
-                                    }
-                                </select>
-                            </div>
-                        </div> */}
+                        <AddressSearch onSelectAddress={this.selectAddress}/>
                         <div className="form-group">
                             <span id="bedrooms" className=" errText">{validation.bedrooms.message}</span>
                             <br />
@@ -319,16 +289,5 @@ class ValuationForm extends React.Component {
         );
     }
 }
-
-// const query = gql`
-//         query addresses($postcode: String!) {
-//             addresses(postcode: $postcode) {
-//                 id
-//                 building_number
-//                 building_name
-//                 thoroughfare
-//             }
-//         }
-// `;
 
 export default ValuationForm;

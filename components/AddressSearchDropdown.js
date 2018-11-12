@@ -1,5 +1,7 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import _ from 'lodash';
+
 const QUERY = gql`
         query addresses($postcode: String!) {
             addresses(postcode: $postcode) {
@@ -11,18 +13,19 @@ const QUERY = gql`
         }
 `;
 
-export default ({ postcode }) => {
-
+export default ({ postcode, onSelectAddress }) => {
     return(
         <Query query={QUERY} variables={{postcode}}>
             {({ loading, error, data }) => {
                 if(loading) return 'loading...';
-                if(error) return `Error: ${error.message}`;
-                console.log(data);
+                if(error) return console.error(error);
+
                 return(
                     <div className="form-group">
                         <br />
-                        <select name="address_id" className="form-control" id="address_id" onChange={this.handleChange}>
+                        <select name="address_id" className="form-control" id="address_id" onChange={(event) => {
+                            onSelectAddress(_.find(data.addresses, { 'id': parseInt(event.target.value) }))
+                            }}>
                             <option value="">Choose Address</option>
                             {
                                 _.map(data.addresses, address => (
