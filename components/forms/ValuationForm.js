@@ -140,6 +140,8 @@ class ValuationForm extends React.Component {
                 .then(function (response) {
 
                     self.props.report(response.data);
+                    console.log(response.data);
+                    console.log(JSON.stringify(response.data));
                     self.setState({ hideLoadingSpinner: true, valuation: response.data, step:3 });
                 })
                 .catch(function (error) {
