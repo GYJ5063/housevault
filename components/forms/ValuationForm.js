@@ -3,11 +3,10 @@ import { ButtonGroup, Button } from 'reactstrap'
 import _ from "lodash";
 import axios from "axios";
 
-import { graphql, Query } from 'react-apollo';
+import {compose, graphql, Query} from 'react-apollo';
 import gql from 'graphql-tag';
 
 import FormValidator from "../../components/FormValidator";
-import ValuationReport from "../valuation/ValuationReport";
 import AddressSearch from '../../components/AddressSearch';
 
 
@@ -26,24 +25,6 @@ class ValuationForm extends React.Component {
                 message: 'Postcode and address required.'
             },
             {
-                field: 'built_from',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'Built from is required.'
-            },
-            {
-                field: 'property_type',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'Property type is required.'
-            },
-            {
-                field: 'wall_type',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'Wall type is required.'
-            },
-            {
                 field: 'bedrooms',
                 method: 'isEmpty',
                 validWhen: false,
@@ -57,18 +38,14 @@ class ValuationForm extends React.Component {
                 validWhen: true,
                 message: 'Total rooms must be greater than 1.'
             },
-            {
-                field: 'total_floor_area',
-                method: _.inRange,
-                args: [10, 600],
-                validWhen: true,
-                message: 'Area must be a valid number between 10 and 600.'
-            }
         ]);
 
+
+
+
         this.state = {
-            postcode: '',
-            address: '',
+            postcode: 'SN6 6BW',
+            address: {postcode: 'SN6 6BW',building_number:'62', building_name: ''},
             building_number: '',
             building_name: '',
             built_from: '',
@@ -87,7 +64,6 @@ class ValuationForm extends React.Component {
     }
 
     handleChange (e) {
-        // console.log(e.target.name,e.target.value);
         let newState = {};
         newState[e.target.name] = e.target.value;
         this.setState(newState);
@@ -102,15 +78,44 @@ class ValuationForm extends React.Component {
 
         if(this.state.step === 1 && prevStepIsValid) {
             this.setState({"step":2});
+
         }
 
         const validation = this.validator.validate(this.state);
         this.setState({ validation });
 
         if(!prevStepIsValid) {
-            console.log('step 1 is invalid');
             return;
         }
+
+        this.validator = new FormValidator([
+            {
+                field: 'built_from',
+                method: 'isEmpty',
+                validWhen: false,
+                message: 'Built from is required.'
+            },
+            {
+                field: 'property_type',
+                method: 'isEmpty',
+                validWhen: false,
+                message: 'Property type is required.'
+            },
+            {
+                field: 'wall_type',
+                method: 'isEmpty',
+                validWhen: false,
+                message: 'Wall type is required.'
+            },
+
+            {
+                field: 'total_floor_area',
+                method: _.inRange,
+                args: [10, 600],
+                validWhen: true,
+                message: 'Area must be a valid number between 10 and 600.'
+            },
+        ]);
 
         this.submitted = true;
         
@@ -122,6 +127,8 @@ class ValuationForm extends React.Component {
             built_from: this.state.built_from,
             property_type: this.state.property_type,
             wall_type: this.state.wall_type,
+            num_bedrooms: parseInt(this.state.bedrooms),
+            num_receptionrooms: parseInt(this.state.reception_rooms),
             number_habitable_rooms: (parseInt(this.state.reception_rooms) + parseInt(this.state.bedrooms)),
             total_floor_area: this.state.total_floor_area,
             report: 1
@@ -138,8 +145,21 @@ class ValuationForm extends React.Component {
 
             axios.post(process.env.PRICEPREDICTION_URL, formData, config)
                 .then(function (response) {
+                    self.props.mutate({
+                        variables: {
+                            first_name: "Lee",
+                            last_name: "Mellon",
+                            email: "testing@leadflow.com",
+                            phone_number:"01285 123345",
+                            sales_valuation:350000.00,
+                            rental_valuation:750000.00,
+                            company_id:1
+                        }
+                    });
 
                     self.props.report(response.data);
+
+
                     self.setState({ hideLoadingSpinner: true, valuation: response.data, step:3 });
                 })
                 .catch(function (error) {
@@ -153,7 +173,6 @@ class ValuationForm extends React.Component {
     }
 
     selectAddress(address) {
-        console.log(address);
         this.setState({ address });
     }
     render() {
@@ -286,4 +305,23 @@ class ValuationForm extends React.Component {
     }
 }
 
-export default ValuationForm;
+const mutator = gql`
+    mutation createLead($first_name: String!, $last_name: String!, $email: String!, $phone_number: String!, 
+            $sales_valuation: Float!, $rental_valuation: Float!, $company_id: Int!) {
+             createLead(
+                first_name: $first_name, 
+                last_name: $last_name, 
+                email: $email,
+                phone_number:$phone_number, 
+                sales_valuation:$sales_valuation, 
+                rental_valuation:$rental_valuation, 
+                company_id:$company_id
+              ) {
+                id
+              }
+          }
+`;
+
+export default compose(
+    graphql(mutator)
+)(ValuationForm);

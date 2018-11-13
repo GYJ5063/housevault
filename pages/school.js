@@ -129,7 +129,6 @@ class School extends React.Component {
 School.getInitialProps = async ({ req, query: { school } }) => {
     const res = await fetch(process.env.BACKEND_URL + "school/" + school);
     const json = await res.json();
-    console.log(json);
     return { school: json }
 };
 

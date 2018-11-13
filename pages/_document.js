@@ -62,10 +62,10 @@ export default class MyDocument extends Document {
                 <meta name="twitter:creator" content="@housevaultuk" />
                 <meta name="twitter:image:src" content="https://housevault.co.uk/static/housevault-logo.svg" />
 
+
             </Head>
             <body>
                 <Main />
-                {/*<Footer />*/}
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
                         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                         crossOrigin="anonymous"></script>
