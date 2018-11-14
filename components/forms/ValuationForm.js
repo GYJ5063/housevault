@@ -1,9 +1,14 @@
 import React from "react";
-import FormValidator from "../../components/FormValidator";
 import { ButtonGroup, Button } from 'reactstrap'
 import _ from "lodash";
 import axios from "axios";
-import ValuationReport from "../valuation/ValuationReport";
+
+import {compose, graphql, Query} from 'react-apollo';
+import gql from 'graphql-tag';
+
+import FormValidator from "../../components/FormValidator";
+import AddressSearch from '../../components/AddressSearch';
+
 
 class ValuationForm extends React.Component {
     constructor(props) {
@@ -11,36 +16,13 @@ class ValuationForm extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.valuationSubmit = this.valuationSubmit.bind(this);
+        this.selectAddress = this.selectAddress.bind(this);
         this.validator = new FormValidator([
             {
-                field: 'address_id',
+                field: 'address',
                 method: 'isEmpty',
                 validWhen: false,
-                message: 'Address is required.'
-            },
-            {
-                field: 'postcode',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'Post Code is required.'
-            },
-            {
-                field: 'built_from',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'Built from is required.'
-            },
-            {
-                field: 'property_type',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'Property type is required.'
-            },
-            {
-                field: 'wall_type',
-                method: 'isEmpty',
-                validWhen: false,
-                message: 'Wall type is required.'
+                message: 'Postcode and address required.'
             },
             {
                 field: 'bedrooms',
@@ -56,18 +38,14 @@ class ValuationForm extends React.Component {
                 validWhen: true,
                 message: 'Total rooms must be greater than 1.'
             },
-            {
-                field: 'total_floor_area',
-                method: _.inRange,
-                args: [10, 600],
-                validWhen: true,
-                message: 'Area must be a valid number between 10 and 600.'
-            }
         ]);
 
+
+
+
         this.state = {
-            postcode: '',
-            address_id: '',
+            postcode: 'SN6 6BW',
+            address: {postcode: 'SN6 6BW',building_number:'62', building_name: ''},
             building_number: '',
             building_name: '',
             built_from: '',
@@ -86,7 +64,6 @@ class ValuationForm extends React.Component {
     }
 
     handleChange (e) {
-        // console.log(e.target.name,e.target.value);
         let newState = {};
         newState[e.target.name] = e.target.value;
         this.setState(newState);
@@ -96,25 +73,53 @@ class ValuationForm extends React.Component {
         e.preventDefault();
 
         const prevStepIsValid = 
-            !!this.state.postcode &&
-            !!this.state.address_id &&
+            !!this.state.address &&
             (parseInt(this.state.bedrooms) + parseInt(this.state.reception_rooms)) > 1;
 
         if(this.state.step === 1 && prevStepIsValid) {
             this.setState({"step":2});
+
         }
 
         const validation = this.validator.validate(this.state);
         this.setState({ validation });
 
         if(!prevStepIsValid) {
-            console.log('step 1 is invalid');
             return;
         }
 
-        this.submitted = true;
-        const address = _.find(this.state.addressList, (a) => a.id == this.state.address_id);
+        this.validator = new FormValidator([
+            {
+                field: 'built_from',
+                method: 'isEmpty',
+                validWhen: false,
+                message: 'Built from is required.'
+            },
+            {
+                field: 'property_type',
+                method: 'isEmpty',
+                validWhen: false,
+                message: 'Property type is required.'
+            },
+            {
+                field: 'wall_type',
+                method: 'isEmpty',
+                validWhen: false,
+                message: 'Wall type is required.'
+            },
 
+            {
+                field: 'total_floor_area',
+                method: _.inRange,
+                args: [10, 600],
+                validWhen: true,
+                message: 'Area must be a valid number between 10 and 600.'
+            },
+        ]);
+
+        this.submitted = true;
+        
+        const { address } = this.state;
         let formData = {
             postcode: address.postcode,
             building_number: address.building_number,
@@ -122,6 +127,8 @@ class ValuationForm extends React.Component {
             built_from: this.state.built_from,
             property_type: this.state.property_type,
             wall_type: this.state.wall_type,
+            num_bedrooms: parseInt(this.state.bedrooms),
+            num_receptionrooms: parseInt(this.state.reception_rooms),
             number_habitable_rooms: (parseInt(this.state.reception_rooms) + parseInt(this.state.bedrooms)),
             total_floor_area: this.state.total_floor_area,
             report: 1
@@ -138,8 +145,21 @@ class ValuationForm extends React.Component {
 
             axios.post(process.env.PRICEPREDICTION_URL, formData, config)
                 .then(function (response) {
+                    self.props.mutate({
+                        variables: {
+                            first_name: "Lee",
+                            last_name: "Mellon",
+                            email: "testing@leadflow.com",
+                            phone_number:"01285 123345",
+                            sales_valuation:350000.00,
+                            rental_valuation:750000.00,
+                            company_id:1
+                        }
+                    });
 
                     self.props.report(response.data);
+
+
                     self.setState({ hideLoadingSpinner: true, valuation: response.data, step:3 });
                 })
                 .catch(function (error) {
@@ -152,18 +172,9 @@ class ValuationForm extends React.Component {
         this.setState({property_type:type});
     }
 
-    findAddress() {
-        axios.get(`${process.env.API}addresses/${this.state.postcode}`)
-            .then(addresses => {
-                this.setState({
-                    address_picker_hidden: false,
-                    addressList: addresses.data
-                });
-            })
-            .catch(err => console.error(err));
+    selectAddress(address) {
+        this.setState({ address });
     }
-
-
     render() {
         let validation = this.submitted ?
             this.validator.validate(this.state) :
@@ -180,29 +191,9 @@ class ValuationForm extends React.Component {
                     <div >
                         <h1>Free Instant Online Valuation</h1>
                         <p>We offer instant online valuations, simply enter your post code below for an indication of what your property is worth.</p>
-                        <div className="form-group">
-                            <span id="postcode" className="errText">{validation.postcode.message}</span>
-                            <label htmlFor="postcode">Postcode</label>
-                            <input type="text" name="postcode" id="postcode" value={this.state.postcode} className="form-control" placeholder="Post Code" onChange={this.handleChange} />
-                        </div>
-                        <Button color="danger" block onClick={() => {this.findAddress()}}> Find Address</Button>
-
-                        <div className={(this.state.address_picker_hidden) ? "d-none" : "" } >
-                            <div className="form-group">
-                                <br />
-                                <span id="postcode" className="errText">{validation.address_id.message}</span>
-                                <select name="address_id" className="form-control" id="address_id" onChange={this.handleChange}>
-                                    <option value="">Choose Address</option>
-                                    {
-                                        _.map(this.state.addressList, address => (
-                                            <option key={address.id} value={address.id}>
-                                                {address.building_number} {address.thoroughfare}
-                                            </option>
-                                        ))
-                                    }
-                                </select>
-                            </div>
-                        </div>
+                        <span id="address" className=" errText">{validation.address.message}</span>
+                        <br />
+                        <AddressSearch onSelectAddress={this.selectAddress}/>
                         <div className="form-group">
                             <span id="bedrooms" className=" errText">{validation.bedrooms.message}</span>
                             <br />
@@ -313,4 +304,24 @@ class ValuationForm extends React.Component {
         );
     }
 }
-export default ValuationForm;
+
+const mutator = gql`
+    mutation createLead($first_name: String!, $last_name: String!, $email: String!, $phone_number: String!, 
+            $sales_valuation: Float!, $rental_valuation: Float!, $company_id: Int!) {
+             createLead(
+                first_name: $first_name, 
+                last_name: $last_name, 
+                email: $email,
+                phone_number:$phone_number, 
+                sales_valuation:$sales_valuation, 
+                rental_valuation:$rental_valuation, 
+                company_id:$company_id
+              ) {
+                id
+              }
+          }
+`;
+
+export default compose(
+    graphql(mutator)
+)(ValuationForm);
