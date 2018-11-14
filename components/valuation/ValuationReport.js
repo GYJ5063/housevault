@@ -3,6 +3,7 @@ import {Bar, HorizontalBar, Line, Pie} from "react-chartjs-2";
 import moment from "moment";
 import { Table } from 'reactstrap';
 import ComparablePropertyCard from "../../components/valuation/ComparablePropertyCard"
+import ComparableRentalCard from "../../components/valuation/ComparableRentalCard"
 import GraphCard from "../../components/valuation/GraphCard"
 import MapCard from "../../components/valuation/MapCard"
 import _ from "lodash";
@@ -251,7 +252,7 @@ class ValuationReport extends React.Component {
         };
     }
     render() {
-        const marker = {lng: _.toNumber(this.props.valuation.predict_results.lng.toString()), lat: _.toNumber(this.props.valuation.predict_results.lat.toString()) };
+        const marker = {lng: _.toNumber(this.props.valuation.selling_results.predict_results.lng.toString()), lat: _.toNumber(this.props.valuation.selling_results.predict_results.lat.toString()) };
 
         return (
             <div>
@@ -265,13 +266,13 @@ class ValuationReport extends React.Component {
                     <div className="card-group">
                     <GraphCard title={'Property Overview'}>
                         <h3>Current Capital Value</h3>
-                        <h4>{'£'+(this.props.valuation.predict_results.predict_price).toLocaleString()}</h4>
-                        <h3>Rental Value</h3> {/*replace placeholder with rental_data API*/}
-                        <h4>{'£'+(this.props.valuation.predict_results.predict_price * 0.055 / 12).toFixed(0)+' per month | £'+(this.props.valuation.predict_results.predict_price * 0.055 / 52).toFixed(0)+' per week'}</h4>
-                        <h3>Investment Yield</h3> {/*replace placeholder with rental_data API*/}
-                        <h4>5.5%</h4>
+                        <h4>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h4>
+                        <h3>Rental Value</h3>
+                        <h4>{'£'+(this.props.valuation.rental_results.reantal_predict_results.toFixed(0))+' per month | £'+(this.props.valuation.rental_results.reantal_predict_results * 0.12 / 52).toFixed(0)+' per week'}</h4>
+                        <h3>Investment Yield</h3>
+                        <h4>{(((this.props.valuation.rental_results.reantal_predict_results*12)/(this.props.valuation.selling_results.predict_results.predict_price))*100).toFixed(1) + '%'}</h4>
                         <h3>12 Month Capital Growth</h3>
-                        <h4>{(((this.props.valuation.predict_price_5y.index_31)-(this.props.valuation.predict_price_5y.index_25))/(this.props.valuation.predict_price_5y.index_25)*100).toFixed(1)+'%'}</h4>
+                        <h4>{(((this.props.valuation.selling_results.predict_price_5y.index_31)-(this.props.valuation.selling_results.predict_price_5y.index_25))/(this.props.valuation.selling_results.predict_price_5y.index_25)*100).toFixed(1)+'%'}</h4>
                     </GraphCard>
                     <MapCard title={'Street View'}>
                         <div className="streeview">
@@ -287,7 +288,7 @@ class ValuationReport extends React.Component {
 
                 <div >
                     {
-                        _.isEmpty(this.props.valuation.comparable_properties[1]) ? null : (
+                        _.isEmpty(this.props.valuation.selling_results.comparable_properties[1]) ? null : (
                             <div>
                                 <div className="col-12 text-left">
                                     <h2 className='mt-3'>Comparable Sold Properties</h2>
@@ -298,7 +299,7 @@ class ValuationReport extends React.Component {
                                 </div>
                                 <div className="card-deck">
                                     {
-                                        _.map(this.props.valuation.comparable_properties, (cp, i) => (
+                                        _.map(this.props.valuation.selling_results.comparable_properties, (cp, i) => (
                                             <ComparablePropertyCard property={cp} key={i}/>
                                         )).slice(0,6)
                                     }
@@ -309,7 +310,7 @@ class ValuationReport extends React.Component {
                 </div>
                 <div >
                     {
-                        _.isEmpty(this.props.valuation.comparable_properties[1]) ? null : (
+                        _.isEmpty(this.props.valuation.rental_results.reantal_comparable_properties[0]) ? null : (
                             <div>
                                 <div className="col-12 text-left">
                                     <h2 className='mt-3'>Comparable Rental Properties</h2>
@@ -317,8 +318,8 @@ class ValuationReport extends React.Component {
                                 </div>
                                 <div className="card-deck">
                                     {
-                                        _.map(this.props.valuation.comparable_properties, (cp, i) => (
-                                            <ComparablePropertyCard property={cp} key={i}/>
+                                        _.map(this.props.valuation.rental_results.reantal_comparable_properties, (cp, i) => (
+                                            <ComparableRentalCard property={cp} key={i}/>
                                         )).slice(0,6)
                                     }
                                 </div>
@@ -327,7 +328,7 @@ class ValuationReport extends React.Component {
                     }
                 </div>
                 {
-                    !this.props.valuation.local_property_type_statistic ? null : (
+                    !this.props.valuation.selling_results.local_property_type_statistic ? null : (
                         <div className="row">
                             <div className="col-12 text-left">
                                 <h2 className='mt-3'>Local Property Value Factors</h2>
@@ -338,20 +339,20 @@ class ValuationReport extends React.Component {
                             </div>
                             <div className="card-deck">
                                 <GraphCard title={'Average Property Size'}>
-                                    <Bar data={this.getValuesForType(this.props.valuation.local_property_type_statistic, 'average_size', 'Average Size')} />
+                                    <Bar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_size', 'Average Size')} />
                                     <p>Using this graph allows you to compare this property to the averages in your area based on property-type. We separate them because the UK market has historically placed more weight of property-type than actual size. Comparing your property size to the average gives us a strong indication on the value and demand for your home. All things being equal if your home is larger than the local average then you will see increased demand and value. If you're looking to buy or rent then you will have a much clearer picture after comparing like for like properties.</p>
                                 </GraphCard>
                                 <GraphCard title={'Average Property Value'}>
-                                    <HorizontalBar data={this.getValuesForType(this.props.valuation.local_property_type_statistic, 'average_value', 'Average Value')} />
+                                    <HorizontalBar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_value', 'Average Value')} />
                                     <p>One of the easiest comparisons to make against your home is against average property values in your area. We break this down further by property-type because it gives a much clearer picture of the difference between houses on a street. Detached homes typically command a premium of at least 10% for two specific reasons. Detached houses are typically larger and are in lower supply, which in turn creates a demand premium.</p>
                                 </GraphCard>
                                 <GraphCard title={'Property Type Ratio'}>
-                                    <Pie data={this.getValuesForPie(this.props.valuation.local_property_type_statistic, 'num_ratio')} />
+                                    <Pie data={this.getValuesForPie(this.props.valuation.selling_results.local_property_type_statistic, 'num_ratio')} />
                                     <p>The ratio of property types can give a good indication of affluence and demographics of an area. Rural affluent locations such as the South East, for example, typically have an above average percentage of Detached homes compared to flats. The ratio can also give an indication of possible demand.</p>
                                     <p>Buying a terrace property in an area mainly comprising of terrace-houses means your home value is directly linked to average increases in an area. Whereas buying a detached home, even at a premium, could see demand push the values up faster even without any local changes.</p>
                                 </GraphCard>
                                 <GraphCard title={'Value per SQM'}>
-                                    <Bar data={this.getValuesForType(this.props.valuation.local_property_type_statistic, 'per_size_value', 'Per Size Value')} />
+                                    <Bar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'per_size_value', 'Per Size Value')} />
                                     <p>Comparing the value per square meter of a property is one of the best statistical methods and gives good insight for seeing possible trends and changes in the market. We have split the £/sqm value based on property type because as you'll see above there are significant variations depending on the property type. Detached homes typically command a 10%+ premium over semi-detached homes on the same street. This varies depending on location and supply of different house types. £2,500sqm is the average value across the UK.</p>
                                 </GraphCard>
                             </div>
@@ -363,15 +364,15 @@ class ValuationReport extends React.Component {
                         <h2 className='mt-3'>Property Performance Compared to Regional Average</h2>
                     </div>
                     <GraphCard title={'Property Value Compared to Local Averages (5 years)'}>
-                        <Line data={this.getValuesForLine(this.props.valuation.predict_price_5y,this.props.valuation.regional_price_5y)} />
+                        <Line data={this.getValuesForLine(this.props.valuation.selling_results.predict_price_5y,this.props.valuation.selling_results.regional_price_5y)} />
                     </GraphCard>
                     <GraphCard title={'Average Property Type Values (5 years)'}>
-                        <Line data={this.getValuesForLine2(this.props.valuation.regional_housetype_price_5y.DetachedPrice,this.props.valuation.regional_housetype_price_5y.SemiDetachedPrice,this.props.valuation.regional_housetype_price_5y.TerracedPrice,this.props.valuation.regional_housetype_price_5y.FlatPrice)} />
+                        <Line data={this.getValuesForLine2(this.props.valuation.selling_results.regional_housetype_price_5y.DetachedPrice,this.props.valuation.selling_results.regional_housetype_price_5y.SemiDetachedPrice,this.props.valuation.selling_results.regional_housetype_price_5y.TerracedPrice,this.props.valuation.selling_results.regional_housetype_price_5y.FlatPrice)} />
                     </GraphCard>
                 </div>
 
                 {
-                    _.isEmpty(this.props.valuation.sales_history_analyze[1]) ? null : (
+                    _.isEmpty(this.props.valuation.selling_results.sales_history_analyze[1]) ? null : (
                         <React.Fragment>
                             <h2 className='mt-3'>Historic Sales Data</h2>
                             <div className="card">
@@ -388,7 +389,7 @@ class ValuationReport extends React.Component {
                                         </thead>
                                         <tbody>
                                         {
-                                            _.map(this.props.valuation.sales_history_analyze, (val, key) => (
+                                            _.map(this.props.valuation.selling_results.sales_history_analyze, (val, key) => (
                                                 <tr key={key}>
                                                     <td>{moment(val.sold_date).format('Do MMM YYYY')}</td>
                                                     <td>£{val.sold_price.toLocaleString()}</td>
@@ -407,7 +408,7 @@ class ValuationReport extends React.Component {
                 <div className="row">
                     <div className="col">
                         {
-                            _.isEmpty(this.props.valuation.comparable_properties[1]) ? null : (
+                            _.isEmpty(this.props.valuation.selling_results.comparable_properties[1]) ? null : (
                                 <React.Fragment>
                                     <h2 className="mt-3">Comparable Properties</h2>
                                     <div className="card">
@@ -426,7 +427,7 @@ class ValuationReport extends React.Component {
                                                 </thead>
                                                 <tbody>
                                                 {
-                                                    _.map(this.props.valuation.comparable_properties, (cp, i) => (
+                                                    _.map(this.props.valuation.selling_results.comparable_properties, (cp, i) => (
 
                                                         <tr key={i}>
                                                             <td>{cp.address_1}</td>
