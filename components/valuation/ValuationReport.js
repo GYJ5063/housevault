@@ -13,10 +13,10 @@ class ValuationReport extends React.Component {
         super(props);
     }
     getValuesForType(target, suffix, label) {
-        const types = ['Detached', 'Flat', 'Semi_Detached', 'Terrace'];
+        const types = ['Detached', 'Semi_Detached', 'Terrace', 'Flat'];
         const data = types.map(t => target[`${t}_${suffix}`]);
         return {
-            labels: ['Detached', 'Flat', 'Semi Detached', 'Terrace'],
+            labels: ['Detached', 'Semi Detached', 'Terrace', 'Flat'],
             datasets: [
                 {
                     label: label,
@@ -273,7 +273,7 @@ class ValuationReport extends React.Component {
                         <h3>12 Month Capital Growth</h3>
                         <h4>{(((this.props.valuation.predict_price_5y.index_31)-(this.props.valuation.predict_price_5y.index_25))/(this.props.valuation.predict_price_5y.index_25)*100).toFixed(1)+'%'}</h4>
                     </GraphCard>
-                    <MapCard>
+                    <MapCard title={'Street View'}>
                         <div className="streeview">
                             <StreetView
                                 isMarkerShown={this.props.isMarkerShown}
@@ -313,7 +313,7 @@ class ValuationReport extends React.Component {
                             <div>
                                 <div className="col-12 text-left">
                                     <h2 className='mt-3'>Comparable Rental Properties</h2>
-                                    <p>We have found the following 6 rental properties to be the most similar to your search, with a full list of comparables listed further down this report</p>
+                                    <p>We have found the following 6 properties to be the most similar to your search, with a full list of comparables listed further down this report</p>
                                 </div>
                                 <div className="card-deck">
                                     {
