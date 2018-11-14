@@ -268,7 +268,7 @@ class ValuationReport extends React.Component {
                         <h3>Current Capital Value</h3>
                         <h4>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h4>
                         <h3>Rental Value</h3>
-                        <h4>{'£'+(this.props.valuation.rental_results.reantal_predict_results.toFixed(0))+' per month | £'+(this.props.valuation.rental_results.reantal_predict_results * 0.12 / 52).toFixed(0)+' per week'}</h4>
+                        <h4>{'£'+(this.props.valuation.rental_results.reantal_predict_results.toFixed(0))+' per month | £'+(this.props.valuation.rental_results.reantal_predict_results * 12 / 52).toFixed(0)+' per week'}</h4>
                         <h3>Investment Yield</h3>
                         <h4>{(((this.props.valuation.rental_results.reantal_predict_results*12)/(this.props.valuation.selling_results.predict_results.predict_price))*100).toFixed(1) + '%'}</h4>
                         <h3>12 Month Capital Growth</h3>
