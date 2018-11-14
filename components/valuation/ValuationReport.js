@@ -290,11 +290,30 @@ class ValuationReport extends React.Component {
                         _.isEmpty(this.props.valuation.comparable_properties[1]) ? null : (
                             <div>
                                 <div className="col-12 text-left">
-                                    <h2 className='mt-3'>Comparable Properties</h2>
+                                    <h2 className='mt-3'>Comparable Sold Properties</h2>
                                     <p>Our online valuation works by finding a range of local properties that we believe are similar to your enquiry. We asses a number of factors
                                         before choosing a comparable such as distance from your enquiry, number of bedrooms, size, property type & sales history before selecting
                                         the best fitting comparables to use - this is the same process used by the majority of professional surveyors.</p>
                                     <p>We have found the following 6 properties to be the most similar to your search, with a full list of comparables listed further down this report</p>
+                                </div>
+                                <div className="card-deck">
+                                    {
+                                        _.map(this.props.valuation.comparable_properties, (cp, i) => (
+                                            <ComparablePropertyCard property={cp} key={i}/>
+                                        )).slice(0,6)
+                                    }
+                                </div>
+                            </div>
+                        )
+                    }
+                </div>
+                <div >
+                    {
+                        _.isEmpty(this.props.valuation.comparable_properties[1]) ? null : (
+                            <div>
+                                <div className="col-12 text-left">
+                                    <h2 className='mt-3'>Comparable Rental Properties</h2>
+                                    <p>We have found the following 6 rental properties to be the most similar to your search, with a full list of comparables listed further down this report</p>
                                 </div>
                                 <div className="card-deck">
                                     {
