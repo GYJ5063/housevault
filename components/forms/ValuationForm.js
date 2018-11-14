@@ -145,6 +145,7 @@ class ValuationForm extends React.Component {
 
             axios.post(process.env.PRICEPREDICTION_URL, formData, config)
                 .then(function (response) {
+                    console.log(JSON.stringify(response.data));
                     self.props.mutate({
                         variables: {
                             first_name: "Lee",

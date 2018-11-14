@@ -4,6 +4,7 @@ import moment from "moment";
 import { Table } from 'reactstrap';
 import ComparablePropertyCard from "../../components/valuation/ComparablePropertyCard"
 import GraphCard from "../../components/valuation/GraphCard"
+import MapCard from "../../components/valuation/MapCard"
 import _ from "lodash";
 import React from "react";
 
@@ -52,18 +53,18 @@ class ValuationReport extends React.Component {
                     maintainAspectRatio: false,
                     fill: false,
                     lineTension: 0.1,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
+                    backgroundColor: '#1fe45f',
+                    borderColor: '#1fe45f',
                     borderCapStyle: 'butt',
                     borderDash: [],
                     borderDashOffset: 0.0,
                     borderJoinStyle: 'miter',
-                    pointBorderColor: 'rgba(75,192,192,1)',
+                    pointBorderColor: '#1fe45f',
                     pointBackgroundColor: '#fff',
                     pointBorderWidth: 1,
                     pointHoverRadius: 5,
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
+                    pointHoverBackgroundColor: '#1fe45f',
+                    pointHoverBorderColor: '#1fe45f',
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
@@ -74,18 +75,18 @@ class ValuationReport extends React.Component {
                     maintainAspectRatio: false,
                     fill: false,
                     lineTension: 0.1,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
+                    backgroundColor: '#1fa4e4',
+                    borderColor: '#1fa4e4',
                     borderCapStyle: 'butt',
                     borderDash: [],
                     borderDashOffset: 0.0,
                     borderJoinStyle: 'miter',
-                    pointBorderColor: 'rgba(75,192,192,1)',
+                    pointBorderColor: '#1fa4e4',
                     pointBackgroundColor: '#fff',
                     pointBorderWidth: 1,
                     pointHoverRadius: 5,
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
+                    pointHoverBackgroundColor: '#1fa4e4',
+                    pointHoverBorderColor: '#1fa4e4',
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
@@ -129,18 +130,18 @@ class ValuationReport extends React.Component {
                     maintainAspectRatio: false,
                     fill: false,
                     lineTension: 0.1,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
+                    backgroundColor: '#1fe45f',
+                    borderColor: '#1fe45f',
                     borderCapStyle: 'butt',
                     borderDash: [],
                     borderDashOffset: 0.0,
                     borderJoinStyle: 'miter',
-                    pointBorderColor: 'rgba(75,192,192,1)',
+                    pointBorderColor: '#1fe45f',
                     pointBackgroundColor: '#fff',
                     pointBorderWidth: 1,
                     pointHoverRadius: 5,
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
+                    pointHoverBackgroundColor: '#1fe45f',
+                    pointHoverBorderColor: '#1fe45f',
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
@@ -151,18 +152,18 @@ class ValuationReport extends React.Component {
                     maintainAspectRatio: false,
                     fill: false,
                     lineTension: 0.1,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
+                    backgroundColor: '#1fa4e4',
+                    borderColor: '#1fa4e4',
                     borderCapStyle: 'butt',
                     borderDash: [],
                     borderDashOffset: 0.0,
                     borderJoinStyle: 'miter',
-                    pointBorderColor: 'rgba(75,192,192,1)',
+                    pointBorderColor: '#1fa4e4',
                     pointBackgroundColor: '#fff',
                     pointBorderWidth: 1,
                     pointHoverRadius: 5,
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
+                    pointHoverBackgroundColor: '#1fa4e4',
+                    pointHoverBorderColor: '#1fa4e4',
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
@@ -173,18 +174,18 @@ class ValuationReport extends React.Component {
                     maintainAspectRatio: false,
                     fill: false,
                     lineTension: 0.1,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
+                    backgroundColor: '#e41fa4',
+                    borderColor: '#e41fa4',
                     borderCapStyle: 'butt',
                     borderDash: [],
                     borderDashOffset: 0.0,
                     borderJoinStyle: 'miter',
-                    pointBorderColor: 'rgba(75,192,192,1)',
+                    pointBorderColor: '#e41fa4',
                     pointBackgroundColor: '#fff',
                     pointBorderWidth: 1,
                     pointHoverRadius: 5,
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
+                    pointHoverBackgroundColor: '#e41fa4',
+                    pointHoverBorderColor: '#e41fa4',
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
@@ -195,18 +196,18 @@ class ValuationReport extends React.Component {
                     maintainAspectRatio: false,
                     fill: false,
                     lineTension: 0.1,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
+                    backgroundColor: '#EEB029',
+                    borderColor: '#EEB029',
                     borderCapStyle: 'butt',
                     borderDash: [],
                     borderDashOffset: 0.0,
                     borderJoinStyle: 'miter',
-                    pointBorderColor: 'rgba(75,192,192,1)',
-                    pointBackgroundColor: '#fff',
+                    pointBorderColor: '#EEB029',
+                    pointBackgroundColor: '#EEB029',
                     pointBorderWidth: 1,
                     pointHoverRadius: 5,
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
+                    pointHoverBackgroundColor: '#EEB029',
+                    pointHoverBorderColor: '#EEB029',
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
@@ -226,23 +227,24 @@ class ValuationReport extends React.Component {
         });
     }
     getValuesForPie(target, suffix){
-        const types = ['Detached', 'Flat', 'Semi_Detached', 'Terrace'];
+        const types = ['Detached', 'Semi_Detached', 'Terrace', 'Flat'];
         const data = types.map(t => target[`${t}_${suffix}`]);
         return {
-            labels: ['Detached', 'Flat', 'Semi Detached', 'Terrace'],
+            labels: ['Detached', 'Semi_Detached', 'Semi Terrace', 'Flat'],
             datasets: [
                 {
                     data: data,
                     maintainAspectRatio: false,
                     backgroundColor: [
-                        '#FF6384',
-                        '#36A2EB',
-                        '#FFCE56'
+                        '#1fe45f',
+                        '#1fa4e4',
+                        '#e41fa4',
+                        '#EEB029'
                     ],
                     hoverBackgroundColor: [
                         '#FF6384',
                         '#36A2EB',
-                        '#FFCE56'
+                        '#FFCE56',
                     ]
                 }
             ]
@@ -259,6 +261,8 @@ class ValuationReport extends React.Component {
                     <div className="col-12 text-left">
                         <h2 className='mt-3'>Property Valuation Report</h2>
                     </div>
+                </div>
+                    <div className="card-group">
                     <GraphCard title={'Property Overview'}>
                         <h3>Current Capital Value</h3>
                         <h4>{'£'+(this.props.valuation.predict_results.predict_price).toLocaleString()}</h4>
@@ -269,7 +273,7 @@ class ValuationReport extends React.Component {
                         <h3>12 Month Capital Growth</h3>
                         <h4>{(((this.props.valuation.predict_price_5y.index_31)-(this.props.valuation.predict_price_5y.index_25))/(this.props.valuation.predict_price_5y.index_25)*100).toFixed(1)+'%'}</h4>
                     </GraphCard>
-                    <GraphCard title={'Property Street View'}>
+                    <MapCard>
                         <div className="streeview">
                             <StreetView
                                 isMarkerShown={this.props.isMarkerShown}
@@ -278,8 +282,8 @@ class ValuationReport extends React.Component {
                                 zoom={2}
                             />
                         </div>
-                    </GraphCard>
-                </div>
+                    </MapCard>
+                    </div>
 
                 <div >
                     {
@@ -347,23 +351,6 @@ class ValuationReport extends React.Component {
                     </GraphCard>
                 </div>
 
-                {/* {
-                <div className="row">
-                    <div className="col-12 text-left">
-                        <h2 className='mt-3'>Regional Values Based on Property Type</h2>
-                    </div>
-                    <GraphCard title={'This properties market value over 5 years'}>
-                        <Line data={this.getValuesForLine2(this.props.valuation.regional_housetype_price_5y.DetachedPrice,this.props.valuation.regional_housetype_price_5y.SemiDetachedPrice,this.props.valuation.regional_housetype_price_5y.TerracedPrice,this.props.valuation.regional_housetype_price_5y.FlatPrice)} />
-                    </GraphCard>
-
-                        _.map(this.props.valuation.regional_housetype_price_5y, (ht, i) => (
-                            <GraphCard title={i.replace("Price", " Price")}  key={i}>
-                                <Line data={this.getValuesForLine(ht)} />
-                            </GraphCard>
-                        ))
-                    }
-
-                </div>  */}
                 {
                     _.isEmpty(this.props.valuation.sales_history_analyze[1]) ? null : (
                         <React.Fragment>
