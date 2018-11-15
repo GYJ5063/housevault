@@ -176,6 +176,7 @@ class ValuationForm extends React.Component {
         this.setState({ address });
     }
     render() {
+        console.log(this.props);
         let validation = this.submitted ?
             this.validator.validate(this.state) :
             this.state.validation;
@@ -305,7 +306,7 @@ class ValuationForm extends React.Component {
     }
 }
 
-const mutator = gql`
+const createLeadMutator = gql`
     mutation createLead($first_name: String!, $last_name: String!, $email: String!, $phone_number: String!, 
             $sales_valuation: Float!, $rental_valuation: Float!, $company_id: Int!) {
              createLead(
@@ -322,6 +323,13 @@ const mutator = gql`
           }
 `;
 
+const createReportPdfMutator = gql`
+mutation createReportPdf($html: String!) {
+    createReportPdf(html: $html)
+}
+`;
+
 export default compose(
-    graphql(mutator)
+    graphql(createLeadMutator),
+    graphql(createReportPdfMutator)
 )(ValuationForm);
