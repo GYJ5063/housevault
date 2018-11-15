@@ -32,7 +32,7 @@ class ValuationReport extends React.Component {
             ]
         };
     }
-    getValuesForLine(regPriceTenYear, predictPriceTenYear){ //takes an arr
+    getValuesForLine(regPriceTenYear, predictPriceTenYear, natPriceTenYear){ //takes an arr
         // repeat this for each element and create { currentPrice: 1, price: [1,2,3]}
         const keys = Object.keys(regPriceTenYear);
         // filter out empty values
@@ -46,6 +46,12 @@ class ValuationReport extends React.Component {
             .map((k, i) => predictPriceTenYear[`index_${++i}`])
             .filter(v => v);
         const currentPrice2 = predictPriceTenYear['index_41'];
+        const keys3 = Object.keys(natPriceTenYear);
+        // filter out empty values
+        const prices3 = keys3
+            .map((k, i) => natPriceTenYear[`index_${++i}`])
+            .filter(v => v);
+        const currentPrice3 = natPriceTenYear['index_41'];
         const data = {
             labels: this.createMonthLabels(prices),
             datasets: [
@@ -73,7 +79,7 @@ class ValuationReport extends React.Component {
                     data: prices
                 },
                 {
-                    label: `Average Local Valuation: £${currentPrice2}`,
+                    label: `Local Area: £${currentPrice2}`,
                     maintainAspectRatio: false,
                     fill: false,
                     lineTension: 0.1,
@@ -93,6 +99,28 @@ class ValuationReport extends React.Component {
                     pointRadius: 1,
                     pointHitRadius: 10,
                     data: prices2
+                },
+                {
+                    label: `National: £${currentPrice3}`,
+                    maintainAspectRatio: false,
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: '#e49914',
+                    borderColor: '#e49914',
+                    borderCapStyle: 'butt',
+                    borderDash: [1],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: '#e49914',
+                    pointBackgroundColor: '#e49914',
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: '#e49914',
+                    pointHoverBorderColor: '#e49914',
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: prices3
                 }
             ]
         };
@@ -365,7 +393,7 @@ class ValuationReport extends React.Component {
                         <h2 className='mt-3'>Property Performance Compared to Regional Average</h2>
                     </div>
                     <GraphCard title={'Property Value Compared to Local Averages (10 years)'}>
-                        <Line data={this.getValuesForLine(this.props.valuation.selling_results.predict_price_10y,this.props.valuation.selling_results.regional_price_10y)} />
+                        <Line data={this.getValuesForLine(this.props.valuation.selling_results.predict_price_10y,this.props.valuation.selling_results.regional_price_10y,this.props.valuation.selling_results.national_avg_price_10y)} />
                     </GraphCard>
                     <GraphCard title={'Average Property Type Values (10 years)'}>
                         <Line data={this.getValuesForLine2(this.props.valuation.selling_results.regional_housetype_price_10y.DetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.SemiDetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.TerracedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.FlatPrice)} />
