@@ -268,9 +268,9 @@ class ValuationReport extends React.Component {
                         <h3>Current Capital Value</h3>
                         <h4>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h4>
                         <h3>Rental Value</h3>
-                        <h4>{'£'+(this.props.valuation.rental_results.reantal_predict_results.toFixed(0))+' per month | £'+(this.props.valuation.rental_results.reantal_predict_results * 12 / 52).toFixed(0)+' per week'}</h4>
+                        <h4>{'£'+(this.props.valuation.rental_results.rental_predict_price.toFixed(0))+' per month | £'+(this.props.valuation.rental_results.rental_predict_price * 12 / 52).toFixed(0)+' per week'}</h4>
                         <h3>Investment Yield</h3>
-                        <h4>{(((this.props.valuation.rental_results.reantal_predict_results*12)/(this.props.valuation.selling_results.predict_results.predict_price))*100).toFixed(1) + '%'}</h4>
+                        <h4>{(((this.props.valuation.rental_results.rental_predict_price *12)/(this.props.valuation.selling_results.predict_results.predict_price))*100).toFixed(1) + '%'}</h4>
                         <h3>12 Month Capital Growth</h3>
                         <h4>{(((this.props.valuation.selling_results.predict_price_5y.index_31)-(this.props.valuation.selling_results.predict_price_5y.index_25))/(this.props.valuation.selling_results.predict_price_5y.index_25)*100).toFixed(1)+'%'}</h4>
                     </GraphCard>
@@ -310,7 +310,7 @@ class ValuationReport extends React.Component {
                 </div>
                 <div >
                     {
-                        _.isEmpty(this.props.valuation.rental_results.reantal_comparable_properties[0]) ? null : (
+                        _.isEmpty(this.props.valuation.rental_results.rental_comparable_properties[0]) ? null : (
                             <div>
                                 <div className="col-12 text-left">
                                     <h2 className='mt-3'>Comparable Rental Properties</h2>
@@ -318,7 +318,7 @@ class ValuationReport extends React.Component {
                                 </div>
                                 <div className="card-deck">
                                     {
-                                        _.map(this.props.valuation.rental_results.reantal_comparable_properties, (cp, i) => (
+                                        _.map(this.props.valuation.rental_results.rental_comparable_properties, (cp, i) => (
                                             <ComparableRentalCard property={cp} key={i}/>
                                         )).slice(0,6)
                                     }
@@ -432,7 +432,7 @@ class ValuationReport extends React.Component {
                                                         <tr key={i}>
                                                             <td>{cp.address_1}</td>
                                                             <td>{cp.postcode}</td>
-                                                            <td>{cp.house_type}</td>
+                                                            <td>{cp.house_type_out}</td>
                                                             <td>{(cp.rooms)-2}</td>
                                                             <td>{(cp.size)+' sqm'}</td>
                                                             <td>£{cp.current_valuation.toLocaleString()}</td>

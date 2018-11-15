@@ -5,6 +5,7 @@ import _ from "lodash";
 export default (props) => {
     return (
         <div className="card comparable-property-card"  key={props.property.id}  >
+            <img className="card-img-top" src={props.property.front_image_url} alt="Card image cap"></img>
             <div className="card-header text-white bg-info mb-3">{props.property.display_address}</div>
             <div className="card-body">
                 <h5 className="card-title text-center">{'Monthly Rental Value'}<br />
