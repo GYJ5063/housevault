@@ -292,7 +292,7 @@ class ValuationReport extends React.Component {
                         <h2 className='mt-3'>Property Valuation Report</h2>
                     </div>
                 </div>
-                    <div className="card-group">
+                <div className="card-group">
                     <GraphCard title={'Property Overview'}>
                         <h3>Current Capital Value</h3>
                         <h4>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h4>
@@ -313,9 +313,8 @@ class ValuationReport extends React.Component {
                             />
                         </div>
                     </MapCard>
-                    </div>
-
-                <div >
+                </div>
+                <div>
                     {
                         _.isEmpty(this.props.valuation.selling_results.comparable_properties[1]) ? null : (
                             <div>
@@ -337,7 +336,7 @@ class ValuationReport extends React.Component {
                         )
                     }
                 </div>
-                <div >
+                <div>
                     {
                         _.isEmpty(this.props.valuation.rental_results.rental_comparable_properties[0]) ? null : (
                             <div>
@@ -356,6 +355,7 @@ class ValuationReport extends React.Component {
                         )
                     }
                 </div>
+                <div>
                 {
                     !this.props.valuation.selling_results.local_property_type_statistic ? null : (
                         <div className="row">
@@ -365,7 +365,6 @@ class ValuationReport extends React.Component {
                                 property sizes, market values & property types. Our local research shows that the internal property size typically has the largest affect
                                 on market value which is why we also calculate the average value per square meter. If the subject property is outside these 'norms' it normally
                                 results in a positive/negative effect on the value.</p>
-                            </div>
                             <div className="card-deck">
                                 <GraphCard title={'Average Property Size'}>
                                     <Bar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_size', 'Average Size')} />
@@ -375,6 +374,18 @@ class ValuationReport extends React.Component {
                                     <HorizontalBar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_value', 'Average Value')} />
                                     <p>One of the easiest comparisons to make against your home is against average property values in your area. We break this down further by property-type because it gives a much clearer picture of the difference between houses on a street. Detached homes typically command a premium of at least 10% for two specific reasons. Detached houses are typically larger and are in lower supply, which in turn creates a demand premium.</p>
                                 </GraphCard>
+                            </div>
+                        </div>
+                        </div>
+                    )
+                }
+                </div><br/>
+                <div>
+                {
+                    !this.props.valuation.selling_results.local_property_type_statistic ? null : (
+                        <div className="row">
+                         <div className="col-12 text-left">
+                            <div className="card-deck">
                                 <GraphCard title={'Property Type Ratio'}>
                                     <Pie data={this.getValuesForPie(this.props.valuation.selling_results.local_property_type_statistic, 'num_ratio')} />
                                     <p>The ratio of property types can give a good indication of affluence and demographics of an area. Rural affluent locations such as the South East, for example, typically have an above average percentage of Detached homes compared to flats. The ratio can also give an indication of possible demand.</p>
@@ -386,8 +397,10 @@ class ValuationReport extends React.Component {
                                 </GraphCard>
                             </div>
                         </div>
-                    )
-                }
+                        </div>
+                            )
+                 }
+                </div>
                 <div className="row">
                     <div className="col-12 text-left">
                         <h2 className='mt-3'>Property Performance Compared to Regional Average</h2>
@@ -399,7 +412,7 @@ class ValuationReport extends React.Component {
                         <Line data={this.getValuesForLine2(this.props.valuation.selling_results.regional_housetype_price_10y.DetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.SemiDetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.TerracedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.FlatPrice)} />
                     </GraphCard>
                 </div>
-
+                <div>
                 {
                     _.isEmpty(this.props.valuation.selling_results.sales_history_analyze[1]) ? null : (
                         <React.Fragment>
@@ -434,6 +447,7 @@ class ValuationReport extends React.Component {
                         </React.Fragment>
                     )
                 }
+                </div>
                 <div className="row">
                     <div className="col">
                         {
