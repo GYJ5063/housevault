@@ -8,6 +8,7 @@ import GraphCard from "../../components/valuation/GraphCard"
 import MapCard from "../../components/valuation/MapCard"
 import _ from "lodash";
 import React from "react";
+import RentalComparables from "./RentalComparables";
 
 class ValuationReport extends React.Component {
     constructor (props) {
@@ -316,6 +317,7 @@ getValuesForPie(target, suffix){
                         </div>
                     </MapCard>
                 </div>
+                <RentalComparables rentals={this.props.valuation.rental_results.rental_comparable_properties}/>
                 <div>
                     {
                         _.isEmpty(this.props.valuation.selling_results.comparable_properties[1]) ? null : (
@@ -338,7 +340,7 @@ getValuesForPie(target, suffix){
                         )
                     }
                 </div>
-                <div>
+                {/* <div>
                     {
                         _.isEmpty(this.props.valuation.rental_results.rental_comparable_properties[0]) ? null : (
                             <div>
@@ -356,7 +358,7 @@ getValuesForPie(target, suffix){
                             </div>
                         )
                     }
-                </div>
+                </div> */}
                 <div>
                 {
                     !this.props.valuation.selling_results.local_property_type_statistic ? null : (
@@ -405,9 +407,9 @@ getValuesForPie(target, suffix){
                 </div>
                 <div className="row">
                     <div className="col-12 text-left">
-                        <h2 className='mt-3'>Property Performance Compared to Regional Average</h2>
+                        <h2 className='mt-3'>Property Performance</h2>
                     </div>
-                    <GraphCard title={'Property Value Compared to Local Averages (10 years)'}>
+                    <GraphCard title={'Property Value Compared to Local & National (10 years)'}>
                         <Line data={this.getValuesForLine(this.props.valuation.selling_results.predict_price_10y,this.props.valuation.selling_results.regional_price_10y,this.props.valuation.selling_results.national_avg_price_10y)} />
                     </GraphCard>
                     <GraphCard title={'Average Property Type Values (10 years)'}>
