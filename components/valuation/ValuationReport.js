@@ -251,7 +251,7 @@ class ValuationReport extends React.Component {
         let monthNumber = moment().month();
 
         return count.map(c => {
-            const date = moment().month(monthNumber).format('MMMM');
+            const date = moment().month(monthNumber).format('MMM');
             (monthNumber = monthNumber + 2) % 12;
             return date;
         });
