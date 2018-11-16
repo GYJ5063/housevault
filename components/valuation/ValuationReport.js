@@ -317,7 +317,6 @@ getValuesForPie(target, suffix){
                         </div>
                     </MapCard>
                 </div>
-                <RentalComparables rentals={this.props.valuation.rental_results.rental_comparable_properties}/>
                 <div>
                     {
                         _.isEmpty(this.props.valuation.selling_results.comparable_properties[1]) ? null : (
@@ -340,7 +339,10 @@ getValuesForPie(target, suffix){
                         )
                     }
                 </div>
-                {/* <div>
+                {/* {
+                    this.props.hideRentals ? null : <RentalComparables rentals={this.props.valuation.rental_results.rental_comparable_properties}/>
+                } */}
+                <div>
                     {
                         _.isEmpty(this.props.valuation.rental_results.rental_comparable_properties[0]) ? null : (
                             <div>
@@ -358,7 +360,7 @@ getValuesForPie(target, suffix){
                             </div>
                         )
                     }
-                </div> */}
+                </div>
                 <div>
                 {
                     !this.props.valuation.selling_results.local_property_type_statistic ? null : (
