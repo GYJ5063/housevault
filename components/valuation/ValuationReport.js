@@ -247,16 +247,18 @@ class ValuationReport extends React.Component {
         };
         return data;
     }
-    createMonthLabels(count){
-        let monthNumber = moment().month();
-
-        return count.map(c => {
-            const date = moment().month(monthNumber).format('MMM');
-            (monthNumber = monthNumber + 2) % 12;
-            return date;
-        });
+    createMonthLabels(){
+        let startPeriod = moment().subtract(123, 'months');
+        const dateLabels = [];
+        for (let i=0;i<41;i++){
+            const increasedPeriod = startPeriod.add(3, 'months');
+            dateLabels.push(increasedPeriod.format('MMM YY'));
+        }
+        return dateLabels
     }
-    getValuesForPie(target, suffix){
+
+
+getValuesForPie(target, suffix){
         const types = ['Detached', 'Semi_Detached', 'Terrace', 'Flat'];
         const data = types.map(t => target[`${t}_${suffix}`]);
         return {
