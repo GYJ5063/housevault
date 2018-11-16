@@ -9,6 +9,7 @@ import MapCard from "../../components/valuation/MapCard"
 import _ from "lodash";
 import React from "react";
 import RentalComparables from "./RentalComparables";
+import WideGraphCard from "./WideGraphCard"
 
 class ValuationReport extends React.Component {
     constructor (props) {
@@ -317,6 +318,54 @@ getValuesForPie(target, suffix){
                         </div>
                     </MapCard>
                 </div>
+                <div className="row">
+                    <div className="col-12 text-left">
+                        <h2 className='mt-3'>Property Performance</h2>
+                        <p>Thank you for requesting our property valuation report. Please note that whilst we believe our accuracy is industry leading, no AVM can fully replace a real home visit (yet), other factors such as confimed property condition are not taken into account in assessing your valuation. With the disclaimer sorted let's spend a little time looking at your properties valuation compared to local and national averages.</p>
+                        <p>Your properties current market value is <strong>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</strong> compared to a local average of price <strong>{'£'+(this.props.valuation.selling_results.regional_price_10y.index_41.toLocaleString())}</strong> and national average of
+                            {' '}<strong>{'£'+(this.props.valuation.selling_results.national_avg_price_10y.index_41.toLocaleString())}</strong>. We calculate local and national valuations by averaging the achieved sales prices over the last 3 months from land registry. Whilst not perfect this gives a good indication of how your properties performing compared to others locally and nationally.</p>
+                        <p>The main factors effecting the difference is simply down to supply and demand with quality of schooling, transport, commuting distance and crime levels having the largest impact.</p>
+                    </div>
+                </div>
+                    <WideGraphCard>
+                        <Line data={this.getValuesForLine(this.props.valuation.selling_results.predict_price_10y,this.props.valuation.selling_results.regional_price_10y,this.props.valuation.selling_results.national_avg_price_10y)} />
+                    </WideGraphCard>
+                <div>
+                    {
+                        _.isEmpty(this.props.valuation.selling_results.sales_history_analyze[1]) ? null : (
+                            <React.Fragment>
+                                <h2 className='mt-3'>Historic Sales Data</h2>
+                                <div className="card">
+                                    <div className="card-body">
+
+                                        <Table>
+                                            <thead>
+                                            <tr>
+                                                <th>Last Sold Date</th>
+                                                <th>Last Sold Price</th>
+                                                <th>Total Growth (£)</th>
+                                                <th>Total Return (%)</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {
+                                                _.map(this.props.valuation.selling_results.sales_history_analyze, (val, key) => (
+                                                    <tr key={key}>
+                                                        <td>{moment(val.sold_date).format('Do MMM YYYY')}</td>
+                                                        <td>£{val.sold_price.toLocaleString()}</td>
+                                                        <td>£{val.price_change.toLocaleString()}</td>
+                                                        <td>{(val.price_chage_percent*100).toFixed(1)+'%'}</td>
+                                                    </tr>
+                                                ))
+                                            }
+                                            </tbody>
+                                        </Table>
+                                    </div>
+                                </div>
+                            </React.Fragment>
+                        )
+                    }
+                </div>
                 <div>
                     {
                         _.isEmpty(this.props.valuation.selling_results.comparable_properties[1]) ? null : (
@@ -408,6 +457,12 @@ getValuesForPie(target, suffix){
                  }
                 </div>
                 <div className="row">
+                    <WideGraphCard title={'Average Property Type Values (10 years)'}>
+                        <Line data={this.getValuesForLine2(this.props.valuation.selling_results.regional_housetype_price_10y.DetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.SemiDetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.TerracedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.FlatPrice)} />
+                    </WideGraphCard>
+                </div>
+
+                {/* <div className="row">
                     <div className="col-12 text-left">
                         <h2 className='mt-3'>Property Performance</h2>
                     </div>
@@ -417,44 +472,9 @@ getValuesForPie(target, suffix){
                     <GraphCard title={'Average Property Type Values (10 years)'}>
                         <Line data={this.getValuesForLine2(this.props.valuation.selling_results.regional_housetype_price_10y.DetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.SemiDetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.TerracedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.FlatPrice)} />
                     </GraphCard>
-                </div>
-                <div>
-                {
-                    _.isEmpty(this.props.valuation.selling_results.sales_history_analyze[1]) ? null : (
-                        <React.Fragment>
-                            <h2 className='mt-3'>Historic Sales Data</h2>
-                            <div className="card">
-                                <div className="card-body">
+                </div> */}
 
-                                    <Table>
-                                        <thead>
-                                        <tr>
-                                            <th>Last Sold Date</th>
-                                            <th>Last Sold Price</th>
-                                            <th>Total Growth (£)</th>
-                                            <th>Total Return (%)</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        {
-                                            _.map(this.props.valuation.selling_results.sales_history_analyze, (val, key) => (
-                                                <tr key={key}>
-                                                    <td>{moment(val.sold_date).format('Do MMM YYYY')}</td>
-                                                    <td>£{val.sold_price.toLocaleString()}</td>
-                                                    <td>£{val.price_change.toLocaleString()}</td>
-                                                    <td>{(val.price_chage_percent*100).toFixed(1)+'%'}</td>
-                                                </tr>
-                                            ))
-                                        }
-                                        </tbody>
-                                    </Table>
-                                </div>
-                            </div>
-                        </React.Fragment>
-                    )
-                }
-                </div>
-                <div className="row">
+                {/*} <div className="row">
                     <div className="col">
                         {
                             _.isEmpty(this.props.valuation.selling_results.comparable_properties[1]) ? null : (
@@ -495,7 +515,7 @@ getValuesForPie(target, suffix){
                             )
                         }
                     </div>
-                </div>
+                </div> */}
             </React.Fragment>
             </div>
         );
