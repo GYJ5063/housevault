@@ -34,7 +34,7 @@ class ValuationReport extends React.Component {
             ]
         };
     }
-    getValuesForLine(regPriceTenYear, predictPriceTenYear, natPriceTenYear){ //takes an arr
+    getValuesForLine(regPriceTenYear, predictPriceTenYear, natPriceTenYear, gdpPriceTenYear){ //takes an arr
         // repeat this for each element and create { currentPrice: 1, price: [1,2,3]}
         const keys = Object.keys(regPriceTenYear);
         // filter out empty values
@@ -42,6 +42,7 @@ class ValuationReport extends React.Component {
             .map((k, i) => regPriceTenYear[`index_${++i}`])
             .filter(v => v);
         const currentPrice = regPriceTenYear['index_41'];
+
         const keys2 = Object.keys(predictPriceTenYear);
         // filter out empty values
         const prices2 = keys2
@@ -49,11 +50,13 @@ class ValuationReport extends React.Component {
             .filter(v => v);
         const currentPrice2 = predictPriceTenYear['index_41'];
         const keys3 = Object.keys(natPriceTenYear);
+
         // filter out empty values
         const prices3 = keys3
             .map((k, i) => natPriceTenYear[`index_${++i}`])
             .filter(v => v);
         const currentPrice3 = natPriceTenYear['index_41'];
+
         const data = {
             labels: this.createMonthLabels(prices),
             datasets: [
@@ -123,6 +126,40 @@ class ValuationReport extends React.Component {
                     pointRadius: 1,
                     pointHitRadius: 10,
                     data: prices3
+                },
+                {
+                    label: `GDP`,
+                    maintainAspectRatio: false,
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: '#090be4',
+                    borderColor: '#090be4',
+                    borderCapStyle: 'butt',
+                    borderDash: [1],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: '#090be4',
+                    pointBackgroundColor: '#090be4',
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: '#090be4',
+                    pointHoverBorderColor: '#090be4',
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: [3.6, 3.2, 2.9, 3.4, 3.8, 3.8, 4.2, 4.9, 3.8, 3.0, 3.9, 2.8, 2.3, 3.2, 3.0, 3.9, 4.6, 5.6, 4.8, 4.1, 3.6, 4.4, 3.7, 3.8, 4.5, 2.3, 1.5, 3.3, 3.1, 2.9, 5.1, 3.8, 3.2, 3.9, 2.2, -0.7, -2.3, -3.7, -4.1, -1.1, 1.6, 4.1],
+                    yAxesGroup: 'B'
+                },
+                {   options: {
+                            yAxes: [{
+                                name: 'B',
+                                type: 'linear',
+                                position: 'right',
+                                scalePositionLeft: false,
+                                min: 0,
+                                max: 1
+                            }]
+                              }
                 }
             ]
         };
