@@ -321,15 +321,27 @@ getValuesForPie(target, suffix){
                 <div className="row">
                     <div className="col-12 text-left">
                         <h2 className='mt-3'>Property Performance</h2>
-                        <p>Thank you for requesting our property valuation report. Please note that whilst we believe our accuracy is industry leading, no AVM can fully replace a real home visit (yet), other factors such as confimed property condition are not taken into account in assessing your valuation. With the disclaimer sorted let's spend a little time looking at your properties valuation compared to local and national averages.</p>
-                        <p>Your properties current market value is <strong>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</strong> compared to a local average of price <strong>{'£'+(this.props.valuation.selling_results.regional_price_10y.index_41.toLocaleString())}</strong> and national average of
-                            {' '}<strong>{'£'+(this.props.valuation.selling_results.national_avg_price_10y.index_41.toLocaleString())}</strong>. We calculate local and national valuations by averaging the achieved sales prices over the last 3 months from land registry. Whilst not perfect this gives a good indication of how your properties performing compared to others locally and nationally.</p>
-                        <p>The main factors effecting the difference is simply down to supply and demand with quality of schooling, transport, commuting distance and crime levels having the largest impact.</p>
+                        <p>Thank you for requesting our property valuation report. Please note that whilst we believe our accuracy is industry leading, no AVM can fully replace a
+                            real home visit due to unknown factors such as the precise property condition. With the disclaimer
+                            sorted we have created the following report based on your submitted information.</p>
+                        <p>The first section will look at your property and then compare to other homes in the local area. Finally we will look at which factors are likely to have the most influence on your properties valuation.</p>
+                        <p>Your properties current market value is <strong>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</strong> compared
+                            to a local average of price <strong>{'£'+(this.props.valuation.selling_results.regional_price_10y.index_41.toLocaleString())}</strong> and the national average of
+                            {' '}<strong>{'£'+(this.props.valuation.selling_results.national_avg_price_10y.index_41.toLocaleString())}</strong>. We calculate local and national valuations
+                            by averaging the achieved sales prices over the last 3 months from land registry. Whilst not perfect this gives a good indication of how your properties
+                            performing compared to others locally and nationally.</p>
+                        <p>The main factors affecting the difference is simply down to supply and demand with the quality of schooling, transport, commuting distance and crime levels
+                            having the largest impact.
+                        </p>
+                        <WideGraphCard>
+                            <Line data={this.getValuesForLine(this.props.valuation.selling_results.predict_price_10y,this.props.valuation.selling_results.regional_price_10y,this.props.valuation.selling_results.national_avg_price_10y)} />
+                        </WideGraphCard>
+                        <p>The interactive graph above shows the valuation changes over the last 10 years with the green line representing the subject property. You'll notice the value follows a
+                            similar trend to national averages however you can see some notable differences during some periods.</p>
+                        <p>Macro Economic factor events such as Government or Global financial influences will raise or lower all valuations nationwide, however some properties will outperform the norm.</p>
                     </div>
                 </div>
-                    <WideGraphCard>
-                        <Line data={this.getValuesForLine(this.props.valuation.selling_results.predict_price_10y,this.props.valuation.selling_results.regional_price_10y,this.props.valuation.selling_results.national_avg_price_10y)} />
-                    </WideGraphCard>
+
                 <div>
                     {
                         _.isEmpty(this.props.valuation.selling_results.sales_history_analyze[1]) ? null : (
