@@ -81,7 +81,8 @@ class ValuationReport extends React.Component {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
-                    data: prices
+                    data: prices,
+                    yAxisID: 'y-axis-1'
                 },
                 {
                     label: `Local Area: £${currentPrice2}`,
@@ -103,7 +104,8 @@ class ValuationReport extends React.Component {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
-                    data: prices2
+                    data: prices2,
+                    yAxisID: 'y-axis-1'
                 },
                 {
                     label: `National: £${currentPrice3}`,
@@ -125,7 +127,8 @@ class ValuationReport extends React.Component {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
-                    data: prices3
+                    data: prices3,
+                    yAxisID: 'y-axis-1'
                 },
                 {
                     label: `GDP`,
@@ -148,18 +151,7 @@ class ValuationReport extends React.Component {
                     pointRadius: 1,
                     pointHitRadius: 10,
                     data: [3.6, 3.2, 2.9, 3.4, 3.8, 3.8, 4.2, 4.9, 3.8, 3.0, 3.9, 2.8, 2.3, 3.2, 3.0, 3.9, 4.6, 5.6, 4.8, 4.1, 3.6, 4.4, 3.7, 3.8, 4.5, 2.3, 1.5, 3.3, 3.1, 2.9, 5.1, 3.8, 3.2, 3.9, 2.2, -0.7, -2.3, -3.7, -4.1, -1.1, 1.6, 4.1],
-                    yAxesGroup: 'B'
-                },
-                {   options: {
-                            yAxes: [{
-                                name: 'B',
-                                type: 'linear',
-                                position: 'right',
-                                scalePositionLeft: false,
-                                min: 0,
-                                max: 1
-                            }]
-                              }
+                    yAxisID: 'y-axis-2'
                 }
             ]
         };
@@ -397,7 +389,9 @@ getValuesForPie(target, suffix){
                             having the largest impact.
                         </p>
                         <WideGraphCard>
-                            <Line data={this.getValuesForLine(this.props.valuation.selling_results.predict_price_10y,this.props.valuation.selling_results.regional_price_10y,this.props.valuation.selling_results.national_avg_price_10y)} />
+                            <Line
+                                options={graphOptions}
+                                data={this.getValuesForLine(this.props.valuation.selling_results.predict_price_10y,this.props.valuation.selling_results.regional_price_10y,this.props.valuation.selling_results.national_avg_price_10y)} />
                         </WideGraphCard>
                         <p>The interactive graph above shows the valuation changes over the last 10 years with the green line representing the subject property. You'll notice the value follows a
                             similar trend to national averages however you can see some notable differences during some periods.</p>
@@ -534,7 +528,7 @@ getValuesForPie(target, suffix){
                 <div className="row">
                     <WideGraphCard title={'Average Property Type Values (10 years)'}>
                         <Line
-                            options={graphOptions}
+
                             data={this.getValuesForLine2(this.props.valuation.selling_results.regional_housetype_price_10y.DetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.SemiDetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.TerracedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.FlatPrice)} />
                     </WideGraphCard>
                 </div>
