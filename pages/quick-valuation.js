@@ -20,9 +20,9 @@ const GET_COMPANY_DETAILS = gql`
 class QuickValuation extends React.Component {
 
     constructor(props) {
-        var host = window.location.hostname;
+
         super(props);
-        console.log(host);
+
         this.state = {
             report: {},
             valuation: {},

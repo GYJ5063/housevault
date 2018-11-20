@@ -53,7 +53,7 @@
     "dev": "node server/server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server/server.js",
-    "deploy": "next build && eb deploy"
+    "deploy": "NODE_ENV=production next build && eb deploy"
   },
   "author": "",
   "license": "ISC"
