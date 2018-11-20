@@ -10,29 +10,11 @@ import _ from "lodash";
 import React from "react";
 import RentalComparables from "./RentalComparables";
 import WideGraphCard from "./WideGraphCard"
+import HeroCard from "./HeroCard"
 
 class ValuationReport extends React.Component {
     constructor (props) {
         super(props);
-    }
-    getValuesForType(target, suffix, label) {
-        const types = ['Detached', 'Semi_Detached', 'Terrace', 'Flat'];
-        const data = types.map(t => target[`${t}_${suffix}`]);
-        return {
-            labels: ['Detached', 'Semi Detached', 'Terrace', 'Flat'],
-            datasets: [
-                {
-                    label: label,
-                    maintainAspectRatio: false,
-                    backgroundColor: 'rgba(255,99,132,0.2)',
-                    borderColor: 'rgba(255,99,132,1)',
-                    borderWidth: 1,
-                    hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-                    hoverBorderColor: 'rgba(255,99,132,1)',
-                    data: data
-                }
-            ]
-        };
     }
     getValuesForLine(regPriceTenYear, predictPriceTenYear, natPriceTenYear, gdpPriceTenYear){ //takes an arr
         // repeat this for each element and create { currentPrice: 1, price: [1,2,3]}
@@ -150,7 +132,7 @@ class ValuationReport extends React.Component {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
-                    data: [3.6, 3.2, 2.9, 3.4, 3.8, 3.8, 4.2, 4.9, 3.8, 3.0, 3.9, 2.8, 2.3, 3.2, 3.0, 3.9, 4.6, 5.6, 4.8, 4.1, 3.6, 4.4, 3.7, 3.8, 4.5, 2.3, 1.5, 3.3, 3.1, 2.9, 5.1, 3.8, 3.2, 3.9, 2.2, -0.7, -2.3, -3.7, -4.1, -1.1, 1.6, 4.1],
+                    data: [1.6,-1.1,-4.1,-3.7,-2.3,-0.7,2.2,3.9,3.2,3.8,5.1,2.9,3.1,3.3,1.5,2.3,4.5,3.8,3.7,4.4,3.6,4.1,4.8,5.6,4.6,3.9,3.0,3.2,2.3,2.8,3.9,3.0,3.8,4.9,4.2,3.8,3.8,3.4,2.9,3.2,3.6],
                     yAxisID: 'y-axis-2'
                 }
             ]
@@ -293,7 +275,7 @@ getValuesForPie(target, suffix){
         const types = ['Detached', 'Semi_Detached', 'Terrace', 'Flat'];
         const data = types.map(t => target[`${t}_${suffix}`]);
         return {
-            labels: ['Detached', 'Semi_Detached', 'Semi Terrace', 'Flat'],
+            labels: ['Detached', 'Semi Detached', 'Semi Terrace', 'Flat'],
             datasets: [
                 {
                     data: data,
@@ -313,6 +295,27 @@ getValuesForPie(target, suffix){
             ]
         };
     }
+
+getValuesForType(target, suffix, label) {
+        const types = ['Detached', 'Semi_Detached', 'Terrace', 'Flat'];
+        const data = types.map(t => target[`${t}_${suffix}`]);
+        return {
+            labels: ['Detached', 'Semi Detached', 'Terrace', 'Flat'],
+            datasets: [
+                {
+                    label: `${label}`,
+                    maintainAspectRatio: false,
+                    backgroundColor: 'rgba(255,99,132,0.2)',
+                    borderColor: 'rgba(255,99,132,1)',
+                    borderWidth: 1,
+                    hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+                    hoverBorderColor: 'rgba(255,99,132,1)',
+                    data: data
+                }
+            ]
+        };
+    }
+
     render() {
         const marker = {lng: _.toNumber(this.props.valuation.selling_results.predict_results.lng.toString()), lat: _.toNumber(this.props.valuation.selling_results.predict_results.lat.toString()) };
         const graphOptions = {
@@ -346,11 +349,44 @@ getValuesForPie(target, suffix){
             <div>
             <React.Fragment>
 
-                <div className="row">
-                    <div className="col-12 text-left">
-                        <h2 className='mt-3'>Property Valuation Report</h2>
+                <div className="row hero-result-head">
+                    <div className="column col-sm-12 col-md-4">
+                        <h4>Lower Band</h4>
+                        <h2>{'£'+((this.props.valuation.selling_results.predict_results.predict_price)*.9).toLocaleString()}</h2>
+                    </div>
+                    <div className="column col-sm-12 col-md-4">
+                        <h4>Current Capital Value</h4>
+                        <h2>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h2>
+                    </div>
+                    <div className="column col-sm-12 col-md-4">
+                        <h4>Upper Band</h4>
+                        <h2>{'£'+((this.props.valuation.selling_results.predict_results.predict_price)*1.1).toLocaleString()}</h2>
                     </div>
                 </div>
+                <br />
+                <div className="row">
+                    <div className="col-md-6">
+                        <h3>Investment Return</h3>
+                        <h4>Rental Value</h4>
+                        <h4>{'£'+(this.props.valuation.rental_results.rental_predict_price.toFixed(0))+' per month | £'+(this.props.valuation.rental_results.rental_predict_price * 12 / 52).toFixed(0)+' per week'}</h4>
+                        <h4>Investment Yield</h4>
+                        <h4>{(((this.props.valuation.rental_results.rental_predict_price *12)/(this.props.valuation.selling_results.predict_results.predict_price))*100).toFixed(1) + '%'}</h4>
+                        <h4>12 Month Capital Growth</h4>
+                        <h4>{(((this.props.valuation.selling_results.predict_price_10y.index_31)-(this.props.valuation.selling_results.predict_price_10y.index_25))/(this.props.valuation.selling_results.predict_price_10y.index_25)*100).toFixed(1)+'%'}</h4>
+                        </div>
+                    <div className="col-md-6">
+                        <br />
+                        <StreetView
+                            isMarkerShown={this.props.isMarkerShown}
+                            onMarkerClick={this.handleMarkerClick}
+                            markerPosition={marker}
+                            zoom={2}
+                        />
+                    </div>
+                </div>
+
+
+                {/*
                 <div className="card-group">
                     <GraphCard title={'Property Overview'}>
                         <h3>Current Capital Value</h3>
@@ -373,6 +409,8 @@ getValuesForPie(target, suffix){
                         </div>
                     </MapCard>
                 </div>
+                */}
+
                 <div className="row">
                     <div className="col-12 text-left">
                         <h2 className='mt-3'>Property Performance</h2>
@@ -479,6 +517,46 @@ getValuesForPie(target, suffix){
                         )
                     }
                 </div>
+
+                <div className="mag-content">
+                <div>
+                    {
+                        !this.props.valuation.selling_results.local_property_type_statistic ? null : (
+                            <div className="row">
+                                    <h2 className='mt-3'>Local Property Value Factors</h2>
+                                    <p>This section of the report digs a little deeper into the local area surrounding the subject property. We have collated data on average
+                                        property sizes, market values & property types. Our local research shows that the internal property size typically has the largest affect
+                                        on market value which is why we also calculate the average value per square meter. If the subject property is outside these 'norms' it normally
+                                        results in a positive/negative effect on the value.</p>
+                                 <div className="col-md-6">
+                                     <h4>Average Property Size</h4>
+                                    <Bar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_size', 'Average Size (m2)')} />
+                                    <p>Using this graph allows you to compare this property to the averages in your area based on property-type. We separate them because the UK market has historically placed more weight of property-type than actual size. Comparing your property size to the average gives us a strong indication on the value and demand for your home. All things being equal if your home is larger than the local average then you will see increased demand and value. If you're looking to buy or rent then you will have a much clearer picture after comparing like for like properties.</p>
+                                 </div>
+                                 <div className="col-md-6">
+                                     <h4>Value Based on Property Type</h4>
+                                    <HorizontalBar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_value', 'Average Value (£)')} />
+                                    <p>One of the easiest comparisons to make against your home is against average property values in your area. We break this down further by property-type because it gives a much clearer picture of the difference between houses on a street. Detached homes typically command a premium of at least 10% for two specific reasons. Detached houses are typically larger and are in lower supply, which in turn creates a demand premium.</p>
+                                </div>
+                                <div className="col-md-6">
+                                    <Pie data={this.getValuesForPie(this.props.valuation.selling_results.local_property_type_statistic, 'num_ratio')} />
+                                    <p>The ratio of property types can give a good indication of affluence and demographics of an area. Rural affluent locations such as the South East, for example, typically have an above average percentage of Detached homes compared to flats. The ratio can also give an indication of possible demand.</p>
+                                    <p>Buying a terrace property in an area mainly comprising of terrace-houses means your home value is directly linked to average increases in an area. Whereas buying a detached home, even at a premium, could see demand push the values up faster even without any local changes.</p>
+                                </div>
+                                <div className="col-md-6">
+                                    <Bar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'per_size_value', 'Value per Square Meter')} />
+                                    <p>Comparing the value per square meter of a property is one of the best statistical methods and gives good insight for seeing possible trends and changes in the market. We have split the £/sqm value based on property type because as you'll see above there are significant variations depending on the property type. Detached homes typically command a 10%+ premium over semi-detached homes on the same street. This varies depending on location and supply of different house types. £2,500sqm is the average value across the UK.</p>
+                                </div>
+                                <WideGraphCard title={'Average Property Type Values (10 years)'}>
+                                    <Line data={this.getValuesForLine2(this.props.valuation.selling_results.regional_housetype_price_10y.DetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.SemiDetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.TerracedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.FlatPrice)} />
+                                </WideGraphCard>
+                            </div>
+                        )
+                    }
+                </div>
+                </div>
+
+                {/*}
                 <div>
                 {
                     !this.props.valuation.selling_results.local_property_type_statistic ? null : (
@@ -503,7 +581,8 @@ getValuesForPie(target, suffix){
                         </div>
                     )
                 }
-                </div><br/>
+                </div>
+
                 <div>
                 {
                     !this.props.valuation.selling_results.local_property_type_statistic ? null : (
@@ -532,6 +611,7 @@ getValuesForPie(target, suffix){
                             data={this.getValuesForLine2(this.props.valuation.selling_results.regional_housetype_price_10y.DetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.SemiDetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.TerracedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.FlatPrice)} />
                     </WideGraphCard>
                 </div>
+                */}
 
                 {/* <div className="row">
                     <div className="col-12 text-left">

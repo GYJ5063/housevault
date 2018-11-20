@@ -47,7 +47,6 @@ class QuickValuation extends React.Component {
                             <div className="col-12">
                                 <div className="card ">
                                     <div className="card-body">
-                                        <h1>Your valuation is on its way</h1>
                                         <ValuationReport valuation={this.state.report}/>
                                     </div>
                                 </div>
