@@ -42,17 +42,7 @@ class QuickValuation extends React.Component {
                             </div>
                         </div>
                         :
-                        <div className="container">
-                        <div className="valuation">
-                            <div className="col-12">
-                                <div className="card ">
-                                    <div className="card-body">
-                                        <ValuationReport valuation={this.state.report}/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
+                        <ValuationReport valuation={this.state.report}/>
                     }
                 </div>
          </React.Fragment>

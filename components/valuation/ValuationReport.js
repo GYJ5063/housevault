@@ -346,23 +346,28 @@ getValuesForType(target, suffix, label) {
             }
         };
         return (
-            <div>
+    <div className="container">
+      <div className="valuation">
+       <div className="col-12">
+        <div className="card">
+           <div className="row hero-result-head">
+               <div className="column col-sm-12 col-md-4">
+                   <h4>Lower Band</h4>
+                   <h2>{'£'+((this.props.valuation.selling_results.predict_results.predict_price)*.9).toLocaleString()}</h2>
+               </div>
+               <div className="column col-sm-12 col-md-4">
+                   <h4>Current Capital Value</h4>
+                   <h2>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h2>
+               </div>
+               <div className="column col-sm-12 col-md-4">
+                   <h4>Upper Band</h4>
+                   <h2>{'£'+((this.props.valuation.selling_results.predict_results.predict_price)*1.1).toLocaleString()}</h2>
+               </div>
+           </div>
+         </div>
+        <div className="card">
+            <div className="card-body">
             <React.Fragment>
-
-                <div className="row hero-result-head">
-                    <div className="column col-sm-12 col-md-4">
-                        <h4>Lower Band</h4>
-                        <h2>{'£'+((this.props.valuation.selling_results.predict_results.predict_price)*.9).toLocaleString()}</h2>
-                    </div>
-                    <div className="column col-sm-12 col-md-4">
-                        <h4>Current Capital Value</h4>
-                        <h2>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h2>
-                    </div>
-                    <div className="column col-sm-12 col-md-4">
-                        <h4>Upper Band</h4>
-                        <h2>{'£'+((this.props.valuation.selling_results.predict_results.predict_price)*1.1).toLocaleString()}</h2>
-                    </div>
-                </div>
                 <br />
                 <div className="row">
                     <div className="col-md-6">
@@ -384,7 +389,6 @@ getValuesForType(target, suffix, label) {
                         />
                     </div>
                 </div>
-
 
                 {/*
                 <div className="card-group">
@@ -669,6 +673,10 @@ getValuesForType(target, suffix, label) {
                 </div> */}
             </React.Fragment>
             </div>
+        </div>
+      </div>
+    </div>
+    </div>
         );
     }
 };
