@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
 import Header from "./Header";
-
+import "../styles.scss"
 export default () =>
     <main role="main">
         <Head>
@@ -19,7 +19,7 @@ export default () =>
                     <div className="row">
                         <div className="col-md-3"></div>
                         <div className="col-md-6">
-                            <a href="/quick-valuation">Get a valuation</a>
+                            {/*<a href="/quick-valuation">Get a valuation</a>*/}
                         </div>
                         <div className="col-md-3"></div>
                     </div>

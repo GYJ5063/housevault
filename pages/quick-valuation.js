@@ -16,12 +16,13 @@ const GET_COMPANY_DETAILS = gql`
             primary_colour
           }
     }
-
 `;
 class QuickValuation extends React.Component {
 
     constructor(props) {
+        var host = window.location.hostname;
         super(props);
+        console.log(host);
         this.state = {
             report: {},
             valuation: {},
@@ -51,7 +52,7 @@ class QuickValuation extends React.Component {
 
      return (
          <React.Fragment>
-             <div>
+             <div className="valuation-bg">
 
                  <Query query={GET_COMPANY_DETAILS}>
                      {({ loading, error, data }) => {

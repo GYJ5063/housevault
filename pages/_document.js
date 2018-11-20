@@ -1,11 +1,6 @@
 // ./pages/_document.js
 import Document, { Head, Main, NextScript } from 'next/document'
-
-import Header from '../components/Header'
-import Footer from '../components/Footer'
 import moment from "moment"
-import "../styles.scss"
-
 
 export default class MyDocument extends Document {
     constructor(props) {
@@ -14,7 +9,6 @@ export default class MyDocument extends Document {
     }
     static async getInitialProps(ctx) {
         const initialProps = await Document.getInitialProps(ctx);
-
         return { ...initialProps }
     }
     render() {
@@ -22,7 +16,7 @@ export default class MyDocument extends Document {
             <html>
             <Head>
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-                <title>Search the house vault for the latest property information | House Vault</title>
+
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
                       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
                       crossOrigin="anonymous" />
