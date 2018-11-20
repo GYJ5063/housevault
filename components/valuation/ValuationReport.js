@@ -2,15 +2,16 @@ import StreetView from "../StreetView";
 import {Bar, HorizontalBar, Line, Pie} from "react-chartjs-2";
 import moment from "moment";
 import { Table } from 'reactstrap';
-import ComparablePropertyCard from "../../components/valuation/ComparablePropertyCard"
-import ComparableRentalCard from "../../components/valuation/ComparableRentalCard"
-import GraphCard from "../../components/valuation/GraphCard"
-import MapCard from "../../components/valuation/MapCard"
+import ComparablePropertyCard from "../../components/valuation/ComparablePropertyCard";
+import ComparableRentalCard from "../../components/valuation/ComparableRentalCard";
+import GraphCard from "../../components/valuation/GraphCard";
+import MapCard from "../../components/valuation/MapCard";
 import _ from "lodash";
 import React from "react";
 import RentalComparables from "./RentalComparables";
-import WideGraphCard from "./WideGraphCard"
-import HeroCard from "./HeroCard"
+import WideGraphCard from "./WideGraphCard";
+import HeroCard from "./HeroCard";
+import Navbar from "./NavHeadCard";
 
 class ValuationReport extends React.Component {
     constructor (props) {
@@ -346,10 +347,10 @@ getValuesForType(target, suffix, label) {
             }
         };
         return (
-    <div className="container">
+    <div className="container" id='overview'>
       <div className="valuation">
        <div className="col-12">
-        <div className="card">
+        <div className="card" id="fixedHeroNav">
            <div className="row hero-result-head">
                <div className="column col-sm-12 col-md-4">
                    <h4>Lower Band</h4>
@@ -364,8 +365,11 @@ getValuesForType(target, suffix, label) {
                    <h2>{'£'+((this.props.valuation.selling_results.predict_results.predict_price)*1.1).toLocaleString()}</h2>
                </div>
            </div>
+           <div className="card">
+                <Navbar/>
+          </div>
          </div>
-        <div className="card">
+        <div className="card" id="valuation-card">
             <div className="card-body">
             <React.Fragment>
                 <br />
@@ -415,7 +419,7 @@ getValuesForType(target, suffix, label) {
                 </div>
                 */}
 
-                <div className="row">
+                <div className="row" id="propertyPerformance">
                     <div className="col-12 text-left">
                         <h2 className='mt-3'>Property Performance</h2>
                         <p>Thank you for requesting our property valuation report. Please note that whilst we believe our accuracy is industry leading, no AVM can fully replace a
@@ -477,7 +481,7 @@ getValuesForType(target, suffix, label) {
                         )
                     }
                 </div>
-                <div>
+                <div id="comparableSoldCards">
                     {
                         _.isEmpty(this.props.valuation.selling_results.comparable_properties[1]) ? null : (
                             <div>
@@ -502,7 +506,7 @@ getValuesForType(target, suffix, label) {
                 {/* {
                     this.props.hideRentals ? null : <RentalComparables rentals={this.props.valuation.rental_results.rental_comparable_properties}/>
                 } */}
-                <div>
+                <div id="comparableRentalCards">
                     {
                         _.isEmpty(this.props.valuation.rental_results.rental_comparable_properties[0]) ? null : (
                             <div>
@@ -523,7 +527,7 @@ getValuesForType(target, suffix, label) {
                 </div>
 
                 <div className="mag-content">
-                <div>
+                <div id="localPropertyInfo">
                     {
                         !this.props.valuation.selling_results.local_property_type_statistic ? null : (
                             <div className="row">
