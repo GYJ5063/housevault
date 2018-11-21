@@ -32,18 +32,18 @@ export default class Example extends React.Component {
                 <Navbar className="bg-info valuation-report-nav" expand="md">
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
+                        <Nav className="ml-auto mr-auto" navbar>
                             <NavItem>
-                                <NavLink href="#overview">Overview</NavLink>
+                                <NavLink href="#overview">Overview  </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="#propertyPerformance">Property Performance</NavLink>
+                                <NavLink href="#propertyPerformance">Property Performance  </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="#comparableSoldCards">Sold Comparables</NavLink>
+                                <NavLink href="#comparableSoldCards">Sold Comparables  </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="#comparableRentalCards">Rental Comparables</NavLink>
+                                <NavLink href="#comparableRentalCards">Rental Comparables  </NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="#localPropertyInfo">Local Property Factors</NavLink>
