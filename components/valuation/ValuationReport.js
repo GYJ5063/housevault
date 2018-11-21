@@ -376,13 +376,33 @@ getValuesForType(target, suffix, label) {
                 <br />
                 <div className="row">
                     <div className="col-md-6">
-                        <h3>Overview</h3>
-                        <h4>Rental Value</h4>
-                        <h4>{'£'+(this.props.valuation.rental_results.rental_predict_price.toFixed(0))+' per month | £'+(this.props.valuation.rental_results.rental_predict_price * 12 / 52).toFixed(0)+' per week'}</h4>
-                        <h4>Investment Yield</h4>
-                        <h4>{(((this.props.valuation.rental_results.rental_predict_price *12)/(this.props.valuation.selling_results.predict_results.predict_price))*100).toFixed(1) + '%'}</h4>
-                        <h4>12 Month Capital Growth</h4>
-                        <h4>{(((this.props.valuation.selling_results.predict_price_10y.index_31)-(this.props.valuation.selling_results.predict_price_10y.index_25))/(this.props.valuation.selling_results.predict_price_10y.index_25)*100).toFixed(1)+'%'}</h4>
+                        <h3>Your Property</h3>
+                        <p>This exclusive report provides a unique up-to-date insight into
+                            the value of your property and analysis of the local market,
+                            for 8 Mccorquodale Road Wolverton Milton Keynes, MK12 5GP</p>
+                        <div className="card-deck">
+                            <div className="card">
+                                <h3 className="heading-center">Bedrooms</h3>
+                                <br />
+                                <i className="fas fa-bed val-logo-awesome" ></i>
+                                <br />
+                                <h4 className="heading-center">{this.props.valuation.selling_results.query_info.num_bedrooms}</h4>
+                                </div>
+                            <div className="card">
+                                <h3 className="heading-center">Receptions</h3>
+                                <br />
+                                <i className="fas fa-couch val-logo-awesome"></i>
+                                <br />
+                                <h4 className="heading-center">{this.props.valuation.selling_results.query_info.num_receptionrooms}</h4>
+                            </div>
+                            <div className="card">
+                                <h3 className="heading-center">Living Space</h3>
+                                <br />
+                                <i className="fas fa-tape val-logo-awesome"></i>
+                                <br />
+                                <h4 className="heading-center">{this.props.valuation.selling_results.query_info.total_floor_area} sqm</h4>
+                                </div>
+                    </div>
                     </div>
                     <div className="col-md-6">
                         <br />
@@ -392,6 +412,32 @@ getValuesForType(target, suffix, label) {
                             markerPosition={marker}
                             zoom={2}
                         />
+                    </div>
+                </div>
+                {/* <h3>Overview</h3>
+                        <h4>Rental Value</h4>
+                        <h4>{'£'+(this.props.valuation.rental_results.rental_predict_price.toFixed(0))+' per month | £'+(this.props.valuation.rental_results.rental_predict_price * 12 / 52).toFixed(0)+' per week'}</h4>
+                        <h4>Investment Yield</h4>
+                        <h4>{(((this.props.valuation.rental_results.rental_predict_price *12)/(this.props.valuation.selling_results.predict_results.predict_price))*100).toFixed(1) + '%'}</h4>
+                        <h4>12 Month Capital Growth</h4>
+                        <h4>{(((this.props.valuation.selling_results.predict_price_10y.index_31)-(this.props.valuation.selling_results.predict_price_10y.index_25))/(this.props.valuation.selling_results.predict_price_10y.index_25)*100).toFixed(1)+'%'}</h4>
+                    */}
+
+                    <div className="card-deck heading-center">
+                    <div className="card">
+                        <h4>Estimated Value Range</h4>
+                        <i className="fas fa-chart-line val-logo-awesome"></i>
+                        <h2>{'£'+((this.props.valuation.selling_results.predict_results.predict_price)*1.1).toLocaleString()} to {'£'+((this.props.valuation.selling_results.predict_results.predict_price)*.9).toLocaleString()}</h2>
+
+                    </div>
+                    <div className="card">
+                        <h4>Estimated Valuation</h4>
+                        <i className="fas fa-home val-logo-awesome"></i>
+                        <h2>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h2>
+                    </div>
+                    <div className="card">
+                        <StarRating rating={(this.props.valuation.selling_results.predict_results.confidence_level*.7)} />
+                        <h2>{(this.props.valuation.selling_results.predict_results.confidence_level/8)*100}% Probablity</h2>
                     </div>
                 </div>
 
