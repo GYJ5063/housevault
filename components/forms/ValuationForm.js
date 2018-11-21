@@ -177,7 +177,8 @@ class ValuationForm extends React.Component {
                         sales_valuation:response.data.selling_results.predict_results.predict_price,
                         company_id:self.props.company.id
                     });
-                    self.props.mutate({
+                    console.log(self.props);
+                    self.props.createLead({
                         variables: {
                             first_name: self.state.first_name,
                             last_name: self.state.last_name,
@@ -193,6 +194,7 @@ class ValuationForm extends React.Component {
                     self.setState({ hideLoadingSpinner: true, valuation: response.data, step:3 });
                 })
                 .catch(function (error) {
+                    console.error(error);
                     self.setState({ hideLoadingSpinner: true});
                 });
         }
@@ -366,7 +368,7 @@ class ValuationForm extends React.Component {
     }
 }
 
-const mutator = gql`
+const createLeadMutator = gql`
     mutation createLead($first_name: String!, $last_name: String!, $email: String!, $phone_number: String!, 
             $sales_valuation: Float!, $rental_valuation: Float!, $company_id: Int!) {
              createLead(
@@ -384,5 +386,6 @@ const mutator = gql`
 `;
 
 export default compose(
-    graphql(mutator)
+    graphql(createLeadMutator, { name: 'createLead'}),
+    //graphql()
 )(ValuationForm);
