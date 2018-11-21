@@ -536,25 +536,39 @@ getValuesForType(target, suffix, label) {
                                         property sizes, market values & property types. Our local research shows that the internal property size typically has the largest affect
                                         on market value which is why we also calculate the average value per square meter. If the subject property is outside these 'norms' it normally
                                         results in a positive/negative effect on the value.</p>
-                                 <div className="col-md-6">
-                                     <h4>Average Property Size</h4>
-                                    <Bar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_size', 'Average Size (m2)')} />
-                                    <p>Using this graph allows you to compare this property to the averages in your area based on property-type. We separate them because the UK market has historically placed more weight of property-type than actual size. Comparing your property size to the average gives us a strong indication on the value and demand for your home. All things being equal if your home is larger than the local average then you will see increased demand and value. If you're looking to buy or rent then you will have a much clearer picture after comparing like for like properties.</p>
-                                 </div>
-                                 <div className="col-md-6">
-                                     <h4>Value Based on Property Type</h4>
-                                    <HorizontalBar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_value', 'Average Value (£)')} />
-                                    <p>One of the easiest comparisons to make against your home is against average property values in your area. We break this down further by property-type because it gives a much clearer picture of the difference between houses on a street. Detached homes typically command a premium of at least 10% for two specific reasons. Detached houses are typically larger and are in lower supply, which in turn creates a demand premium.</p>
-                                </div>
                                 <div className="col-md-6">
                                     <Pie data={this.getValuesForPie(this.props.valuation.selling_results.local_property_type_statistic, 'num_ratio')} />
+                                </div>
+                                <div className="col-md-6">
+                                    <h4>Ratio of property types in area</h4>
                                     <p>The ratio of property types can give a good indication of affluence and demographics of an area. Rural affluent locations such as the South East, for example, typically have an above average percentage of Detached homes compared to flats. The ratio can also give an indication of possible demand.</p>
                                     <p>Buying a terrace property in an area mainly comprising of terrace-houses means your home value is directly linked to average increases in an area. Whereas buying a detached home, even at a premium, could see demand push the values up faster even without any local changes.</p>
                                 </div>
+                                <br />
+                                 <div className="col-md-6">
+                                    <HorizontalBar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_value', 'Average Value (£)')} />
+                                </div>
                                 <div className="col-md-6">
-                                    <Bar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'per_size_value', 'Value per Square Meter')} />
+                                    <h4>Value Based on Property Type</h4>
+                                    <p>One of the easiest comparisons to make against your home is against average property values in your area. We break this down further by property-type because it gives a much clearer picture of the difference between houses on a street. Detached homes typically command a premium of at least 10% for two specific reasons. Detached houses are typically larger and are in lower supply, which in turn creates a demand premium.</p>
+                                </div>
+                                <br />
+                                <div className="col-md-6">
+                                    <h4>Average Property Size</h4>
+                                    <p>Using this graph allows you to compare this property to the averages in your area based on property-type. We separate them because the UK market has historically placed more weight of property-type than actual size. Comparing your property size to the average gives us a strong indication on the value and demand for your home. All things being equal if your home is larger than the local average then you will see increased demand and value. If you're looking to buy or rent then you will have a much clearer picture after comparing like for like properties.</p>
+                                </div>
+                                <div className="col-md-6">
+                                    <Bar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_size', 'Average Size (m2)')} />
+                                </div>
+                                <br />
+                                <div className="col-md-6">
+                                    <h4>Price per Square Meter</h4>
                                     <p>Comparing the value per square meter of a property is one of the best statistical methods and gives good insight for seeing possible trends and changes in the market. We have split the £/sqm value based on property type because as you'll see above there are significant variations depending on the property type. Detached homes typically command a 10%+ premium over semi-detached homes on the same street. This varies depending on location and supply of different house types. £2,500sqm is the average value across the UK.</p>
                                 </div>
+                                <div className="col-md-6">
+                                    <Bar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'per_size_value', 'Value per Square Meter')} />
+                                </div>
+                                <br />
                                 <WideGraphCard title={'Average Property Type Values (10 years)'}>
                                     <Line data={this.getValuesForLine2(this.props.valuation.selling_results.regional_housetype_price_10y.DetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.SemiDetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.TerracedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.FlatPrice)} />
                                 </WideGraphCard>
