@@ -18,16 +18,26 @@ class StarRating extends React.Component {
         return (
             <div>
                 <h4>Confidence Score</h4>
-                <div style={{fontSize: 15}}>
+                <div style={styles.outerContainerStyling}>
                     <StarRatingComponent
-                        name="app4"
+                        caption="Confidence"
+                        name="confidence"
                         editing={false}
                         starCount={5}
-                        value={this.props.rating} />
+                        value={this.props.rating}
+                        renderStarIcon={() => <span><i className="fa fa-home" style={styles.iconStyling}></i></span>}/>
                 </div>
             </div>
         );
     }
 }
+const styles = {
+    outerContainerStyling: {
+        fontSize: 15
+    },
+    iconStyling: {
+        fontSize: 36
+    }
+};
 
 export default StarRating;
