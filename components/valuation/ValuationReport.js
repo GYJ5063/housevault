@@ -383,7 +383,6 @@ getValuesForType(target, suffix, label) {
                         <h4>{(((this.props.valuation.rental_results.rental_predict_price *12)/(this.props.valuation.selling_results.predict_results.predict_price))*100).toFixed(1) + '%'}</h4>
                         <h4>12 Month Capital Growth</h4>
                         <h4>{(((this.props.valuation.selling_results.predict_price_10y.index_31)-(this.props.valuation.selling_results.predict_price_10y.index_25))/(this.props.valuation.selling_results.predict_price_10y.index_25)*100).toFixed(1)+'%'}</h4>
-                        <StarRating rating={(this.props.valuation.selling_results.predict_results.confidence_level*.7)} />
                     </div>
                     <div className="col-md-6">
                         <br />
@@ -482,9 +481,6 @@ getValuesForType(target, suffix, label) {
                         )
                     }
                 </div>
-                {/* {
-                    this.props.hideRentals ? null : <RentalComparables rentals={this.props.valuation.rental_results.rental_comparable_properties}/>
-                } */}
                 <div id="comparableRentalCards">
                     {
                         _.isEmpty(this.props.valuation.rental_results.rental_comparable_properties[0]) ? null : (
@@ -556,118 +552,6 @@ getValuesForType(target, suffix, label) {
                     }
                 </div>
                 </div>
-
-                {/*}
-                <div>
-                {
-                    !this.props.valuation.selling_results.local_property_type_statistic ? null : (
-                        <div className="row">
-                            <div className="col-12 text-left">
-                                <h2 className='mt-3'>Local Property Value Factors</h2>
-                                <p>This section of the report digs a little deeper into the local area surrounding the subject property. We have collated data on average
-                                property sizes, market values & property types. Our local research shows that the internal property size typically has the largest affect
-                                on market value which is why we also calculate the average value per square meter. If the subject property is outside these 'norms' it normally
-                                results in a positive/negative effect on the value.</p>
-                            <div className="card-deck">
-                                <GraphCard title={'Average Property Size'}>
-                                    <Bar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_size', 'Average Size')} />
-                                    <p>Using this graph allows you to compare this property to the averages in your area based on property-type. We separate them because the UK market has historically placed more weight of property-type than actual size. Comparing your property size to the average gives us a strong indication on the value and demand for your home. All things being equal if your home is larger than the local average then you will see increased demand and value. If you're looking to buy or rent then you will have a much clearer picture after comparing like for like properties.</p>
-                                </GraphCard>
-                                <GraphCard title={'Average Property Value'}>
-                                    <HorizontalBar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_value', 'Average Value')} />
-                                    <p>One of the easiest comparisons to make against your home is against average property values in your area. We break this down further by property-type because it gives a much clearer picture of the difference between houses on a street. Detached homes typically command a premium of at least 10% for two specific reasons. Detached houses are typically larger and are in lower supply, which in turn creates a demand premium.</p>
-                                </GraphCard>
-                            </div>
-                        </div>
-                        </div>
-                    )
-                }
-                </div>
-
-                <div>
-                {
-                    !this.props.valuation.selling_results.local_property_type_statistic ? null : (
-                        <div className="row">
-                         <div className="col-12 text-left">
-                            <div className="card-deck">
-                                <GraphCard title={'Property Type Ratio'}>
-                                    <Pie data={this.getValuesForPie(this.props.valuation.selling_results.local_property_type_statistic, 'num_ratio')} />
-                                    <p>The ratio of property types can give a good indication of affluence and demographics of an area. Rural affluent locations such as the South East, for example, typically have an above average percentage of Detached homes compared to flats. The ratio can also give an indication of possible demand.</p>
-                                    <p>Buying a terrace property in an area mainly comprising of terrace-houses means your home value is directly linked to average increases in an area. Whereas buying a detached home, even at a premium, could see demand push the values up faster even without any local changes.</p>
-                                </GraphCard>
-                                <GraphCard title={'Value per SQM'}>
-                                    <Bar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'per_size_value', 'Per Size Value')} />
-                                    <p>Comparing the value per square meter of a property is one of the best statistical methods and gives good insight for seeing possible trends and changes in the market. We have split the £/sqm value based on property type because as you'll see above there are significant variations depending on the property type. Detached homes typically command a 10%+ premium over semi-detached homes on the same street. This varies depending on location and supply of different house types. £2,500sqm is the average value across the UK.</p>
-                                </GraphCard>
-                            </div>
-                        </div>
-                        </div>
-                            )
-                 }
-                </div>
-                <div className="row">
-                    <WideGraphCard title={'Average Property Type Values (10 years)'}>
-                        <Line
-
-                            data={this.getValuesForLine2(this.props.valuation.selling_results.regional_housetype_price_10y.DetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.SemiDetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.TerracedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.FlatPrice)} />
-                    </WideGraphCard>
-                </div>
-                */}
-
-                {/* <div className="row">
-                    <div className="col-12 text-left">
-                        <h2 className='mt-3'>Property Performance</h2>
-                    </div>
-                    <GraphCard title={'Property Value Compared to Local & National (10 years)'}>
-                        <Line data={this.getValuesForLine(this.props.valuation.selling_results.predict_price_10y,this.props.valuation.selling_results.regional_price_10y,this.props.valuation.selling_results.national_avg_price_10y)} />
-                    </GraphCard>
-                    <GraphCard title={'Average Property Type Values (10 years)'}>
-                        <Line data={this.getValuesForLine2(this.props.valuation.selling_results.regional_housetype_price_10y.DetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.SemiDetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.TerracedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.FlatPrice)} />
-                    </GraphCard>
-                </div> */}
-
-                {/*} <div className="row">
-                    <div className="col">
-                        {
-                            _.isEmpty(this.props.valuation.selling_results.comparable_properties[1]) ? null : (
-                                <React.Fragment>
-                                    <h2 className="mt-3">Comparable Properties</h2>
-                                    <div className="card">
-                                        <div className="card-body">
-
-                                            <Table>
-                                                <thead>
-                                                <tr>
-                                                    <th>Address</th>
-                                                    <th>Postcode</th>
-                                                    <th>House Type</th>
-                                                    <th>Beds</th>
-                                                    <th>Property Size</th>
-                                                    <th>Current Value</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                {
-                                                    _.map(this.props.valuation.selling_results.comparable_properties, (cp, i) => (
-
-                                                        <tr key={i}>
-                                                            <td>{cp.address_1}</td>
-                                                            <td>{cp.postcode}</td>
-                                                            <td>{cp.house_type_out}</td>
-                                                            <td>{(cp.rooms)-2}</td>
-                                                            <td>{(cp.size)+' sqm'}</td>
-                                                            <td>£{cp.current_valuation.toLocaleString()}</td>
-                                                        </tr>
-                                                    ))}
-                                                </tbody>
-                                            </Table>
-                                        </div>
-                                    </div>
-                                </React.Fragment>
-                            )
-                        }
-                    </div>
-                </div> */}
             </React.Fragment>
             </div>
         </div>

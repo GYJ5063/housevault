@@ -36,7 +36,7 @@ const styles = {
         fontSize: 15
     },
     iconStyling: {
-        fontSize: 36
+        fontSize: 30
     }
 };
 
