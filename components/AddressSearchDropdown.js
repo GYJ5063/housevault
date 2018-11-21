@@ -6,9 +6,10 @@ const QUERY = gql`
         query addresses($postcode: String!) {
             addresses(postcode: $postcode) {
                 id
-                building_number
                 building_name
+                building_number
                 thoroughfare
+                town
                 postcode
             }
         }

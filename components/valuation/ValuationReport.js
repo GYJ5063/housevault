@@ -319,6 +319,7 @@ getValuesForType(target, suffix, label) {
     }
 
     render() {
+        console.log(this.props.address);
         {/* const { sellingResults,rentalResult } = this.props.valuation */}
         const marker = {lng: _.toNumber(this.props.valuation.selling_results.predict_results.lng.toString()), lat: _.toNumber(this.props.valuation.selling_results.predict_results.lat.toString()) };
         const graphOptions = {
