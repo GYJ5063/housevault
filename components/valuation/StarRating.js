@@ -14,42 +14,15 @@ class StarRating extends React.Component {
         };
     }
 
-    onStarClick(nextValue, prevValue, name) {
-        console.log('name: %s, nextValue: %s, prevValue: %s', name, nextValue, prevValue);
-        this.setState({rating: nextValue});
-    }
-
-    onStarClickCustomIcon(nextValue, prevValue, name) {
-        console.log('name: %s, nextValue: %s, prevValue: %s', name, nextValue, prevValue);
-        this.setState({rating_custom_icon: nextValue});
-    }
-
-    onStarClickHalfStar(nextValue, prevValue, name, e) {
-        const xPos = (e.pageX - e.currentTarget.getBoundingClientRect().left) / e.currentTarget.offsetWidth;
-
-        if (xPos <= 0.5) {
-            nextValue -= 0.5;
-        }
-
-        console.log('name: %s, nextValue: %s, prevValue: %s', name, nextValue, prevValue);
-        // console.log(e);
-        this.setState({rating_half_star: nextValue});
-    }
-
-    onStarClickEmptyInitial(nextValue, prevValue, name) {
-        console.log('name: %s, nextValue: %s, prevValue: %s', name, nextValue, prevValue);
-        this.setState({rating_empty_initial: nextValue});
-    }
-
     render() {
         return (
-            <div style={{marginLeft: 20}}>
-                <h3>Confidence Score</h3>
-                <div style={{fontSize: 18}}>
+            <div>
+                <h4>Confidence Score</h4>
+                <div style={{fontSize: 15}}>
                     <StarRatingComponent
                         name="app4"
-                        editing={this.props.editing}
-                        starCount={this.props.starCount}
+                        editing={false}
+                        starCount={5}
                         value={this.props.rating} />
                 </div>
             </div>

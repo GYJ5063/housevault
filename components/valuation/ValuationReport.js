@@ -319,6 +319,7 @@ getValuesForType(target, suffix, label) {
     }
 
     render() {
+        {/* const { sellingResults,rentalResult } = this.props.valuation */}
         const marker = {lng: _.toNumber(this.props.valuation.selling_results.predict_results.lng.toString()), lat: _.toNumber(this.props.valuation.selling_results.predict_results.lat.toString()) };
         const graphOptions = {
             responsive: true,
@@ -354,16 +355,15 @@ getValuesForType(target, suffix, label) {
         <div className="card" id="fixedHeroNav">
            <div className="row hero-result-head">
                <div className="column col-sm-12 col-md-4">
-                   <h4>Lower Band</h4>
-                   <h2>{'£'+((this.props.valuation.selling_results.predict_results.predict_price)*.9).toLocaleString()}</h2>
+                   <h4>Rental Value</h4>
+                   <h2>{'£'+(this.props.valuation.rental_results.rental_predict_price).toLocaleString()+' pcm'}</h2>
                </div>
                <div className="column col-sm-12 col-md-4">
                    <h4>Current Capital Value</h4>
                    <h2>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h2>
                </div>
                <div className="column col-sm-12 col-md-4">
-                   <h4>Upper Band</h4>
-                   <h2>{'£'+((this.props.valuation.selling_results.predict_results.predict_price)*1.1).toLocaleString()}</h2>
+                   <StarRating rating={(this.props.valuation.selling_results.predict_results.confidence_level*.7)} />
                </div>
            </div>
            <div className="card">
@@ -376,14 +376,15 @@ getValuesForType(target, suffix, label) {
                 <br />
                 <div className="row">
                     <div className="col-md-6">
-                        <h3>Investment Return</h3>
+                        <h3>Overview</h3>
                         <h4>Rental Value</h4>
                         <h4>{'£'+(this.props.valuation.rental_results.rental_predict_price.toFixed(0))+' per month | £'+(this.props.valuation.rental_results.rental_predict_price * 12 / 52).toFixed(0)+' per week'}</h4>
                         <h4>Investment Yield</h4>
                         <h4>{(((this.props.valuation.rental_results.rental_predict_price *12)/(this.props.valuation.selling_results.predict_results.predict_price))*100).toFixed(1) + '%'}</h4>
                         <h4>12 Month Capital Growth</h4>
                         <h4>{(((this.props.valuation.selling_results.predict_price_10y.index_31)-(this.props.valuation.selling_results.predict_price_10y.index_25))/(this.props.valuation.selling_results.predict_price_10y.index_25)*100).toFixed(1)+'%'}</h4>
-                        </div>
+                        <StarRating rating={(this.props.valuation.selling_results.predict_results.confidence_level*.7)} />
+                    </div>
                     <div className="col-md-6">
                         <br />
                         <StreetView
@@ -395,31 +396,6 @@ getValuesForType(target, suffix, label) {
                     </div>
                 </div>
 
-                {/*
-                <div className="card-group">
-                    <GraphCard title={'Property Overview'}>
-                        <h3>Current Capital Value</h3>
-                        <h4>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h4>
-                        <h3>Rental Value</h3>
-                        <h4>{'£'+(this.props.valuation.rental_results.rental_predict_price.toFixed(0))+' per month | £'+(this.props.valuation.rental_results.rental_predict_price * 12 / 52).toFixed(0)+' per week'}</h4>
-                        <h3>Investment Yield</h3>
-                        <h4>{(((this.props.valuation.rental_results.rental_predict_price *12)/(this.props.valuation.selling_results.predict_results.predict_price))*100).toFixed(1) + '%'}</h4>
-                        <h3>12 Month Capital Growth</h3>
-                        <h4>{(((this.props.valuation.selling_results.predict_price_10y.index_31)-(this.props.valuation.selling_results.predict_price_10y.index_25))/(this.props.valuation.selling_results.predict_price_10y.index_25)*100).toFixed(1)+'%'}</h4>
-                    </GraphCard>
-                    <MapCard title={'Street View'}>
-                        <div className="streeview">
-                            <StreetView
-                                isMarkerShown={this.props.isMarkerShown}
-                                onMarkerClick={this.handleMarkerClick}
-                                markerPosition={marker}
-                                zoom={2}
-                            />
-                        </div>
-                    </MapCard>
-                </div>
-                */}
-                <StarRating starCount={10} rating={this.props.valuation.selling_results.predict_results.confidence_level} editing={false}/>
                 <div className="row" id="propertyPerformance">
                     <div className="col-12 text-left">
                         <h2 className='mt-3'>Property Performance</h2>
