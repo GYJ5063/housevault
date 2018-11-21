@@ -12,6 +12,7 @@ import RentalComparables from "./RentalComparables";
 import WideGraphCard from "./WideGraphCard";
 import HeroCard from "./HeroCard";
 import Navbar from "./NavHeadCard";
+import StarRating from "./StarRating";
 
 class ValuationReport extends React.Component {
     constructor (props) {
@@ -418,7 +419,7 @@ getValuesForType(target, suffix, label) {
                     </MapCard>
                 </div>
                 */}
-
+                <StarRating starCount={10} rating={this.props.valuation.selling_results.predict_results.confidence_level} editing={false}/>
                 <div className="row" id="propertyPerformance">
                     <div className="col-12 text-left">
                         <h2 className='mt-3'>Property Performance</h2>
@@ -444,6 +445,8 @@ getValuesForType(target, suffix, label) {
                         <p>Macro Economic factor events such as Government or Global financial influences will raise or lower all valuations nationwide, however some properties will outperform the norm.</p>
                     </div>
                 </div>
+
+
 
                 <div>
                     {
