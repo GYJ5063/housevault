@@ -374,38 +374,49 @@ getValuesForType(target, suffix, label) {
         <div className="card" id="valuation-card">
             <div className="card-body">
             <React.Fragment>
-                <br />
                 <div className="row">
-                    <div className="col-md-6">
-                        <h3>Your Property</h3>
-                        <p>This exclusive report provides a unique up-to-date insight into
-                            the value of your property and analysis of the local market,
-                            for {this.props.address.building_number} {this.props.address.building_name} {this.props.address.thoroughfare} {this.props.address.town} {this.props.address.postcode}</p>
-                        <div className="card-deck">
-                            <div className="card">
-                                <h3 className="heading-center">Bedrooms</h3>
+                <div className="col-md-12">
+                    <h3>Your Property {this.props.address.building_number} {this.props.address.building_name} {this.props.address.thoroughfare} {this.props.address.postcode}</h3>
+                    <p>This exclusive report provides a unique up-to-date insight into
+                       the value of your property and analysis of the local market,
+                       for {this.props.address.building_number} {this.props.address.building_name} {this.props.address.thoroughfare} {this.props.address.town} {this.props.address.postcode}</p>
+                </div>
+                <div className="col-md-6">
+                 <div className="card-deck heading-center ml-2 mt-2">
+                         <div className="card">
+                           <h3>House Type</h3>
+                           <br />
+                           <i className="fas fa-home val-logo-awesome" ></i>
+                           <br />
+                           <h4>{this.props.valuation.selling_results.query_info.built_from} {this.props.valuation.selling_results.query_info.property_type}</h4>
+                         </div>
+                          <div className="card">
+                                <h3>Bedrooms</h3>
                                 <br />
                                 <i className="fas fa-bed val-logo-awesome" ></i>
                                 <br />
-                                <h4 className="heading-center">{this.props.valuation.selling_results.query_info.num_bedrooms}</h4>
-                                </div>
-                            <div className="card">
-                                <h3 className="heading-center">Receptions</h3>
+                                <h4>{this.props.valuation.selling_results.query_info.num_bedrooms}</h4>
+                           </div>
+                 </div>
+                     <div className="card-deck heading-center ml-2">
+                          <div className="card">
+                                <h3>Receptions</h3>
                                 <br />
                                 <i className="fas fa-couch val-logo-awesome"></i>
                                 <br />
-                                <h4 className="heading-center">{this.props.valuation.selling_results.query_info.num_receptionrooms}</h4>
-                            </div>
-                            <div className="card">
-                                <h3 className="heading-center">Living Space</h3>
+                                <h4>{this.props.valuation.selling_results.query_info.num_receptionrooms}</h4>
+                           </div>
+                          <div className="card">
+                                <h3>Space</h3>
                                 <br />
                                 <i className="fas fa-tape val-logo-awesome"></i>
                                 <br />
-                                <h4 className="heading-center">{this.props.valuation.selling_results.query_info.total_floor_area} sqm</h4>
-                             </div>
-                    </div>
-                    </div>
-                    <div className="col-md-6">
+                                <h4>{this.props.valuation.selling_results.query_info.total_floor_area} sqm</h4>
+                       </div>
+                 </div>
+                </div>
+                <div className="col-md-6 mt-3">
+
                         <br />
                         <StreetView
                             isMarkerShown={this.props.isMarkerShown}
@@ -413,26 +424,27 @@ getValuesForType(target, suffix, label) {
                             markerPosition={marker}
                             zoom={2}
                         />
+
                     </div>
                 </div>
-                 <div className="card-deck heading-center">
-                    <div className="card">
+                <div className="card-deck heading-center mr-2 ml-2 mt-5 mb-5">
+                    <div className="card mt-150">
                          <h4>Estimated Valuation</h4>
                          <i className="fas fa-home val-logo-awesome"></i>
                          <h2>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h2>
                     </div>
-                    <div className="card">
+                    <div className="card cardSpace">
                         <h4>Estimated Value Range</h4>
                         <i className="fas fa-chart-line val-logo-awesome"></i>
-                        <h2>{'£'+((this.props.valuation.selling_results.predict_results.predict_price)*.9).toLocaleString()} to {'£'+((this.props.valuation.selling_results.predict_results.predict_price)*1.1).toLocaleString()}</h2>
+                        <h2>{'£'+((this.props.valuation.selling_results.predict_results.predict_price)*.95).toLocaleString()} to {'£'+((this.props.valuation.selling_results.predict_results.predict_price)*1.05).toLocaleString()}</h2>
                     </div>
-                    <div className="card">
+                    <div className="card cardSpace">
                          <h4>Change Over 12 Months</h4>
                          <i className="fas fa-home val-logo-awesome"></i>
                          <h2>{'£'+((this.props.valuation.selling_results.predict_price_10y.index_41)-(this.props.valuation.selling_results.predict_price_10y.index_37)).toLocaleString()}</h2>
                     </div>
                 </div>
-                <div className="card-deck heading-center">
+                <div className="card-deck heading-center mr-2 ml-2 mb-5">
                     <div className="card">
                         <h4>Rental Value</h4>
                         <i className="fas fa-home val-logo-awesome"></i>
