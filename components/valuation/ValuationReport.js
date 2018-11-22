@@ -416,7 +416,7 @@ getValuesForType(target, suffix, label) {
                  </div>
                 </div>
                 <div className="col-md-6 mt-3">
-
+                    <div className="card agent-cta">
                         <br />
                         <StreetView
                             isMarkerShown={this.props.isMarkerShown}
@@ -424,7 +424,7 @@ getValuesForType(target, suffix, label) {
                             markerPosition={marker}
                             zoom={2}
                         />
-
+                    </div>
                     </div>
                 </div>
                 <div className="card-deck heading-center mr-2 ml-2 mt-5 mb-5">
