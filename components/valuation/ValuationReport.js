@@ -627,5 +627,4 @@ getValuesForType(target, suffix, label) {
         );
     }
 };
-
 export default (ValuationReport);
