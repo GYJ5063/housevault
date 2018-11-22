@@ -168,27 +168,17 @@ class ValuationForm extends React.Component {
 
             axios.post(process.env.PRICEPREDICTION_URL, formData, config)
                 .then(function (response) {
-                    console.log({
-                        first_name: self.state.first_name,
-                        last_name: self.state.last_name,
-                        email: self.state.email,
-                        phone_number:self.state.phone_number,
-                        rental_valuation:response.data.rental_results.reantal_predict_results,
-                        sales_valuation:response.data.selling_results.predict_results.predict_price,
-                        company_id:self.props.company.id
+                    self.props.createLeadMutator({
+                        variables: {
+                            first_name: self.state.first_name,
+                            last_name: self.state.last_name,
+                            email: self.state.email,
+                            phone_number:self.state.phone_number,
+                            rental_valuation: response.data.rental_results.rental_predict_price,
+                            sales_valuation: response.data.selling_results.predict_results.predict_price,
+                            company_id: self.props.company.id
+                        }
                     });
-
-                    // self.props.createLeadMutator({
-                    //     variables: {
-                    //         first_name: self.state.first_name,
-                    //         last_name: self.state.last_name,
-                    //         email: self.state.email,
-                    //         phone_number:self.state.phone_number,
-                    //         rental_valuation:response.data.rental_results.reantal_predict_results,
-                    //         sales_valuation:response.data.selling_results.predict_results.predict_price,
-                    //         company_id:self.props.company.id
-                    //     }
-                    // });
                     console.log(self.props.company)
                     self.props.saveReportMutator({ variables: { report: response.data, company_id: self.props.company.id } });
                     self.props.report(response.data);
@@ -220,7 +210,6 @@ class ValuationForm extends React.Component {
         );
     }
     render() {
-        console.log(this.props.company)
         let validation = this.submitted ?
             this.validator.validate(this.state) :
             this.state.validation;
