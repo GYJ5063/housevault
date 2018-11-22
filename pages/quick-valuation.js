@@ -59,7 +59,7 @@ class QuickValuation extends React.Component {
 
      return (
          <React.Fragment>
-            <div className="row valuation-bg">
+            <div className="row ">
                 <Query query={GET_COMPANY_DETAILS}>
                     {({ loading, error, data }) => {
                      if (loading) return "Loading...";
@@ -78,18 +78,8 @@ class QuickValuation extends React.Component {
                             </div>
                         </div>
                         :
-                        <div className="container">
-                        <div className="valuation">
-                            <div className="col-12">
-                                <div className="card ">
-                                    <div className="card-body">
-                                        <h1>Your valuation is on its way</h1>
                                         <ValuationReport valuation={this.state.report} address={this.state.address} company={this.state.company}/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </div>)
+                                    )
                     }
                     }
                  </Query>

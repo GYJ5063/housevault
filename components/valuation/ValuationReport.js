@@ -350,11 +350,12 @@ getValuesForType(target, suffix, label) {
             }
         };
         return (
-    <div className="container" id='overview'>
-      <div className="valuation">
-       <div className="col-12">
-        <div className="card" id="fixedHeroNav">
-           <div className="row hero-result-head">
+   <div className="container">
+    <div className="valuation">
+     <div className="col-12">
+
+       <div className="card hero-result-head">
+           <div className="row">
                <div className="column col-sm-12 col-md-4">
                    <h4>Rental Value</h4>
                    <h2>{'£'+(this.props.valuation.rental_results.rental_predict_price).toLocaleString()+' pcm'}</h2>
@@ -367,55 +368,39 @@ getValuesForType(target, suffix, label) {
                    <StarRating rating={(this.props.valuation.selling_results.predict_results.confidence_level*.7)} />
                </div>
            </div>
-           <div className="card">
-                <Navbar />
-          </div>
+        </div>
+         <div className="card valuation-report-nav">
+             <Navbar />
          </div>
-        <div className="card" id="valuation-card">
+        <div className="card card-main-content">
             <div className="card-body">
             <React.Fragment>
                 <div className="row">
-                <div className="col-md-12">
+                    <div className="col-md-7 mt-4">
                     <h3>Your Property {this.props.address.building_number} {this.props.address.building_name} {this.props.address.thoroughfare} {this.props.address.postcode}</h3>
                     <p>This exclusive report provides a unique up-to-date insight into
                        the value of your property and analysis of the local market,
                        for {this.props.address.building_number} {this.props.address.building_name} {this.props.address.thoroughfare} {this.props.address.town} {this.props.address.postcode}</p>
-                </div>
-                <div className="col-md-6">
-                 <div className="card-deck heading-center ml-2 mt-2">
+                 <div className="card-deck heading-center mt-4">
+
                          <div className="card">
-                           <h3>House Type</h3>
-                           <br />
-                           <i className="fas fa-home val-logo-awesome" ></i>
-                           <br />
-                           <h4>{this.props.valuation.selling_results.query_info.built_from} {this.props.valuation.selling_results.query_info.property_type}</h4>
-                         </div>
-                          <div className="card">
-                                <h3>Bedrooms</h3>
-                                <br />
-                                <i className="fas fa-bed val-logo-awesome" ></i>
-                                <br />
-                                <h4>{this.props.valuation.selling_results.query_info.num_bedrooms}</h4>
-                           </div>
-                 </div>
-                     <div className="card-deck heading-center ml-2">
+                              <h3>Bedrooms</h3>
+                              <i className="fas fa-bed val-logo-awesome" />
+                              <h4>{this.props.valuation.selling_results.query_info.num_bedrooms}</h4>
+                          </div>
                           <div className="card">
                                 <h3>Receptions</h3>
-                                <br />
-                                <i className="fas fa-couch val-logo-awesome"></i>
-                                <br />
+                                <i className="fas fa-couch val-logo-awesome"/>
                                 <h4>{this.props.valuation.selling_results.query_info.num_receptionrooms}</h4>
                            </div>
                           <div className="card">
                                 <h3>Space</h3>
-                                <br />
-                                <i className="fas fa-tape val-logo-awesome"></i>
-                                <br />
+                                <i className="fas fa-tape val-logo-awesome"/>
                                 <h4>{this.props.valuation.selling_results.query_info.total_floor_area} sqm</h4>
                        </div>
                  </div>
                 </div>
-                <div className="col-md-6 mt-3">
+                <div className="col-md-5">
                     <div className="card agent-cta">
                         <br />
                         <StreetView
@@ -427,63 +412,58 @@ getValuesForType(target, suffix, label) {
                     </div>
                     </div>
                 </div>
-                <div className="card-deck heading-center mr-2 ml-2 mt-5 mb-5">
-                    <div className="card mt-150">
-                         <h4>Estimated Valuation</h4>
-                         <i className="fas fa-home val-logo-awesome"></i>
+                <div className="card-deck heading-center mr-2 ml-2 mt-5 mb-3">
+                    <div className="card mt-150 valuation-tile-item">
+                         <h4>Current Valuation</h4>
+                         <i className="fas fa-home val-logo-awesome"/>
                          <h2>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h2>
                     </div>
-                    <div className="card cardSpace">
-                        <h4>Estimated Value Range</h4>
-                        <i className="fas fa-chart-line val-logo-awesome"></i>
-                        <h2>{'£'+((this.props.valuation.selling_results.predict_results.predict_price)*.95).toLocaleString()} to {'£'+((this.props.valuation.selling_results.predict_results.predict_price)*1.05).toLocaleString()}</h2>
+                    <div className="card valuation-tile-item">
+                        <h4>Value Range</h4>
+                        <i className="fas fa-chart-line val-logo-awesome"/>
+                        <h4>{'£'+((this.props.valuation.selling_results.predict_results.predict_price)*.95).toLocaleString()} to {'£'+((this.props.valuation.selling_results.predict_results.predict_price)*1.05).toLocaleString()}</h4>
                     </div>
-                    <div className="card cardSpace">
-                         <h4>Change Over 12 Months</h4>
-                         <i className="fas fa-home val-logo-awesome"></i>
+                    <div className="card valuation-tile-item">
+                         <h4>12 Month Change</h4>
+                         <i className="fas fa-home val-logo-awesome"/>
                          <h2>{'£'+((this.props.valuation.selling_results.predict_price_10y.index_41)-(this.props.valuation.selling_results.predict_price_10y.index_37)).toLocaleString()}</h2>
                     </div>
                 </div>
-                <div className="card-deck heading-center mr-2 ml-2 mb-5">
-                    <div className="card">
+                <div className="card-deck heading-center mr-2 ml-2 mb-3">
+                    <div className="card valuation-tile-item">
                         <h4>Rental Value</h4>
-                        <i className="fas fa-home val-logo-awesome"></i>
+                        <i className="fas fa-home val-logo-awesome"/>
                         <h2>{'£'+(this.props.valuation.rental_results.rental_predict_price.toLocaleString())+' pcm'}</h2>
                     </div>
-                    <div className="card">
+                    <div className="card valuation-tile-item">
                         <h4>Rental Yield</h4>
-                        <i className="fas fa-home val-logo-awesome"></i>
+                        <i className="fas fa-home val-logo-awesome"/>
                         <h2>{(((this.props.valuation.rental_results.rental_predict_price *12)/(this.props.valuation.selling_results.predict_results.predict_price))*100).toFixed(1) + '%'}</h2>
                     </div>
-                    <div className="card">
+                    <div className="card valuation-tile-item">
                         <StarRating rating={(this.props.valuation.selling_results.predict_results.confidence_level*.7)} />
-                        <h2>{(this.props.valuation.selling_results.predict_results.confidence_level/8)*100}% Reliability</h2>
+                        <h2>{(this.props.valuation.selling_results.predict_results.confidence_level/8)*100}% accuracy</h2>
                     </div>
                 </div>
 
                 <div className="row" id="propertyPerformance">
                     <div className="col-12 text-left">
-                        <h2 className='mt-3'>Property Performance</h2>
-                        <p>Thank you for requesting our property valuation report. Please note that whilst we believe our accuracy is industry leading, no AVM can fully replace a
-                            real home visit due to unknown factors such as the precise property condition. With the disclaimer
-                            sorted we have created the following report based on your submitted information.</p>
-                        <p>The first section will look at your property and then compare to other homes in the local area. Finally we will look at which factors are likely to have the most influence on your properties valuation.</p>
+                        <h2 className='mt-3 mb-2'>Property Performance</h2>
                         <p>Your properties current market value is <strong>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</strong> compared
-                            to a local average of price <strong>{'£'+(this.props.valuation.selling_results.regional_price_10y.index_41.toLocaleString())}</strong> and the national average of
-                            {' '}<strong>{'£'+(this.props.valuation.selling_results.national_avg_price_10y.index_41.toLocaleString())}</strong>. We calculate local and national valuations
-                            by averaging the achieved sales prices over the last 3 months from land registry. Whilst not perfect this gives a good indication of how your properties
-                            performing compared to others locally and nationally.</p>
-                        <p>The main factors affecting the difference is simply down to supply and demand with the quality of schooling, transport, commuting distance and crime levels
-                            having the largest impact.
-                        </p>
+                            to a local average valuation of <strong>{'£'+(this.props.valuation.selling_results.regional_price_10y.index_41.toLocaleString())}</strong> and
+                            {' '}<strong>{'£'+(this.props.valuation.selling_results.national_avg_price_10y.index_41.toLocaleString())}</strong> nationally. We calculate local and national valuations
+                            by reviewing the achieved sales prices over the last 3 months. We estimate the property to be valued between {'£'+((this.props.valuation.selling_results.predict_results.predict_price)*.95).toLocaleString()} and {'£'+((this.props.valuation.selling_results.predict_results.predict_price)*1.05).toLocaleString()} depending on the condition internally.</p>
+                        <p>This report is only a guide and doesn't take into account unique property features which a home visit will highlight.</p>
+
                         <WideGraphCard>
                             <Line
                                 options={graphOptions}
                                 data={this.getValuesForLine(this.props.valuation.selling_results.predict_price_10y,this.props.valuation.selling_results.regional_price_10y,this.props.valuation.selling_results.national_avg_price_10y)} />
                         </WideGraphCard>
                         <p>The interactive graph above shows the valuation changes over the last 10 years with the green line representing the subject property. You'll notice the value follows a
-                            similar trend to national averages however you can see some notable differences during some periods.</p>
-                        <p>Macro Economic factor events such as Government or Global financial influences will raise or lower all valuations nationwide, however some properties will outperform the norm.</p>
+                            similar trend to national averages however you may also find some notable differences during some periods.</p>
+                        <p>Government & financial markets can influence macro economic factors in the UK's housing market. Whilst most properties, due to location factors, will either under out outperform the norm compared to national figures it is useful to see the average trend.
+                            We follow the Gross Domestic Product (GDP) numbers because it is a often a good leading indicator for future house price movements - you can view this trend above.</p>
                     </div>
                 </div>
 
@@ -571,42 +551,44 @@ getValuesForType(target, suffix, label) {
                 <div id="localPropertyInfo">
                     {
                         !this.props.valuation.selling_results.local_property_type_statistic ? null : (
-                            <div className="row">
-                                    <h2 className='mt-3'>Local Property Value Factors</h2>
+                            <div className="row mt-3">
+                                    <h2 className="mt">Local Property Value Factors</h2>
                                     <p>This section of the report digs a little deeper into the local area surrounding the subject property. We have collated data on average
                                         property sizes, market values & property types. Our local research shows that the internal property size typically has the largest affect
                                         on market value which is why we also calculate the average value per square meter. If the subject property is outside these 'norms' it normally
                                         results in a positive/negative effect on the value.</p>
-                                <div className="col-md-6">
+                                <div className="col-md-6 mt-5">
+                                    <br />
                                     <Pie data={this.getValuesForPie(this.props.valuation.selling_results.local_property_type_statistic, 'num_ratio')} />
                                 </div>
-                                <div className="col-md-6">
+                                <div className="col-md-6 mt-3 mb-3">
                                     <h4>Ratio of property types in area</h4>
                                     <p>The ratio of property types can give a good indication of affluence and demographics of an area. Rural affluent locations such as the South East, for example, typically have an above average percentage of Detached homes compared to flats. The ratio can also give an indication of possible demand.</p>
                                     <p>Buying a terrace property in an area mainly comprising of terrace-houses means your home value is directly linked to average increases in an area. Whereas buying a detached home, even at a premium, could see demand push the values up faster even without any local changes.</p>
                                 </div>
-                                <br />
-                                 <div className="col-md-6">
-                                    <HorizontalBar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_value', 'Average Value (£)')} />
-                                </div>
-                                <div className="col-md-6">
+
+                                <div className="col-md-6 mt-3 mb-3">
                                     <h4>Value Based on Property Type</h4>
                                     <p>One of the easiest comparisons to make against your home is against average property values in your area. We break this down further by property-type because it gives a much clearer picture of the difference between houses on a street. Detached homes typically command a premium of at least 10% for two specific reasons. Detached houses are typically larger and are in lower supply, which in turn creates a demand premium.</p>
                                 </div>
-                                <br />
-                                <div className="col-md-6">
+                                <div className="col-md-6 mt-5">
+                                    <HorizontalBar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_value', 'Average Value (£)')} />
+                                </div>
+                                <div className="col-md-6 mt-5">
+                                    <br />
+                                    <Bar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_size', 'Average Size (m2)')} />
+                                </div>
+                                <div className="col-md-6 mt-3 mb-3">
                                     <h4>Average Property Size</h4>
                                     <p>Using this graph allows you to compare this property to the averages in your area based on property-type. We separate them because the UK market has historically placed more weight of property-type than actual size. Comparing your property size to the average gives us a strong indication on the value and demand for your home. All things being equal if your home is larger than the local average then you will see increased demand and value. If you're looking to buy or rent then you will have a much clearer picture after comparing like for like properties.</p>
                                 </div>
-                                <div className="col-md-6">
-                                    <Bar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_size', 'Average Size (m2)')} />
-                                </div>
                                 <br />
-                                <div className="col-md-6">
+                                <div className="col-md-6 mt-3">
                                     <h4>Price per Square Meter</h4>
                                     <p>Comparing the value per square meter of a property is one of the best statistical methods and gives good insight for seeing possible trends and changes in the market. We have split the £/sqm value based on property type because as you'll see above there are significant variations depending on the property type. Detached homes typically command a 10%+ premium over semi-detached homes on the same street. This varies depending on location and supply of different house types. £2,500sqm is the average value across the UK.</p>
                                 </div>
-                                <div className="col-md-6">
+                                <div className="col-md-6 mt-5 mb-5">
+                                    <br />
                                     <Bar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'per_size_value', 'Value per Square Meter')} />
                                 </div>
                                 <br />
