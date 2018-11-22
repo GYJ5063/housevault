@@ -13,6 +13,7 @@ body, html {
     height: 100%;
 }
 
+
 @mixin breakpoint($class) {
     @if $class == xs {
         @media (max-width: 767px) { @content; }
