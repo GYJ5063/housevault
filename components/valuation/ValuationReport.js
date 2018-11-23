@@ -353,15 +353,14 @@ getValuesForType(target, suffix, label) {
    <div className="container">
     <div className="valuation">
      <div className="col-12">
-
-       <div className="card hero-result-head">
+       <div className="card hero-result-head" id="overview">
            <div className="row">
                <div className="column col-sm-12 col-md-4">
                    <h4>Rental Value</h4>
                    <h2>{'£'+(this.props.valuation.rental_results.rental_predict_price).toLocaleString()+' pcm'}</h2>
                </div>
                <div className="column col-sm-12 col-md-4">
-                   <h4>Current Capital Value</h4>
+                   <h4>Current Value</h4>
                    <h2>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h2>
                </div>
                <div className="column col-sm-12 col-md-4">
@@ -369,11 +368,11 @@ getValuesForType(target, suffix, label) {
                </div>
            </div>
         </div>
-         <div className="card valuation-report-nav">
+       <div className="card mt-0 valuation-report-nav sticky-top">
              <Navbar />
-         </div>
-        <div className="card card-main-content">
-            <div className="card-body">
+        </div>
+       <div className="card mt-0 card-main-content">
+          <div className="card-body">
             <React.Fragment>
                 <div className="row">
                     <div className="col-md-7 mt-4">
@@ -401,7 +400,7 @@ getValuesForType(target, suffix, label) {
                  </div>
                 </div>
                 <div className="col-md-5">
-                    <div className="card agent-cta">
+                    <div className="card">
                         <br />
                         <StreetView
                             isMarkerShown={this.props.isMarkerShown}
@@ -445,7 +444,6 @@ getValuesForType(target, suffix, label) {
                         <h2>{(this.props.valuation.selling_results.predict_results.confidence_level/8)*100}% accuracy</h2>
                     </div>
                 </div>
-
                 <div className="row" id="propertyPerformance">
                     <div className="col-12 text-left">
                         <h2 className='mt-3 mb-2'>Property Performance</h2>
@@ -466,9 +464,6 @@ getValuesForType(target, suffix, label) {
                             We follow the Gross Domestic Product (GDP) numbers because it is a often a good leading indicator for future house price movements - you can view this trend above.</p>
                     </div>
                 </div>
-
-
-
                 <div>
                     {
                         _.isEmpty(this.props.valuation.selling_results.sales_history_analyze[1]) ? null : (
@@ -604,37 +599,34 @@ getValuesForType(target, suffix, label) {
                     <div className="col-md-12 p-4">
                         <h2>Next Step</h2>
                         <p>We hope you found our valuation report useful but remember that a computer generated report can never replace a professional estate agent or surveyors expertise.</p>
-                        <p>WIf you are looking to buy, sell or rent a property then we would love to help you achieve your goals. We use the latest technology alongside years of industry experience to deliver our clients services fit for the 21st century. </p>
-                        <p>Please contact us today to discuss your needs or explore our service in more detail.</p>
+                        <p>If you are looking to buy, sell or rent a property then we would love to help you achieve your goals. We use the latest technology alongside years of industry experience to deliver our clients services fit for the 21st century. </p>
+                        <p>Please contact us today to discuss your needs and explore our services in more detail.</p>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-6 card-main-content">
-                        <div className="p-2">
-                     <h2>Prepaired by:</h2>
+                    <div className="card-main-content ml-auto mr-auto text-center">
+                     <h2>{this.props.company.name}</h2>
                      <img src={this.props.company.logo}/>
-                     <h3>About Us</h3>
-                     <p>{this.props.company.meta_description}</p><h3>Contact Us</h3>
-                     <h5>Telephone: {this.props.company.telephone}</h5>
-                     <h5>Email: Email address here</h5>
-                    </div>
-                    </div>
-                    <div className="col-md-6 text-right card-main-content">
-                        <div className="p-2">
-                     <h2>In partnership with:</h2>
-                     <img src="https://housevault.co.uk/static/housevault-logo.svg" style={{textAlign:'right'}}/>
-                     <p>The leading AVM company providing technology trusted by lenders, surveyors and professionals through the UK.</p>
-                    </div>
+                     <p>{this.props.company.meta_description}</p>
+                     <h5>t: {this.props.company.telephone}</h5>
+                     <h5>e: Email address here</h5>
                     </div>
                  </div>
                 <div className="row">
-                    <div className="col-md-12 p-4">
-                        <h2>Big Print</h2>
+                    <div className="col-md-12">
+                        <h4>Big Print</h4>
                         <p>This property valuation report was generated by {this.props.company.name} and powered using HouseVault’s leading automated valuation model - a machine learning model which generates
                             estimated valuations by combining statistical techniques with live market data from over 100 sources. This report is intended only for private, non-commercial use by the person for
                             whom it was generated. AVM reports are for general information only and are produced by computers without any inspection of the property or any legal documents relating to it.
                             HouseVault does not guarantee the accuracy or data quality used to generate the report. You should not rely on this report and should seek professional advice before making any
                             financial or other decision in relation to the subject property.</p>
+                    </div>
+                    <div className="col-md-12 card-main-content ">
+                        <div className="text-right">
+                            <h4>In partnership with HouseVault</h4>
+                            <img src="https://housevault.co.uk/static/housevault-logo.svg" style={{width:300}}/>
+                            <p>The leading AVM company providing technology trusted by lenders, surveyors and professionals through the UK.</p>
+                        </div>
                     </div>
                 </div>
             </React.Fragment>

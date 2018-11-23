@@ -65,7 +65,7 @@ body {
   margin-right: 0px;
   margin-left: 0px;
   text-align: center;
-  color: #6b6b76;
+  color: #000000;
   padding-top: 25px;
   padding-bottom: 15px;
   border-radius: 0px;
@@ -86,12 +86,16 @@ body {
   a {
     color: white;
   }
+  a:hover:after {
+    border-bottom: white;
+  }
+
 }
 
 
 .val-logo-awesome {
   font-size: 50px;
-  color: #4ba0b5;
+  color: #cf3a74;
   text-align: center;
 }
 
@@ -115,4 +119,18 @@ body {
 .valuation-tile-item {
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+NavBar.stroke ul li a:after,
+NavBar.fill ul li a:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  content: '.';
+  color: transparent;
+  background: #aaa;
+  height: 1px;
 }
