@@ -168,19 +168,26 @@ class ValuationForm extends React.Component {
 
             axios.post(process.env.PRICEPREDICTION_URL, formData, config)
                 .then(function (response) {
-                    self.props.createLeadMutator({
-                        variables: {
-                            first_name: self.state.first_name,
-                            last_name: self.state.last_name,
-                            email: self.state.email,
-                            phone_number:self.state.phone_number,
-                            rental_valuation: response.data.rental_results.rental_predict_price,
-                            sales_valuation: response.data.selling_results.predict_results.predict_price,
-                            company_id: self.props.company.id
-                        }
+                    self.props
+                    .saveReportMutator({ variables: { report: response.data, company_id: self.props.company.id } })
+                        .then(res => {
+                            if(!res.data.saveReport) {
+                                console.error(res.errors[0].message);
+                            }
+
+                            self.props.createLeadMutator({
+                                variables: {
+                                    first_name: self.state.first_name,
+                                    last_name: self.state.last_name,
+                                    email: self.state.email,
+                                    phone_number:self.state.phone_number,
+                                    rental_valuation: response.data.rental_results.rental_predict_price,
+                                    sales_valuation: response.data.selling_results.predict_results.predict_price,
+                                    company_id: self.props.company.id,
+                                    report_id: res.data.saveReport
+                                }
+                            });
                     });
-                    console.log(self.props.company)
-                    self.props.saveReportMutator({ variables: { report: response.data, company_id: self.props.company.id } });
                     self.props.report(response.data);
                     self.setState({ hideLoadingSpinner: true, valuation: response.data, step:3 });
                 })
@@ -361,7 +368,7 @@ class ValuationForm extends React.Component {
 
 const createLeadMutator = gql`
     mutation createLead($first_name: String!, $last_name: String!, $email: String!, $phone_number: String!, 
-            $sales_valuation: Float!, $rental_valuation: Float!, $company_id: Int!) {
+            $sales_valuation: Float!, $rental_valuation: Float!, $company_id: Int!, $report_id: ID!) {
              createLead(
                 first_name: $first_name, 
                 last_name: $last_name, 
@@ -370,6 +377,7 @@ const createLeadMutator = gql`
                 sales_valuation:$sales_valuation, 
                 rental_valuation:$rental_valuation, 
                 company_id:$company_id
+                report_id: $report_id
               ) {
                 id
               }
@@ -377,7 +385,7 @@ const createLeadMutator = gql`
 `;
 
 const saveReportMutator = gql`
-    mutation saveReport($report: JSON, $company_id: Int) {
+    mutation saveReport($report: JSON!, $company_id: Int!) {
         saveReport(report: $report, company_id: $company_id)
     }
 `;
