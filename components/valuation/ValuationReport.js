@@ -4,16 +4,15 @@ import moment from "moment";
 import { Table } from 'reactstrap';
 import ComparablePropertyCard from "../../components/valuation/ComparablePropertyCard";
 import ComparableRentalCard from "../../components/valuation/ComparableRentalCard";
-import GraphCard from "../../components/valuation/GraphCard";
-import MapCard from "../../components/valuation/MapCard";
 import _ from "lodash";
 import React from "react";
-import RentalComparables from "./RentalComparables";
-import WideGraphCard from "./WideGraphCard";
-import HeroCard from "./HeroCard";
-import Navbar from "./NavHeadCard";
-import StarRating from "./StarRating";
 
+import WideGraphCard from "./WideGraphCard";
+
+import StarRating from "./StarRating";
+import Sidebar from "./report/Sidebar";
+import ValuationHotspot from "./report/ValuationHotspot";
+import ValuationKeyStatisticBox from "./report/ValuationKeyStatisticBox";
 class ValuationReport extends React.Component {
     constructor (props) {
         super(props);
@@ -350,298 +349,283 @@ getValuesForType(target, suffix, label) {
             }
         };
         return (
-   <div className="container">
-    <div className="valuation">
-     <div className="col-12">
+            <div>
 
-       <div className="card hero-result-head">
-           <div className="row">
-               <div className="column col-sm-12 col-md-4">
-                   <h4>Rental Value</h4>
-                   <h2>{'£'+(this.props.valuation.rental_results.rental_predict_price).toLocaleString()+' pcm'}</h2>
-               </div>
-               <div className="column col-sm-12 col-md-4">
-                   <h4>Current Capital Value</h4>
-                   <h2>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h2>
-               </div>
-               <div className="column col-sm-12 col-md-4">
-                   <StarRating rating={(this.props.valuation.selling_results.predict_results.confidence_level*.7)} />
-               </div>
+   <div className="container-fluid">
+       <div className="row">
+           <div className="col-2">
+                <Sidebar company={this.props.company} />
            </div>
-        </div>
-         <div className="card valuation-report-nav">
-             <Navbar />
-         </div>
-        <div className="card card-main-content">
-            <div className="card-body">
-            <React.Fragment>
-                <div className="row">
-                    <div className="col-md-7 mt-4">
-                    <h3>Your Property {this.props.address.building_number} {this.props.address.building_name} {this.props.address.thoroughfare} {this.props.address.postcode}</h3>
-                    <p>This exclusive report provides a unique up-to-date insight into
-                       the value of your property and analysis of the local market,
-                       for {this.props.address.building_number} {this.props.address.building_name} {this.props.address.thoroughfare} {this.props.address.town} {this.props.address.postcode}</p>
-                 <div className="card-deck heading-center mt-4">
+           <div className="col">
+               <div className="row">
+                   <div className="col text-center">
+                       <h1>Your Valuation</h1>
+                       {this.props.address.building_number} {this.props.address.building_name} {this.props.address.thoroughfare} {this.props.address.postcode}
+                   </div>
+               </div>
+                 <div className="row">
+                   <div className="col">
+                       <ValuationHotspot title="Rental Value" value={'£'+(this.props.valuation.rental_results.rental_predict_price).toLocaleString()+' pcm'}/>
+                   </div>
+                   <div className="col">
+                       <ValuationHotspot title="Sales Value" value={'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}/>
+                   </div>
+                   <div className="col">
+                       <StarRating rating={(this.props.valuation.selling_results.predict_results.confidence_level*.7)} />
+                   </div>
+               </div>
+               <div className="row">
+                   <div className="col">
+                       <h3>Your property</h3>
+                       <p>This exclusive report provides a unique up-to-date insight into
+                           the value of your property and analysis of the local market,
+                           for <b>{this.props.address.building_number} {this.props.address.building_name} {this.props.address.thoroughfare} {this.props.address.town} {this.props.address.postcode}</b></p>
+                        <ul className="list-unstyled">
+                            <li><i className="fas fa-bed " /> {this.props.valuation.selling_results.query_info.num_bedrooms} Bedrooms</li>
+                            <li><i className="fas fa-couch"/> {this.props.valuation.selling_results.query_info.num_receptionrooms} Reception Rooms </li>
+                            <li><i className="fas fa-tape"/> {this.props.valuation.selling_results.query_info.total_floor_area} sqm</li>
 
-                         <div className="card">
-                              <h3>Bedrooms</h3>
-                              <i className="fas fa-bed val-logo-awesome" />
-                              <h4>{this.props.valuation.selling_results.query_info.num_bedrooms}</h4>
-                          </div>
-                          <div className="card">
-                                <h3>Receptions</h3>
-                                <i className="fas fa-couch val-logo-awesome"/>
-                                <h4>{this.props.valuation.selling_results.query_info.num_receptionrooms}</h4>
-                           </div>
-                          <div className="card">
-                                <h3>Space</h3>
-                                <i className="fas fa-tape val-logo-awesome"/>
-                                <h4>{this.props.valuation.selling_results.query_info.total_floor_area} sqm</h4>
+                        </ul>
+                   </div>
+                   <div className="col">
+                       <StreetView
+                           isMarkerShown={this.props.isMarkerShown}
+                           onMarkerClick={this.handleMarkerClick}
+                           markerPosition={marker}
+                           zoom={2}
+                       />
+                   </div>
+               </div>
+               <div className="row">
+                   <div className="col">
+                       <ValuationKeyStatisticBox
+                           title="Current Valuation"
+                           icon="fas fa-home"
+                           value={'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}/>
+                   </div>
+                   <div className="col">
+                       <ValuationKeyStatisticBox
+                           title="Value Range"
+                           icon="fas fa-chart-line"
+                           value={'£'+((this.props.valuation.selling_results.predict_results.predict_price)*.95).toLocaleString() +' to '+ '£'+((this.props.valuation.selling_results.predict_results.predict_price)*1.05).toLocaleString()} />
+                   </div>
+                   <div className="col">
+                       <ValuationKeyStatisticBox
+                           title="Value Change"
+                           icon="fas fa-chart-line"
+                           value={'£'+((this.props.valuation.selling_results.predict_price_10y.index_41)-(this.props.valuation.selling_results.predict_price_10y.index_37)).toLocaleString()} />
+                   </div>
+               </div>
+
+               <div className="row">
+                   <div className="col">
+                       <ValuationKeyStatisticBox
+                           title="Rental Value"
+                           icon="fas fa-home"
+                           value={'£'+(this.props.valuation.rental_results.rental_predict_price.toLocaleString())+' pcm'}/>
+                   </div>
+                   <div className="col">
+                       <ValuationKeyStatisticBox
+                           title="Rental Yield"
+                           icon="fas fa-chart-line"
+                           value={(((this.props.valuation.rental_results.rental_predict_price *12)/(this.props.valuation.selling_results.predict_results.predict_price))*100).toFixed(1) + '%'} />
+                   </div>
+                   <div className="col">
+                       <ValuationKeyStatisticBox
+                           title={(this.props.valuation.selling_results.predict_results.confidence_level/8)*100 + "% accuracy"}
+                           icon="fas fa-chart-line"
+                           value={<StarRating rating={(this.props.valuation.selling_results.predict_results.confidence_level*.7)} />} />
+                   </div>
+               </div>
+               <div className="row">
+                   <div className="col">
+                       <h2>Property Performance</h2>
+                       <p>Your properties current market value is <strong>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</strong> compared
+                           to a local average valuation of <strong>{'£'+(this.props.valuation.selling_results.regional_price_10y.index_41.toLocaleString())}</strong> and
+                           {' '}<strong>{'£'+(this.props.valuation.selling_results.national_avg_price_10y.index_41.toLocaleString())}</strong> nationally. We calculate local and national valuations
+                           by reviewing the achieved sales prices over the last 3 months. We estimate the property to be valued between {'£'+((this.props.valuation.selling_results.predict_results.predict_price)*.95).toLocaleString()} and {'£'+((this.props.valuation.selling_results.predict_results.predict_price)*1.05).toLocaleString()} depending on the condition internally.</p>
+                       <p>This report is only a guide and doesn't take into account unique property features which a home visit will highlight.</p>
+                       <WideGraphCard>
+                           <Line
+                               options={graphOptions}
+                               data={this.getValuesForLine(this.props.valuation.selling_results.predict_price_10y,this.props.valuation.selling_results.regional_price_10y,this.props.valuation.selling_results.national_avg_price_10y)} />
+                       </WideGraphCard>
+                       <p>The interactive graph above shows the valuation changes over the last 10 years with the green line representing the subject property. You'll notice the value follows a
+                           similar trend to national averages however you may also find some notable differences during some periods.</p>
+                       <p>Government & financial markets can influence macro economic factors in the UK's housing market. Whilst most properties, due to location factors, will either under out outperform the norm compared to national figures it is useful to see the average trend.
+                           We follow the Gross Domestic Product (GDP) numbers because it is a often a good leading indicator for future house price movements - you can view this trend above.</p>
+                   </div>
+               </div>
+               <div className="row">
+                   <div className="col">
+                       <div>
+                           {
+                               _.isEmpty(this.props.valuation.selling_results.sales_history_analyze[1]) ? null : (
+                                   <React.Fragment>
+                                       <h2 className='mt-3'>Historic Sales Data</h2>
+                                       <div className="card">
+                                           <div className="card-body">
+
+                                               <Table>
+                                                   <thead>
+                                                   <tr>
+                                                       <th>Last Sold Date</th>
+                                                       <th>Last Sold Price</th>
+                                                       <th>Total Growth (£)</th>
+                                                       <th>Total Return (%)</th>
+                                                   </tr>
+                                                   </thead>
+                                                   <tbody>
+                                                   {
+                                                       _.map(this.props.valuation.selling_results.sales_history_analyze, (val, key) => (
+                                                           <tr key={key}>
+                                                               <td>{moment(val.sold_date).format('Do MMM YYYY')}</td>
+                                                               <td>£{val.sold_price.toLocaleString()}</td>
+                                                               <td>£{val.price_change.toLocaleString()}</td>
+                                                               <td>{(val.price_chage_percent*100).toFixed(1)+'%'}</td>
+                                                           </tr>
+                                                       ))
+                                                   }
+                                                   </tbody>
+                                               </Table>
+                                           </div>
+                                       </div>
+                                   </React.Fragment>
+                               )
+                           }
                        </div>
-                 </div>
-                </div>
-                <div className="col-md-5">
-                    <div className="card agent-cta">
-                        <br />
-                        <StreetView
-                            isMarkerShown={this.props.isMarkerShown}
-                            onMarkerClick={this.handleMarkerClick}
-                            markerPosition={marker}
-                            zoom={2}
-                        />
-                    </div>
-                    </div>
-                </div>
-                <div className="card-deck heading-center mr-2 ml-2 mt-5 mb-3">
-                    <div className="card mt-150 valuation-tile-item">
-                         <h4>Current Valuation</h4>
-                         <i className="fas fa-home val-logo-awesome"/>
-                         <h2>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h2>
-                    </div>
-                    <div className="card valuation-tile-item">
-                        <h4>Value Range</h4>
-                        <i className="fas fa-chart-line val-logo-awesome"/>
-                        <h4>{'£'+((this.props.valuation.selling_results.predict_results.predict_price)*.95).toLocaleString()} to {'£'+((this.props.valuation.selling_results.predict_results.predict_price)*1.05).toLocaleString()}</h4>
-                    </div>
-                    <div className="card valuation-tile-item">
-                         <h4>Value Change</h4>
-                         <i className="fas fa-home val-logo-awesome"/>
-                         <h2>{'£'+((this.props.valuation.selling_results.predict_price_10y.index_41)-(this.props.valuation.selling_results.predict_price_10y.index_37)).toLocaleString()}</h2>
-                    </div>
-                </div>
-                <div className="card-deck heading-center mr-2 ml-2 mb-3">
-                    <div className="card valuation-tile-item">
-                        <h4>Rental Value</h4>
-                        <i className="fas fa-home val-logo-awesome"/>
-                        <h2>{'£'+(this.props.valuation.rental_results.rental_predict_price.toLocaleString())+' pcm'}</h2>
-                    </div>
-                    <div className="card valuation-tile-item">
-                        <h4>Rental Yield</h4>
-                        <i className="fas fa-home val-logo-awesome"/>
-                        <h2>{(((this.props.valuation.rental_results.rental_predict_price *12)/(this.props.valuation.selling_results.predict_results.predict_price))*100).toFixed(1) + '%'}</h2>
-                    </div>
-                    <div className="card valuation-tile-item">
-                        <StarRating rating={(this.props.valuation.selling_results.predict_results.confidence_level*.7)} />
-                        <h2>{(this.props.valuation.selling_results.predict_results.confidence_level/8)*100}% accuracy</h2>
-                    </div>
-                </div>
+                   </div>
+               </div>
+               <div className="row">
+                   <div className="col">
+                       <div id="comparableSoldCards">
+                           {
+                               _.isEmpty(this.props.valuation.selling_results.comparable_properties[1]) ? null : (
+                                   <div>
+                                       <div className="col-12 text-left">
+                                           <h2 className='mt-3'>Comparable Sold Properties</h2>
+                                           <p>Our online valuation works by finding a range of local properties that we believe are similar to your enquiry. We asses a number of factors
+                                               before choosing a comparable such as distance from your enquiry, number of bedrooms, size, property type & sales history before selecting
+                                               the best fitting comparables to use - this is the same process used by the majority of professional surveyors.</p>
+                                           <p>We have found the following 6 properties to be the most similar to your search, with a full list of comparables listed further down this report</p>
+                                       </div>
+                                       <div className="card-deck">
+                                           {
+                                               _.map(this.props.valuation.selling_results.comparable_properties, (cp, i) => (
+                                                   <ComparablePropertyCard property={cp} key={i}/>
+                                               )).slice(0,6)
+                                           }
+                                       </div>
+                                   </div>
+                               )
+                           }
+                       </div>
+                   </div>
+               </div>
+               <div className="row">
+                   <div className="col">
+                       <div className="mag-content">
+                           <div id="localPropertyInfo">
+                               {
+                                   !this.props.valuation.selling_results.local_property_type_statistic ? null : (
+                                       <div className="row mt-3">
+                                           <h2 className="mt">Local Property Value Factors</h2>
+                                           <p>This section of the report digs a little deeper into the local area surrounding the subject property. We have collated data on average
+                                               property sizes, market values & property types. Our local research shows that the internal property size typically has the largest affect
+                                               on market value which is why we also calculate the average value per square meter. If the subject property is outside these 'norms' it normally
+                                               results in a positive/negative effect on the value.</p>
+                                           <div className="col-md-6 mt-5">
+                                               <br />
+                                               <Pie data={this.getValuesForPie(this.props.valuation.selling_results.local_property_type_statistic, 'num_ratio')} />
+                                           </div>
+                                           <div className="col-md-6 mt-3 mb-3">
+                                               <h4>Ratio of property types in area</h4>
+                                               <p>The ratio of property types can give a good indication of affluence and demographics of an area. Rural affluent locations such as the South East, for example, typically have an above average percentage of Detached homes compared to flats. The ratio can also give an indication of possible demand.</p>
+                                               <p>Buying a terrace property in an area mainly comprising of terrace-houses means your home value is directly linked to average increases in an area. Whereas buying a detached home, even at a premium, could see demand push the values up faster even without any local changes.</p>
+                                           </div>
 
-                <div className="row" id="propertyPerformance">
-                    <div className="col-12 text-left">
-                        <h2 className='mt-3 mb-2'>Property Performance</h2>
-                        <p>Your properties current market value is <strong>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</strong> compared
-                            to a local average valuation of <strong>{'£'+(this.props.valuation.selling_results.regional_price_10y.index_41.toLocaleString())}</strong> and
-                            {' '}<strong>{'£'+(this.props.valuation.selling_results.national_avg_price_10y.index_41.toLocaleString())}</strong> nationally. We calculate local and national valuations
-                            by reviewing the achieved sales prices over the last 3 months. We estimate the property to be valued between {'£'+((this.props.valuation.selling_results.predict_results.predict_price)*.95).toLocaleString()} and {'£'+((this.props.valuation.selling_results.predict_results.predict_price)*1.05).toLocaleString()} depending on the condition internally.</p>
-                        <p>This report is only a guide and doesn't take into account unique property features which a home visit will highlight.</p>
+                                           <div className="col-md-6 mt-3 mb-3">
+                                               <h4>Value Based on Property Type</h4>
+                                               <p>One of the easiest comparisons to make against your home is against average property values in your area. We break this down further by property-type because it gives a much clearer picture of the difference between houses on a street. Detached homes typically command a premium of at least 10% for two specific reasons. Detached houses are typically larger and are in lower supply, which in turn creates a demand premium.</p>
+                                           </div>
+                                           <div className="col-md-6 mt-5">
+                                               <HorizontalBar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_value', 'Average Value (£)')} />
+                                           </div>
+                                           <div className="col-md-6 mt-5">
+                                               <br />
+                                               <Bar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_size', 'Average Size (m2)')} />
+                                           </div>
+                                           <div className="col-md-6 mt-3 mb-3">
+                                               <h4>Average Property Size</h4>
+                                               <p>Using this graph allows you to compare this property to the averages in your area based on property-type. We separate them because the UK market has historically placed more weight of property-type than actual size. Comparing your property size to the average gives us a strong indication on the value and demand for your home. All things being equal if your home is larger than the local average then you will see increased demand and value. If you're looking to buy or rent then you will have a much clearer picture after comparing like for like properties.</p>
+                                           </div>
+                                           <br />
+                                           <div className="col-md-6 mt-3">
+                                               <h4>Price per Square Meter</h4>
+                                               <p>Comparing the value per square meter of a property is one of the best statistical methods and gives good insight for seeing possible trends and changes in the market. We have split the £/sqm value based on property type because as you'll see above there are significant variations depending on the property type. Detached homes typically command a 10%+ premium over semi-detached homes on the same street. This varies depending on location and supply of different house types. £2,500sqm is the average value across the UK.</p>
+                                           </div>
+                                           <div className="col-md-6 mt-5 mb-5">
+                                               <br />
+                                               <Bar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'per_size_value', 'Value per Square Meter')} />
+                                           </div>
+                                           <br />
+                                           <WideGraphCard title={'Average Property Type Values (10 years)'}>
+                                               <Line data={this.getValuesForLine2(this.props.valuation.selling_results.regional_housetype_price_10y.DetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.SemiDetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.TerracedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.FlatPrice)} />
+                                           </WideGraphCard>
+                                       </div>
+                                   )
+                               }
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div className="row">
+                   <div className="col">
 
-                        <WideGraphCard>
-                            <Line
-                                options={graphOptions}
-                                data={this.getValuesForLine(this.props.valuation.selling_results.predict_price_10y,this.props.valuation.selling_results.regional_price_10y,this.props.valuation.selling_results.national_avg_price_10y)} />
-                        </WideGraphCard>
-                        <p>The interactive graph above shows the valuation changes over the last 10 years with the green line representing the subject property. You'll notice the value follows a
-                            similar trend to national averages however you may also find some notable differences during some periods.</p>
-                        <p>Government & financial markets can influence macro economic factors in the UK's housing market. Whilst most properties, due to location factors, will either under out outperform the norm compared to national figures it is useful to see the average trend.
-                            We follow the Gross Domestic Product (GDP) numbers because it is a often a good leading indicator for future house price movements - you can view this trend above.</p>
-                    </div>
-                </div>
+                       <div className="row">
+                           <div className="col-md-12 p-4">
+                               <h2>Next Step</h2>
+                               <p>We hope you found our valuation report useful but remember that a computer generated report can never replace a professional estate agent or surveyors expertise.</p>
+                               <p>WIf you are looking to buy, sell or rent a property then we would love to help you achieve your goals. We use the latest technology alongside years of industry experience to deliver our clients services fit for the 21st century. </p>
+                               <p>Please contact us today to discuss your needs or explore our service in more detail.</p>
+                           </div>
+                       </div>
+                       <div className="row">
+                           <div className="col-md-6 card-main-content">
+                               <div className="p-2">
+                                   <h2>Prepaired by:</h2>
+                                   <img src={this.props.company.logo}/>
+                                   <h3>About Us</h3>
+                                   <p>{this.props.company.meta_description}</p><h3>Contact Us</h3>
+                                   <h5>Telephone: {this.props.company.telephone}</h5>
+                                   <h5>Email: Email address here</h5>
+                               </div>
+                           </div>
+                           <div className="col-md-6 text-right card-main-content">
+                               <div className="p-2">
+                                   <h2>In partnership with:</h2>
+                                   <img src="https://housevault.co.uk/static/housevault-logo.svg" style={{textAlign:'right'}}/>
+                                   <p>The leading AVM company providing technology trusted by lenders, surveyors and professionals through the UK.</p>
+                               </div>
+                           </div>
+                       </div>
+                       <div className="row">
+                           <div className="col-md-12 p-4">
+                               <h2>Big Print</h2>
+                               <p>This property valuation report was generated by {this.props.company.name} and powered using HouseVault’s leading automated valuation model - a machine learning model which generates
+                                   estimated valuations by combining statistical techniques with live market data from over 100 sources. This report is intended only for private, non-commercial use by the person for
+                                   whom it was generated. AVM reports are for general information only and are produced by computers without any inspection of the property or any legal documents relating to it.
+                                   HouseVault does not guarantee the accuracy or data quality used to generate the report. You should not rely on this report and should seek professional advice before making any
+                                   financial or other decision in relation to the subject property.</p>
+                           </div>
+                       </div>
+                   </div>
+               </div>
 
-
-
-                <div>
-                    {
-                        _.isEmpty(this.props.valuation.selling_results.sales_history_analyze[1]) ? null : (
-                            <React.Fragment>
-                                <h2 className='mt-3'>Historic Sales Data</h2>
-                                <div className="card">
-                                    <div className="card-body">
-
-                                        <Table>
-                                            <thead>
-                                            <tr>
-                                                <th>Last Sold Date</th>
-                                                <th>Last Sold Price</th>
-                                                <th>Total Growth (£)</th>
-                                                <th>Total Return (%)</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            {
-                                                _.map(this.props.valuation.selling_results.sales_history_analyze, (val, key) => (
-                                                    <tr key={key}>
-                                                        <td>{moment(val.sold_date).format('Do MMM YYYY')}</td>
-                                                        <td>£{val.sold_price.toLocaleString()}</td>
-                                                        <td>£{val.price_change.toLocaleString()}</td>
-                                                        <td>{(val.price_chage_percent*100).toFixed(1)+'%'}</td>
-                                                    </tr>
-                                                ))
-                                            }
-                                            </tbody>
-                                        </Table>
-                                    </div>
-                                </div>
-                            </React.Fragment>
-                        )
-                    }
-                </div>
-                <div id="comparableSoldCards">
-                    {
-                        _.isEmpty(this.props.valuation.selling_results.comparable_properties[1]) ? null : (
-                            <div>
-                                <div className="col-12 text-left">
-                                    <h2 className='mt-3'>Comparable Sold Properties</h2>
-                                    <p>Our online valuation works by finding a range of local properties that we believe are similar to your enquiry. We asses a number of factors
-                                        before choosing a comparable such as distance from your enquiry, number of bedrooms, size, property type & sales history before selecting
-                                        the best fitting comparables to use - this is the same process used by the majority of professional surveyors.</p>
-                                    <p>We have found the following 6 properties to be the most similar to your search, with a full list of comparables listed further down this report</p>
-                                </div>
-                                <div className="card-deck">
-                                    {
-                                        _.map(this.props.valuation.selling_results.comparable_properties, (cp, i) => (
-                                            <ComparablePropertyCard property={cp} key={i}/>
-                                        )).slice(0,6)
-                                    }
-                                </div>
-                            </div>
-                        )
-                    }
-                </div>
-                <div id="comparableRentalCards">
-                    {
-                        _.isEmpty(this.props.valuation.rental_results.rental_comparable_properties[0]) ? null : (
-                            <div>
-                                <div className="col-12 text-left">
-                                    <h2 className='mt-3'>Comparable Rental Properties</h2>
-                                    <p>We have found the following 6 properties to be the most similar to your search, with a full list of comparables listed further down this report</p>
-                                </div>
-                                <div className="card-deck">
-                                    {
-                                        _.map(this.props.valuation.rental_results.rental_comparable_properties, (cp, i) => (
-                                            <ComparableRentalCard property={cp} key={i}/>
-                                        )).slice(0,6)
-                                    }
-                                </div>
-                            </div>
-                        )
-                    }
-                </div>
-
-                <div className="mag-content">
-                <div id="localPropertyInfo">
-                    {
-                        !this.props.valuation.selling_results.local_property_type_statistic ? null : (
-                            <div className="row mt-3">
-                                    <h2 className="mt">Local Property Value Factors</h2>
-                                    <p>This section of the report digs a little deeper into the local area surrounding the subject property. We have collated data on average
-                                        property sizes, market values & property types. Our local research shows that the internal property size typically has the largest affect
-                                        on market value which is why we also calculate the average value per square meter. If the subject property is outside these 'norms' it normally
-                                        results in a positive/negative effect on the value.</p>
-                                <div className="col-md-6 mt-5">
-                                    <br />
-                                    <Pie data={this.getValuesForPie(this.props.valuation.selling_results.local_property_type_statistic, 'num_ratio')} />
-                                </div>
-                                <div className="col-md-6 mt-3 mb-3">
-                                    <h4>Ratio of property types in area</h4>
-                                    <p>The ratio of property types can give a good indication of affluence and demographics of an area. Rural affluent locations such as the South East, for example, typically have an above average percentage of Detached homes compared to flats. The ratio can also give an indication of possible demand.</p>
-                                    <p>Buying a terrace property in an area mainly comprising of terrace-houses means your home value is directly linked to average increases in an area. Whereas buying a detached home, even at a premium, could see demand push the values up faster even without any local changes.</p>
-                                </div>
-
-                                <div className="col-md-6 mt-3 mb-3">
-                                    <h4>Value Based on Property Type</h4>
-                                    <p>One of the easiest comparisons to make against your home is against average property values in your area. We break this down further by property-type because it gives a much clearer picture of the difference between houses on a street. Detached homes typically command a premium of at least 10% for two specific reasons. Detached houses are typically larger and are in lower supply, which in turn creates a demand premium.</p>
-                                </div>
-                                <div className="col-md-6 mt-5">
-                                    <HorizontalBar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_value', 'Average Value (£)')} />
-                                </div>
-                                <div className="col-md-6 mt-5">
-                                    <br />
-                                    <Bar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'average_size', 'Average Size (m2)')} />
-                                </div>
-                                <div className="col-md-6 mt-3 mb-3">
-                                    <h4>Average Property Size</h4>
-                                    <p>Using this graph allows you to compare this property to the averages in your area based on property-type. We separate them because the UK market has historically placed more weight of property-type than actual size. Comparing your property size to the average gives us a strong indication on the value and demand for your home. All things being equal if your home is larger than the local average then you will see increased demand and value. If you're looking to buy or rent then you will have a much clearer picture after comparing like for like properties.</p>
-                                </div>
-                                <br />
-                                <div className="col-md-6 mt-3">
-                                    <h4>Price per Square Meter</h4>
-                                    <p>Comparing the value per square meter of a property is one of the best statistical methods and gives good insight for seeing possible trends and changes in the market. We have split the £/sqm value based on property type because as you'll see above there are significant variations depending on the property type. Detached homes typically command a 10%+ premium over semi-detached homes on the same street. This varies depending on location and supply of different house types. £2,500sqm is the average value across the UK.</p>
-                                </div>
-                                <div className="col-md-6 mt-5 mb-5">
-                                    <br />
-                                    <Bar data={this.getValuesForType(this.props.valuation.selling_results.local_property_type_statistic, 'per_size_value', 'Value per Square Meter')} />
-                                </div>
-                                <br />
-                                <WideGraphCard title={'Average Property Type Values (10 years)'}>
-                                    <Line data={this.getValuesForLine2(this.props.valuation.selling_results.regional_housetype_price_10y.DetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.SemiDetachedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.TerracedPrice,this.props.valuation.selling_results.regional_housetype_price_10y.FlatPrice)} />
-                                </WideGraphCard>
-                            </div>
-                        )
-                    }
-                </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-12 p-4">
-                        <h2>Next Step</h2>
-                        <p>We hope you found our valuation report useful but remember that a computer generated report can never replace a professional estate agent or surveyors expertise.</p>
-                        <p>WIf you are looking to buy, sell or rent a property then we would love to help you achieve your goals. We use the latest technology alongside years of industry experience to deliver our clients services fit for the 21st century. </p>
-                        <p>Please contact us today to discuss your needs or explore our service in more detail.</p>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-6 card-main-content">
-                        <div className="p-2">
-                     <h2>Prepaired by:</h2>
-                     <img src={this.props.company.logo}/>
-                     <h3>About Us</h3>
-                     <p>{this.props.company.meta_description}</p><h3>Contact Us</h3>
-                     <h5>Telephone: {this.props.company.telephone}</h5>
-                     <h5>Email: Email address here</h5>
-                    </div>
-                    </div>
-                    <div className="col-md-6 text-right card-main-content">
-                        <div className="p-2">
-                     <h2>In partnership with:</h2>
-                     <img src="https://housevault.co.uk/static/housevault-logo.svg" style={{textAlign:'right'}}/>
-                     <p>The leading AVM company providing technology trusted by lenders, surveyors and professionals through the UK.</p>
-                    </div>
-                    </div>
-                 </div>
-                <div className="row">
-                    <div className="col-md-12 p-4">
-                        <h2>Big Print</h2>
-                        <p>This property valuation report was generated by {this.props.company.name} and powered using HouseVault’s leading automated valuation model - a machine learning model which generates
-                            estimated valuations by combining statistical techniques with live market data from over 100 sources. This report is intended only for private, non-commercial use by the person for
-                            whom it was generated. AVM reports are for general information only and are produced by computers without any inspection of the property or any legal documents relating to it.
-                            HouseVault does not guarantee the accuracy or data quality used to generate the report. You should not rely on this report and should seek professional advice before making any
-                            financial or other decision in relation to the subject property.</p>
-                    </div>
-                </div>
-            </React.Fragment>
-            </div>
-        </div>
-      </div>
-    </div>
+           </div>
+       </div>
+   </div>
+  
     </div>
         );
     }

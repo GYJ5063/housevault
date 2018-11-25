@@ -219,6 +219,7 @@ class ValuationForm extends React.Component {
 
                 {(this.state.step === 1) ?
                     <div >
+
                         <span id="address" className=" errText">{validation.address.message}</span>
                         <br />
                         <AddressSearch onSelectAddress={this.selectAddress}/>
