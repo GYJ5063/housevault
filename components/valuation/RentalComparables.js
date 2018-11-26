@@ -9,7 +9,7 @@ export default (props) => (
         _.isEmpty(props.rentals[0]) ? null : (
             <div>
                 <div className="col-12 text-left">
-                    <h2 className='mt-3'>Comparable Rental Properties</h2>
+                    <h2 className='mt-3 '>Comparable Rental Properties</h2>
                     <p>We have found the following 6 properties to be the most similar to your search, with a full list of comparables listed further down this report</p>
                 </div>
                 <div className="card-deck">

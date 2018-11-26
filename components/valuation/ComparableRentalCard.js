@@ -9,7 +9,7 @@ export default (props) => {
     return (
         <div className="card comparable-property-card mb-3"  key={props.property.id}  >
             <img className="card-img-top" src={photoFolder+props.property.image_path} alt="Card image cap"></img>
-            <div className="card-header text-white bg-info mb-3">{props.property.display_address}</div>
+            <div className="card-header text-white mb-3" style={{backgroundColor:props.backgroundColor}}>{props.property.display_address}</div>
             <div className="card-body">
                 <h5 className="card-title text-center">{'Monthly Rental Value'}<br />
                 {'£'}{props.property.price.toLocaleString()}</h5>

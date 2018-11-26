@@ -286,8 +286,8 @@ getValuesForPie(target, suffix){
                     data: data,
                     maintainAspectRatio: false,
                     backgroundColor: [
-                        '#1fe45f',
-                        '#1fa4e4',
+                        `#${this.props.company.primary_colour}`,
+                        `#${this.props.company.secondary_colour}`,
                         '#e41fa4',
                         '#EEB029'
                     ],
@@ -359,8 +359,10 @@ getValuesForType(target, suffix, label) {
        <div className="card hero-result-head" id="overview">
            <div className="row">
                <div className="column col-sm-12 col-md-4" >
-                   <h4 style={{color:('#'+this.props.company.primary_colour)}}>Rental Value</h4>
+                   <img src={this.props.company.logo} style={{width:250}}/>
+                   {/*<h4 style={{color:('#'+this.props.company.primary_colour)}}>Rental Value</h4>
                    <h2 style={{color:('#'+this.props.company.primary_colour)}}>{'£'+(this.props.valuation.rental_results.rental_predict_price).toLocaleString()+' pcm'}</h2>
+               */}
                </div>
                <div className="column col-sm-12 col-md-4">
                    <h4 style={{color:('#'+this.props.company.primary_colour)}}>Current Value</h4>
@@ -443,7 +445,7 @@ getValuesForType(target, suffix, label) {
                         <h2>{(((this.props.valuation.rental_results.rental_predict_price *12)/(this.props.valuation.selling_results.predict_results.predict_price))*100).toFixed(1) + '%'}</h2>
                     </div>
                     <div className="card valuation-tile-item">
-                        <StarRating rating={(this.props.valuation.selling_results.predict_results.confidence_level*.7)} />
+                        <StarRating starColor={'#'+this.props.company.primary_colour} starBackground={'#'+this.props.company.secondary_colour} rating={(this.props.valuation.selling_results.predict_results.confidence_level*.7)} />
                         <h2>{(this.props.valuation.selling_results.predict_results.confidence_level/8)*100}% accuracy</h2>
                     </div>
                 </div>
@@ -517,7 +519,7 @@ getValuesForType(target, suffix, label) {
                                 <div className="card-deck">
                                     {
                                         _.map(this.props.valuation.selling_results.comparable_properties, (cp, i) => (
-                                            <ComparablePropertyCard property={cp} key={i}/>
+                                            <ComparablePropertyCard property={cp} key={i} backgroundColor={'#'+this.props.company.secondary_colour} />
                                         )).slice(0,6)
                                     }
                                 </div>
@@ -536,7 +538,7 @@ getValuesForType(target, suffix, label) {
                                 <div className="card-deck">
                                     {
                                         _.map(this.props.valuation.rental_results.rental_comparable_properties, (cp, i) => (
-                                            <ComparableRentalCard property={cp} key={i}/>
+                                            <ComparableRentalCard property={cp} key={i} backgroundColor={'#'+this.props.company.secondary_colour} />
                                         )).slice(0,6)
                                     }
                                 </div>
@@ -608,11 +610,10 @@ getValuesForType(target, suffix, label) {
                 </div>
                 <div className="row">
                     <div className="card-main-content ml-auto mr-auto text-center">
-                     <h2>{this.props.company.name}</h2>
-                     <img src={this.props.company.logo}/>
-                     <p>{this.props.company.meta_description}</p>
+                     <img src={this.props.company.logo} className="p-3"/>
+                     <h4 className="mt-3">About Us</h4>
+                     <p className="p-3 mr-4 ml-4">{this.props.company.meta_description}</p>
                      <h5>t: {this.props.company.telephone}</h5>
-                        <h5>{this.props.company.primary_colour}</h5>
                      <h5>e: Email address here</h5>
                     </div>
                  </div>
@@ -627,8 +628,7 @@ getValuesForType(target, suffix, label) {
                     </div>
                     <div className="col-md-12 card-main-content ">
                         <div className="text-right">
-                            <h4>In partnership with HouseVault</h4>
-                            <img src="https://housevault.co.uk/static/housevault-logo.svg" style={{width:300}}/>
+                            <img src="https://scontent.fbkk5-4.fna.fbcdn.net/v/t1.0-1/37061797_221465558490868_3177216114643959808_n.png?_nc_cat=110&_nc_ht=scontent.fbkk5-4.fna&oh=f1e7a4ae9ad73a36b65fe0df5101ad98&oe=5C70E57A" style={{width:100}} />
                             <p>The leading AVM company providing technology trusted by lenders, surveyors and professionals through the UK.</p>
                         </div>
                     </div>

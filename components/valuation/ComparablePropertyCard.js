@@ -4,9 +4,9 @@ import _ from "lodash";
 
 export default (props) => {
     return (
-        <div className="card comparable-property-card mb-3"  key={props.property.id}  >
+        <div className="card comparable-property-card mb-3"  key={props.property.id} >
             <img className="card-img-top" src={"https://maps.googleapis.com/maps/api/streetview?size=600x300&location="+props.property.address_1+"+"+props.property.postcode+'+UK'+"&fov=60&pitch=5&key=AIzaSyDpdQ4Wb1S8CIVn8fu6-2n53rbIZEFkQn0"} alt="Card image cap"></img>
-            <div className="card-header text-white bg-info mb-3">{_.replace(props.property.address_1,',','')}{', '}{props.property.postcode}</div>
+            <div className="card-header text-white mb-3"  style={{backgroundColor:props.backgroundColor}}>{_.replace(props.property.address_1,',','')}{', '}{props.property.postcode}</div>
             <div className="card-body">
                 <h5 className="card-title text-center">{'Current Market Value'}<br />
                     {'£'}{props.property.current_valuation.toLocaleString()}</h5>
