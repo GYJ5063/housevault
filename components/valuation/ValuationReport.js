@@ -355,13 +355,13 @@ getValuesForType(target, suffix, label) {
      <div className="col-12">
        <div className="card hero-result-head" id="overview">
            <div className="row">
-               <div className="column col-sm-12 col-md-4">
-                   <h4>Rental Value</h4>
-                   <h2>{'£'+(this.props.valuation.rental_results.rental_predict_price).toLocaleString()+' pcm'}</h2>
+               <div className="column col-sm-12 col-md-4" >
+                   <h4 style={{color:('#'+this.props.company.primary_colour)}}>Rental Value</h4>
+                   <h2 style={{color:('#'+this.props.company.primary_colour)}}>{'£'+(this.props.valuation.rental_results.rental_predict_price).toLocaleString()+' pcm'}</h2>
                </div>
                <div className="column col-sm-12 col-md-4">
-                   <h4>Current Value</h4>
-                   <h2>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h2>
+                   <h4 style={{color:('#'+this.props.company.primary_colour)}}>Current Value</h4>
+                   <h2 style={{color:('#'+this.props.company.primary_colour)}}>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h2>
                </div>
                <div className="column col-sm-12 col-md-4">
                    <StarRating rating={(this.props.valuation.selling_results.predict_results.confidence_level*.7)} />
@@ -380,7 +380,7 @@ getValuesForType(target, suffix, label) {
                     <p>This exclusive report provides a unique up-to-date insight into
                        the value of your property and analysis of the local market,
                        for {this.props.address.building_number} {this.props.address.building_name} {this.props.address.thoroughfare} {this.props.address.town} {this.props.address.postcode}</p>
-                 <div className="card-deck heading-center mt-4">
+                 <div className="card-deck heading-center mt-4 " style={{color:('#'+this.props.company.primary_colour)}}>
 
                          <div className="card">
                               <h3>Bedrooms</h3>
@@ -411,7 +411,7 @@ getValuesForType(target, suffix, label) {
                     </div>
                     </div>
                 </div>
-                <div className="card-deck heading-center mr-2 ml-2 mt-5 mb-3">
+                <div className="card-deck heading-center mr-2 ml-2 mt-5 mb-3" style={{color:('#'+this.props.company.primary_colour)}}>
                     <div className="card mt-150 valuation-tile-item">
                          <h4>Current Valuation</h4>
                          <i className="fas fa-home val-logo-awesome"/>
@@ -428,7 +428,7 @@ getValuesForType(target, suffix, label) {
                          <h2>{'£'+((this.props.valuation.selling_results.predict_price_10y.index_41)-(this.props.valuation.selling_results.predict_price_10y.index_37)).toLocaleString()}</h2>
                     </div>
                 </div>
-                <div className="card-deck heading-center mr-2 ml-2 mb-3">
+                <div className="card-deck heading-center mr-2 ml-2 mb-3" style={{color:('#'+this.props.company.primary_colour)}}>
                     <div className="card valuation-tile-item">
                         <h4>Rental Value</h4>
                         <i className="fas fa-home val-logo-awesome"/>
@@ -609,6 +609,7 @@ getValuesForType(target, suffix, label) {
                      <img src={this.props.company.logo}/>
                      <p>{this.props.company.meta_description}</p>
                      <h5>t: {this.props.company.telephone}</h5>
+                        <h5>{this.props.company.primary_colour}</h5>
                      <h5>e: Email address here</h5>
                     </div>
                  </div>
