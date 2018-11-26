@@ -2,7 +2,7 @@ import moment from "moment";
 import React from "react";
 import _ from "lodash";
 
-const photoFolder = "https://s3.eu-west-2.amazonaws.com/housevault-images/rental_house_images/";
+const photoFolder = `${process.env.IMAGES_URL}rental_house_images/`;
 
 
 export default (props) => {
