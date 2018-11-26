@@ -359,13 +359,13 @@ getValuesForType(target, suffix, label) {
        <div className="card hero-result-head" id="overview">
            <div className="row">
                <div className="column col-sm-12 col-md-4" >
-                   <img src={this.props.company.logo} style={{width:250}}/>
+                   <img src={this.props.company.logo} style={{height:80}}/>
                    {/*<h4 style={{color:('#'+this.props.company.primary_colour)}}>Rental Value</h4>
                    <h2 style={{color:('#'+this.props.company.primary_colour)}}>{'£'+(this.props.valuation.rental_results.rental_predict_price).toLocaleString()+' pcm'}</h2>
                */}
                </div>
                <div className="column col-sm-12 col-md-4">
-                   <h4 style={{color:('#'+this.props.company.primary_colour)}}>Current Value</h4>
+                   <h4>Current Value</h4>
                    <h1 style={{color:('#'+this.props.company.primary_colour)}}>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h1>
                </div>
                <div className="column col-sm-12 col-md-4">
@@ -463,10 +463,10 @@ getValuesForType(target, suffix, label) {
                                 options={graphOptions}
                                 data={this.getValuesForLine(this.props.valuation.selling_results.predict_price_10y,this.props.valuation.selling_results.regional_price_10y,this.props.valuation.selling_results.national_avg_price_10y)} />
                         </WideGraphCard>
-                        <p>The interactive graph above shows the valuation changes over the last 10 years with the green line representing the subject property. You'll notice the value follows a
+                        <p>The interactive graph above shows the valuation changes over the last 10 years with the <strong style={{color:('#'+this.props.company.primary_colour)}}>solid</strong> line representing the subject property. You'll notice the value follows a
                             similar trend to national averages however you may also find some notable differences during some periods.</p>
                         <p>Government & financial markets can influence macro economic factors in the UK's housing market. Whilst most properties, due to location factors, will either under out outperform the norm compared to national figures it is useful to see the average trend.
-                            We follow the Gross Domestic Product (GDP) numbers because it is a often a good leading indicator for future house price movements - you can view this trend above.</p>
+                            We follow the Gross Domestic Product (GDP) numbers because it is a often a good leading indicator for future house price movements - you can view this trend above by clicking the muted <strong>GDP</strong> title.</p>
                     </div>
                 </div>
                 <div>
