@@ -366,7 +366,7 @@ getValuesForType(target, suffix, label) {
                </div>
                <div className="column col-sm-12 col-md-4">
                    <h4 style={{color:('#'+this.props.company.primary_colour)}}>Current Value</h4>
-                   <h2 style={{color:('#'+this.props.company.primary_colour)}}>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h2>
+                   <h1 style={{color:('#'+this.props.company.primary_colour)}}>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h1>
                </div>
                <div className="column col-sm-12 col-md-4">
                    <StarRating starColor={'#'+this.props.company.primary_colour} starBackground={'#'+this.props.company.secondary_colour} rating={(this.props.valuation.selling_results.predict_results.confidence_level*.7)} />
