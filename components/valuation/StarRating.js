@@ -25,7 +25,8 @@ class StarRating extends React.Component {
                         editing={false}
                         starCount={5}
                         value={this.props.rating}
-                        starColor={'#1cd41c'}
+                        starColor={this.props.starColor}
+                        emptyStarColor={this.props.starBackground}
                         renderStarIcon={() => <span><i className="fa fa-home" style={styles.iconStyling}></i></span>}/>
                 </div>
             </div>

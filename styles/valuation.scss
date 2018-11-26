@@ -120,20 +120,6 @@ body {
   padding-bottom: 10px;
 }
 
-NavBar.stroke ul li a:after,
-NavBar.fill ul li a:after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 0%;
-  content: '.';
-  color: transparent;
-  background: #aaa;
-  height: 1px;
-}
-
 h2 {
   color: #626262;
 }

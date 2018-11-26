@@ -29,7 +29,7 @@ export default class Example extends React.Component {
     render() {
         return (
             <div>
-                <Navbar className="bg-info valuation-report-nav" expand="md">
+                <Navbar className="valuation-report-nav" expand="md" style={{backgroundColor:this.props.backgroundColor}}>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto mr-auto" navbar>
