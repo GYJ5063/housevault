@@ -188,7 +188,7 @@ class ValuationForm extends React.Component {
                                 }
                             });
                     });
-                    self.props.updateValues(response.data, self.props.address);
+                    self.props.updateValues(response.data, self.state.address, self.props.company);
                     self.setState({ hideLoadingSpinner: true, valuation: response.data, step:3 });
                 })
                 .catch(function (error) {
