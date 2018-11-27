@@ -2,7 +2,8 @@ const routes = module.exports = require('next-routes')()
 
 routes
      .add('about-us', '/about-us')
-    // signin
+    .add('report', '/report/:id')
+     // signin
     .add('quick-valuation', '/quick-valuation')
     .add('registration', '/registration')
     .add('login', '/login')
