@@ -14,6 +14,7 @@ const GET_COMPANY_DETAILS = gql`
             logo,
             website_url,
             primary_colour,
+            secondary_colour,
             name,
             telephone,
             meta_description
