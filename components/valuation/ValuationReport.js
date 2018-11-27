@@ -18,7 +18,7 @@ class ValuationReport extends React.Component {
         super(props);
     }
     getValuesForLine(regPriceTenYear, predictPriceTenYear, natPriceTenYear, gdpPriceTenYear){ //takes an arr
-        // repeat this for each element and create { currentPrice: 1, price: [1,2,3]}
+
         const keys = Object.keys(regPriceTenYear);
         // filter out empty values
         const prices = keys
@@ -214,7 +214,7 @@ class ValuationReport extends React.Component {
                     data: prices2
                 },
                 {
-                    label: `Terraced: £${currentPrice2}`,
+                    label: `Terraced: £${currentPrice3}`,
                     maintainAspectRatio: false,
                     fill: false,
                     lineTension: 0.1,
@@ -236,7 +236,7 @@ class ValuationReport extends React.Component {
                     data: prices3
                 },
                 {
-                    label: `Flats & Apartments: £${currentPrice2}`,
+                    label: `Flats & Apartments: £${currentPrice4}`,
                     maintainAspectRatio: false,
                     fill: false,
                     lineTension: 0.1,

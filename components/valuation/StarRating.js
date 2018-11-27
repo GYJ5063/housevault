@@ -5,7 +5,7 @@ import StarRatingComponent from 'react-star-rating-component';
 class StarRating extends React.Component {
     constructor(props) {
         super(props);
-        
+
     }
 
     render() {
