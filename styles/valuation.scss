@@ -1,18 +1,11 @@
-.valuation-bg {
+html {
   background: url('/static/ivy-barn-436983-unsplash.jpg') no-repeat center center fixed;
-  min-height: 100%;
-  min-width: 1024px;
-
-  /* Set up proportionate scaling */
-  width: 100%;
-  height: auto;
-
-  /* Set up positioning */
-  //position: fixed;
-  top: 0;
-  left: 0;
-
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
+
 body {
   background-color:transparent ;
 }
@@ -28,4 +21,118 @@ body {
 
   margin-left:20%;
   margin-top:30%!important;
+}
+
+@mixin breakpoint($min: 0, $max: 0) {
+  $type: type-of($min);
+  @if $type == string {
+  }
+  @else if $type == number {
+    $query: "all" !default;
+    @if $min != 0 and $max != 0 {
+      $query: "(min-width: #{$min}) and (max-width: #{$max})";
+    }
+    @else if $min != 0 and $max == 0 {
+      $query: "(min-width: #{$min})";
+    }
+    @else if $min == 0 and $max != 0 {
+      $query: "(max-width: #{$max})";
+    }
+    @media #{$query} {
+      @content;
+    }
+  }
+}
+
+.comparable-property-card {
+  min-width:25%;
+}
+
+.mag-content {
+  margin: 15px;
+}
+
+.mag-box {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.HeroIntro {
+  margin-left:15px
+}
+
+.hero-result-head {
+  @include breakpoint($min: 0, $max: 767px);
+  margin-right: 0px;
+  margin-left: 0px;
+  text-align: center;
+  color: #000000;
+  padding-top: 25px;
+  padding-bottom: 15px;
+  border-radius: 0px;
+  border: none;
+}
+
+#valuation-card{
+  margin-top: 0px;
+  border-radius: 0px;
+}
+
+.valuation-report-nav {
+  text-align: center;
+  color: white;
+  border: none;
+  font-size: 18px;
+  a {
+    color: white;
+  }
+  a:hover:after {
+    border-bottom: white;
+  }
+}
+
+.primary-secondary-default-colours {
+  background-color: #423655;
+}
+
+.val-logo-awesome {
+  font-size: 50px;
+  text-align: center;
+}
+
+.heading-center {
+  text-align:center;
+}
+
+.map-card {
+  border: none;
+}
+
+.card-main-content {
+  border: none;
+  border-radius: 0px;
+}
+
+.agent-cta {
+  border: none;
+}
+
+.valuation-tile-item {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+h2 {
+  color: #626262;
+}
+
+h3 {
+  color: #626262;
+}
+
+h4 {
+  color: #626262;
+}
+
+.company-logo {
+  height: 80px;
 }

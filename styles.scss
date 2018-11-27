@@ -67,7 +67,7 @@ header {
     min-height: 100px;
 }
 .navbar {
-    background-color: #212C40;
+    // background-color: #212C40;
     margin-bottom: 0px;
 }
 .logo {
@@ -228,6 +228,15 @@ header {
 .valuation-chart-card {
     max-width: 542px;
 }
+
+.wide-valuation-chart-card {
+    max-width: 1500px;
+}
+
+.hero-chart-card {
+    max-width: 1500px;
+}
+
 .property .icon-bar {
     background-image: url(/static/icon-property-valuation-report.svg);
     background-position: center 1px;
@@ -1370,13 +1379,10 @@ footer {
 .card {
     margin-top:10px;
     border:none;
-    border-radius: 2px;
+    border-radius: 0px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 .home-marker {
     color: #BD10E0;
-}
-.comparable-property-card {
-    min-width:25%;
 }

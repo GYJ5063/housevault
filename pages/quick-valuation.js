@@ -13,27 +13,31 @@ const GET_COMPANY_DETAILS = gql`
             id,
             logo,
             website_url,
-            primary_colour
+            primary_colour,
+            secondary_colour,
+            name,
+            telephone,
+            meta_description
+     
           }
     }
 `;
 class QuickValuation extends React.Component {
 
     constructor(props) {
-
         super(props);
-
         this.state = {
             report: {},
-            valuation: {},
-            company: {}
+            address: {},
+            company: {},
+            valuation: {}
+
         };
-        this.showReport = this.showReport.bind(this);
+        this.updateValues = this.updateValues.bind(this);
         this.setValuationFormData = this.setValuationFormData.bind(this);
     }
-
-    showReport(report) {
-        this.setState({report:report});
+    updateValues(report, address, company) {
+        this.setState({report, address, company});
     }
 
     setValuationFormData(valuation) {
@@ -52,44 +56,29 @@ class QuickValuation extends React.Component {
 
      return (
          <React.Fragment>
-             <div className="valuation-bg">
+            <div className="row ">
+                <Query query={GET_COMPANY_DETAILS}>
+                    {({ loading, error, data }) => {
+                     if (loading) return "Loading...";
+                     if (error) return `Error! ${error.message}`;
+                     return (
 
-                 <Query query={GET_COMPANY_DETAILS}>
-                     {({ loading, error, data }) => {
-                         if (loading) return "Loading...";
-                         if (error) return `Error! ${error.message}`;
-                            return (
-                                <div className="row  ">
-                                    {(_.isEmpty(this.state.report)) ?
-                                        <div className="col-4">
-                                            <div className="card valuation-card">
-                                                <div className="card-body">
-                                                    {this.renderCompanyLogo(data.companyByValuationURL)}
-                                                    <h1>Free Instant Online Valuation</h1>
-                                                    <p>We offer instant online valuations, simply enter your post code below for an indication of what your property is worth.</p>
-                                                    <ValuationForm report={this.showReport} company={data.companyByValuationURL}/>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        :
-                                        <div className="container">
-                                        <div className="valuation">
-                                            <div className="col-12">
-                                                <div className="card ">
-                                                    <div className="card-body">
-                                                        <h1>Your valuation is on its way</h1>
-                                                        <ValuationReport valuation={this.state.report.selling_results}/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    }
-                            </div>)
-                        }}
+                 (_.isEmpty(this.state.report)) ?
+                    <div className="col-4">
+                        <div className="card valuation-card">
+                            <div className="card-body">
+                                {this.renderCompanyLogo(data.companyByValuationURL)}
+                                <h1>Free Instant Online Valuation</h1>
+                                <p>We offer instant online valuations, simply enter your post code below for an indication of what your property is worth.</p>
+                                <ValuationForm updateValues={this.updateValues} company={data.companyByValuationURL} address={this.state.address}/>
+                                </div>
+                            </div>
+                        </div>
+                        :
+                        <ValuationReport valuation={this.state.report} address={this.state.address} company={data.companyByValuationURL}/>
+                    )}}
                  </Query>
-             </div>
+                </div>
          </React.Fragment>
      );
     }
