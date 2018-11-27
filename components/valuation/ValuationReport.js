@@ -8,7 +8,6 @@ import GraphCard from "../../components/valuation/GraphCard";
 import MapCard from "../../components/valuation/MapCard";
 import _ from "lodash";
 import React from "react";
-import RentalComparables from "./RentalComparables";
 import WideGraphCard from "./WideGraphCard";
 import HeroCard from "./HeroCard";
 import NavHeadCard from "./NavHeadCard";
@@ -150,13 +149,11 @@ class ValuationReport extends React.Component {
             .map((k, i) => detachedValue[`index_${++i}`])
             .filter(v => v);
         const currentPrice = detachedValue['index_41'];
-        console.log(prices);
         const keys2 = Object.keys(semiValue);
         const prices2 = keys2
             .map((k, i) => semiValue[`index_${++i}`])
             .filter(v => v);
         const currentPrice2 = semiValue['index_41'];
-        console.log(prices2);
         const keys3 = Object.keys(terraceValue);
         // filter out empty values
         const prices3 = keys3
@@ -169,7 +166,6 @@ class ValuationReport extends React.Component {
             .filter(v => v);
         const currentPrice4 = flatValue['index_41'];
 
-        console.log(prices3);
         const data = {
             labels: this.createMonthLabels(prices),
             datasets: [
