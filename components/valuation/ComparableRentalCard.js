@@ -16,7 +16,7 @@ export default (props) => {
                 {_.capitalize(props.property.furnished_state.toLocaleString())}{' '}{_.replace(props.property.property_type.toLocaleString(),'_',' ')} {' with '} {props.property.num_beds.toLocaleString()} {' bedrooms and '}
                 {props.property.num_baths.toLocaleString()}{' bathrooms which was listed on '}{_.replace(props.property.available_from.toLocaleString(),'Available from ','')}
             </div>
-            <div className="card-footer text-muted"><strong>Located {props.property.distance < 1 ? ' within 25 meters' : (props.property.distance.toFixed(0)*100) + 'm away'}</strong></div>
+            <div className="card-footer text-muted"><strong>Located {props.property.distance < 1 ? ' within 25m' : (props.property.distance.toFixed(0)*100) + 'm away'}</strong></div>
         </div>
     );
 }

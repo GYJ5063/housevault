@@ -318,8 +318,7 @@ getValuesForType(target, suffix, label) {
     }
 
     render() {
-        console.log(this.props.address);
-        {/* const { sellingResults,rentalResult } = this.props.valuation */}
+
         const marker = {lng: _.toNumber(this.props.valuation.selling_results.predict_results.lng.toString()), lat: _.toNumber(this.props.valuation.selling_results.predict_results.lat.toString()) };
         const graphOptions = {
             responsive: true,
@@ -327,7 +326,7 @@ getValuesForType(target, suffix, label) {
             stacked: false,
             title: {
                 display: true,
-                text: 'Chart.js Line Chart - Multi Axis'
+                text: 'Property Performance Comparison'
             },
             scales: {
                 yAxes: [{
@@ -355,17 +354,14 @@ getValuesForType(target, suffix, label) {
        <div className="card hero-result-head" id="overview">
            <div className="row">
                <div className="column col-sm-12 col-md-4" >
-                   <img src={this.props.company.logo} style={{height:80}}/>
-                   {/*<h4 style={{color:('#'+this.props.company.primary_colour)}}>Rental Value</h4>
-                   <h2 style={{color:('#'+this.props.company.primary_colour)}}>{'£'+(this.props.valuation.rental_results.rental_predict_price).toLocaleString()+' pcm'}</h2>
-               */}
+                   <img className="company-logo" src={this.props.company.logo} />
                </div>
                <div className="column col-sm-12 col-md-4">
                    <h4>Current Value</h4>
                    <h1 style={{color:('#'+this.props.company.primary_colour)}}>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</h1>
                </div>
                <div className="column col-sm-12 col-md-4">
-                   <StarRating starColor={'#'+this.props.company.primary_colour} starBackground={'#'+this.props.company.secondary_colour} rating={(this.props.valuation.selling_results.predict_results.confidence_level*.7)} />
+                   <StarRating starColor={'#'+this.props.company.primary_colour} emptyStarColor={'#'+this.props.company.secondary_colour} rating={(this.props.valuation.selling_results.predict_results.confidence_level*.7)} />
                </div>
            </div>
         </div>
@@ -441,7 +437,7 @@ getValuesForType(target, suffix, label) {
                         <h2>{(((this.props.valuation.rental_results.rental_predict_price *12)/(this.props.valuation.selling_results.predict_results.predict_price))*100).toFixed(1) + '%'}</h2>
                     </div>
                     <div className="card valuation-tile-item">
-                        <StarRating starColor={'#'+this.props.company.primary_colour} starBackground={'#'+this.props.company.secondary_colour} rating={(this.props.valuation.selling_results.predict_results.confidence_level*.7)} />
+                        <StarRating starColor={'#'+this.props.company.primary_colour} emptyStarColor={'#'+this.props.company.secondary_colour} rating={(this.props.valuation.selling_results.predict_results.confidence_level*.7)} />
                         <h2>{(this.props.valuation.selling_results.predict_results.confidence_level/8)*100}% accuracy</h2>
                     </div>
                 </div>
