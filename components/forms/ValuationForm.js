@@ -95,19 +95,19 @@ class ValuationForm extends React.Component {
             address: {postcode: 'SN6 6BW',building_number:'62', building_name: ''},
             building_number: '',
             building_name: '',
-            built_from: '',
-            property_type: '',
-            wall_type: '',
+            built_from: 'Semi-Detached',
+            property_type: 'House',
+            wall_type: 'brick',
             total_floor_area: 100,
             validation: this.validator.valid(),
             valuation:{},
             address_picker_hidden: true,
-            bedrooms: '',
-            reception_rooms: '',
-            first_name:'',
-            last_name:'',
-            email: '',
-            phone_number: '',
+            bedrooms: 2,
+            reception_rooms: 2,
+            first_name:'first',
+            last_name:'last',
+            email: 'firs@last.com',
+            phone_number: '12345',
             step:1,
             addressList: []
         }
@@ -168,24 +168,31 @@ class ValuationForm extends React.Component {
 
             axios.post(process.env.PRICEPREDICTION_URL, formData, config)
                 .then(function (response) {
-                    self.props.mutate({
-                        variables: {
-                            first_name: self.state.first_name,
-                            last_name: self.state.last_name,
-                            email: self.state.email,
-                            phone_number:self.state.phone_number,
-                            rental_valuation:response.data.rental_results.reantal_predict_results,
-                            sales_valuation:response.data.selling_results.predict_results.predict_price,
-                            company_id:self.props.company.id
-                        }
+                    self.props
+                    .saveReportMutator({ variables: { report: response.data, company_id: self.props.company.id } })
+                        .then(res => {
+                            if(!res.data.saveReport) {
+                                console.error(res.errors[0].message);
+                            }
+
+                            self.props.createLeadMutator({
+                                variables: {
+                                    first_name: self.state.first_name,
+                                    last_name: self.state.last_name,
+                                    email: self.state.email,
+                                    phone_number:self.state.phone_number,
+                                    rental_valuation: response.data.rental_results.rental_predict_price,
+                                    sales_valuation: response.data.selling_results.predict_results.predict_price,
+                                    company_id: self.props.company.id,
+                                    report_id: res.data.saveReport
+                                }
+                            });
                     });
-
                     self.props.updateValues(response.data, self.props.address);
-
-
                     self.setState({ hideLoadingSpinner: true, valuation: response.data, step:3 });
                 })
                 .catch(function (error) {
+                    console.error(error);
                     self.setState({ hideLoadingSpinner: true});
                 });
         }
@@ -359,9 +366,9 @@ class ValuationForm extends React.Component {
     }
 }
 
-const mutator = gql`
+const createLeadMutator = gql`
     mutation createLead($first_name: String!, $last_name: String!, $email: String!, $phone_number: String!, 
-            $sales_valuation: Float!, $rental_valuation: Float!, $company_id: Int!) {
+            $sales_valuation: Float!, $rental_valuation: Float!, $company_id: Int!, $report_id: ID!) {
              createLead(
                 first_name: $first_name, 
                 last_name: $last_name, 
@@ -370,12 +377,20 @@ const mutator = gql`
                 sales_valuation:$sales_valuation, 
                 rental_valuation:$rental_valuation, 
                 company_id:$company_id
+                report_id: $report_id
               ) {
                 id
               }
           }
 `;
 
+const saveReportMutator = gql`
+    mutation saveReport($report: JSON!, $company_id: Int!) {
+        saveReport(report: $report, company_id: $company_id)
+    }
+`;
+
 export default compose(
-    graphql(mutator)
+    graphql(createLeadMutator, { name: 'createLeadMutator' }),
+    graphql(saveReportMutator, { name: 'saveReportMutator' })
 )(ValuationForm);
