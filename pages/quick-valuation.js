@@ -36,10 +36,10 @@ class QuickValuation extends React.Component {
             valuation: {}
 
         };
-        this.showReport = this.showReport.bind(this);
+        this.updateValues = this.updateValues.bind(this);
         this.setValuationFormData = this.setValuationFormData.bind(this);
     }
-    showReport(report, address, company) {
+    updateValues(report, address, company) {
         this.setState({report, address, company});
     }
 
@@ -73,7 +73,7 @@ class QuickValuation extends React.Component {
                                 {this.renderCompanyLogo(data.companyByValuationURL)}
                                 <h1>Free Instant Online Valuation</h1>
                                 <p>We offer instant online valuations, simply enter your post code below for an indication of what your property is worth.</p>
-                                <ValuationForm report={this.showReport}/>
+                                <ValuationForm updateValues={this.updateValues}/>
                                 </div>
                             </div>
                         </div>
