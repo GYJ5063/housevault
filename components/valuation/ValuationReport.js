@@ -11,7 +11,7 @@ import React from "react";
 import RentalComparables from "./RentalComparables";
 import WideGraphCard from "./WideGraphCard";
 import HeroCard from "./HeroCard";
-import Navbar from "./NavHeadCard";
+import NavHeadCard from "./NavHeadCard";
 import StarRating from "./StarRating";
 
 class ValuationReport extends React.Component {
@@ -374,7 +374,7 @@ getValuesForType(target, suffix, label) {
            </div>
         </div>
        <div className="card mt-0 valuation-report-nav sticky-top" style={{backgroundColor:'black'}}>
-             <Navbar backgroundColor={'#'+this.props.company.secondary_colour} />
+             <NavHeadCard backgroundColor={'#'+this.props.company.secondary_colour} />
         </div>
        <div className="card mt-0 card-main-content">
           <div className="card-body">
