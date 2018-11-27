@@ -449,7 +449,7 @@ getValuesForType(target, suffix, label) {
                         <h2>{(this.props.valuation.selling_results.predict_results.confidence_level/8)*100}% accuracy</h2>
                     </div>
                 </div>
-                <div className="row" id="propertyPerformance">
+                <div className="row" id="property-performance">
                     <div className="col-12 text-left">
                         <h2 className='mt-3 mb-2'>Property Performance</h2>
                         <p>Your properties current market value is <strong>{'£'+(this.props.valuation.selling_results.predict_results.predict_price).toLocaleString()}</strong> compared
@@ -505,7 +505,7 @@ getValuesForType(target, suffix, label) {
                         )
                     }
                 </div>
-                <div id="comparableSoldCards">
+                <div id="comparable-sold-cards">
                     {
                         _.isEmpty(this.props.valuation.selling_results.comparable_properties[1]) ? null : (
                             <div>
@@ -527,7 +527,7 @@ getValuesForType(target, suffix, label) {
                         )
                     }
                 </div>
-                <div id="comparableRentalCards">
+                <div id="comparable-rental-cards">
                     {
                         _.isEmpty(this.props.valuation.rental_results.rental_comparable_properties[0]) ? null : (
                             <div>
@@ -548,7 +548,7 @@ getValuesForType(target, suffix, label) {
                 </div>
 
                 <div className="mag-content">
-                <div id="localPropertyInfo">
+                <div id="local-property-info">
                     {
                         !this.props.valuation.selling_results.local_property_type_statistic ? null : (
                             <div className="row mt-3">

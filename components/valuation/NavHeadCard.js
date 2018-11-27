@@ -37,16 +37,16 @@ export default class Example extends React.Component {
                                 <NavLink href="#overview">Overview  </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="#propertyPerformance">Property Performance  </NavLink>
+                                <NavLink href="#property-performance">Property Performance  </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="#comparableSoldCards">Sold Comparables  </NavLink>
+                                <NavLink href="#comparable-sold-cards">Sold Comparables  </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="#comparableRentalCards">Rental Comparables  </NavLink>
+                                <NavLink href="#comparable-rental-cards">Rental Comparables  </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="#localPropertyInfo">Local Property Factors</NavLink>
+                                <NavLink href="#local-property-info">Local Property Factors</NavLink>
                             </NavItem>
                         </Nav>
                     </Collapse>
