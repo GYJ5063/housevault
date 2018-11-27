@@ -29,7 +29,7 @@ class NavHeadCard extends React.Component {
     render() {
         return (
             <div>
-                <Navbar className="valuation-report-nav" expand="md" style={{backgroundColor:this.props.backgroundColor}}>
+                <Navbar className="valuation-report-nav primary-secondary-default-colours" expand="md" style={{backgroundColor:this.props.backgroundColor}}>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto mr-auto" navbar>
