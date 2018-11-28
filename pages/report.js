@@ -53,7 +53,6 @@ class Report extends Component {
                     if (loading) return "Loading...";
                     if (error) return `Error! ${error.message}`;
 
-                    console.log(data)
                     return (
                         <ValuationReport valuation={data.report} address={data.report.address} company={data.report.company}/>
                     );

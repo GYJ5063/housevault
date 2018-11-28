@@ -9,6 +9,7 @@ import gql from 'graphql-tag';
 import FormValidator from "../../components/FormValidator";
 import AddressSearch from '../../components/AddressSearch';
 
+import { Router } from '../../routes';
 
 class ValuationForm extends React.Component {
     constructor(props) {
@@ -173,7 +174,10 @@ class ValuationForm extends React.Component {
                         .then(res => {
                             if(!res.data.saveReport) {
                                 console.error(res.errors[0].message);
+                                // need to display a something went wrong message
                             }
+
+                            const reportId = res.data.saveReport;
 
                             self.props.createLeadMutator({
                                 variables: {
@@ -184,12 +188,16 @@ class ValuationForm extends React.Component {
                                     rental_valuation: response.data.rental_results.rental_predict_price,
                                     sales_valuation: response.data.selling_results.predict_results.predict_price,
                                     company_id: self.props.company.id,
-                                    report_id: res.data.saveReport
+                                    report_id: reportId
                                 }
+                            }).then(res => {
+                                if(!res.data.createLead) {
+                                    console.error(res.errors[0].message);
+                                    // need to display a something went wrong message
+                                }
+                                Router.pushRoute(`/report/${reportId}`);
                             });
                     });
-                    self.props.updateValues(response.data, self.state.address, self.props.company);
-                    self.setState({ hideLoadingSpinner: true, valuation: response.data, step:3 });
                 })
                 .catch(function (error) {
                     console.error(error);
