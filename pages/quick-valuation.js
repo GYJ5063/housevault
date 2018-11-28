@@ -32,16 +32,8 @@ class QuickValuation extends React.Component {
             valuation: {}
 
         };
-        this.updateValues = this.updateValues.bind(this);
-        this.setValuationFormData = this.setValuationFormData.bind(this);
-    }
-    updateValues(report, address, company) {
-        this.setState({report, address, company});
     }
 
-    setValuationFormData(valuation) {
-        this.setState({valuation:valuation});
-    }
     renderCompanyLogo(company) {
 
         if(company.website_url != null && company.logo != null ) {
@@ -61,20 +53,16 @@ class QuickValuation extends React.Component {
                      if (loading) return "Loading...";
                      if (error) return `Error! ${error.message}`;
                      return (
-
-                 (_.isEmpty(this.state.report)) ?
-                    <div className="col-4">
-                        <div className="card valuation-card">
-                            <div className="card-body">
-                                {this.renderCompanyLogo(data.companyByValuationURL)}
-                                <h1>Free Instant Online Valuation</h1>
-                                <p>We offer instant online valuations, simply enter your post code below for an indication of what your property is worth.</p>
-                                <ValuationForm updateValues={this.updateValues} company={data.companyByValuationURL} address={this.state.address}/>
+                        <div className="col-4">
+                            <div className="card valuation-card">
+                                <div className="card-body">
+                                    {this.renderCompanyLogo(data.companyByValuationURL)}
+                                    <h1>Free Instant Online Valuation</h1>
+                                    <p>We offer instant online valuations, simply enter your post code below for an indication of what your property is worth.</p>
+                                    <ValuationForm company={data.companyByValuationURL} address={this.state.address}/>
                                 </div>
                             </div>
                         </div>
-                        :
-                        <ValuationReport valuation={this.state.report} address={this.state.address} company={data.companyByValuationURL}/>
                     )}}
                  </Query>
                 </div>
