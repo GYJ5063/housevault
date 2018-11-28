@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import ValuationReport from "../components/valuation/ValuationReport";
+import "../styles/valuation.scss";
 
 const GET_REPORT = gql`
     query report($id: ID!) {
         report(id: $id) {
             company {
                 logo
+                name
+                telephone
                 primary_colour
+                secondary_colour
+                meta_description
             }
             address {
                 building_name
