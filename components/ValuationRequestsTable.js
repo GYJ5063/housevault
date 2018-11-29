@@ -3,21 +3,7 @@ import React from "react";
 
 export default (props) => {
 
-    // Build each row
-    const rows = props.requests.map((r) => {
-        return (
-            <tr>
-                <th scope="row">{r.first_name}</th>
-                <td>{r.last_name}</td>
-                <td>{r.phone_number}</td>
-                <td>{r.email}</td>
-                <td>{r.sales_valuation.toLocaleString()}</td>
-                <td>{r.rental_valuation.toLocaleString()}</td>
-                <td>{r.createdAt}</td>
-                <td><a href={"./report/"+r.report_id}>Report</a></td>
-            </tr>
-        )
-    })
+
 
     return (
         <Table hover responsive>
@@ -33,7 +19,20 @@ export default (props) => {
             </thead>
             <tbody>
 
-            { rows }
+            {
+                props.leads.map((aLead) => (
+                    <tr>
+                        <td scope="row">{aLead.first_name}</td>
+                        <td>{aLead.last_name}</td>
+                        <td>{aLead.phone_number}</td>
+                        <td>{aLead.email}</td>
+                        <td>£{aLead.sales_valuation.toLocaleString()}</td>
+                        <td>£{aLead.rental_valuation.toLocaleString()}</td>
+                        <td>{aLead.createdAt}</td>
+                        <td><a href={"./report/"+aLead.report_id}>Report</a></td>
+                    </tr>
+                ))
+            }
 
             </tbody>
         </Table>
