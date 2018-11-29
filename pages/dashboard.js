@@ -42,8 +42,7 @@ const testRequests = [
 ]
 
 
-class PrivateHomepage extends Component {
-
+class Dashboard extends Component {
     constructor(props) {
         super(props)
     }
@@ -60,4 +59,4 @@ class PrivateHomepage extends Component {
 }
 
 
-export default PrivateHomepage;
+export default Dashboard;
