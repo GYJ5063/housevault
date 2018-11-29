@@ -18,7 +18,7 @@ export default (props) => {
             <tbody>
 
             {
-                props.leads.map((l) =>  (
+                props.leads.map(l =>  (
                     <tr>
                         <th scope="row">{l.first_name}</th>
                         <td>{l.last_name}</td>
