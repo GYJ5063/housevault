@@ -7,7 +7,7 @@ routes
     .add('quick-valuation', '/quick-valuation')
     .add('registration', '/registration')
     .add('login', '/login')
-    .add('private-homepage', '/private-homepage')
+    .add('dashboard', '/dashboard')
     .add('reset', '/reset/:token')
     .add('forgot-password', '/forgot-password')
     .add('homepage', '/');
