@@ -92,7 +92,7 @@ class ValuationForm extends React.Component {
 
         this.state = {
             postcode: '',
-            address: {postcode: 'SN6 6BW',building_number:'62', building_name: ''},
+            address: {},
             building_number: '',
             building_name: '',
             built_from: '',
