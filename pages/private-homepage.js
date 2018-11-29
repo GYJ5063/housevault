@@ -5,7 +5,7 @@ import '../styles/private-homepage.scss'
 
 
 const testRequests = [
-  {
+    {
     first_name: "first",
     last_name: "last",
     email: "firs@last.com",
@@ -15,7 +15,7 @@ const testRequests = [
     report_id: "12560ec0-f22d-11e8-ad5f-7dd96ea91359",
     createdAt: "1543313603000",
     updatedAt: "1543313603000"
-  },
+    },
     {
         first_name: "first",
         last_name: "last",

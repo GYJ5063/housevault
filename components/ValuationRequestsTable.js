@@ -11,8 +11,8 @@ export default (props) => {
                 <td>{r.last_name}</td>
                 <td>{r.phone_number}</td>
                 <td>{r.email}</td>
-                <td>{r.sales_valuation}</td>
-                <td>{r.rental_valuation}</td>
+                <td>{r.sales_valuation.toLocaleString()}</td>
+                <td>{r.rental_valuation.toLocaleString()}</td>
                 <td>{r.createdAt}</td>
                 <td><a href={"./report/"+r.report_id}>Report</a></td>
             </tr>
