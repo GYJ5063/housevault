@@ -91,23 +91,23 @@ class ValuationForm extends React.Component {
         ]);
 
         this.state = {
-            postcode: 'SN6 6BW',
+            postcode: '',
             address: {postcode: 'SN6 6BW',building_number:'62', building_name: ''},
             building_number: '',
             building_name: '',
-            built_from: 'Semi-Detached',
-            property_type: 'House',
-            wall_type: 'brick',
+            built_from: '',
+            property_type: '',
+            wall_type: '',
             total_floor_area: 100,
             validation: this.validator.valid(),
             valuation:{},
             address_picker_hidden: true,
             bedrooms: 2,
             reception_rooms: 2,
-            first_name:'first',
-            last_name:'last',
-            email: 'firs@last.com',
-            phone_number: '12345',
+            first_name:'',
+            last_name:'',
+            email: '',
+            phone_number: '',
             step:1,
             addressList: []
         }
