@@ -4,12 +4,6 @@ import moment from "moment";
 
 export default (props) => {
 
-const first = (props.leads[0].createdAt);
-const test = moment(`${first}`);
-console.log(first);
-console.log(test);
-
-
     return (
         <Table hover responsive>
             <thead>
@@ -33,7 +27,7 @@ console.log(test);
                         <td>{l.email}</td>
                         <td>{l.sales_valuation.toLocaleString()}</td>
                         <td>{l.rental_valuation.toLocaleString()}</td>
-                        <td>{l.createdAt}</td>
+                        <td>{moment.utc(parseInt(l.createdAt)).format('DD MMM YYYY')}</td>
                         <td><a href={"./report/"+l.report_id}>Report</a></td>
                     </tr>
                 ))
