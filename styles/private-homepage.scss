@@ -7,3 +7,31 @@
     background: white;
   }
 }
+
+.navbar {
+  background-color: #212C40;
+  margin-bottom: 0px;
+}
+
+.navbar .nav li {
+  padding: 15px;
+  .searchfieldtop{
+    border: 1px solid #65D2FF;
+    background: transparent;
+    border-radius: 15px;
+    color: #FFFFFF;
+    padding: 2px 10px;
+    &::-webkit-input-placeholder{
+      color: #FFFFFF;
+    }
+  }
+  a {
+    color: #fff;
+    font-size: 15px;
+    padding: 8px 0;
+    &:hover {
+      border-bottom: 3px solid #65D2FF;
+      text-decoration: none;
+    }
+  }
+}

@@ -1,7 +1,14 @@
 import { Table } from 'reactstrap';
 import React from "react";
+import moment from "moment";
 
 export default (props) => {
+
+const first = (props.leads[0].createdAt);
+const test = moment(`${first}`);
+console.log(first);
+console.log(test);
+
 
     return (
         <Table hover responsive>

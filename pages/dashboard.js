@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import HeaderAgentDash from '../components/HeaderAgentDash';
 
 import LeadsTable from '../components/LeadsTable';
 import '../styles/private-homepage.scss';
 
 
 import { Router } from '../routes';
+import Head from "next/head";
 
 const GET_LEADS = gql`
     query leads{
@@ -30,7 +32,14 @@ class Dashboard extends Component {
     }
     render() {
         return (
+            <main role="main">
+                <Head>
+                    <title>House Vault Agent Dashboard</title>
+                    <meta name="description" content="Dashboard for estate agents." />
+                    <HeaderAgentDash />
+                </Head>
             <div className='homepage-container'>
+
                 <h3>Dashboard</h3>
                 <div className='requests-table'>
                     <Query query={GET_LEADS}>
@@ -59,6 +68,7 @@ class Dashboard extends Component {
                     </Query>
                 </div>
             </div>
+            </main>
         );
     }
 }
