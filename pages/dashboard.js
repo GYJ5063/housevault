@@ -41,7 +41,7 @@ class Dashboard extends Component {
                                     Router.pushRoute('/login');
                                     return null;
                                 }
-                                else if(error.message === 'GraphQL error: Requires leads view permission.') {
+                                else if(error.message === 'GraphQL error: Requires view leads permission.') {
                                     return null;
                                 }
                                 else {
