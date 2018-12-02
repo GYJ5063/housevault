@@ -11,11 +11,13 @@ class ValuationStepOne extends React.Component {
             {
                 field: 'bedrooms',
                 method: 'isEmpty',
+                validWhen: false,
                 message: 'Bedrooms are required.'
             },
             {
                 field: 'reception_rooms',
                 method: 'isEmpty',
+                validWhen: false,
                 message: 'Reception Rooms are required.'
             },
         ]);
@@ -41,6 +43,8 @@ class ValuationStepOne extends React.Component {
         e.preventDefault();
         this.setState({ "submitted":true });
         if (this.state.validation.isValid) {
+
+
             this.props.submit(this.state);
         }
     }

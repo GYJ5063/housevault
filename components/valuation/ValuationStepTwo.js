@@ -13,16 +13,19 @@ class ValuationStepTwo extends React.Component {
             {
                 field: 'built_from',
                 method: 'isEmpty',
+                validWhen: false,
                 message: 'Built from is required.'
             },
             {
                 field: 'property_type',
                 method: 'isEmpty',
+                validWhen: false,
                 message: 'Property type is required.'
             },
             {
                 field: 'wall_type',
                 method: 'isEmpty',
+                validWhen: false,
                 message: 'Wall type is required.'
             },
 
@@ -30,26 +33,31 @@ class ValuationStepTwo extends React.Component {
                 field: 'total_floor_area',
                 method: _.inRange,
                 args: [10, 600],
+                validWhen: true,
                 message: 'Area must be a valid number between 10 and 600.'
             },
             {
                 field: 'first_name',
                 method: 'isEmpty',
+                validWhen: false,
                 message: 'First Name is required.'
             },
             {
                 field: 'last_name',
                 method: 'isEmpty',
+                validWhen: false,
                 message: 'Last Name is required.'
             },
             {
                 field: 'phone_number',
                 method: 'isEmpty',
+                validWhen: false,
                 message: 'Phone Number is required.'
             },
             {
                 field: 'email',
                 method: 'isEmpty',
+                validWhen: false,
                 message: 'Email Address is required.'
             }
         ]);
@@ -88,6 +96,7 @@ class ValuationStepTwo extends React.Component {
         this.setState({ "submitted":true });
 
         if (this.state.validation.isValid) {
+
             this.props.submit(this.state);
         }
     }
