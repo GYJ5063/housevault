@@ -6,20 +6,20 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Query } from "react-apollo";
 
-// TODO: implement this properly
 const GET_COMPANY_DETAILS = gql`
-    {
-        companyByValuationURL(valuation_url: "https://valuation.bettermove.co.uk") {
-        id,
-        logo,
-        website_url,
-        primary_colour,
-        name,
-        telephone,
-        meta_description
+    query company {
+        company {
+            id
+            logo
+            website_url
+            primary_colour
+            name
+            telephone
+            meta_description
         }
     }
 `;
+
 class QuickValuation extends React.Component {
 
     constructor(props) {
@@ -33,7 +33,7 @@ class QuickValuation extends React.Component {
 
         if(company.website_url != null && company.logo != null ) {
             return (
-                <a href={company.website_url} ><img src={company.logo} /></a>
+                <a href={company.website_url} ><img src={company.logo} style={{ maxWidth: 200}}/></a>
             )
         }
     }
@@ -47,14 +47,15 @@ class QuickValuation extends React.Component {
                     {({ loading, error, data }) => {
                         if (loading) return "Loading...";
                         if (error) return `Error! ${error.message}`;
+
                         return (
                             <div className="col-4">
                                 <div className="card valuation-card">
                                     <div className="card-body">
-                                        {this.renderCompanyLogo(data.companyByValuationURL)}
+                                        {this.renderCompanyLogo(data.company)}
                                         <h1>Free Instant Online Valuation</h1>
                                         <p>We offer instant online valuations, simply enter your post code below for an indication of what your property is worth.</p>
-                                        <ValuationForm company={data.companyByValuationURL} />
+                                        <ValuationForm company={data.company} />
                                     </div>
                                 </div>
                             </div>
