@@ -8,6 +8,7 @@ routes
     .add('registration', '/registration')
     .add('login', '/login')
     .add('dashboard', '/dashboard')
+    .add('settings', '/settings')
     .add('reset', '/reset/:token')
     .add('forgot-password', '/forgot-password')
     .add('homepage', '/');

@@ -12,16 +12,16 @@ export default () =>
 
                 <ul className="nav navbar-nav navbar-right">
                     <li >
-                        <a href="/agent/">Overview</a>
+                        <a href="/">Overview</a>
                     </li>
                     <li >
-                        <a href="/agent/leads">Leads</a>
+                        <a href="/leads">Leads</a>
                     </li>
                     <li >
-                        <a href="/agent/knowledge-base">Knowledge Base</a>
+                        <a href="/knowledge-base">Knowledge Base</a>
                     </li>
                     <li >
-                        <a href="/agent/settings">Settings</a>
+                        <a href="/settings">Settings</a>
                     </li>
                     <li >
                         <a href="/">Log Out</a>
