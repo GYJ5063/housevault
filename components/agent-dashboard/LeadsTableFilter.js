@@ -1,11 +1,11 @@
 import BootstrapTable from 'react-bootstrap-table-next';
 import filterFactory, { dateFilter } from 'react-bootstrap-table2-filter';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import ToolkitProvider from 'react-bootstrap-table2-toolkit';
+import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit';
 import React from "react";
 import moment from "moment";
 
-const link = 'report_id';
+const { SearchBar } = Search;
 
 function priceFormatter(cell) {
     return (
@@ -82,16 +82,18 @@ const MyExportCSV = (props) => {
 
 const defaultSorted = [{
     dataField: 'createdAt',
-    order: 'asc'
+    order: 'desc'
 }];
 
 export default (props) => {
     return (
-        <ToolkitProvider keyField='id' data={props.data} columns={columns}
+        <ToolkitProvider keyField='id' data={props.data} columns={columns} search
                       exportCSV>
                         {
                             props => (
                                 <div>
+                                    <SearchBar { ...props.searchProps } />
+                                    <hr/>
                                     <BootstrapTable {...props.baseProps} bordered={false} defaultSorted={defaultSorted} pagination={paginationFactory()} hover/>
                                     <hr/>
                                     <MyExportCSV {...props.csvProps} />
