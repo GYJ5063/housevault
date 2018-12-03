@@ -7,8 +7,6 @@ import HeaderAgentDash from '../components/HeaderAgentDash';
 import LeadsTable from '../components/LeadsTable';
 import '../styles/private-homepage.scss';
 
-
-import { Router } from '../routes';
 import Head from "next/head";
 
 const GET_LEADS = gql`
@@ -45,25 +43,8 @@ class Dashboard extends Component {
                     <Query query={GET_LEADS}>
                         {({ loading, error, data }) => {
                             if (loading) return "Loading...";
-                            if(error) {
-                                if (error.message === 'GraphQL error: Must be logged in.') {
-                                    Router.pushRoute('/login');
-                                    return null;
-                                }
-                                else if(error.message === 'GraphQL error: Requires view leads permission.') {
-                                    return null;
-                                }
-                                else {
-                                    return `Error! ${error.message}`;
-                                };
-                            }
 
-
-                            return (
-                                data.leads
-                                ? <LeadsTable leads={ data.leads } />
-                                : null
-                            );
+                            return <LeadsTable data={ data } error={error}/>;
                         }}
                     </Query>
                 </div>
