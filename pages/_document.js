@@ -31,6 +31,7 @@ export default class MyDocument extends Document {
                 <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
 
                 <link rel="stylesheet" href="/_next/static/style.css" />
+                <link rel="stylesheet" href="https://npmcdn.com/react-bootstrap-table/dist/react-bootstrap-table-all.min.css" />
                 <meta name="description" content="View Local information about an address including epc, population, house prices, crime and much more." />
                 <meta name="google-site-verification" content="WdS4Z6EBmpQwp-mES6S5_gv77-uQEqOYT3YgD4FLfYE" />
                 <meta itemProp="isFamilyFriendly" content="TRUE" />

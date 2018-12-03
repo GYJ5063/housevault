@@ -5,6 +5,8 @@ import gql from 'graphql-tag';
 import HeaderAgentDash from '../components/agent-dashboard/HeaderAgentDash';
 
 import LeadsTable from '../components/agent-dashboard/LeadsTable';
+import BootstrapTable from 'react-bootstrap-table-next';
+import FilterLeads from '../components/agent-dashboard/LeadsTableFilter'
 import '../styles/agent-dashboard.scss';
 
 import Head from "next/head";
@@ -12,6 +14,7 @@ import Head from "next/head";
 const GET_LEADS = gql`
     query leads{
         leads {
+            id
             first_name
             last_name
             phone_number
@@ -63,10 +66,12 @@ class Dashboard extends Component {
                     <Query query={GET_LEADS}>
                         {({ loading, error, data }) => {
                             if (loading) return "Loading...";
-
-                            return <LeadsTable data={ data } error={error}/>;
+                            console.log(data);
+                            return <FilterLeads data={ data.leads } />;
+                            // return <LeadsTable data={ data } error={error}/>;
                         }}
                     </Query>
+
                 </div>
             </div>
             </div>
