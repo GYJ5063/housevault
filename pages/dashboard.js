@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import HeaderAgentDash from '../components/HeaderAgentDash';
+import HeaderAgentDash from '../components/agent-dashboard/HeaderAgentDash';
 
-import LeadsTable from '../components/LeadsTable';
-import '../styles/private-homepage.scss';
+import LeadsTable from '../components/agent-dashboard/LeadsTable';
+import '../styles/agent-dashboard.scss';
 
 import Head from "next/head";
 
@@ -37,9 +37,29 @@ class Dashboard extends Component {
                     <HeaderAgentDash />
                 </Head>
             <div className='homepage-container'>
+                <h2>Agent Dashboard</h2>
+            <div className='card-deck'>
+                <div className='col-md-3 card stats-cards'>
+                    <h4>Leads this month</h4>
+                    <h2>35</h2>
+                </div>
+                <div className='col-md-3 card stats-cards'>
+                    <h4>Leads last month</h4>
+                    <h2>31</h2>
+                </div>
+                <div className='col-md-3 card stats-cards'>
+                    <h4>Hot Leads</h4>
+                    <h2>3</h2>
+                </div>
+                <div className='col-md-3 card stats-cards'>
+                    <h4>Conversion rate</h4>
+                    <h2>23%</h2>
+                </div>
+            </div>
 
-                <h3>Dashboard</h3>
+                <div className='col-md-12 lead-table'>
                 <div className='requests-table'>
+                    <h3>Leads Summary</h3>
                     <Query query={GET_LEADS}>
                         {({ loading, error, data }) => {
                             if (loading) return "Loading...";
@@ -48,6 +68,7 @@ class Dashboard extends Component {
                         }}
                     </Query>
                 </div>
+            </div>
             </div>
             </main>
         );
