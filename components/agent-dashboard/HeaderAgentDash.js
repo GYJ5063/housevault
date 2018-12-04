@@ -15,9 +15,6 @@ export default () =>
                         <a href="/">Overview</a>
                     </li>
                     <li >
-                        <a href="/leads">Leads</a>
-                    </li>
-                    <li >
                         <a href="/knowledge-base">Knowledge Base</a>
                     </li>
                     <li >

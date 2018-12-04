@@ -1,74 +1,104 @@
-import { Table } from 'reactstrap';
+import BootstrapTable from 'react-bootstrap-table-next';
+import filterFactory, { dateFilter } from 'react-bootstrap-table2-filter';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit';
 import React from "react";
 import moment from "moment";
-import withPermission from '../access-control/withPermission';
 
+const { SearchBar } = Search;
+
+function priceFormatter(cell) {
+    return (
+        <span>£{ cell.toLocaleString() }</span>
+    );
+}
+
+function dateFormatter(cell) {
+    return (
+        <span>{moment.utc(parseInt(cell)).format('DD MMM YYYY')}</span>
+    );
+}
+
+function urlFormatter(cell) {
+    return (
+        <span><a href={"./report/"+cell}>Report</a></span>
+    );
+}
+
+function emailFormatter(cell) {
+    return (
+        <span><a href={"mailto:"+cell} target="_top">Send</a></span>
+    );
+}
 
 const columns = [{
+    dataField: 'id',
+    text: 'ID',
+    hidden: true,
+}, {
     dataField: 'first_name',
     text: 'First Name',
-    sort: true
 }, {
     dataField: 'last_name',
     text: 'Last Name',
-    sort: true
 }, {
     dataField: 'phone_number',
-    text: 'Number Valuation'
+    text: 'Telephone'
 }, {
     dataField: 'email',
-    text: 'Email'
+    text: 'Email',
+    formatter: emailFormatter
 }, {
     dataField: 'sales_valuation',
-    text: 'Sales Valuation'
+    text: 'Sales Valuation',
+    formatter: priceFormatter,
+    sort: true
 }, {
     dataField: 'rental_valuation',
-    text: 'Rental Valuation'
+    text: 'Rental Valuation',
+    formatter: priceFormatter,
+    sort: true
 }, {
     dataField: 'createdAt',
-    text: 'Created'
+    text: 'Created',
+    formatter: dateFormatter,
+    sort: true
 }, {
-    dataField: 'report_id',
-    text: 'Full Report'
+    dataField: `${'report_id'}`,
+    text: 'Full Report',
+    formatter: urlFormatter,
 }];
 
-class LeadsTable extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-    render() {
-        return (
-            <Table hover responsive>
-                <thead>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Phone Number</th>
-                <th>Email</th>
-                <th>Sales valuation</th>
-                <th>Rental valuation</th>
-                <th>Created</th>
-                <th>Full Report</th>
-                </thead>
-                <tbody>
+const MyExportCSV = (props) => {
+    const handleClick = () => {
+        props.onExport();
+    };
+    return (
+        <div style={{textAlign:'right'}}>
+            <button className="btn btn-success" onClick={ handleClick }>Download All Leads</button>
+        </div>
+    );
+};
 
-                {
-                    this.props.data.leads.map(l =>  (
-                        <tr>
-                            <td scope="row">{l.first_name}</td>
-                            <td>{l.last_name}</td>
-                            <td>{l.phone_number}</td>
-                            <td>{l.email}</td>
-                            <td>{l.sales_valuation.toLocaleString()}</td>
-                            <td>{l.rental_valuation.toLocaleString()}</td>
-                            <td>{moment.utc(parseInt(l.createdAt)).format('DD MMM YYYY')}</td>
-                            <td><a href={"./report/"+l.report_id}>Report</a></td>
-                        </tr>
-                    ))
-                }
-                </tbody>
-            </Table>
-        );
-    }
-}
+const defaultSorted = [{
+    dataField: 'createdAt',
+    order: 'desc'
+}];
 
-export default withPermission(LeadsTable);
+export default (props) => {
+    return (
+        <ToolkitProvider keyField='id' data={props.data} columns={columns} search
+                      exportCSV>
+                        {
+                            props => (
+                                <div>
+                                    <SearchBar { ...props.searchProps } />
+                                    <hr/>
+                                    <BootstrapTable {...props.baseProps} bordered={false} defaultSorted={defaultSorted} pagination={paginationFactory()} hover/>
+                                    <hr/>
+                                    <MyExportCSV {...props.csvProps} />
+                                </div>
+                            )
+                        }
+        </ToolkitProvider>)
+};
