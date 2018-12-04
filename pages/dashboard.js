@@ -103,14 +103,7 @@ class Dashboard extends Component {
                                     {
                                         ({ loading, error, data }) => {
                                             if (loading) return "Loading...";
-                                            return (
-                                                <div className='col-md-12'>
-                                                    <div>
-                                                        <h3>Companies</h3>
-                                                        <CompaniesTable data={ data } error={error}/>
-                                                    </div>
-                                                </div>
-                                            );
+                                            return <CompaniesTable data={ data } error={error}/>;
                                         }
                                     }
 

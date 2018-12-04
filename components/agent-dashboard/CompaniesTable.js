@@ -61,7 +61,10 @@ const defaultSorted = [{
 
 const CompaniesTable = (props) => {
     return (
-        <ToolkitProvider keyField='id' data={props.data.companies} columns={columns} search>
+        <div className='col-md-12'>
+            <div>
+                <h3>Companies</h3>
+                <ToolkitProvider keyField='id' data={props.data.companies} columns={columns} search>
                         {
                             props => (
                                 <div>
@@ -71,7 +74,10 @@ const CompaniesTable = (props) => {
                                 </div>
                             )
                         }
-        </ToolkitProvider>)
+                </ToolkitProvider>
+            </div>
+        </div>
+        )
 };
 
 export default withPermission(CompaniesTable);
