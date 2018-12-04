@@ -48,7 +48,7 @@ class Dashboard extends Component {
                         return (
                             <div className='homepage-container'>
                                 <h2>Agent Dashboard</h2>
-                                <div className='card-deck'>
+                                <div className='card-deck col-md-12'>
                                     <div className='col-md-3 card stats-cards'>
                                         <h4>Leads this month</h4>
                                         <h2>{data.leads.length}</h2>
@@ -66,7 +66,7 @@ class Dashboard extends Component {
                                         <h2>23%</h2>
                                     </div>
                                 </div>
-                                <div className='card-deck'>
+                                <div className='card-deck col-md-12'>
                                     <div className='col-md-6 card stats-cards'>
                                         <h4>Average Property Value</h4>
                                         <h2>£{averageValue.toLocaleString()}</h2>
