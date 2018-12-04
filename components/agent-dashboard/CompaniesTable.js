@@ -13,11 +13,18 @@ function dateFormatter(cell) {
     );
 }
 
-function isVaildFormatter(cell) {
-    if (cell.length === 0) {
+function isVaildTickCross(cell) {
+    if (cell.length > 0) {
           return <i style={{color: 'green'}} className="fas fa-check val-logo-awesome"/>}
     else {
           return <i style={{color: 'red'}} className="fas fa-times val-logo-awesome"/>}
+};
+
+function isVaildResultCross(cell) {
+    if (cell != null) {
+        return <div style={{backgroundColor:'#'+(cell)}} className="btn">Colour</div> }
+    else {
+        return <i style={{color: 'red'}} className="fas fa-times val-logo-awesome"/>}
 };
 
 const columns = [
@@ -36,25 +43,27 @@ const columns = [
     {
         dataField: 'meta_description',
         text: 'Meta Description',
-        formatter: isVaildFormatter
+        formatter: isVaildTickCross
     },
     {
         dataField: 'logo',
         text: 'Logo',
-        formatter: isVaildFormatter
+        formatter: isVaildTickCross
     },
     {
         dataField: 'website_url',
         text: 'Website Url',
-        formatter: isVaildFormatter
+        formatter: isVaildTickCross
     },
     {
         dataField: 'primary_colour',
         text: 'Primary Colour',
+        formatter: isVaildResultCross
     },
     {
         dataField: 'secondary_colour',
         text: 'Secondary Colour',
+        formatter: isVaildResultCross
     },
     {
         dataField: 'createdAt',
