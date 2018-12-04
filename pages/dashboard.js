@@ -44,26 +44,25 @@ class Dashboard extends Component {
                         const averageValue = propertyValueSum / data.leads.length;
                         const propertyRentalSum = data.leads.reduce((acc, lead) => acc + lead.rental_valuation, 0);
                         const averageRental = propertyRentalSum / data.leads.length;
-                        console.log(averageValue);
                         return (
                             <div className='homepage-container'>
                                 <h2>Agent Dashboard</h2>
                                 <div className='card-deck col-md-12'>
                                     <div className='col-md-3 card stats-cards'>
-                                        <h4>Leads this month</h4>
+                                        <h4>Leads this month <i style={{color:'green'}} className="fas fa-arrow-up val-logo-awesome"></i></h4>
                                         <h2>{data.leads.length}</h2>
                                     </div>
                                     <div className='col-md-3 card stats-cards'>
-                                        <h4>Leads last month</h4>
+                                        <h4>Leads last month <i style={{color:'red'}} className="fas fa-arrow-down val-logo-awesome"></i></h4>
                                         <h2>31</h2>
                                     </div>
                                     <div className='col-md-3 card stats-cards'>
                                         <h4>Hot Leads</h4>
-                                        <h2>3</h2>
+                                        <h2>3 <i style={{color:'red'}} className="fas fa-fire val-logo-awesome"></i></h2>
                                     </div>
                                     <div className='col-md-3 card stats-cards'>
                                         <h4>Conversion rate</h4>
-                                        <h2>23%</h2>
+                                        <h2>23% <i style={{color:'green'}} className="fas fa-chart-pie val-logo-awesome"></i></h2>
                                     </div>
                                 </div>
                                 <div className='card-deck col-md-12'>
