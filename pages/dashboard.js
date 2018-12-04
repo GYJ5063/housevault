@@ -4,7 +4,9 @@ import gql from 'graphql-tag';
 import HeaderAgentDash from '../components/agent-dashboard/HeaderAgentDash';
 // import LeadsTable from '../components/agent-dashboard/LeadsTable';
 // import BootstrapTable from 'react-bootstrap-table-next';
+
 import LeadsTable from '../components/agent-dashboard/LeadsTable'
+import CompaniesTable from '../components/agent-dashboard/CompaniesTable';
 import '../styles/agent-dashboard.scss';
 import Head from "next/head";
 
@@ -20,6 +22,22 @@ const GET_LEADS = gql`
             rental_valuation
             createdAt
             report_id
+        }
+    }
+`;
+
+const GET_COMPANIES = gql`
+    query companies {
+        companies {
+            id,
+            logo,
+            website_url,
+            primary_colour,
+            secondary_colour,
+            name,
+            telephone,
+            meta_description
+            createdAt
         }
     }
 `;
@@ -81,6 +99,22 @@ class Dashboard extends Component {
                                             <LeadsTable data={ data.leads } />
                                     </div>
                                 </div>
+                                <Query query={GET_COMPANIES}>
+                                    {
+                                        ({ loading, error, data }) => {
+                                            if (loading) return "Loading...";
+                                            return (
+                                                <div className='col-md-12'>
+                                                    <div>
+                                                        <h3>Companies</h3>
+                                                        <CompaniesTable data={ data } error={error}/>
+                                                    </div>
+                                                </div>
+                                            );
+                                        }
+                                    }
+
+                                </Query>
                             </div>
                                 );
                         }
