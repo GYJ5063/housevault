@@ -65,6 +65,7 @@ class Settings extends React.Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.updateCompany = this.updateCompany.bind(this);
     }
     componentDidMount(){
         if(this.props.error) {
@@ -80,6 +81,17 @@ class Settings extends React.Component {
             }, {});
 
             this.setState(newState);
+            console.log('a');
+        }
+    }
+    updateCompany(e){
+        e.preventDefault();
+
+        const validation = this.validator.validate(this.state);
+        this.setState({ validation });
+
+        if (validation.isValid) {
+            console.log('valid data, update company')
         }
     }
     handleChange (e) {
@@ -132,6 +144,8 @@ class Settings extends React.Component {
                             <label htmlFor="primary_colour">Secondary Colour</label>
                             <SketchPicker color={this.state.secondary_colour} onChangeComplete={(colour) => {this.handleColourChange(colour, 'secondary_colour')}} />
                         </div>
+
+                        <button onClick={this.updateCompany}>Update</button>
                     </form>
                 </div>
             </Layout>
