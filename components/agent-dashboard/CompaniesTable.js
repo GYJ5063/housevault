@@ -13,6 +13,13 @@ function dateFormatter(cell) {
     );
 }
 
+function isVaildFormatter(cell) {
+    if (cell.length === 0) {
+          return <i style={{color: 'green'}} className="fas fa-check val-logo-awesome"/>}
+    else {
+          return <i style={{color: 'red'}} className="fas fa-times val-logo-awesome"/>}
+};
+
 const columns = [
     {
         dataField: 'id',
@@ -28,15 +35,18 @@ const columns = [
     },
     {
         dataField: 'meta_description',
-        text: 'Meta Description'
+        text: 'Meta Description',
+        formatter: isVaildFormatter
     },
     {
         dataField: 'logo',
         text: 'Logo',
+        formatter: isVaildFormatter
     },
     {
         dataField: 'website_url',
         text: 'Website Url',
+        formatter: isVaildFormatter
     },
     {
         dataField: 'primary_colour',
