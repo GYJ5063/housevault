@@ -67,21 +67,18 @@ class Settings extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.updateCompany = this.updateCompany.bind(this);
     }
-    componentDidMount(){
-        if(this.props.error) {
-            console.error(error);
-        }
-        if(this.props.data.company) {
-            const newState = Object.keys(this.props.data.company)
-            .reduce((acc, cur) => {
-                if(this.state.hasOwnProperty(cur)){
-                    acc[cur] = this.props.data.company[cur];
-                }
-                return acc;
-            }, {});
+    componentWillReceiveProps(nextProps) {
+        if(this.props != nextProps && !nextProps.data.loading){
+            const newState = Object
+                .keys(nextProps.data.company)
+                .reduce((acc, cur) => {
+                    if(this.state.hasOwnProperty(cur)){
+                        acc[cur] = nextProps.data.company[cur];
+                    }
+                    return acc;
+                }, {});
 
             this.setState(newState);
-            console.log('a');
         }
     }
     updateCompany(e){
