@@ -42,7 +42,7 @@ const columns = [
     },
     {
         dataField: 'meta_description',
-        text: 'Meta Description',
+        text: 'Blurb',
         formatter: isVaildTickCross
     },
     {
@@ -78,6 +78,19 @@ const defaultSorted = [{
     order: 'desc'
 }];
 
+const expandRow = {
+    renderer: row => (
+        <div>
+            <p>Company summary</p>
+            <ul>
+                <li>Website: <a href={row.website_url}>{row.website_url}</a></li>
+                <li>Valuation URL: <a href={row.valuation_url}>{row.valuation_url}</a></li>
+                <li>Company blurb: {row.meta_description}</li>
+            </ul>
+        </div>
+    )
+};
+
 const CompaniesTable = (props) => {
     return (
         <div className='col-md-12'>
@@ -89,7 +102,7 @@ const CompaniesTable = (props) => {
                                 <div>
                                     <SearchBar { ...props.searchProps } />
                                     <hr/>
-                                    <BootstrapTable {...props.baseProps} bordered={false} defaultSorted={defaultSorted} pagination={paginationFactory()} hover/>
+                                    <BootstrapTable {...props.baseProps} bordered={false} defaultSorted={defaultSorted} pagination={paginationFactory()} hover expandRow={ expandRow }/>
                                 </div>
                             )
                         }

@@ -32,6 +32,7 @@ const GET_COMPANIES = gql`
             id,
             logo,
             website_url,
+            valuation_url,
             primary_colour,
             secondary_colour,
             name,
