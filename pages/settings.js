@@ -150,4 +150,4 @@ class Settings extends React.Component {
     }
 }
 
-export default graphql(GET_COMPANY_DETAILS)(Settings);
+export default graphql(GET_COMPANY_DETAILS, { options: { ssr: false }})(Settings);

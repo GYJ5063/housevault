@@ -55,7 +55,7 @@ class Dashboard extends Component {
                     <meta name="description" content="Dashboard for estate agents." />
                     <HeaderAgentDash />
                 </Head>
-                <Query query={GET_LEADS}>
+                <Query query={GET_LEADS} ssr={false}>
                     {
                         ({ loading, error, data }) => {
                         if (loading) return "Loading...";
@@ -100,7 +100,7 @@ class Dashboard extends Component {
                                             <LeadsTable data={ data.leads } />
                                     </div>
                                 </div>
-                                <Query query={GET_COMPANIES}>
+                                <Query query={GET_COMPANIES} ssr={false}>
                                     {
                                         ({ loading, error, data }) => {
                                             if (loading) return "Loading...";
