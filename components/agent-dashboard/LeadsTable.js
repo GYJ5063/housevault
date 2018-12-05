@@ -85,6 +85,19 @@ const defaultSorted = [{
     order: 'desc'
 }];
 
+const expandRow = {
+    renderer: row => (
+        <div>
+            <p>Lead Summary</p>
+            <ul>
+                <li>Address, some report data, etc</li>
+                <li>More info</li>
+                <li>More info</li>
+            </ul>
+        </div>
+    )
+};
+
 export default (props) => {
     return (
         <ToolkitProvider keyField='id' data={props.data} columns={columns} search
@@ -94,7 +107,7 @@ export default (props) => {
                                 <div>
                                     <SearchBar { ...props.searchProps } />
                                     <hr/>
-                                    <BootstrapTable {...props.baseProps} bordered={false} defaultSorted={defaultSorted} pagination={paginationFactory()} hover/>
+                                    <BootstrapTable {...props.baseProps} bordered={false} defaultSorted={defaultSorted} pagination={paginationFactory()} hover expandRow={ expandRow }/>
                                     <hr/>
                                     <MyExportCSV {...props.csvProps} />
                                 </div>
