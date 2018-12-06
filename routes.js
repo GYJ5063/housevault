@@ -9,6 +9,7 @@ routes
     .add('login', '/login')
     .add('private-homepage', '/private-homepage')
     .add('estate-agents', '/estate-agents')
+    .add('property-developers', '/property-developers')
     .add('reset', '/reset/:token')
     .add('forgot-password', '/forgot-password')
     .add('homepage', '/');

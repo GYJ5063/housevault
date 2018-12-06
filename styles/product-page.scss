@@ -147,12 +147,16 @@ header {
     margin:0.625rem 0 0 1.4375rem;
     padding: 1rem;
     background: #00bacc;
+    width: 12rem;
+    text-align: center;
   }
   .demo-btn{
     float:left;
     margin:0.625rem 1rem 0 1.4375rem;
     padding: 1rem;
     background: #52af52;
+    width: 12rem;
+    text-align: center;
   }
 }
 
@@ -163,7 +167,16 @@ header {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 31.25rem auto;
+}
 
+.hero-product-image-developers {
+  width: 100%;
+  min-height: 28.125rem;
+  background-image: url(https://s3.eu-west-2.amazonaws.com/housevault-images/template/developers-header-image.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 25rem auto;
+  margin-left: 5rem;
 }
 
 /*Product Info*/
@@ -183,6 +196,22 @@ header {
   }
   @include breakpoint($min: 0, $max: 47.9rem) {
     height: 100%;
+  }
+  .sample-btn{
+    float:left;
+    margin:2.5rem 0 0 1.4375rem;
+    padding: 1rem;
+    width: 15rem;
+    background: #00bacc;
+    text-align: center;
+  }
+  .demo-btn{
+    float:left;
+    margin:2.5rem 0rem 0rem 0rem;
+    padding: 1rem;
+    background: #52af52;
+    width: 15rem;
+    text-align: center;
   }
 }
 
@@ -233,6 +262,22 @@ header {
   background-repeat: no-repeat;
   background-position: left center;
   background-size: 28rem auto;
+  @include breakpoint($min: 48rem, $max: 74.9375rem) {
+    font: 700 1.5rem/1.875rem 'Roboto Condensed', sans-serif;
+    background-size: 19.375rem auto;
+  }
+  @include breakpoint($min: 0, $max: 47.9rem) {
+    display: none;
+  }
+}
+
+.illustration-3-developers {
+  width: 100%;
+  min-height: 25rem;
+  background-image: url(/static/hv_illustration_3.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 20rem auto;
   @include breakpoint($min: 48rem, $max: 74.9375rem) {
     font: 700 1.5rem/1.875rem 'Roboto Condensed', sans-serif;
     background-size: 19.375rem auto;
@@ -335,7 +380,16 @@ header {
     background-position: center center;
     background-size: 31.25rem auto;
   }
+
+  .developer-reports-illustration-1 {
+    min-height: 20rem;
+    background-image: url(https://s3.eu-west-2.amazonaws.com/housevault-images/template/agents-header-image.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 30rem auto;
+  }
 }
+
 
 /* Knowledge is power */
 
@@ -347,6 +401,32 @@ header {
   background-color: #ecebeb;
   span{
     margin-top: 1rem;
+  }
+  .sample-btn{
+    float:left;
+    margin:2.5rem 0 0 1.4375rem;
+    padding: 1rem;
+    width: 15rem;
+    background: #1e2738;
+    text-align: center;
+    color: white;
+    border-radius: 3rem;
+  }
+  .demo-btn{
+    float:left;
+    margin:2.5rem 0rem 0rem 0rem;
+    padding: 1rem;
+    background: #1e2738;
+    width: 15rem;
+    text-align: center;
+    color: white;
+    border-radius: 3rem;
+  }
+  .demo-btn:hover{
+    background: #bf474b;
+  }
+  .sample-btn:hover{
+    background: #bf474b;
   }
 }
 
