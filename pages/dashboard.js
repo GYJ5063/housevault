@@ -20,6 +20,27 @@ const GET_LEADS = gql`
             email
             sales_valuation
             rental_valuation
+            valuation_address {
+                id
+                postcode
+                town
+                dependent_locality
+                double_dependent_locality
+                thoroughfare
+                dependent_thoroughfare
+                building_number
+                building_name
+                sub_building_name
+                po_box
+                department_name
+                organisation_name
+                postcode_type
+                su_organisation_indicator
+                delivery_point_suffix
+                lat
+                lng
+                udprn
+            }
             createdAt
             report_id
         }
