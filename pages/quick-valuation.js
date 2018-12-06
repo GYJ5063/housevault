@@ -129,7 +129,8 @@ class QuickValuation extends React.Component {
                                 rental_valuation: response.data.rental_results.rental_predict_price,
                                 sales_valuation: response.data.selling_results.predict_results.predict_price,
                                 company_id: self.props.data.company.id,
-                                report_id: reportId
+                                report_id: reportId,
+                                address_id: response.data.selling_results.query_info.address_id
                             }
                         }).then(res => {
                             if(!res.data.createLead) {
@@ -179,7 +180,7 @@ class QuickValuation extends React.Component {
 
 const createLeadMutator = gql`
     mutation createLead($first_name: String!, $last_name: String!, $email: String!, $phone_number: String!, 
-            $sales_valuation: Float!, $rental_valuation: Float!, $company_id: Int!, $report_id: ID!) {
+            $sales_valuation: Float!, $rental_valuation: Float!, $company_id: Int!, $report_id: ID!, $address_id: Int!) {
              createLead(
                 first_name: $first_name, 
                 last_name: $last_name, 
@@ -189,6 +190,7 @@ const createLeadMutator = gql`
                 rental_valuation:$rental_valuation, 
                 company_id:$company_id
                 report_id: $report_id
+                address_id: $address_id
               ) {
                 id
               }
