@@ -4,6 +4,7 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit';
 import React from "react";
 import moment from "moment";
+import withPermission from '../access-control/withPermission';
 
 const { SearchBar } = Search;
 
@@ -109,9 +110,9 @@ const expandRow = {
     )
 };
 
-export default (props) => {
+const LeadsTable = (props) => {
     return (
-        <ToolkitProvider keyField='id' data={props.data} columns={columns} search
+        <ToolkitProvider keyField='id' data={props.data.leads} columns={columns} search
                       exportCSV>
                         {
                             props => (
@@ -126,3 +127,5 @@ export default (props) => {
                         }
         </ToolkitProvider>)
 };
+
+export default withPermission(LeadsTable);

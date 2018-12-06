@@ -80,10 +80,13 @@ class Dashboard extends Component {
                     {
                         ({ loading, error, data }) => {
                         if (loading) return "Loading...";
+                        if(error) return `Error! ${error.message}`;
+
                         const propertyValueSum = data.leads.reduce((acc, lead) => acc + lead.sales_valuation, 0);
                         const averageValue = propertyValueSum / data.leads.length;
                         const propertyRentalSum = data.leads.reduce((acc, lead) => acc + lead.rental_valuation, 0);
                         const averageRental = propertyRentalSum / data.leads.length;
+
                         return (
                             <div className='homepage-container'>
                                 <h2>Agent Dashboard</h2>
@@ -118,7 +121,7 @@ class Dashboard extends Component {
                                 <div className='col-md-12 lead-table'>
                                     <div className='requests-table'>
                                         <h3>Leads Summary</h3>
-                                            <LeadsTable data={ data.leads } />
+                                            <LeadsTable data={ data } error={error}/>
                                     </div>
                                 </div>
                                 <Query query={GET_COMPANIES} ssr={false}>
