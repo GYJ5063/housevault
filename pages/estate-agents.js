@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Router} from '../routes';
-import EstateAgents from "../components/EstateAgents";
+import EstateAgents from "../components/clients/EstateAgents";
 
 class HomePage extends Component {
 

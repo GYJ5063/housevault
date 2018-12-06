@@ -1,10 +1,9 @@
 import Head from 'next/head'
-import Layout from '../components/Layout'
-import Header from "./Header";
-import "../styles.scss";
-import '../styles/product-page.scss';
+import Layout from '../Layout'
+import Header from "../Header";
+import '../../styles/product-page.scss';
 import {Component} from "react";
-import Footer from "./Footer";
+import Footer from "./FooterProduct";
 
 class EstateAgents extends Component {
     constructor(props) {

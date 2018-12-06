@@ -464,3 +464,74 @@ header {
     background-repeat: no-repeat;
   }
 }
+
+/*Footer*/
+
+footer {
+  background-color: #212C40;
+  color: #ffffff;
+  padding-top: 20px;
+  .padding-left-0 {
+    padding-left: 0px;
+  }
+  .footer-links {
+    margin-top: 20px;
+    &:first-child {
+      padding-left: 0px;
+    }
+    h4 {
+      color: #65D2FF;
+      text-transform: uppercase;
+      font-size: 18px;
+    }
+    ul {
+      padding-left: 0px;
+      li {
+        list-style: none;
+      }
+    }
+    a {
+      color: #ffffff;
+    }
+    @include breakpoint($min: 0, $max: 767px) {
+      padding-right: 0px;
+      padding-left: 0px;
+    }
+  }
+  .copyright {
+    color: #65D2FF;
+    margin-top: 20px;
+  }
+  .blank-footer {
+    height: 35px;
+    background-color: #65D2FF;
+  }
+  .subscribe-section h4 {
+    color: #65D2FF;
+    text-transform: uppercase;
+    font-size: 18px;
+  }
+  .subscribefield {
+    border: 1px solid #ff373e;
+    color: #ff4c52;
+    width: 100%;
+    height: 50px;
+    font: 700 25px/50px 'Roboto Condensed', sans-serif;
+    padding: 0 0 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    &::-webkit-input-placeholder{
+      color: #ff4c52;
+    }
+  }
+  .subscribe-submit {
+    background-color: #FF4E54;
+    border: none;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    float: left;
+    margin-top: 15px;
+  }
+}
