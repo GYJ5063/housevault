@@ -7,9 +7,9 @@ export default () =>
         <Head>
             <title>Accurate property valuations for any sale and rental properties | House Vault</title>
             <meta name="description" content="View Local information about an address including epc, population, house prices, crime and much more." />
+            <Header />
         </Head>
         <Layout>
-            <Header />
             <div className="banner">
                 <img src="/static/banner-bg.jpg" alt="Banner"/>
                 <h1 className="note">The most comprehensive & accurate sales and rental valuation data</h1>

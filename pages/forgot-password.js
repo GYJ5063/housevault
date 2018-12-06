@@ -4,8 +4,8 @@ import { Button, Form, FormGroup, Label, Input, FormText, Alert } from 'reactstr
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import FormValidator from './FormValidator';
-import Layout from './Layout'
+import FormValidator from '../components/FormValidator';
+import Layout from '../components/Layout'
 
 class ForgotPassword extends React.Component {
     constructor(props) {
@@ -96,13 +96,14 @@ class ForgotPassword extends React.Component {
                 <Layout>
                   <div className="registration-container">
                       {this.renderResetResult()}
+                      <h3>Reset Password</h3>
                       <Form>
                         <FormGroup>
-                          <Input type="email" name="email" value={this.state.email} onChange={this.handleInputChange} id="exampleEmail" placeholder="Email Address"/>
+                          <Input type="email" name="email" value={this.state.email} onChange={this.handleInputChange} id="exampleEmail" placeholder="email"/>
                           <p className='input-error-text'>{this.state.validation.email.message}</p>
                         </FormGroup>
 
-                        <Button className="login-button" onClick={this.handleSubmit}>Reset Password</Button>
+                        <Button color='primary' onClick={this.handleSubmit}>Reset</Button>
 
                       </Form>
                   </div>
