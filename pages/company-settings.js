@@ -9,8 +9,8 @@ import FormValidator from "../components/FormValidator";
 import Layout from '../components/Layout';
 
 const GET_COMPANY_DETAILS = gql`
-    query company {
-        company {
+    query companyById($id: Int!) {
+        companyById(id: $id) {
             id,
             logo,
             website_url,
@@ -70,10 +70,10 @@ class Settings extends React.Component {
     componentWillReceiveProps(nextProps) {
         if(this.props != nextProps && !nextProps.data.loading){
             const newState = Object
-                .keys(nextProps.data.company)
+                .keys(nextProps.data.companyById)
                 .reduce((acc, cur) => {
                     if(this.state.hasOwnProperty(cur)){
-                        acc[cur] = nextProps.data.company[cur];
+                        acc[cur] = nextProps.data.companyById[cur];
                     }
                     return acc;
                 }, {});
@@ -102,9 +102,11 @@ class Settings extends React.Component {
         this.setState(newState);
     }
     render() {
+        console.log(this.props);
         let validation = this.submitted ?
         this.validator.validate(this.state) :
         this.state.validation;
+
         return (
             <Layout>
                 <div>
@@ -150,4 +152,10 @@ class Settings extends React.Component {
     }
 }
 
-export default graphql(GET_COMPANY_DETAILS, { options: { ssr: false }})(Settings);
+Settings.getInitialProps = async ({ query: { id }}) => {
+    // this is passed to the graphql HOC,
+    // name the variables the same as what the query is expecting
+    return { id: parseInt(id) };
+};
+
+export default graphql(GET_COMPANY_DETAILS, { options: { ssr: false } })(Settings);
