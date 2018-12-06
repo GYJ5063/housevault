@@ -11,7 +11,6 @@ class EstateAgents extends Component {
     }
     render() {
         return (
-
             <main role="main">
                 <Head>
                     <title>Estate & Letting Agents Product Page | House Vault</title>
@@ -21,8 +20,14 @@ class EstateAgents extends Component {
                 </Head>
                 <Layout>
                     <div className="main-heading">
-                        <h1>Sales & Letting Agents</h1>
-                        <h4>Engage with more customers, generate higher quality leads and increase signups with the HouseVault valuation tool.</h4>
+                        <div className="container">
+                            <div className="row">
+                                <div className="heading">
+                                    <h1>Sales & Letting Agents</h1>
+                                    <h4>Engage with more customers, generate higher quality leads and increase signups with HouseVault.</h4>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div className="hero-section">
 
@@ -35,8 +40,6 @@ class EstateAgents extends Component {
                                     <ul>
                                         <li>Increase Website Traffic</li>
                                         <li>Generate Leads</li>
-                                        <li>Boost Revenue</li>
-                                        <li>Cultivate Data</li>
                                         <li>Increase Customer Engagement</li>
                                         <li>Produce Professionally Branded Reports</li>
                                         <li>Promote Agency Brand</li>
@@ -130,7 +133,7 @@ class EstateAgents extends Component {
                                 <div className="col-md-6">
                                     <div className="illustration-3"></div>
                                 </div>
-                                <div className="col-md-6">
+                                <div className="col-md-6 knowledge-inner">
                                     <h4 className="knowledge-heading">Knowledge Is Power</h4>
                                     <p>Not just a software and marketing company but a team
                                         made up of property professionals with years of experience in the industry.</p>

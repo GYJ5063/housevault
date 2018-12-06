@@ -140,7 +140,7 @@ header {
     background-repeat: no-repeat;
     background-position: left center;
     background-size: 25px;
-  //<img src="https://s3.eu-west-2.amazonaws.com/housevault-images/template/tick.png" />
+
   }
   .sample-btn{
     float:left;
@@ -169,8 +169,8 @@ header {
 /*Product Info*/
 .our-product {
   .row{
-    margin-top: 2.5rem;
-    padding-bottom: 0rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
   width: 100%;
   background-color: #1e2738;
@@ -190,10 +190,11 @@ header {
   font: 600 1.625rem/3.125rem 'Roboto Condensed', sans-serif;
   text-align: left;
   color: #5bc8f9;
+  //margin-top: 3rem;
 }
 
 .product-inner {
-  padding: 4rem 2.5rem;
+ padding: 2rem;
   }
 
 .illustration-1 {
@@ -210,11 +211,12 @@ header {
 
 .illustration-2 {
   width: 100%;
-  min-height: 40rem;
+  min-height: 30rem;
   background-image: url(/static/hv_illustration_2.svg);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 23rem auto;
+  overflow: hidden;
   @include breakpoint($min: 48rem, $max: 74.9375rem) {
     font: 700 1.5rem/1.875rem 'Roboto Condensed', sans-serif;
     background-size: 19.375rem auto;
@@ -307,9 +309,9 @@ header {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
   }
-  margin-top: 1.875rem;
+  margin-top: 1.5rem;
   @include breakpoint($min: 0, $max: 47.9rem) {
-    margin-top: 1.875rem;
+    margin-top: 1.5rem;
   }
 
   .more-than-heading {
@@ -346,12 +348,17 @@ header {
   span{
     margin-top: 1rem;
   }
+}
 
-  .knowledge-heading {
-    font: 600 1.625rem/3.125rem 'Roboto Condensed', sans-serif;
-    text-align: left;
-    color: #68cc5d;
-  }
+.knowledge-inner {
+  padding: 2rem;
+
+}
+
+.knowledge-heading {
+  font: 600 1.625rem/3.125rem 'Roboto Condensed', sans-serif;
+  text-align: left;
+  color: #68cc5d;
 }
 
 /* Test Drive Offer */
@@ -389,7 +396,11 @@ header {
     text-align: center;
     border-radius: 3rem;
     width: 100%;
+  }
 
+  .offer-btn:hover {
+    background-color: #52af52;
+    color: white;
   }
 }
 
