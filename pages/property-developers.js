@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Router} from '../routes';
 import EstateAgents from "../components/clients/EstateAgents";
+import PropertyDevelopers from "../components/clients/PropertyDevelopers";
 
 class HomePage extends Component {
 
@@ -10,7 +11,7 @@ class HomePage extends Component {
     render() {
         return (
             <div>
-                <EstateAgents/>
+                <PropertyDevelopers/>
             </div>
         );
     }
