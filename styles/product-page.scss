@@ -1,10 +1,9 @@
+body {
+  background-color: #ffffff;
+}
+
 .homepage-container {
   padding: 1.25rem;
-
-
-  .requests-table {
-    margin: 10vh 0 10vh 0;
-  }
 }
 
 @mixin breakpoint($class) {
@@ -90,40 +89,13 @@ header {
   }
 }
 
-.navbar .social {
-  list-style: none;
-  margin-top: 0.625rem;
-  li {
-    float: left;
-    margin-left: 0.625rem;
-    a {
-      width: 1.4375rem;
-      height: 1.4375rem;
-      text-indent: -624.9375rem;
-      display: block;
-      background-image: url(/static/round-social-media-icons.svg);
-      background-repeat: no-repeat;
-      background-size: 57.25rem 36.0625rem;
-    }
-    &.twitter a {
-      background-position: -25.875rem center;
-    }
-    &.facebook a {
-      background-position: -27.9375rem center;
-    }
-    &.google-plus a {
-      background-position: -29.9375rem center;
-    }
-  }
-}
-
 /* Header End */
 
 
 .main-heading {
   h1 {
     text-align: center;
-    padding: 4.0625rem;
+    padding: 3rem;
   }
   h4 {
     text-align: center;
@@ -135,23 +107,19 @@ header {
 /*Hero Section*/
 .hero-section {
   width: 100%;
-//  height: 68.75rem;
   color: #ffffff;
-  //clear: both;
-//  margin-top: -10%;
-  .row{
-//    padding-top: 20%;
-  }
+  padding-bottom: 2rem;
 }
 
 .hero-product-inner {
   margin-top: 1.875rem;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 3.5rem;
   h3 {
     color: black;
   }
   h4 {
-    color: black;
+    color: #52af52;
+    margin-right: 2rem;
   }
   h5 {
     color: black;
@@ -160,6 +128,8 @@ header {
     color: black;
   }
   ul {
+    margin: 1.5rem 0rem 1.5rem -2rem;
+
   }
   li {
     color: black;
@@ -180,9 +150,9 @@ header {
   }
   .demo-btn{
     float:left;
-    margin:0.625rem 0 0 1.4375rem;
+    margin:0.625rem 1rem 0 1.4375rem;
     padding: 1rem;
-    background: #cc4d58;
+    background: #52af52;
   }
 }
 
@@ -198,16 +168,16 @@ header {
 
 /*Product Info*/
 .our-product {
-  width: 100%;
-  //height: 68.75rem;
-  background-size: cover;
-  background-image: url(/static/diagonal_blue_background_bottom.svg);
-  color: #ffffff;
-  clear: both;
-  margin-top: -3%;
   .row{
-    padding-top: 10%;
+    margin-top: 2.5rem;
+    padding-bottom: 0rem;
   }
+  width: 100%;
+  background-color: #1e2738;
+  color: #ffffff;
+  // clear: both;
+  // background-size: cover;
+  // background-image: url(/static/diagonal_blue_background_bottom.svg);
   @include breakpoint($min: 48rem, $max: 74.9375rem) {
     height: 100%;
   }
@@ -220,20 +190,10 @@ header {
   font: 600 1.625rem/3.125rem 'Roboto Condensed', sans-serif;
   text-align: left;
   color: #5bc8f9;
-  @include breakpoint($min: 48rem, $max: 74.9375rem) {
-    width: 100%;
-    font: 600 1.25rem/3.125rem 'Roboto Condensed', sans-serif;
-    min-height: 3.125rem;
-  }
-  @include breakpoint($min: 0, $max: 47.9rem) {
-    font: 600 1.125rem/2.5rem 'Roboto Condensed', sans-serif;
-    min-height: 2.5rem;
-  }
 }
 
 .product-inner {
-  //margin-top: 3.125rem;
-  padding: 2.18rem 1.5rem;
+  padding: 4rem 2.5rem;
   }
 
 .illustration-1 {
@@ -250,21 +210,27 @@ header {
 
 .illustration-2 {
   width: 100%;
-  min-height: 38.125rem;
+  min-height: 40rem;
   background-image: url(/static/hv_illustration_2.svg);
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 31.25rem auto;
+  background-size: 23rem auto;
+  @include breakpoint($min: 48rem, $max: 74.9375rem) {
+    font: 700 1.5rem/1.875rem 'Roboto Condensed', sans-serif;
+    background-size: 19.375rem auto;
+  }
+  @include breakpoint($min: 0, $max: 47.9rem) {
+    display: none;
+  }
 }
 
 .illustration-3 {
   width: 100%;
-  min-height: 25.625rem;
+  min-height: 30rem;
   background-image: url(/static/hv_illustration_3.svg);
   background-repeat: no-repeat;
   background-position: left center;
-  background-size: 31.25rem auto;
- // margin-top: 3.125rem;
+  background-size: 28rem auto;
   @include breakpoint($min: 48rem, $max: 74.9375rem) {
     font: 700 1.5rem/1.875rem 'Roboto Condensed', sans-serif;
     background-size: 19.375rem auto;
@@ -336,83 +302,11 @@ header {
 
 /* More Than A Valuation Component */
 
-.valuation-reports-illustration-1 {
-  //width: 31.25rem;
-  min-height: 25.625rem;
-  //padding-top: -1.25rem;
-  background-image: url(https://s3.eu-west-2.amazonaws.com/housevault-images/template/3-page-report-example.png);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 31.25rem auto;
-}
-
-
-/* Key Facts Info Boxes */
-
-.key-facts-area {
-  width: 100%;
-  min-height: 23.5rem;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: url(/static/diagonal_blue_background_top.svg);
-  clear: both;
-  .hd {
-    padding: 2.5rem 0;
-    text-align: center;
-    font: 700 1.5rem/1.8125rem 'Roboto Condensed', sans-serif;
-    color: #5cc5fe;
-  }
-
-  .bottom-box {
-    margin-top: 6.25rem;
-  }
-
-  .box{
-    margin-bottom: 0.625rem;
-    float: left;
-  }
-
-  .info-box-link {
-    .name {
-      color: #212C40;
-      font: 700 1rem/1.1875rem 'Roboto Condensed', sans-serif;
-      padding: 0 0 0.625rem;
-      display: block;
-      text-align: center;
-    }
-    .inner {
-      background: #fff;
-    }
-  }
-
-  .property .icon-bar {
-    background-image: url(/static/icon-property-valuation-report.svg);
-    background-position: center 0.0625rem;
-    background-size: 8.75rem auto;
-  }
-
-  .interactive .icon-bar {
-    background-image: url(/static/Icon-interactive-statistics.svg);
-    background-position: center 0.0625rem;
-    background-size: 8.75rem auto;
-  }
-
-  .location .icon-bar {
-    background-image: url(/static/Icon-location-information.svg);
-    background-position: center 0.0625rem;
-    background-size: 8.75rem auto;
-  }
-
-  .energy .icon-bar {
-    background-image: url(/static/Icon-energy-efficiency.svg);
-    background-position: center 0.0625rem;
-    background-size: 8.75rem auto;
-  }
-}
-
-/* More than a valuation section*/
-
 .more-than-a-val{
+  .row{
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
   margin-top: 1.875rem;
   @include breakpoint($min: 0, $max: 47.9rem) {
     margin-top: 1.875rem;
@@ -432,28 +326,31 @@ header {
       min-height: 2.5rem;
     }
   }
-
+  .valuation-reports-illustration-1 {
+    min-height: 25.625rem;
+    background-image: url(https://s3.eu-west-2.amazonaws.com/housevault-images/template/3-page-report-example.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 31.25rem auto;
+  }
 }
 
 /* Knowledge is power */
 
 .the-knowledge {
-  clear: both;
+  .row{
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
   background-color: #ecebeb;
-  //margin-top: -10%;
-  padding: 1.875rem 0rem 1.875rem 0rem;
   span{
     margin-top: 1rem;
   }
 
   .knowledge-heading {
-    //background-color: #69c95e;
     font: 600 1.625rem/3.125rem 'Roboto Condensed', sans-serif;
-    min-height: 3.125rem;
-    //box-sizing: border-box;
     text-align: left;
     color: #68cc5d;
-    width: 60%;
   }
 }
 
@@ -462,17 +359,14 @@ header {
 .test-drive {
   clear: both;
   background-color: #feca02;
-  //margin-top: -10%;
   padding: 1.875rem 0rem 1.875rem 0rem;
   span{
     margin-top: 1rem;
   }
 
   .test-drive-heading {
-    //background-color: #69c95e;
     font: 600 2.5rem/3.125rem 'Roboto Condensed', sans-serif;
     min-height: 3.125rem;
-    //box-sizing: border-box;
     text-align: center;
     padding: 1.5rem;
     color: #1e2537;
@@ -499,47 +393,6 @@ header {
   }
 }
 
-
-
-
-
-.give-it {
-  background-color: #FF4E54;
-  margin: auto;
-  padding-bottom: 1.875rem;
-  p {
-    color: #ffffff;
-    text-align: center;
-    font-size: 1.125rem;
-    padding-top: 1.25rem;
-  }
-}
-
-.your-neighbours {
-  color: #ffffff;
-  width: 100%;
-  max-height: 34.375rem;
-  background-size: cover;
-  background-image: url(/static/diagonal_blue_background_bottom.svg);
-  clear: both;
-  margin-top: 1.875rem;
-  p {
-    font-size: 1.25rem;
-  }
-  ul li {
-    font-size: 1.125rem;
-    color: #65D2FF;
-    padding-bottom: 0.625rem;
-  }
-  .your-neighbours-right{
-    width: 100%;
-    max-height: 34.375rem;
-    background-size: cover;
-    background-image: url(/static/background-gradient-circle.svg);
-    background-position: 6.25rem 0rem;
-    background-repeat: no-repeat;
-  }
-}
 
 /*Footer*/
 
@@ -577,37 +430,5 @@ footer {
   .copyright {
     color: #65D2FF;
     margin-top: 1.25rem;
-  }
-  .blank-footer {
-    height: 2.18rem;
-    background-color: #65D2FF;
-  }
-  .subscribe-section h4 {
-    color: #65D2FF;
-    text-transform: uppercase;
-    font-size: 1.125rem;
-  }
-  .subscribefield {
-    border: 0.0625rem solid #ff373e;
-    color: #ff4c52;
-    width: 100%;
-    height: 3.125rem;
-    font: 700 1.5rem/3.125rem 'Roboto Condensed', sans-serif;
-    padding: 0 0 0 0.625rem;
-    box-sizing: border-box;
-    margin-bottom: 1.25rem;
-    &::-webkit-input-placeholder{
-      color: #ff4c52;
-    }
-  }
-  .subscribe-submit {
-    background-color: #FF4E54;
-    border: none;
-    color: #ffffff;
-    font-size: 1.25rem;
-    padding: 0.625rem 1.25rem;
-    text-transform: uppercase;
-    float: left;
-    margin-top: 1rem;
   }
 }

@@ -43,32 +43,30 @@ class EstateAgents extends Component {
                                         <li>Gain Competitive Advantage</li>
                                         <li>House Valuation Accuracy To Within 3%</li>
                                     </ul>
-                                    <div className="sample-btn">Sample Report</div><div className="demo-btn">Request Demo</div>
+                                    <div className="demo-btn">Start Your Free Trial</div><div className="sample-btn">Sample Report</div>
                                 </div>
                             </div>
 
                     </div>
-                    <div className="row">
-                        <div className="our-product">
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col-md-6 product-inner">
-                                        <h4 className="product-heading">Intelligent & Accurate</h4>
-                                        <p>Without doubt the most intelligent, comprehensive and accurate valuation tool available.
-                                            The industry leading HouseVault tool enables visitors to your website to get a free detailed
-                                            instant online valuation report on their property.</p>
-                                        <p>A fully interactive report allows potential customers to easily look at current values,
-                                            value ranges and value change as well as drilling into property performance,
-                                            historic sales data and comparable sold properties.</p>
-                                        <p>Reports are professionally styled with your agency branding and emailed to both you and the
-                                            customer, strengthening your brand image compared to competitors.</p>
-                                        <p>Seamlessly capture contact details, then engage and convert into a listing, safe in the
-                                            knowledge that you're armed with unrivalled property information compiled from over 100
-                                            data sets, giving you and the customer house valuation accuracy to within 3%.</p>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div className="illustration-2"></div>
-                                    </div>
+                    <div className="our-product">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-md-6 product-inner">
+                                    <h4 className="product-heading">Intelligent & Accurate</h4>
+                                    <p>Without doubt the most intelligent, comprehensive and accurate valuation tool available.
+                                        The industry leading HouseVault tool enables visitors to your website to get a free detailed
+                                        instant online valuation report on their property.</p>
+                                    <p>A fully interactive report allows potential customers to easily look at current values,
+                                        value ranges and value change as well as drilling into property performance,
+                                        historic sales data and comparable sold properties.</p>
+                                    <p>Reports are professionally styled with your agency branding and emailed to both you and the
+                                        customer, strengthening your brand image compared to competitors.</p>
+                                    <p>Seamlessly capture contact details, then engage and convert into a listing, safe in the
+                                        knowledge that you're armed with unrivalled property information compiled from over 100
+                                        data sets, giving you and the customer house valuation accuracy to within 3%.</p>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="illustration-2"></div>
                                 </div>
                             </div>
                         </div>
