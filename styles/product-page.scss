@@ -1,5 +1,5 @@
 .homepage-container {
-  padding: 20px;
+  padding: 1.25rem;
 
 
   .requests-table {
@@ -9,19 +9,19 @@
 
 @mixin breakpoint($class) {
   @if $class == xs {
-    @media (max-width: 767px) { @content; }
+    @media (max-width: 47.9rem) { @content; }
   }
 
   @else if $class == sm {
-    @media (min-width: 768px) { @content; }
+    @media (min-width: 48rem) { @content; }
   }
 
   @else if $class == md {
-    @media (min-width: 992px) { @content; }
+    @media (min-width: 62rem) { @content; }
   }
 
   @else if $class == lg {
-    @media (min-width: 1200px) { @content; }
+    @media (min-width: 75rem) { @content; }
   }
 
   @else {
@@ -53,38 +53,38 @@
 /* Header Start */
 
 header {
-  min-height: 100px;
+  min-height: 6.25rem;
 }
 .navbar {
   background-color: #212C40;
-  margin-bottom: 0px;
+  margin-bottom: 0.3rem;
 }
 .logo {
   display: block;
-  width: 230px;
-  height: 52px;
+  width: 7.6rem;
+  height: 3.25rem;
 }
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 .navbar .nav li {
-  padding: 5px;
+  padding: 0.3rem;
   .searchfieldtop{
-    border: 1px solid #65D2FF;
+    border: 0.0625rem solid #65D2FF;
     background: transparent;
-    border-radius: 15px;
+    border-radius: 1rem;
     color: #FFFFFF;
-    padding: 2px 10px;
+    padding: 0.125rem 0.625rem;
     &::-webkit-input-placeholder{
       color: #FFFFFF;
     }
   }
   a {
     color: #fff;
-    font-size: 15px;
-    padding: 8px 0;
+    font-size: 1rem;
+    padding: 0.5rem 0;
     &:hover {
-      border-bottom: 3px solid #65D2FF;
+      border-bottom: 0.1875rem solid #65D2FF;
       text-decoration: none;
     }
   }
@@ -92,27 +92,27 @@ header {
 
 .navbar .social {
   list-style: none;
-  margin-top: 10px;
+  margin-top: 0.625rem;
   li {
     float: left;
-    margin-left: 10px;
+    margin-left: 0.625rem;
     a {
-      width: 23px;
-      height: 23px;
-      text-indent: -9999px;
+      width: 1.4375rem;
+      height: 1.4375rem;
+      text-indent: -624.9375rem;
       display: block;
       background-image: url(/static/round-social-media-icons.svg);
       background-repeat: no-repeat;
-      background-size: 916px 577px;
+      background-size: 57.25rem 36.0625rem;
     }
     &.twitter a {
-      background-position: -414px center;
+      background-position: -25.875rem center;
     }
     &.facebook a {
-      background-position: -447px center;
+      background-position: -27.9375rem center;
     }
     &.google-plus a {
-      background-position: -479px center;
+      background-position: -29.9375rem center;
     }
   }
 }
@@ -123,7 +123,7 @@ header {
 .main-heading {
   h1 {
     text-align: center;
-    padding: 15px;
+    padding: 4.0625rem;
   }
   h4 {
     text-align: center;
@@ -135,9 +135,9 @@ header {
 /*Hero Section*/
 .hero-section {
   width: 100%;
-//  height: 1100px;
+//  height: 68.75rem;
   color: #ffffff;
-  clear: both;
+  //clear: both;
 //  margin-top: -10%;
   .row{
 //    padding-top: 20%;
@@ -145,8 +145,11 @@ header {
 }
 
 .hero-product-inner {
-  margin-top: 30px;
-  padding: 25px 25px;
+  margin-top: 1.875rem;
+  padding: 1.5rem 1.5rem;
+  h3 {
+    color: black;
+  }
   h4 {
     color: black;
   }
@@ -161,32 +164,32 @@ header {
   }
   .sample-btn{
     float:left;
-    margin:10px 0 0 23px;
-    padding: 15px;
+    margin:0.625rem 0 0 1.4375rem;
+    padding: 1rem;
     background: #00bacc;
   }
   .demo-btn{
     float:left;
-    margin:10px 0 0 23px;
-    padding: 15px;
+    margin:0.625rem 0 0 1.4375rem;
+    padding: 1rem;
     background: #cc4d58;
   }
 }
 
 .hero-product-image {
   width: 100%;
-  min-height: 400px;
-  background-image: url(https://img.purch.com/o/aHR0cDovL3d3dy5sYXB0b3BtYWcuY29tL2ltYWdlcy93cC9wdXJjaC1hcGkvaW5jb250ZW50LzIwMTQvMDgvU3VyZmFjZS1Qcm8tMy5qcGc=);
+  min-height: 28.125rem;
+  background-image: url(https://s3.eu-west-2.amazonaws.com/housevault-images/template/agents-header-image.png);
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 500px auto;
+  background-size: 31.25rem auto;
 
 }
 
 /*Product Info*/
 .our-product {
   width: 100%;
-  //height: 1100px;
+  //height: 68.75rem;
   background-size: cover;
   background-image: url(/static/diagonal_blue_background_bottom.svg);
   color: #ffffff;
@@ -195,112 +198,175 @@ header {
   .row{
     padding-top: 10%;
   }
-  @include breakpoint($min: 768px, $max: 1199px) {
+  @include breakpoint($min: 48rem, $max: 74.9375rem) {
     height: 100%;
   }
-  @include breakpoint($min: 0, $max: 767px) {
+  @include breakpoint($min: 0, $max: 47.9rem) {
     height: 100%;
   }
 }
 
 .product-heading {
-  font: 600 26px/50px 'Roboto Condensed', sans-serif;
+  font: 600 1.625rem/3.125rem 'Roboto Condensed', sans-serif;
   text-align: left;
   color: #5bc8f9;
-  @include breakpoint($min: 768px, $max: 1199px) {
+  @include breakpoint($min: 48rem, $max: 74.9375rem) {
     width: 100%;
-    font: 600 20px/50px 'Roboto Condensed', sans-serif;
-    min-height: 50px;
+    font: 600 1.25rem/3.125rem 'Roboto Condensed', sans-serif;
+    min-height: 3.125rem;
   }
-  @include breakpoint($min: 0, $max: 767px) {
-    font: 600 18px/40px 'Roboto Condensed', sans-serif;
-    min-height: 40px;
+  @include breakpoint($min: 0, $max: 47.9rem) {
+    font: 600 1.125rem/2.5rem 'Roboto Condensed', sans-serif;
+    min-height: 2.5rem;
   }
 }
 
 .product-inner {
-  //margin-top: 50px;
-  padding: 35px 25px;
+  //margin-top: 3.125rem;
+  padding: 2.18rem 1.5rem;
   }
 
 .illustration-1 {
   width: 100%;
-  min-height: 610px;
+  min-height: 38.125rem;
   background-image: url(/static/hv_illustration_1.svg);
   background-repeat: no-repeat;
   background-position: center right;
   background-size: contain;
-  @include breakpoint($min: 0, $max: 767px) {
+  @include breakpoint($min: 0, $max: 47.9rem) {
     background-image: none;
   }
 }
 
 .illustration-2 {
   width: 100%;
-  min-height: 610px;
+  min-height: 38.125rem;
   background-image: url(/static/hv_illustration_2.svg);
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 500px auto;
+  background-size: 31.25rem auto;
 }
 
 .illustration-3 {
   width: 100%;
-  min-height: 410px;
+  min-height: 25.625rem;
   background-image: url(/static/hv_illustration_3.svg);
   background-repeat: no-repeat;
   background-position: left center;
-  background-size: 500px auto;
- // margin-top: 50px;
-  @include breakpoint($min: 768px, $max: 1199px) {
-    font: 700 24px/30px 'Roboto Condensed', sans-serif;
-    background-size: 310px auto;
+  background-size: 31.25rem auto;
+ // margin-top: 3.125rem;
+  @include breakpoint($min: 48rem, $max: 74.9375rem) {
+    font: 700 1.5rem/1.875rem 'Roboto Condensed', sans-serif;
+    background-size: 19.375rem auto;
   }
-  @include breakpoint($min: 0, $max: 767px) {
+  @include breakpoint($min: 0, $max: 47.9rem) {
     display: none;
   }
 }
 
+/* Three  Features Component */
+.three-feature-section {
+
+  .three-feature-section-inner {
+    margin-top: 1.875rem;
+    padding: 1.5rem 1.5rem;
+    h3 {
+      color: black;
+      text-align: center;
+    }
+    p {
+      color: black;
+      text-align: center;
+    }
+    li {
+      color: black;
+    }
+    .sample-btn {
+      float: left;
+      margin: 0.625rem 0 0 1.4375rem;
+      padding: 1rem;
+      background: #00bacc;
+    }
+    .demo-btn {
+      float: left;
+      margin: 0.625rem 0 0 1.4375rem;
+      padding: 1rem;
+      background: #cc4d58;
+    }
+
+    .three-feature-gif {
+      width: 95%;
+      height: 15rem;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 31.25rem auto;
+
+    }
+
+    .gif-one {
+      background-image: url(https://s3.eu-west-2.amazonaws.com/housevault-images/template/agents-header-image.png);
+
+    }
+    .gif-two {
+      background-image: url(https://s3.eu-west-2.amazonaws.com/housevault-images/template/agents-header-image.png);
+
+    }
+    .gif-three {
+      background-image: url(https://s3.eu-west-2.amazonaws.com/housevault-images/template/agents-header-image.png);
+
+    }
+
+    .three-feature-tag {
+      padding: 0.5rem;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+  }
+}
+
+/* More Than A Valuation Component */
+
 .valuation-reports-illustration-1 {
-  width: 100%;
-  min-height: 410px;
-  padding-top: -30px;
-  background-image: url(http://www.sciomd.com/img/report_stack.jpg);
+  //width: 31.25rem;
+  min-height: 25.625rem;
+  //padding-top: -1.25rem;
+  background-image: url(https://s3.eu-west-2.amazonaws.com/housevault-images/template/3-page-report-example.png);
   background-repeat: no-repeat;
   background-position: center center;
-  //background-size: 500px auto;
+  background-size: 31.25rem auto;
 }
+
 
 /* Key Facts Info Boxes */
 
 .key-facts-area {
   width: 100%;
-  min-height: 375px;
+  min-height: 23.5rem;
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url(/static/diagonal_blue_background_top.svg);
   clear: both;
   .hd {
-    padding: 40px 0;
+    padding: 2.5rem 0;
     text-align: center;
-    font: 700 25px/29px 'Roboto Condensed', sans-serif;
+    font: 700 1.5rem/1.8125rem 'Roboto Condensed', sans-serif;
     color: #5cc5fe;
   }
 
   .bottom-box {
-    margin-top: 100px;
+    margin-top: 6.25rem;
   }
 
   .box{
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
     float: left;
   }
 
   .info-box-link {
     .name {
       color: #212C40;
-      font: 700 16px/19px 'Roboto Condensed', sans-serif;
-      padding: 0 0 10px;
+      font: 700 1rem/1.1875rem 'Roboto Condensed', sans-serif;
+      padding: 0 0 0.625rem;
       display: block;
       text-align: center;
     }
@@ -311,49 +377,49 @@ header {
 
   .property .icon-bar {
     background-image: url(/static/icon-property-valuation-report.svg);
-    background-position: center 1px;
-    background-size: 140px auto;
+    background-position: center 0.0625rem;
+    background-size: 8.75rem auto;
   }
 
   .interactive .icon-bar {
     background-image: url(/static/Icon-interactive-statistics.svg);
-    background-position: center 1px;
-    background-size: 140px auto;
+    background-position: center 0.0625rem;
+    background-size: 8.75rem auto;
   }
 
   .location .icon-bar {
     background-image: url(/static/Icon-location-information.svg);
-    background-position: center 1px;
-    background-size: 140px auto;
+    background-position: center 0.0625rem;
+    background-size: 8.75rem auto;
   }
 
   .energy .icon-bar {
     background-image: url(/static/Icon-energy-efficiency.svg);
-    background-position: center 1px;
-    background-size: 140px auto;
+    background-position: center 0.0625rem;
+    background-size: 8.75rem auto;
   }
 }
 
 /* More than a valuation section*/
 
 .more-than-a-val{
-  margin-top: 30px;
-  @include breakpoint($min: 0, $max: 767px) {
-    margin-top: 30px;
+  margin-top: 1.875rem;
+  @include breakpoint($min: 0, $max: 47.9rem) {
+    margin-top: 1.875rem;
   }
 
   .more-than-heading {
-    font: 700 26px/75px 'Roboto Condensed', sans-serif;
-    min-height: 75px;
+    font: 700 1.625rem/4.6875rem 'Roboto Condensed', sans-serif;
+    min-height: 4.6875rem;
     text-align: left;
     color: #5dc8f9;
-    @include breakpoint($min: 768px, $max: 1199px) {
-      font: 600 20px/50px 'Roboto Condensed', sans-serif;
-      min-height: 50px;
+    @include breakpoint($min: 48rem, $max: 74.9375rem) {
+      font: 600 1.25rem/3.125rem 'Roboto Condensed', sans-serif;
+      min-height: 3.125rem;
     }
-    @include breakpoint($min: 0, $max: 767px) {
-      font: 700 18px/40px 'Roboto Condensed', sans-serif;
-      min-height: 40px;
+    @include breakpoint($min: 0, $max: 47.9rem) {
+      font: 700 1.125rem/2.5rem 'Roboto Condensed', sans-serif;
+      min-height: 2.5rem;
     }
   }
 
@@ -365,15 +431,15 @@ header {
   clear: both;
   background-color: #ecebeb;
   //margin-top: -10%;
-  padding: 30px 0px 30px 0px;
+  padding: 1.875rem 0rem 1.875rem 0rem;
   span{
-    margin-top: 15px;
+    margin-top: 1rem;
   }
 
   .knowledge-heading {
     //background-color: #69c95e;
-    font: 600 26px/50px 'Roboto Condensed', sans-serif;
-    min-height: 50px;
+    font: 600 1.625rem/3.125rem 'Roboto Condensed', sans-serif;
+    min-height: 3.125rem;
     //box-sizing: border-box;
     text-align: left;
     color: #68cc5d;
@@ -387,37 +453,37 @@ header {
   clear: both;
   background-color: #feca02;
   //margin-top: -10%;
-  padding: 30px 0px 30px 0px;
+  padding: 1.875rem 0rem 1.875rem 0rem;
   span{
-    margin-top: 15px;
+    margin-top: 1rem;
   }
 
   .test-drive-heading {
     //background-color: #69c95e;
-    font: 600 40px/50px 'Roboto Condensed', sans-serif;
-    min-height: 50px;
+    font: 600 2.5rem/3.125rem 'Roboto Condensed', sans-serif;
+    min-height: 3.125rem;
     //box-sizing: border-box;
     text-align: center;
-    padding: 25px;
+    padding: 1.5rem;
     color: #1e2537;
     width: 100%;
   }
   h3 {
-    font: 600 24px 'Roboto Condensed', sans-serif;
+    font: 600 1.5rem 'Roboto Condensed', sans-serif;
     text-align: center;
     color: #1e2537;
-    padding-top: 25px;
+    padding-top: 1.5rem;
   }
 
   .offer-btn{
-    padding: 20px;
-    margin: 30px 0px 30px 0px;
+    padding: 1rem;
+    margin: 1.875rem 0rem 1.875rem 0rem;
     object-position: center;
     background-color: #1e2738;
-    color: white;
-    font-size: 25px;
+    color: #5accff;
+    font-size: 1.7rem;
     text-align: center;
-    border-radius: 35px;
+    border-radius: 3rem;
     width: 100%;
 
   }
@@ -430,37 +496,37 @@ header {
 .give-it {
   background-color: #FF4E54;
   margin: auto;
-  padding-bottom: 30px;
+  padding-bottom: 1.875rem;
   p {
     color: #ffffff;
     text-align: center;
-    font-size: 18px;
-    padding-top: 20px;
+    font-size: 1.125rem;
+    padding-top: 1.25rem;
   }
 }
 
 .your-neighbours {
   color: #ffffff;
   width: 100%;
-  max-height: 550px;
+  max-height: 34.375rem;
   background-size: cover;
   background-image: url(/static/diagonal_blue_background_bottom.svg);
   clear: both;
-  margin-top: 30px;
+  margin-top: 1.875rem;
   p {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
   ul li {
-    font-size: 18px;
+    font-size: 1.125rem;
     color: #65D2FF;
-    padding-bottom: 10px;
+    padding-bottom: 0.625rem;
   }
   .your-neighbours-right{
     width: 100%;
-    max-height: 550px;
+    max-height: 34.375rem;
     background-size: cover;
     background-image: url(/static/background-gradient-circle.svg);
-    background-position: 100px 0px;
+    background-position: 6.25rem 0rem;
     background-repeat: no-repeat;
   }
 }
@@ -470,22 +536,22 @@ header {
 footer {
   background-color: #212C40;
   color: #ffffff;
-  padding-top: 20px;
+  padding-top: 1.25rem;
   .padding-left-0 {
-    padding-left: 0px;
+    padding-left: 0rem;
   }
   .footer-links {
-    margin-top: 20px;
+    margin-top: 1.25rem;
     &:first-child {
-      padding-left: 0px;
+      padding-left: 0rem;
     }
     h4 {
       color: #65D2FF;
       text-transform: uppercase;
-      font-size: 18px;
+      font-size: 1.125rem;
     }
     ul {
-      padding-left: 0px;
+      padding-left: 0rem;
       li {
         list-style: none;
       }
@@ -493,33 +559,33 @@ footer {
     a {
       color: #ffffff;
     }
-    @include breakpoint($min: 0, $max: 767px) {
-      padding-right: 0px;
-      padding-left: 0px;
+    @include breakpoint($min: 0, $max: 47.9rem) {
+      padding-right: 0rem;
+      padding-left: 0rem;
     }
   }
   .copyright {
     color: #65D2FF;
-    margin-top: 20px;
+    margin-top: 1.25rem;
   }
   .blank-footer {
-    height: 35px;
+    height: 2.18rem;
     background-color: #65D2FF;
   }
   .subscribe-section h4 {
     color: #65D2FF;
     text-transform: uppercase;
-    font-size: 18px;
+    font-size: 1.125rem;
   }
   .subscribefield {
-    border: 1px solid #ff373e;
+    border: 0.0625rem solid #ff373e;
     color: #ff4c52;
     width: 100%;
-    height: 50px;
-    font: 700 25px/50px 'Roboto Condensed', sans-serif;
-    padding: 0 0 0 10px;
+    height: 3.125rem;
+    font: 700 1.5rem/3.125rem 'Roboto Condensed', sans-serif;
+    padding: 0 0 0 0.625rem;
     box-sizing: border-box;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     &::-webkit-input-placeholder{
       color: #ff4c52;
     }
@@ -528,10 +594,10 @@ footer {
     background-color: #FF4E54;
     border: none;
     color: #ffffff;
-    font-size: 20px;
-    padding: 10px 20px;
+    font-size: 1.25rem;
+    padding: 0.625rem 1.25rem;
     text-transform: uppercase;
     float: left;
-    margin-top: 15px;
+    margin-top: 1rem;
   }
 }
