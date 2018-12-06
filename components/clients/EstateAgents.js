@@ -25,8 +25,8 @@ class EstateAgents extends Component {
                         <h4>Engage with more customers, generate higher quality leads and increase signups with the HouseVault valuation tool.</h4>
                     </div>
                     <div className="hero-section">
-                        <div className="container">
-                            <div className="col-md-12 row">
+
+                            <div className="row">
                                 <div className="col-md-6">
                                     <div className="hero-product-image"></div>
                                 </div>
@@ -46,35 +46,69 @@ class EstateAgents extends Component {
                                     <div className="sample-btn">Sample Report</div><div className="demo-btn">Request Demo</div>
                                 </div>
                             </div>
-                        </div>
+
                     </div>
-                    <div className="our-product">
-                        <div className="container">
-                            <div className="col-md-12 row">
-                                <div className="col-md-6 product-inner">
-                                    <h4 className="product-heading">Intelligent & Accurate</h4>
-                                    <p>Without doubt the most intelligent, comprehensive and accurate valuation tool available.
-                                        The industry leading HouseVault tool enables visitors to your website to get a free detailed
-                                        instant online valuation report on their property.</p>
-                                    <p>A fully interactive report allows potential customers to easily look at current values,
-                                        value ranges and value change as well as drilling into property performance,
-                                        historic sales data and comparable sold properties.</p>
-                                    <p>Reports are professionally styled with your agency branding and emailed to both you and the
-                                        customer, strengthening your brand image compared to competitors.</p>
-                                    <p>Seamlessly capture contact details, then engage and convert into a listing, safe in the
-                                        knowledge that you're armed with unrivalled property information compiled from over 100
-                                        data sets, giving you and the customer house valuation accuracy to within 3%.</p>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="illustration-2"></div>
+                    <div className="row">
+                        <div className="our-product">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-md-6 product-inner">
+                                        <h4 className="product-heading">Intelligent & Accurate</h4>
+                                        <p>Without doubt the most intelligent, comprehensive and accurate valuation tool available.
+                                            The industry leading HouseVault tool enables visitors to your website to get a free detailed
+                                            instant online valuation report on their property.</p>
+                                        <p>A fully interactive report allows potential customers to easily look at current values,
+                                            value ranges and value change as well as drilling into property performance,
+                                            historic sales data and comparable sold properties.</p>
+                                        <p>Reports are professionally styled with your agency branding and emailed to both you and the
+                                            customer, strengthening your brand image compared to competitors.</p>
+                                        <p>Seamlessly capture contact details, then engage and convert into a listing, safe in the
+                                            knowledge that you're armed with unrivalled property information compiled from over 100
+                                            data sets, giving you and the customer house valuation accuracy to within 3%.</p>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="illustration-2"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
+                    {/*<div className="three-feature-section">*/}
+                        {/*<div className="row three-feature-section-inner">*/}
+
+                                {/*<div className="col-md-4">*/}
+                                    {/*<div className="row three-feature-gif gif-one"/>*/}
+                                    {/*<div className="row three-feature-tag">*/}
+                                        {/*<h3>Branded to your agency</h3>*/}
+                                        {/*<p>With your agency's logos and colours</p>*/}
+                                    {/*</div>*/}
+                                {/*</div>*/}
+
+                                {/*<div className="col-md-4">*/}
+                                    {/*<div className="row three-feature-gif gif-two"/>*/}
+                                    {/*<div className="row three-feature-tag">*/}
+                                        {/*<h3 >Beat The Competition</h3>*/}
+                                        {/*<p>Offer real value to your customer creating a great first impression</p>*/}
+                                    {/*</div>*/}
+                                {/*</div>*/}
+
+                                {/*<div className="col-md-4">*/}
+                                    {/*<div className="row three-feature-gif gif-three" />*/}
+                                    {/*<div className="row three-feature-tag">*/}
+                                        {/*<h3>Suitable for all agencies</h3>*/}
+                                        {/*<p>Whether you just have one office or a number of branches, HouseVault*/}
+                                            {/*can support your agency</p>*/}
+                                    {/*</div>*/}
+                                {/*</div>*/}
+                        {/*</div>*/}
+                    {/*</div>*/}
+
                     <div className="more-than-a-val">
                         <div className="container">
-                            <div className="col-md-12 row">
-                                <div className="col-md-8">
+                            <div className="row">
+                                <div className="col-md-6">
                                     <h4 className="more-than-heading">Much More Than An Instant Valuation</h4>
                                     <p>Many of our agents have had great success using the HouseVault tool in-house
                                         with existing customers and walk ins. The power of having such a wealth of property
@@ -85,9 +119,8 @@ class EstateAgents extends Component {
                                         increasing the chances of prospects returning and listing their property with your agency.</p>
                                     <p>Don't just take our word for it. Generate our report for free below to see how
                                         much value you can offer your clients today.</p>
-                                    <a href="#" title="Learn More" className="learn-more">Free Report</a>
                                 </div>
-                                <div className="col-md-4">
+                                <div className="col-md-6">
                                     <div className="valuation-reports-illustration-1 "></div>
                                 </div>
                             </div>
@@ -95,7 +128,7 @@ class EstateAgents extends Component {
                     </div>
                     <div className="the-knowledge">
                         <div className="container">
-                            <div className="col-md-12 row">
+                            <div className="row">
                                 <div className="col-md-6">
                                     <div className="illustration-3"></div>
                                 </div>
@@ -116,13 +149,13 @@ class EstateAgents extends Component {
                     </div>
                     <div className="test-drive">
                         <div className="container">
-                            <div className="col-md-12 row">
+                            <div className="row">
                                 <h4 className="test-drive-heading">Take HouseVault for a test flight today!</h4>
                                 <div className="col-md-6">
                                     <div className="btn offer-btn">Sign up to a free trial</div>
                                 </div>
                                 <div className="col-md-6">
-                                    <div className="btn offer-btn">Book a no-obligation demonstration</div>
+                                    <div className="btn offer-btn">Book a demonstration</div>
                                 </div>
                                 <h3>Please feel free to get in touch with HouseVault, our team will happily run through all the benefits of using our services</h3>
                             </div>
