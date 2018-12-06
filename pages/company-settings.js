@@ -68,7 +68,7 @@ class Settings extends React.Component {
         this.updateCompany = this.updateCompany.bind(this);
     }
     componentWillReceiveProps(nextProps) {
-        if(this.props != nextProps && !nextProps.data.loading){
+        if(this.props != nextProps && !nextProps.data.loading && !nextProps.data.error){
             const newState = Object
                 .keys(nextProps.data.companyById)
                 .reduce((acc, cur) => {
@@ -102,11 +102,10 @@ class Settings extends React.Component {
         this.setState(newState);
     }
     render() {
-        console.log(this.props);
+        if(this.props.data.error) return this.props.data.error.message;
         let validation = this.submitted ?
         this.validator.validate(this.state) :
         this.state.validation;
-
         return (
             <Layout>
                 <div>
