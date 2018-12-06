@@ -111,7 +111,7 @@ class QuickValuation extends React.Component {
         axios.post(process.env.PRICEPREDICTION_URL, formData, config)
             .then(function (response) {
                 self.props
-                    .saveReportMutator({ variables: { report: response.data, company_id: self.props.company.id } })
+                    .saveReportMutator({ variables: { report: response.data, company_id: self.props.data.company.id } })
                     .then(res => {
                         if(!res.data.saveReport) {
                             console.error(res.errors[0].message);
@@ -128,7 +128,7 @@ class QuickValuation extends React.Component {
                                 phone_number:self.state.phone_number,
                                 rental_valuation: response.data.rental_results.rental_predict_price,
                                 sales_valuation: response.data.selling_results.predict_results.predict_price,
-                                company_id: self.props.company.id,
+                                company_id: self.props.data.company.id,
                                 report_id: reportId
                             }
                         }).then(res => {
