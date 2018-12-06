@@ -7,11 +7,12 @@ class Footer extends Component {
                     <div className="container">
                         <div className="row col-md-12">
                                 <div className="col-md-4 footer-links padding-left-0">
-                                    <h4>Our Products</h4>
+                                    <h4>Sectors Served</h4>
                                     <ul>
-                                        <li><a href="/online-estate-agent-reviews">Estate Agency</a></li>
-                                        <li><a href="/property-buying-company-reviews">Surveyors</a></li>
-                                        <li><a href="/towns">Financial Services</a></li>
+                                        <li><a href="/lenders">Banking & Finance</a></li>
+                                        <li><a href="/property-developers">Property Developers</a></li>
+                                        <li><a href="/estate-agents">Estate Agency</a></li>
+                                        <li><a href="/property-investors">Private & Institutional Investors</a></li>
                                     </ul>
                                 </div>
                                 <div className="col-md-4 footer-links">
