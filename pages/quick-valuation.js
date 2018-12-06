@@ -56,7 +56,7 @@ class QuickValuation extends React.Component {
 
         if(company.website_url != null && company.logo != null ) {
             return (
-                <a href={company.website_url} ><img src={company.logo} /></a>
+                <a href={company.website_url} ><img id='company-logo' src={company.logo}/></a>
             )
         }
     }
