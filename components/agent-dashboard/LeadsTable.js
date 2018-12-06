@@ -87,13 +87,24 @@ const defaultSorted = [{
 
 const expandRow = {
     renderer: row => (
-        <div>
-            <p>Lead Summary</p>
-            <ul>
-                <li>Address, some report data, etc</li>
-                <li>More info</li>
-                <li>More info</li>
-            </ul>
+
+        <div className="row">
+            <div className="col-md-12">
+                <h5>Further Information</h5>
+            </div>
+            <div className="col-md-6">
+                <p><strong>Contact Info</strong></p>
+                <p>Name: {row.first_name} {row.last_name}</p>
+                <p>Email: {row.email} | <a href={"mailto:"+row.email+"?subject=Valuation Report for "+row.valuation_address.building_name+row.valuation_address.building_number+", "+row.valuation_address.thoroughfare+", "+row.valuation_address.town+", "+row.valuation_address.postcode} target="_top">Compose</a></p>
+                <p>Telephone: {row.phone_number} | <a href={"tel:"+row.phone_number}>Call</a></p>
+            </div>
+            <div className="col-md-6">
+                <p><strong>Address</strong></p>
+                <p>{row.valuation_address.building_name}{row.valuation_address.building_number}</p>
+                <p>{row.valuation_address.thoroughfare}</p>
+                <p>{row.valuation_address.town}</p>
+                <p>{row.valuation_address.postcode}</p>
+            </div>
         </div>
     )
 };

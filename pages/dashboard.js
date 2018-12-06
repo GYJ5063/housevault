@@ -108,7 +108,7 @@ class Dashboard extends Component {
                                 <div className='card-deck col-md-12'>
                                     <div className='col-md-6 card stats-cards'>
                                         <h4>Average Property Value</h4>
-                                        <h2>£{averageValue.toLocaleString()}</h2>
+                                        <h2>£{averageValue.toFixed(0).toLocaleString()}</h2>
                                     </div>
                                     <div className='col-md-6 card stats-cards'>
                                         <h4>Average Rental Value</h4>
