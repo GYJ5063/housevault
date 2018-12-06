@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Button, Form, FormGroup, Label, Input, FormText, Alert } from 'reactstrap';
-
+import {Link} from '../routes'
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import FormValidator from '../components/FormValidator';
-import Layout from '../components/Layout'
+import FormValidator from './FormValidator';
+import Layout from './Layout'
 
 import { Router } from '../routes';
 
@@ -110,19 +109,26 @@ class Login extends Component {
             <div>
                 <Layout>
                   <div className="registration-container">
+
                       {this.renderLoginResult()}
-                      <h3>Log in</h3>
                       <Form>
                         <FormGroup>
-                          <Input type="email" name="email" value={this.state.email} onChange={this.handleInputChange} id="exampleEmail" placeholder="email"/>
+                          <Input type="email" className="login-input" name="email" value={this.state.email} onChange={this.handleInputChange} id="exampleEmail" placeholder="Email Address"/>
                           <p className='input-error-text'>{this.state.validation.email.message}</p>
                         </FormGroup>
                         <FormGroup>
-                          <Input type="password" name="password" value={this.state.password} onChange={this.handleInputChange} id="examplePassword" placeholder="password" />
+                          <Input type="password" className="login-input" name="password" value={this.state.password} onChange={this.handleInputChange} id="examplePassword" placeholder="Password" />
                           <p className='input-error-text'>{this.state.validation.password.message}</p>
                         </FormGroup>
 
-                        <Button color='primary' onClick={this.handleSubmit}>Login</Button>
+                        <Button className="login-button" onClick={this.handleSubmit}>Log in</Button>
+                          <div className="row">
+                              <div className="col forgotten-password-link">
+
+                                      <a href="#" onClick={this.props.reset}>Forgot Password</a>
+
+                              </div>
+                          </div>
 
                       </Form>
                   </div>
