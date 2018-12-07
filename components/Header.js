@@ -16,8 +16,15 @@ class Header extends Component {
     }
 
     toggle() {
+
+        if(this.state.reset) {
+            this.setState({
+                reset: false,
+            });
+        }
+
         this.setState({
-            modal: !this.state.modal
+            modal: !this.state.modal,
         });
     }
 

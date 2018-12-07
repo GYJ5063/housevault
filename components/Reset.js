@@ -75,7 +75,7 @@ class Reset extends React.Component {
         this.setState({ validation });
 
         if(validation.isValid) {
-            // api
+            this.props.reset()
         }
     }
 
