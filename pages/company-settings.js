@@ -28,7 +28,17 @@ const updateCompanyMutator = gql`
     mutation updateCompany($id: Int!, $name: String, $telephone: String, $primary_colour: String, $secondary_colour: String,
                            $website_url: String, $valuation_url: String, $page_title: String, $meta_description: String) {
         updateCompany(id: $id, name: $name, telephone: $telephone, primary_colour: $primary_colour, secondary_colour: $secondary_colour,
-                      website_url: $website_url, valuation_url: $valuation_url, page_title: $page_title, meta_description: $meta_description)
+                      website_url: $website_url, valuation_url: $valuation_url, page_title: $page_title, meta_description: $meta_description) {
+            id,
+            logo,
+            website_url,
+            valuation_url,
+            primary_colour,
+            secondary_colour,
+            name,
+            telephone,
+            meta_description
+        }
     }
 `;
 
