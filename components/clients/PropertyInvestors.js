@@ -4,6 +4,7 @@ import Header from "../Header";
 import '../../styles/product-page.scss';
 import {Component} from "react";
 import Footer from "./FooterProduct";
+import TestDriveBanner from "./TestDriveBanner";
 
 class PropertyInvestors extends Component {
     constructor(props) {
@@ -13,21 +14,19 @@ class PropertyInvestors extends Component {
         return (
             <main role="main">
                 <Head>
-                    <title>Property Developers Product Page | House Vault</title>
+                    <title>Private & Institutional Investor Products | House Vault</title>
                     <meta name="description"
-                          content="Valuation and lead generation products for property developers."/>
+                          content="Private & Institutional Investor Products to asses properties in the UK market. Valuation. Prediction. Viability."/>
                     <Header/>
                 </Head>
                 <Layout>
-                    <div className="main-heading">
-                        <div className="container">
-                            <div className="row">
-                                <div className="heading">
+                    <div className="container">
+                        <div className="row">
+                            <div className="main-heading">
                                     <h1>Private & Institutional Investors</h1>
                                     <h4>If your business sells, manages or owns investment property our
-                                        accurate Property Investment Analysis is an essential tool to add to
+                                        accurate property investment analysis is an essential tool to add to
                                         your armoury.</h4>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -84,7 +83,6 @@ class PropertyInvestors extends Component {
 
                     <div className="four-feature-section">
                         <div className="row four-feature-section-inner">
-
                                 <div className="col-md-6">
                                     <div className="four-feature-gif"><i className="icons fas fa-laptop-code"></i></div>
                                     <div className="four-feature-tag">
@@ -92,7 +90,6 @@ class PropertyInvestors extends Component {
                                         <p>Using hundreds of data sets our machine learning AVM has been trained on over 25m records to produce results you can rely on.</p>
                                     </div>
                                 </div>
-
                                 <div className="col-md-6">
                                     <div className="four-feature-gif"><i className="icons fas fa-pound-sign"></i></div>
                                     <div className="four-feature-tag">
@@ -108,7 +105,6 @@ class PropertyInvestors extends Component {
                                         <p>Interactive reports are generated in under 3 seconds. Stored on your private dashboard you can retrieve, print and share reports however you want.</p>
                                     </div>
                                 </div>
-
                                 <div className="col-md-6">
                                     <div className="four-feature-gif"><i className="icons far fa-user"></i></div>
                                     <div className="four-feature-tag">
@@ -151,20 +147,7 @@ class PropertyInvestors extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="test-drive">
-                        <div className="container">
-                            <div className="row">
-                                <h4 className="test-drive-heading">Take HouseVault for a test flight today!</h4>
-                                <div className="col-md-6">
-                                    <div className="btn offer-btn">Sign up to a free trial</div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="btn offer-btn">Book a demonstration</div>
-                                </div>
-                                <h3>Please feel free to get in touch with HouseVault, our team will happily run through all the benefits of using our services</h3>
-                            </div>
-                        </div>
-                    </div>
+                    <TestDriveBanner/>
                     <Footer/>
                 </Layout>
             </main>
