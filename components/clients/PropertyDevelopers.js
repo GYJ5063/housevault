@@ -30,38 +30,46 @@ class PropertyDevelopers extends Component {
                         </div>
                     </div>
                     <div className="hero-section">
-
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <div className="hero-product-image-developers"></div>
-                                </div>
-                                <div className="col-md-6 hero-product-inner">
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div className="hero-product-image-developers"></div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="hero-product-inner">
                                     <h4>Research, Calculate & Profit</h4>
-                                    <ul>
-                                        <li>Predict Potential Plot Viability</li>
-                                        <li>Analyse Potential Returns</li>
-                                        <li>Try Different Build Types For Maximum Profit</li>
-                                        <li>Find Gaps In The Market</li>
-                                        <li>Tap Into Unrivalled Property Data</li>
-                                        <li>Fantastic Foresight Into Profit Maximisation</li>
-                                        <li>Produce Professionally Branded Reports</li>
-                                        <li>Gain Competitive Advantage</li>
-                                        <li>Accuracy To Within 3%</li>
-                                    </ul>
+                                    <div className="row">
+                                        <div className="col">
+                                            <ul>
+                                                <li>Predict Potential Plot Viability</li>
+                                                <li>Analyse Potential Returns</li>
+                                                <li>Try Different Build Types For Maximum Profit</li>
+                                                <li>Tap Into Unrivalled Property Data</li>
+                                            </ul>
+                                        </div>
+                                        <div className="col">
+                                            <ul>
+                                                <li>Find Gaps In The Market</li>
+                                                <li>Foresight Into Profit Maximisation</li>
+                                                <li>Produce Professionally Branded Reports</li>
+                                                <li>Gain Competitive Advantage</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div className="demo-btn">Create Free Report</div>
+                                    <div className="sample-btn">Start 7 Day Free Trial</div>
                                 </div>
                             </div>
-
+                        </div>
                     </div>
                     <div className="our-product">
                         <div className="container">
                             <div className="row">
                                 <div className="col-md-6 product-inner">
-                                    <h4 className="product-heading">Utilise & Promote</h4>
+                                    <h4 className="product-heading">Insightful Data</h4>
                                     <p>Accurately use the latest property stats to analyse trends allowing you to make informed property development decisions.</p>
                                     <p>Enter proposed housing plans to calculate potential sales and rental returns on a new development.</p>
                                     <p>Try different types of build to find the best returns, giving you a clearer indication on making the right investment.</p>
-                                    <p>Make the most of our expansive area data to find gaps in the market and tap into new opportunities..</p>
-                                    <div className="demo-btn">Start Your Free Trial</div><div className="sample-btn">Sample Report</div>
+                                    <p>Make the most of our expansive area data to find gaps in the market and tap into new opportunities.</p>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="illustration-2"></div>
@@ -69,38 +77,52 @@ class PropertyDevelopers extends Component {
                             </div>
                         </div>
                     </div>
-
-
-                    {/*<div className="three-feature-section">*/}
-                        {/*<div className="row three-feature-section-inner">*/}
-
-                                {/*<div className="col-md-4">*/}
-                                    {/*<div className="row three-feature-gif gif-one"/>*/}
-                                    {/*<div className="row three-feature-tag">*/}
-                                        {/*<h3>Branded to your agency</h3>*/}
-                                        {/*<p>With your agency's logos and colours</p>*/}
-                                    {/*</div>*/}
-                                {/*</div>*/}
-
-                                {/*<div className="col-md-4">*/}
-                                    {/*<div className="row three-feature-gif gif-two"/>*/}
-                                    {/*<div className="row three-feature-tag">*/}
-                                        {/*<h3 >Beat The Competition</h3>*/}
-                                        {/*<p>Offer real value to your customer creating a great first impression</p>*/}
-                                    {/*</div>*/}
-                                {/*</div>*/}
-
-                                {/*<div className="col-md-4">*/}
-                                    {/*<div className="row three-feature-gif gif-three" />*/}
-                                    {/*<div className="row three-feature-tag">*/}
-                                        {/*<h3>Suitable for all agencies</h3>*/}
-                                        {/*<p>Whether you just have one office or a number of branches, HouseVault*/}
-                                            {/*can support your agency</p>*/}
-                                    {/*</div>*/}
-                                {/*</div>*/}
-                        {/*</div>*/}
-                    {/*</div>*/}
-
+                    <div className="four-feature-section">
+                        <div className="row four-feature-section-inner">
+                            <div className="col-md-6">
+                                <div className="four-feature-gif"><i className="icons fas fa-laptop-code"></i></div>
+                                <div className="four-feature-tag">
+                                    <h3>Market Leading Accuracy</h3>
+                                    <p>Using hundreds of data sets our machine learning AVM has been trained on over 25m records to produce results you can rely on.</p>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="four-feature-gif"><i className="icons fas fa-pound-sign"></i></div>
+                                <div className="four-feature-tag">
+                                    <h3 >Transparent Pricing</h3>
+                                    <p>We pride ourselves on providing market leading software at affordable pricing. Our pricing starts at just £100 for 250 reports per month.</p>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="four-feature-gif"><i className="icons fas fa-stopwatch"></i></div>
+                                <div className="four-feature-tag">
+                                    <h3>Instant Reports</h3>
+                                    <p>Interactive reports are generated in under 3 seconds. Stored on your private dashboard you can retrieve, print and share reports however you want.</p>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="four-feature-gif"><i className="icons far fa-user"></i></div>
+                                <div className="four-feature-tag">
+                                    <h3>Full Branding Control</h3>
+                                    <p>Simply generate reports for private use or customize all aspects of the report with your branding. We put you in control of how reports look and feel.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="knowledge-banner">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-md-9 knowledge-inner">
+                                    <p>"HouseVault provides our users with a wealth of knowledge to help them fully utilise
+                                        the latest property data. Apply the data to predict house growth price, identify risks
+                                        and area statistics with total confidence."</p>
+                                </div>
+                                <div className="col-md-3">
+                                    <div className="demo-btn">Start Your Free Trial</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div className="more-than-a-val">
                         <div className="container">
                             <div className="row">
@@ -116,38 +138,20 @@ class PropertyDevelopers extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="the-knowledge">
+                    <div className="test-drive">
                         <div className="container">
                             <div className="row">
-                                <div className="col-md-6 knowledge-inner">
-                                    <h4 className="knowledge-heading">Knowledge Is Power</h4>
-                                    <p>Not just a software and marketing company but a team made up of property professionals
-                                        with years of experience in the industry.</p>
-                                    <p>HouseVault provides our users with a wealth of knowledge to help them fully utilise
-                                        the latest property data. Apply the data to predict house growth price, identify risks
-                                        and area statistics with total confidence.</p>
-                                    <div className="demo-btn">Start Your Free Trial</div><div className="sample-btn">Book a Demo</div>
+                                <h4 className="test-drive-heading">Take HouseVault for a test flight today!</h4>
+                                <div className="col-md-6">
+                                    <div className="btn offer-btn">Sign up to a free trial</div>
                                 </div>
                                 <div className="col-md-6">
-                                    <div className="illustration-3-developers"></div>
+                                    <div className="btn offer-btn">Book a demonstration</div>
                                 </div>
+                                <h3>Please feel free to get in touch with HouseVault, our team will happily run through all the benefits of using our services</h3>
                             </div>
                         </div>
                     </div>
-                    {/*<div className="test-drive">*/}
-                        {/*<div className="container">*/}
-                            {/*<div className="row">*/}
-                                {/*<h4 className="test-drive-heading">Take HouseVault for a test flight today!</h4>*/}
-                                {/*<div className="col-md-6">*/}
-                                    {/*<div className="btn offer-btn">Sign up to a free trial</div>*/}
-                                {/*</div>*/}
-                                {/*<div className="col-md-6">*/}
-                                    {/*<div className="btn offer-btn">Book a demonstration</div>*/}
-                                {/*</div>*/}
-                                {/*<h3>Please feel free to get in touch with HouseVault, our team will happily run through all the benefits of using our services</h3>*/}
-                            {/*</div>*/}
-                        {/*</div>*/}
-                    {/*</div>*/}
                     <Footer/>
                 </Layout>
             </main>

@@ -10,7 +10,7 @@ class Footer extends Component {
                                     <h4>Sectors Served</h4>
                                     <ul>
                                         <li><a href="/lenders">Banking & Finance</a></li>
-                                        <li><a href="/property-developers">Property Developers</a></li>
+                                        <li><a href="/property-developers">Housebuilders & Developers</a></li>
                                         <li><a href="/estate-agents">Estate Agency</a></li>
                                         <li><a href="/property-investors">Private & Institutional Investors</a></li>
                                     </ul>

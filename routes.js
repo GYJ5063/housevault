@@ -4,6 +4,7 @@ routes
      .add('about-us', '/about-us')
     .add('report', '/report/:id')
      // signin
+    .add('property-investors', '/property-investors')
     .add('quick-valuation', '/quick-valuation')
     .add('registration', '/registration')
     .add('login', '/login')

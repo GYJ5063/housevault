@@ -197,6 +197,16 @@ header {
   margin-left: 5rem;
 }
 
+.hero-product-image-investors {
+  width: 100%;
+  min-height: 28.125rem;
+  background-image: url(https://s3.eu-west-2.amazonaws.com/housevault-images/template/investors-header-image.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 38rem auto;
+  margin-left: 0rem;
+}
+
 /*Product Info*/
 .our-product {
   .row{
@@ -306,10 +316,10 @@ header {
 }
 
 /* Three  Features Component */
-.three-feature-section {
+.four-feature-section {
 
-  .three-feature-section-inner {
-    margin-top: 1.875rem;
+  .four-feature-section-inner {
+   // margin-top: 1.875rem;
     padding: 1.5rem 1.5rem;
     h3 {
       color: black;
@@ -335,12 +345,19 @@ header {
       background: #cc4d58;
     }
 
-    .three-feature-gif {
-      width: 95%;
-      height: 15rem;
+    .icons {
+      color: #3e8ac6;
+      font-size: 10rem;
+      text-align: center;
+    }
+
+    .four-feature-gif {
+      width: 100%;
+      //height: 15rem;
       background-repeat: no-repeat;
       background-position: center center;
       background-size: 31.25rem auto;
+      text-align: center;
 
     }
 
@@ -357,10 +374,22 @@ header {
 
     }
 
-    .three-feature-tag {
-      padding: 0.5rem;
+    .gif-four {
+      background-image: url(https://s3.eu-west-2.amazonaws.com/housevault-images/template/agents-header-image.png);
+
+    }
+
+    .four-feature-tag{
+      padding: 2rem;
       text-align: center;
       font-size: 1.1rem;
+      color: #1e2738;
+      h3 {
+        color: #5e5e5e;
+      }
+      p{
+         color: #5e5e5e;
+       }
     }
   }
 }
@@ -463,6 +492,63 @@ header {
 .knowledge-image {
   padding-left:6rem;
 }
+
+
+/* Knowledge Banner */
+
+.knowledge-banner {
+  .row{
+    padding-top: 1.5rem;
+    //padding-bottom: 2.5rem;
+  }
+  background-color: #ecebeb;
+
+  span{
+    margin-top: 1rem;
+  }
+  .sample-btn{
+    position:center;
+    margin:0.5rem;
+    padding: 1rem;
+    width: 15rem;
+    background: #1e2738;
+    text-align: center;
+    color: white;
+    border-radius: 3rem;
+  }
+  .demo-btn{
+    position:center;
+    margin:1rem;
+    padding: 1rem;
+    background: #1e2738;
+    width: 15rem;
+    text-align: center;
+    color: white;
+    border-radius: 3rem;
+  }
+  .demo-btn:hover{
+    background: #bf474b;
+  }
+  .sample-btn:hover{
+    background: #bf474b;
+  }
+}
+
+.knowledge-inner {
+  padding: 0.5rem;
+  text-align: left;
+  vertical-align: middle;
+  font-style: oblique;
+
+}
+
+.knowledge-heading {
+  font: 600 1.625rem/3.125rem 'Montserrat', sans-serif;
+  text-align: left;
+  color: #68cc5d;
+}
+
+
 
 /* Test Drive Offer */
 
