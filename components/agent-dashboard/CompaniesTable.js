@@ -5,6 +5,8 @@ import React from "react";
 import moment from "moment";
 import withPermission from '../access-control/withPermission';
 
+import { Link } from '../../routes';
+
 const { SearchBar } = Search;
 
 function dateFormatter(cell) {
@@ -86,6 +88,7 @@ const expandRow = {
                 <li>Website: <a href={row.website_url}>{row.website_url}</a></li>
                 <li>Valuation URL: <a href={row.valuation_url}>{row.valuation_url}</a></li>
                 <li>Company blurb: {row.meta_description}</li>
+                <Link route={`company/${row.id}/settings`}>Edit</Link>
             </ul>
         </div>
     )
