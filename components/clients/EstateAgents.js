@@ -19,39 +19,56 @@ class EstateAgents extends Component {
                     <Header/>
                 </Head>
                 <Layout>
+                    <div className="section">
                     <div className="main-heading">
                         <div className="container">
                             <div className="row">
-                                <div className="heading">
-                                    <h1>Sales & Letting Agents</h1>
-                                    <h4>Engage with more customers, generate higher quality leads and increase signups with HouseVault.</h4>
+                                <div className="col">
+                                    <div className="heading">
+                                        <h1>Sales & Letting Agents</h1>
+                                        <h4>Engage with more customers, generate higher quality leads and increase signups with HouseVault.</h4>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                     <div className="hero-section">
+                        <div className="container">
+                                <div className="row">
+                                    <div className="col-6">
+                                        <div className="hero-product-image"></div>
+                                    </div>
+                                    <div className="col-6 ">
+                                        <div className="hero-product-inner">
+                                            <h4>Engage, Generate & Signup</h4>
+                                            <div className="row">
+                                                <div className="col">
+                                                    <ul>
+                                                        <li>Increase Website Traffic</li>
+                                                        <li>Generate Leads</li>
+                                                        <li>Increase Customer Engagement</li>
+                                                        <li>Produce Professionally Branded Reports</li>
+                                                    </ul>
+                                                </div>
+                                                <div className="col">
+                                                    <ul>
+                                                        <li>Promote Agency Brand</li>
+                                                        <li>Gain Competitive Advantage</li>
+                                                        <li>House Valuation Accuracy To Within 3%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div className="demo-btn">Start Your Free Trial</div>
+                                            <div className="sample-btn">Sample Report</div>
+                                        </div>
 
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <div className="hero-product-image"></div>
-                                </div>
-                                <div className="col-md-6 hero-product-inner">
-                                    <h4>Engage, Generate & Signup</h4>
-                                    <ul>
-                                        <li>Increase Website Traffic</li>
-                                        <li>Generate Leads</li>
-                                        <li>Increase Customer Engagement</li>
-                                        <li>Produce Professionally Branded Reports</li>
-                                        <li>Promote Agency Brand</li>
-                                        <li>Gain Competitive Advantage</li>
-                                        <li>House Valuation Accuracy To Within 3%</li>
-                                    </ul>
-                                    <div className="demo-btn">Start Your Free Trial</div><div className="sample-btn">Sample Report</div>
+                                    </div>
                                 </div>
                             </div>
-
+                        </div>
                     </div>
-                    <div className="our-product">
+                    <div className="our-product section">
                         <div className="container">
                             <div className="row">
                                 <div className="col-md-6 product-inner">
@@ -76,39 +93,12 @@ class EstateAgents extends Component {
                     </div>
 
 
-                    {/*<div className="three-feature-section">*/}
-                        {/*<div className="row three-feature-section-inner">*/}
-
-                                {/*<div className="col-md-4">*/}
-                                    {/*<div className="row three-feature-gif gif-one"/>*/}
-                                    {/*<div className="row three-feature-tag">*/}
-                                        {/*<h3>Branded to your agency</h3>*/}
-                                        {/*<p>With your agency's logos and colours</p>*/}
-                                    {/*</div>*/}
-                                {/*</div>*/}
-
-                                {/*<div className="col-md-4">*/}
-                                    {/*<div className="row three-feature-gif gif-two"/>*/}
-                                    {/*<div className="row three-feature-tag">*/}
-                                        {/*<h3 >Beat The Competition</h3>*/}
-                                        {/*<p>Offer real value to your customer creating a great first impression</p>*/}
-                                    {/*</div>*/}
-                                {/*</div>*/}
-
-                                {/*<div className="col-md-4">*/}
-                                    {/*<div className="row three-feature-gif gif-three" />*/}
-                                    {/*<div className="row three-feature-tag">*/}
-                                        {/*<h3>Suitable for all agencies</h3>*/}
-                                        {/*<p>Whether you just have one office or a number of branches, HouseVault*/}
-                                            {/*can support your agency</p>*/}
-                                    {/*</div>*/}
-                                {/*</div>*/}
-                        {/*</div>*/}
-                    {/*</div>*/}
-
-                    <div className="more-than-a-val">
+                    <div className="more-than-a-val section">
                         <div className="container">
                             <div className="row">
+                                <div className="col-md-6">
+                                    <div className="valuation-reports-illustration-1 "></div>
+                                </div>
                                 <div className="col-md-6">
                                     <h4 className="more-than-heading">Much More Than An Instant Valuation</h4>
                                     <p>Many of our agents have had great success using the HouseVault tool in-house
@@ -121,18 +111,14 @@ class EstateAgents extends Component {
                                     <p>Don't just take our word for it. Generate our report for free below to see how
                                         much value you can offer your clients today.</p>
                                 </div>
-                                <div className="col-md-6">
-                                    <div className="valuation-reports-illustration-1 "></div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
-                    <div className="the-knowledge">
+                    <div className="the-knowledge section">
                         <div className="container">
                             <div className="row">
-                                <div className="col-md-6">
-                                    <div className="illustration-3"></div>
-                                </div>
+
                                 <div className="col-md-6 knowledge-inner">
                                     <h4 className="knowledge-heading">Knowledge Is Power</h4>
                                     <p>Not just a software and marketing company but a team
@@ -145,10 +131,13 @@ class EstateAgents extends Component {
                                         life case study walking you through how to utilise Facebook Ads
                                         effectively to generate leads via HouseVault. You'll be conquering the internet in no time!</p>
                                 </div>
+                                <div className="col-md-6 knowledge-image">
+                                    <div className="illustration-3"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className="test-drive">
+                    <div className="test-drive section">
                         <div className="container">
                             <div className="row">
                                 <h4 className="test-drive-heading">Take HouseVault for a test flight today!</h4>
@@ -158,7 +147,9 @@ class EstateAgents extends Component {
                                 <div className="col-md-6">
                                     <div className="btn offer-btn">Book a demonstration</div>
                                 </div>
-                                <h3>Please feel free to get in touch with HouseVault, our team will happily run through all the benefits of using our services</h3>
+                                <div className="col">
+                                    <h3>Please feel free to get in touch with HouseVault, <br />Our team will happily run through all the benefits of using our services</h3>
+                                </div>
                             </div>
                         </div>
                     </div>
