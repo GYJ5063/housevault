@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { graphql } from 'react-apollo';
+import { compose, graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import { SketchPicker } from 'react-color';
@@ -14,6 +14,7 @@ const GET_COMPANY_DETAILS = gql`
             id,
             logo,
             website_url,
+            valuation_url,
             primary_colour,
             secondary_colour,
             name,
@@ -22,6 +23,16 @@ const GET_COMPANY_DETAILS = gql`
         }
     }
 `;
+
+const updateCompanyMutator = gql`
+    mutation updateCompany($id: Int!, $name: String, $telephone: String, $primary_colour: String, $secondary_colour: String,
+                           $website_url: String, $valuation_url: String, $page_title: String, $meta_description: String) {
+        updateCompany(id: $id, name: $name, telephone: $telephone, primary_colour: $primary_colour, secondary_colour: $secondary_colour,
+                      website_url: $website_url, valuation_url: $valuation_url, page_title: $page_title, meta_description: $meta_description)
+    }
+`;
+
+
 class Settings extends React.Component {
     constructor(props) {
         super(props);
@@ -49,7 +60,13 @@ class Settings extends React.Component {
                 method: 'isEmpty',
                 validWhen: false,
                 message: 'Website url is required.'
-            }
+            },
+            {
+                field: 'valuation_url',
+                method: 'isEmpty',
+                validWhen: false,
+                message: 'Valuation url is required.'
+            },
         ]);
         this.state = {
             id: '',
@@ -60,6 +77,7 @@ class Settings extends React.Component {
             secondary_colour: '',
             telephone: '',
             website_url: '',
+            valuation_url: '',
             submitted: false,
             validation: this.validator.valid()
         };
@@ -88,8 +106,23 @@ class Settings extends React.Component {
         this.setState({ validation });
 
         if (validation.isValid) {
-            console.log('valid data, update company')
+            this.props.updateCompanyMutator({
+                variables: {
+                    id: this.state.id,
+                    name: this.state.name,
+                    page_title: this.state.page_title,
+                    primary_colour: this.state.primary_colour,
+                    secondary_colour: this.state.secondary_colour,
+                    telephone: this.state.telephone,
+                    valuation_url: this.state.valuation_url,
+                    website_url: this.state.website_url,
+                    meta_description: this.state.meta_description
+                }
+            })
+            .then(res => console.log(res))
+            .catch(err => console.error(err));
         }
+
     }
     handleChange (e) {
         let newState = {};
@@ -120,7 +153,7 @@ class Settings extends React.Component {
                             <span id="meta_description" className=" errText">{validation.meta_description.message}</span>
                             <br />
                             <label htmlFor="meta_description">Description</label>
-                            <input type="text" name="meta_description" id="meta_description" value={this.state.meta_description} className="form-control" onChange={this.handleChange} />
+                            <textarea name="meta_description" id="meta_description" value={this.state.meta_description} className="form-control" onChange={this.handleChange} />
                         </div>
                         <div className="form-group">
                             <span id="telephone" className=" errText">{validation.telephone.message}</span>
@@ -133,6 +166,12 @@ class Settings extends React.Component {
                             <br />
                             <label htmlFor="website_url">Website url</label>
                             <input type="text" name="website_url" id="website_url" value={this.state.website_url} className="form-control" onChange={this.handleChange} />
+                        </div>
+                        <div className="form-group">
+                            <span id="valuation_url" className=" errText">{validation.valuation_url.message}</span>
+                            <br />
+                            <label htmlFor="valuation_url">Vauation url</label>
+                            <input type="text" name="valuation_url" id="valuation_url" value={this.state.valuation_url} className="form-control" onChange={this.handleChange} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="primary_colour">Primary Colour</label>
@@ -157,4 +196,7 @@ Settings.getInitialProps = async ({ query: { id }}) => {
     return { id: parseInt(id) };
 };
 
-export default graphql(GET_COMPANY_DETAILS, { options: { ssr: false } })(Settings);
+export default compose(
+    graphql(GET_COMPANY_DETAILS, { options: { ssr: false } }),
+    graphql(updateCompanyMutator, { name: 'updateCompanyMutator' , options: { ssr: false }})
+)(Settings);
