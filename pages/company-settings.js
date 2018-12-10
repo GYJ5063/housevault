@@ -97,18 +97,23 @@ class Settings extends React.Component {
     }
     componentWillReceiveProps(nextProps) {
         if(this.props != nextProps && !nextProps.data.loading && !nextProps.data.error){
-            const newState = Object
-                .keys(nextProps.data.companyById)
-                .reduce((acc, cur) => {
-                    if(this.state.hasOwnProperty(cur)){
-                        acc[cur] = nextProps.data.companyById[cur];
-                    }
-                    return acc;
-                }, {});
-
-            this.setState(newState);
+            this.updateDisplayOfCompany(nextProps.data.companyById);
         }
     }
+
+    updateDisplayOfCompany(company){
+        const newState = Object
+            .keys(company)
+            .reduce((acc, cur) => {
+                if(this.state.hasOwnProperty(cur)){
+                    acc[cur] = company[cur];
+                }
+                return acc;
+            }, {});
+
+        this.setState(newState);
+    }
+
     updateCompany(e){
         e.preventDefault();
 
@@ -129,7 +134,7 @@ class Settings extends React.Component {
                     meta_description: this.state.meta_description
                 }
             })
-            .then(res => console.log(res))
+            .then(res => this.updateDisplayOfCompany(res.data.updateCompany))
             .catch(err => console.error(err));
         }
 
