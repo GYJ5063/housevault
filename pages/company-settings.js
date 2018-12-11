@@ -168,8 +168,12 @@ class Settings extends React.Component {
                 <div className='homepage-container'>
                     <div className='row'>
                         <div className="col-md-12">
+                            <h2>{this.state.name} Company Settings</h2>
+                            <p>Changes made in this section will affect the branded reports and emails received by application users.</p>
                         </div>
-                        <div className="col-md-12">
+                    </div>
+                        <div className='row'>
+                        <div className="col-md-6">
                             <form onSubmit={() => {}}>
                                     <table className="company-settings-table">
                                         <tr>
@@ -237,6 +241,24 @@ class Settings extends React.Component {
                                         </tr>
                                     </table>
                             </form>
+                        </div>
+                        <div className="col-md-6 settings-help-inner">
+                            <h3>Help Section</h3>
+                        <br/>
+                            <h4>Website URL</h4>
+                            <p>This is the page users will be sent back to if they click on the company logo. We recommend the homepage or contact page.</p>
+                            <h4>Valuation URL</h4>
+                            <p>IMPORTANT: This is the sub-domain the company hosts the HouseVault application on and must match to ensure reports are matched to the correct company.
+                            </p>
+                            <p>We recommend you use the https://valuation.(company_url) here.</p>
+                            <h4>Valuation URL</h4>
+                            <p>The company description will be displayed at the end of the report and on the About Us section of company emails. We suggest you use
+                            this space to tell customers why the company is the best served to help and what are their key points.</p>
+                            <h4>Primary Colour</h4>
+                            <p>Your primary colour choice will affect all the icons and headings in the reports and emails. We suggest a lighter colour is used
+                            and if you don't have a colour selection the default will be activated.</p>
+                            <h4>Secondary Colour</h4>
+                            <p>This will affect the navigation and background colours. We recommend a darker colour is used here.</p>
                         </div>
                     </div>
                 </div>

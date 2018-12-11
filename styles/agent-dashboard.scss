@@ -53,13 +53,23 @@ body {
   text-align: center;
 }
 
-.company-settings-table  {
-  width: 100%;
+.company-settings-table {
+  width: 80%;
   th, td {
     padding: 0.5rem 1rem 0.5rem 1rem;
   };
-  button {
-    text-align: center;
+}
+
+.table-button {
+  padding: 0.5rem 4rem 0.5rem 4rem;
+  float: right;
+  text-align: center;
+}
+
+.settings-help-inner {
+  padding: 3rem;
+  h {
+    margin: 2rem;
   }
 }
 
