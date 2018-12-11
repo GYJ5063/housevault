@@ -52,3 +52,15 @@ body {
   font-size: 25px;
   text-align: center;
 }
+
+.company-settings-table  {
+  width: 100%;
+  th, td {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+  };
+  button {
+    text-align: center;
+  }
+}
+
+

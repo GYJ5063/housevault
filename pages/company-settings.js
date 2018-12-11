@@ -5,8 +5,12 @@ import gql from 'graphql-tag';
 
 import { SketchPicker } from 'react-color';
 
+import HeaderAgentDash from '../components/agent-dashboard/HeaderAgentDash';
+import '../styles/agent-dashboard.scss';
+
 import FormValidator from "../components/FormValidator";
 import Layout from '../components/Layout';
+import Head from "next/head";
 
 const GET_COMPANY_DETAILS = gql`
     query companyById($id: Int!) {
@@ -156,49 +160,85 @@ class Settings extends React.Component {
         this.state.validation;
         return (
             <Layout>
-                <div>
-                    <form onSubmit={() => {}}>
-                        <div className="form-group">
-                            <span id="name" className=" errText">{validation.name.message}</span>
-                            <br />
-                            <label htmlFor="name">Name</label>
-                            <input type="text" name="name" id="name" value={this.state.name} className="form-control" onChange={this.handleChange} />
+                <Head>
+                    <title>House Vault Agent Dashboard - Settings</title>
+                    <meta name="description" content="Dashboard settings for HouseVault users." />
+                    <HeaderAgentDash />
+                </Head>
+                <div className='homepage-container'>
+                    <div className='row'>
+                        <div className="col-md-12">
                         </div>
-                        <div className="form-group">
-                            <span id="meta_description" className=" errText">{validation.meta_description.message}</span>
-                            <br />
-                            <label htmlFor="meta_description">Description</label>
-                            <textarea name="meta_description" id="meta_description" value={this.state.meta_description} className="form-control" onChange={this.handleChange} />
+                        <div className="col-md-12">
+                            <form onSubmit={() => {}}>
+                                    <table className="company-settings-table">
+                                        <tr>
+                                            <th>
+                                                <div className="form-group">
+                                                    <span id="name" className=" errText">{validation.name.message}</span>
+                                                    <br />
+                                                    <label htmlFor="name">Name</label>
+                                                    <input type="text" name="name" id="name" value={this.state.name} className="form-control" onChange={this.handleChange} />
+                                                </div>
+                                            </th>
+                                            <th>
+                                                <div className="form-group">
+                                                    <span id="telephone" className=" errText">{validation.telephone.message}</span>
+                                                    <br />
+                                                    <label htmlFor="telephone">Telephone</label>
+                                                    <input type="text" name="telephone" id="telephone" value={this.state.telephone} className="form-control" onChange={this.handleChange} />
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div className="form-group">
+                                                    <span id="website_url" className=" errText">{validation.website_url.message}</span>
+                                                    <br />
+                                                    <label htmlFor="website_url">Website url</label>
+                                                    <input type="text" name="website_url" id="website_url" value={this.state.website_url} className="form-control" onChange={this.handleChange} />
+                                                </div>
+                                            </th>
+                                            <th>
+                                                <div className="form-group">
+                                                    <span id="valuation_url" className=" errText">{validation.valuation_url.message}</span>
+                                                    <br />
+                                                    <label htmlFor="valuation_url">Vauation url</label>
+                                                    <input type="text" name="valuation_url" id="valuation_url" value={this.state.valuation_url} className="form-control" onChange={this.handleChange} />
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div className="form-group">
+                                                    <span id="meta_description" className=" errText">{validation.meta_description.message}</span>
+                                                    <br />
+                                                    <label htmlFor="meta_description">Description</label>
+                                                    <textarea name="meta_description" id="meta_description" value={this.state.meta_description} className="form-control" onChange={this.handleChange} />
+                                                </div>
+                                            </th>
+                                            <th>
+                                                <button className="btn btn-info table-button" onClick={this.updateCompany}>Update</button>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                        <div className="form-group">
+                                            <label htmlFor="primary_colour">Primary Colour</label>
+                                            <SketchPicker color={this.state.primary_colour} onChangeComplete={(colour) => {this.handleColourChange(colour, 'primary_colour')}} />
+                                        </div>
+                                            </th>
+                                            <th>
+                                        <div className="form-group">
+                                            <label htmlFor="primary_colour">Secondary Colour</label>
+                                            <SketchPicker color={this.state.secondary_colour} onChangeComplete={(colour) => {this.handleColourChange(colour, 'secondary_colour')}} />
+                                        </div>
+                                            </th>
+                                        </tr>
+                                    </table>
+                            </form>
                         </div>
-                        <div className="form-group">
-                            <span id="telephone" className=" errText">{validation.telephone.message}</span>
-                            <br />
-                            <label htmlFor="telephone">Telephone</label>
-                            <input type="text" name="telephone" id="telephone" value={this.state.telephone} className="form-control" onChange={this.handleChange} />
-                        </div>
-                        <div className="form-group">
-                            <span id="website_url" className=" errText">{validation.website_url.message}</span>
-                            <br />
-                            <label htmlFor="website_url">Website url</label>
-                            <input type="text" name="website_url" id="website_url" value={this.state.website_url} className="form-control" onChange={this.handleChange} />
-                        </div>
-                        <div className="form-group">
-                            <span id="valuation_url" className=" errText">{validation.valuation_url.message}</span>
-                            <br />
-                            <label htmlFor="valuation_url">Vauation url</label>
-                            <input type="text" name="valuation_url" id="valuation_url" value={this.state.valuation_url} className="form-control" onChange={this.handleChange} />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="primary_colour">Primary Colour</label>
-                            <SketchPicker color={this.state.primary_colour} onChangeComplete={(colour) => {this.handleColourChange(colour, 'primary_colour')}} />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="primary_colour">Secondary Colour</label>
-                            <SketchPicker color={this.state.secondary_colour} onChangeComplete={(colour) => {this.handleColourChange(colour, 'secondary_colour')}} />
-                        </div>
-
-                        <button onClick={this.updateCompany}>Update</button>
-                    </form>
+                    </div>
                 </div>
             </Layout>
         );
