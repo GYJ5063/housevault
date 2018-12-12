@@ -3,7 +3,10 @@ body {
 }
 
 .homepage-container {
+  margin-left: 250px;
   padding: 20px;
+  background: #f4f4f4;
+  height: 100vh;
 
   .requests-table {
     margin: 10vh 0 10vh 0;
@@ -11,13 +14,78 @@ body {
   }
 }
 
+.dashboard-title {
+  h2 {
+    color: #242c3e;
+    font-size: 1.5rem;
+  }
+  p {
+    color: #868686;
+    font-size: 1rem;
+  }
+}
+
+.empty-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  padding: 50px;
+
+  h2 {
+    color: #242c3e;
+    font-size: 1.5rem;
+    margin-top: 20px;
+  }
+
+  p {
+    color: #868686;
+    font-size: 1.5rem;
+  }
+  .button {
+    padding: 10px;
+    background: #212C40;
+
+    a {
+      color: white;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+.profile {
+  display: flex;
+  justify-content: flex-end;
+
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+  }
+}
+
 .navbar {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
   background-color: #212C40;
+  position: fixed;
+  height: 100%;
   margin-bottom: 0px;
 }
 
+.navbar .nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 20px;
+}
+
 .navbar .nav li {
-  padding: 15px;
+  padding: 10px;
   .searchfieldtop {
     border: 1px solid #65D2FF;
     background: transparent;
@@ -28,15 +96,26 @@ body {
       color: #FFFFFF;
     }
   }
+  i {
+    color: white;
+  }
   a {
     color: #fff;
     font-size: 15px;
-    padding: 8px 0;
+    padding: 8px 10px;
     &:hover {
       border-bottom: 3px solid #65D2FF;
       text-decoration: none;
     }
   }
+}
+
+.collapse {
+  width: 100%;
+}
+
+.navbar-collapse {
+  flex-grow: 0;
 }
 
 .stats-cards {
@@ -46,6 +125,45 @@ body {
   padding-bottom: 15px;
   background-color: rgba(174, 174, 174, 0.26);
   border-width: 0px;
+  background: white;
+  box-shadow: 0px 1px 0px #d2d2d2;
+}
+
+.card-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  h4 {
+    color: #242c3e;
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  p {
+    color: #dadada;
+    font-size: 0.9rem;
+  }
+}
+
+.lead-info {
+  display: flex;
+
+  .lead-item {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+
+    h4 {
+      text-align: left;
+      font-size: 1rem;
+      color: #868686;
+    }
+
+    h2 {
+      text-align: left;
+    }
+  }
 }
 
 .val-logo-awesome {

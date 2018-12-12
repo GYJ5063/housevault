@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import HeaderAgentDash from '../components/agent-dashboard/HeaderAgentDash';
@@ -86,44 +86,89 @@ class Dashboard extends Component {
                         const averageValue = propertyValueSum / data.leads.length;
                         const propertyRentalSum = data.leads.reduce((acc, lead) => acc + lead.rental_valuation, 0);
                         const averageRental = propertyRentalSum / data.leads.length;
-
+                        // const isEmpty = data.leads.length === 0
+                        const isEmpty = false
                         return (
                             <div className='homepage-container'>
-                                <h2>Agent Dashboard</h2>
-                                <div className='card-deck col-md-12'>
-                                    <div className='col-md-3 card stats-cards'>
-                                        <h4>Leads this month <i style={{color:'green'}} className="fas fa-arrow-up val-logo-awesome"></i></h4>
-                                        <h2>{data.leads.length}</h2>
-                                    </div>
-                                    <div className='col-md-3 card stats-cards'>
-                                        <h4>Leads last month <i style={{color:'red'}} className="fas fa-arrow-down val-logo-awesome"></i></h4>
-                                        <h2>31</h2>
-                                    </div>
-                                    <div className='col-md-3 card stats-cards'>
-                                        <h4>Hot Leads</h4>
-                                        <h2>3 <i style={{color:'red'}} className="fas fa-fire val-logo-awesome"></i></h2>
-                                    </div>
-                                    <div className='col-md-3 card stats-cards'>
-                                        <h4>Conversion rate</h4>
-                                        <h2>23% <i style={{color:'green'}} className="fas fa-chart-pie val-logo-awesome"></i></h2>
-                                    </div>
+                                <div className='profile'>
+                                    <img src='https://avatars0.githubusercontent.com/u/14027068?s=400&v=4' />
                                 </div>
-                                <div className='card-deck col-md-12'>
-                                    <div className='col-md-6 card stats-cards'>
-                                        <h4>Average Property Value</h4>
-                                        <h2>£{averageValue.toFixed()}</h2>
-                                    </div>
-                                    <div className='col-md-6 card stats-cards'>
-                                        <h4>Average Rental Value</h4>
-                                        <h2>£{averageRental.toFixed(0)}pm</h2>
-                                    </div>
+                                <div className='dashboard-title'>
+                                    <h2>Dashboard</h2>
+                                    <p>Here is a summary of your account</p>
                                 </div>
-                                <div className='col-md-12 lead-table'>
-                                    <div className='requests-table'>
-                                        <h3>Leads Summary</h3>
-                                            <LeadsTable data={ data } error={error}/>
+                                { isEmpty &&
+                                    <div className='empty-board'>
+                                        <div>
+                                            <img src='/static/github.png' />
+                                        </div>
+                                        <h2>Welcome to Housevault Dashboard</h2>
+                                        <p>You currently have no data, let get started!</p>
+                                        <div className='button'><a href=''>Setup your account</a></div>
                                     </div>
-                                </div>
+                                }
+                                { !isEmpty &&
+                                    <Fragment>
+                                        <div className='card-deck col-md-12'>
+                                            <div className='col-md-3 card stats-cards'>
+                                                <div className='card-title'>
+                                                    <h4>Leads</h4>
+                                                    <p>Leads where appointment requested</p>
+                                                </div>
+                                                <div className='lead-info'>
+                                                    <div className='lead-item'>
+                                                        <h4>This month</h4>
+                                                        <h2>{data.leads.length}<i style={{color:'green'}} className="fas fa-arrow-up val-logo-awesome"></i></h2>
+                                                    </div>
+                                                    <div className='lead-item'>
+                                                        <h4>Last month <i style={{color:'red'}} className="fas fa-arrow-down val-logo-awesome"></i></h4>
+                                                        <h2>31</h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className='col-md-3 card stats-cards'>
+                                                <div className='card-title'>
+                                                    <h4>HotLeads</h4>
+                                                    <p>Leads where appointment requested</p>
+                                                </div>
+                                                <h4>Leads last month <i style={{color:'red'}} className="fas fa-arrow-down val-logo-awesome"></i></h4>
+                                                <h2>31</h2>
+                                            </div>
+                                            <div className='col-md-3 card stats-cards'>
+                                                <div className='card-title'>
+                                                    <h4>Conversions</h4>
+                                                    <p>Converting from a lead to a sale</p>
+                                                </div>
+                                                <h4>Hot Leads</h4>
+                                                <h2>3 <i style={{color:'red'}} className="fas fa-fire val-logo-awesome"></i></h2>
+                                            </div>
+                                            <div className='col-md-3 card stats-cards'>
+                                                <div className='card-title'>
+                                                    <h4>Conversion Rate</h4>
+                                                    <p>Converting from a lead to a sale</p>
+                                                </div>
+                                                <h4>Conversion rate</h4>
+                                                <h2>23% <i style={{color:'green'}} className="fas fa-chart-pie val-logo-awesome"></i></h2>
+                                            </div>
+                                        </div>
+                                        <div className='card-deck col-md-12'>
+                                            <div className='col-md-6 card stats-cards'>
+                                                <h4>Average Property Value</h4>
+                                                <h2>£{averageValue.toFixed()}</h2>
+                                            </div>
+                                            <div className='col-md-6 card stats-cards'>
+                                                <h4>Average Rental Value</h4>
+                                                <h2>£{averageRental.toFixed(0)}pm</h2>
+                                            </div>
+                                        </div>
+                                        <div className='col-md-12 lead-table'>
+                                            <div className='requests-table'>
+                                                <h3>Leads Summary</h3>
+                                                    <LeadsTable data={ data } error={error}/>
+                                            </div>
+                                        </div>
+                                    </Fragment>
+                                }
                                 <Query query={GET_COMPANIES} ssr={false}>
                                     {
                                         ({ loading, error, data }) => {

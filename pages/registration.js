@@ -199,7 +199,7 @@ class Registration extends Component {
         } else {
             const { profile } = this.props.data;
 
-            if(profile) {
+           // if(profile) {
                 return (
                     <div>
                         <Layout>
@@ -250,12 +250,12 @@ class Registration extends Component {
                         </Layout>
                     </div>
                     );
-            } else {
-                Router.push('/login');
+          //  } else {
+          //     Router.push('/login');
 
                 // push is async so display spinner until there is a result
-                return this.renderLoadingSpinner();
-            }
+         //       return this.renderLoadingSpinner();
+           // }
         }
     }
 }
