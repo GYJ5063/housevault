@@ -12,50 +12,50 @@ export default () =>
         <Layout>
             <div className="banner">
                 <img src="/static/banner-bg.jpg" alt="Banner"/>
-                <h1 className="note">The most comprehensive & accurate sales and rental valuation data</h1>
+                {/*<h1 className="note">The most comprehensive & accurate sales and rental valuation data</h1>*/}
             </div>
-            <div className="searchBox">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-3"></div>
-                        <div className="col-md-6">
-                            {/*<a href="/quick-valuation">Get a valuation</a>*/}
-                        </div>
-                        <div className="col-md-3"></div>
-                    </div>
-                </div>
-            </div>
+            {/*<div className="searchBox">*/}
+                {/*<div className="container">*/}
+                    {/*<div className="row">*/}
+                        {/*<div className="col-md-3"></div>*/}
+                        {/*<div className="col-md-6">*/}
+                            {/*/!*<a href="/quick-valuation">Get a valuation</a>*!/*/}
+                        {/*</div>*/}
+                        {/*<div className="col-md-3"></div>*/}
+                    {/*</div>*/}
+                {/*</div>*/}
+            {/*</div>*/}
             <div className="research-area">
                 <div className="container">
                     <div className="col-md-12 top-box">
-                        <div className="col-md-12"><p className="hd">Offer your prospective clients a free personalised report instantly with your branding.</p></div>
+                        <div className="col-md-12"><p className="hd">Find the right solution for you</p></div>
                         <div className="col-md-12 area-link row">
                             <div className="col-lg-2"></div>
                             <div className="col-md-12 col-lg-8">
-                                <div className="col-md-3 box property">
+                                <a href="/property-valuation"><div className="col-md-3 box property">
                                     <div className="inner">
                                         <span className="icon-bar"></span>
-                                        <span className="name">Property <br/>Valuation Report</span>
+                                        <span className="name">Buyer/Seller</span>
                                     </div>
-                                </div>
-                                <div className="col-md-3 box interactive">
+                                </div></a>
+                                <a href="/estate-agents"><div className="col-md-3 box interactive">
                                     <div className="inner">
                                         <span className="icon-bar"></span>
-                                        <span className="name">Interactive <br/>Statistics</span>
+                                        <span className="name">Estate Agent</span>
                                     </div>
-                                </div>
-                                <div className="col-md-3 box location">
+                                </div></a>
+                                <a href="/property-investors"><div className="col-md-3 box location">
                                     <div className="inner">
                                         <span className="icon-bar"></span>
-                                        <span className="name">Location <br/>Information</span>
+                                        <span className="name">Property Investor</span>
                                     </div>
-                                </div>
-                                <div className="col-md-3 box energy">
+                                </div></a>
+                                <a href="/property-developers"><div className="col-md-3 box energy">
                                     <div className="inner">
                                         <span className="icon-bar"></span>
-                                        <span className="name">Energy <br/>Efficiency</span>
+                                        <span className="name">Housebuilder</span>
                                     </div>
-                                </div>
+                                </div></a>
                             </div>
                             <div className="col-lg-2"></div>
                         </div>

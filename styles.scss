@@ -186,16 +186,18 @@ header {
 }
 .research-area {
     width: 100%;
-    min-height: 375px;
+   // min-height: 375px;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(/static/diagonal_blue_background_top.svg);
+    //background-color: #f5f5f5;
+    min-height: 300px;
+    //background-image: url(/static/diagonal_blue_background_top.svg);
     clear: both;
     .hd {
-        padding: 40px 0;
+        padding: 2rem 0rem 0rem;
         text-align: center;
-        font: 700 25px/29px 'Roboto Condensed', sans-serif;
-        color: #fff;
+        font: 600 2rem/2rem 'Roboto Condensed', sans-serif;
+        color: #212c40;
     }
     .bottom-box {
         margin-top: 100px;
@@ -240,22 +242,63 @@ header {
 .property .icon-bar {
     background-image: url(/static/icon-property-valuation-report.svg);
     background-position: center 1px;
+    background-size: 150px auto;
+    display: block;
+
+}
+
+
+.property .icon-bar:hover {
+    background-image: url(/static/icon-property-valuation-report.svg);
+    background-position: center 1px;
     background-size: 140px auto;
+    display: block;
+
 }
 
 .interactive .icon-bar {
     background-image: url(/static/Icon-interactive-statistics.svg);
     background-position: center 1px;
+    background-size: 150px auto;
+}
+
+.interactive .icon-bar:hover {
+    background-image: url(/static/Icon-interactive-statistics.svg);
+    background-position: center 1px;
     background-size: 140px auto;
 }
 
+.search-graph .icon-bar {
+    background-image: url(/static/icon-predict.svg);
+    background-position: center 1px;
+    background-size: 85px auto;
+}
+
+.search-graph .icon-bar:hover {
+    background-image: url(/static/icon-predict.svg);
+    background-position: center 1px;
+    background-size: 80px auto;
+}
+
 .location .icon-bar {
+    background-image: url(/static/Icon-location-information.svg);
+    background-position: center 1px;
+    background-size: 150px auto;
+}
+
+.location .icon-bar:hover {
     background-image: url(/static/Icon-location-information.svg);
     background-position: center 1px;
     background-size: 140px auto;
 }
 
 .energy .icon-bar {
+    background-image: url(/static/Icon-energy-efficiency.svg);
+    background-position: center 1px;
+    background-size: 150px auto;
+}
+
+.energy .icon-bar:hover {
     background-image: url(/static/Icon-energy-efficiency.svg);
     background-position: center 1px;
     background-size: 140px auto;
