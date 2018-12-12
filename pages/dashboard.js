@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import HeaderAgentDash from '../components/agent-dashboard/HeaderAgentDash';
+import Profile from '../components/agent-dashboard/Profile';
 // import LeadsTable from '../components/agent-dashboard/LeadsTable';
 // import BootstrapTable from 'react-bootstrap-table-next';
 
@@ -90,9 +91,7 @@ class Dashboard extends Component {
                         const isEmpty = false
                         return (
                             <div className='homepage-container'>
-                                <div className='profile'>
-                                    <img src='https://avatars0.githubusercontent.com/u/14027068?s=400&v=4' />
-                                </div>
+                                <Profile />
                                 <div className='dashboard-title'>
                                     <h2>Dashboard</h2>
                                     <p>Here is a summary of your account</p>
@@ -176,7 +175,7 @@ class Dashboard extends Component {
                                         <div className='col-md-12 lead-table'>
                                             <div className='requests-table'>
                                                 <h3>Leads Summary</h3>
-                                                    <LeadsTable data={ data } error={error}/>
+                                                <LeadsTable data={ data } error={error}/>
                                             </div>
                                         </div>
                                     </Fragment>
