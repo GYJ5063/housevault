@@ -88,7 +88,7 @@ class Dashboard extends Component {
                         const propertyRentalSum = data.leads.reduce((acc, lead) => acc + lead.rental_valuation, 0);
                         const averageRental = propertyRentalSum / data.leads.length;
                         // const isEmpty = data.leads.length === 0
-                        const isEmpty = false
+                        const isEmpty = true
                         return (
                             <div className='homepage-container'>
                                 <Profile />
@@ -98,8 +98,8 @@ class Dashboard extends Component {
                                 </div>
                                 { isEmpty &&
                                     <div className='empty-board'>
-                                        <div>
-                                            <img src='/static/github.png' />
+                                        <div className='empty-img'>
+                                            <img src='https://s3.eu-west-2.amazonaws.com/housevault-images/template/undraw_revenue_3osh.svg' />
                                         </div>
                                         <h2>Welcome to Housevault Dashboard</h2>
                                         <p>You currently have no data, let get started!</p>
