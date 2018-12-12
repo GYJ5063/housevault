@@ -31,15 +31,15 @@ class PropertyInvestors extends Component {
                         </div>
                     </div>
                     <div className="hero-section">
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <div className="hero-product-image-investors"></div>
-                                </div>
-                                <div className="col-md-6">
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div className="hero-product-image-investors"></div>
+                            </div>
+                            <div className="col-md-6">
                                 <div className="hero-product-inner">
                                     <h4>Research, Asses & Predict</h4>
                                     <div className="row">
-                                        <div className="col">
+                                        <div className="col-md-6">
                                             <ul>
                                                 <li>Predict Potential Cash Flow and Price Growth</li>
                                                 <li>Calculate Yield, ROI and Historic Trends</li>
@@ -47,7 +47,7 @@ class PropertyInvestors extends Component {
                                                 <li>Asses Best and Worst Performing Property Types</li>
                                             </ul>
                                         </div>
-                                        <div className="col">
+                                        <div className="col-md-6">
                                             <ul>
                                                 <li>Find The Hidden Gems Before Anyone Else</li>
                                                 <li>Avoid Buying Overvalued Properties</li>
@@ -55,13 +55,16 @@ class PropertyInvestors extends Component {
                                                 <li>Print Friendly & Branded to Your Needs</li>
                                             </ul>
                                         </div>
+                                        <div className="col-md-6">
+                                            <div className="demo-btn">Create Free Report</div>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <div className="sample-btn">Start 7 Day Trial</div>
+                                        </div>
                                     </div>
-                                    <div className="demo-btn">Create Free Report</div>
-                                    <div className="sample-btn">Start 7 Day Free Trial</div>
-                                </div>
                                 </div>
                             </div>
-
+                        </div>
                     </div>
                     <div className="our-product">
                         <div className="container">
