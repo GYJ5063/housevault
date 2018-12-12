@@ -161,22 +161,29 @@ header {
     background-size: 20px;
 
   }
+
   .sample-btn{
-    float:left;
-    margin:0.625rem 0 0 1.4375rem;
-    padding: 1rem 0.5rem;
+    float: none;
+    margin: 0.5rem 3rem 1rem 3rem;
+    //margin:0.625rem 0 0 1.4375rem;
+    padding: 1rem;
+    width: 80%;
     background: #00bacc;
-    width: 12rem;
+    //width: 12rem;
     text-align: center;
   }
   .demo-btn{
-    float:left;
-    margin:0.625rem 1rem 0 0rem;
-    padding: 1rem 0.5rem;
+    float: none;
+    margin: 0.5rem 3rem 1rem 3rem;
+    //margin:0.625rem 0 0 1.4375rem;
+    padding: 1rem;
     background: #52af52;
-    width: 12rem;
+    width: 80%;
+    //width: 12rem;
     text-align: center;
   }
+
+
 }
 
 .hero-product-image {
@@ -195,7 +202,7 @@ header {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 25rem auto;
-  margin-left: 5rem;
+
 }
 
 .hero-product-image-investors {
@@ -316,12 +323,12 @@ header {
   }
 }
 
-/* Three  Features Component */
+/* FourReasonsComponent */
 .four-feature-section {
 
   .four-feature-section-inner {
    // margin-top: 1.875rem;
-    padding: 1.5rem 1.5rem;
+    // padding: 1.5rem 1.5rem;
     h3 {
       color: black;
       text-align: center;
@@ -347,8 +354,8 @@ header {
     }
 
     .icons {
-      color: #3e8ac6;
-      font-size: 10rem;
+      color: rgba(62, 138, 198, 0.81);
+      font-size: 8rem;
       text-align: center;
     }
 
@@ -362,26 +369,8 @@ header {
 
     }
 
-    .gif-one {
-      background-image: url(https://s3.eu-west-2.amazonaws.com/housevault-images/template/agents-header-image.png);
-
-    }
-    .gif-two {
-      background-image: url(https://s3.eu-west-2.amazonaws.com/housevault-images/template/agents-header-image.png);
-
-    }
-    .gif-three {
-      background-image: url(https://s3.eu-west-2.amazonaws.com/housevault-images/template/agents-header-image.png);
-
-    }
-
-    .gif-four {
-      background-image: url(https://s3.eu-west-2.amazonaws.com/housevault-images/template/agents-header-image.png);
-
-    }
-
     .four-feature-tag{
-      padding: 2rem;
+      padding: 3rem 0.5rem 3rem 0.5rem;
       text-align: center;
       font-size: 1.1rem;
       color: #1e2738;

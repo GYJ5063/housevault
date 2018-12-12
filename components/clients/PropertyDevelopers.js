@@ -32,33 +32,39 @@ class PropertyDevelopers extends Component {
                         </div>
                     </div>
                     <div className="hero-section">
-                        <div className="row">
-                            <div className="col-md-6">
-                                <div className="hero-product-image-developers"></div>
-                            </div>
-                            <div className="col-md-6">
-                                <div className="hero-product-inner">
-                                    <h4>Research, Calculate & Profit</h4>
-                                    <div className="row">
-                                        <div className="col">
-                                            <ul>
-                                                <li>Predict Potential Plot Viability</li>
-                                                <li>Analyse Potential Returns</li>
-                                                <li>Try Different Build Types For Maximum Profit</li>
-                                                <li>Tap Into Unrivalled Property Data</li>
-                                            </ul>
-                                        </div>
-                                        <div className="col">
-                                            <ul>
-                                                <li>Find Gaps In The Market</li>
-                                                <li>Foresight Into Profit Maximisation</li>
-                                                <li>Produce Professionally Branded Reports</li>
-                                                <li>Gain Competitive Advantage</li>
-                                            </ul>
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="hero-product-image-developers"></div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="hero-product-inner">
+                                        <h4>Research, Calculate & Profit</h4>
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <ul>
+                                                    <li>Predict Potential Plot Viability</li>
+                                                    <li>Analyse Potential Returns</li>
+                                                    <li>Try Different Build Types For Maximum Profit</li>
+                                                    <li>Tap Into Unrivalled Property Data</li>
+                                                </ul>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <ul>
+                                                    <li>Find Gaps In The Market</li>
+                                                    <li>Foresight Into Profit Maximisation</li>
+                                                    <li>Produce Professionally Branded Reports</li>
+                                                    <li>Gain Competitive Advantage</li>
+                                                </ul>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <div className="demo-btn">Create Free Report</div>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <div className="sample-btn">Start 7 Day Trial</div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="demo-btn">Create Free Report</div>
-                                    <div className="sample-btn">Start 7 Day Free Trial</div>
                                 </div>
                             </div>
                         </div>
