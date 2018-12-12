@@ -23,10 +23,10 @@ class PropertyInvestors extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="main-heading">
-                                    <h1>Private & Institutional Investors</h1>
-                                    <h4>If your business sells, manages or owns investment property our
-                                        accurate property investment analysis is an essential tool to add to
-                                        your armoury.</h4>
+                                <h1>Private & Institutional Investors</h1>
+                                <h4>If your business sells, manages or owns investment property our
+                                    accurate property investment analysis is an essential tool to add to
+                                    your armoury.</h4>
                             </div>
                         </div>
                     </div>

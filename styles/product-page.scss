@@ -291,6 +291,24 @@ header {
   }
 }
 
+.illustration-2-estate-agents {
+  width: 100%;
+  min-height: 30rem;
+  margin: 3rem 0rem 3rem 0rem;
+  background-image: url(/static/hv_illustration_2.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 23rem auto;
+  overflow: hidden;
+  @include breakpoint($min: 48rem, $max: 74.9375rem) {
+    font: 700 1.5rem/1.875rem 'Montserrat', sans-serif;
+    background-size: 19.375rem auto;
+  }
+  @include breakpoint($min: 0, $max: 47.9rem) {
+    display: none;
+  }
+}
+
 .illustration-3 {
   width: 100%;
   min-height: 30rem;

@@ -21,7 +21,6 @@ class EstateAgents extends Component {
                     <Header/>
                 </Head>
                 <Layout>
-                    <div className="section">
                     <div className="main-heading">
                         <div className="container">
                             <div className="row">
@@ -37,40 +36,42 @@ class EstateAgents extends Component {
                     </div>
                     <div className="hero-section">
                         <div className="container">
-                                <div className="row">
-                                    <div className="col-6">
-                                        <div className="hero-product-image"></div>
-                                    </div>
-                                    <div className="col-6 ">
-                                        <div className="hero-product-inner">
-                                            <h4>Engage, Generate & Signup</h4>
-                                            <div className="row">
-                                                <div className="col">
-                                                    <ul>
-                                                        <li>Increase Website Traffic</li>
-                                                        <li>Generate Leads</li>
-                                                        <li>Increase Customer Engagement</li>
-                                                        <li>Produce Professionally Branded Reports</li>
-                                                    </ul>
-                                                </div>
-                                                <div className="col">
-                                                    <ul>
-                                                        <li>Promote Agency Brand</li>
-                                                        <li>Gain Competitive Advantage</li>
-                                                        <li>House Valuation Accuracy To Within 3%</li>
-                                                    </ul>
-                                                </div>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="hero-product-image"></div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="hero-product-inner">
+                                        <h4>Engage, Generate & Signup</h4>
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <ul>
+                                                    <li>Increase Website Traffic</li>
+                                                    <li>Generate Leads</li>
+                                                    <li>Increase Customer Engagement</li>
+                                                    <li>Produce Professionally Branded Reports</li>
+                                                </ul>
                                             </div>
-                                            <div className="demo-btn">Start Your Free Trial</div>
-                                            <div className="sample-btn">Sample Report</div>
+                                            <div className="col-md-6">
+                                                <ul>
+                                                    <li>Promote Agency Brand</li>
+                                                    <li>Gain Competitive Advantage</li>
+                                                    <li>House Valuation Accuracy To Within 3%</li>
+                                                </ul>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <div className="demo-btn">Create Free Report</div>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <div className="sample-btn">Start 7 Day Trial</div>
+                                            </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="our-product section">
+                    <div className="our-product">
                         <div className="container">
                             <div className="row">
                                 <div className="col-md-6 product-inner">
@@ -88,7 +89,7 @@ class EstateAgents extends Component {
                                         data sets, giving you and the customer house valuation accuracy to within 3%.</p>
                                 </div>
                                 <div className="col-md-6">
-                                    <div className="illustration-2"></div>
+                                    <div className="illustration-2-estate-agents"></div>
                                 </div>
                             </div>
                         </div>
