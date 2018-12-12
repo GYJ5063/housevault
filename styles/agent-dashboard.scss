@@ -162,6 +162,20 @@ body {
 
     h2 {
       text-align: left;
+      font-size: 3rem;
+      line-height: 3rem;
+    }
+
+    .lead-number {
+      display: flex;
+      align-items: flex-start;
+      .lead-number__green {
+        color: #63a51a;
+      }
+
+      i {
+        margin-left: 5px;
+      }
     }
   }
 }

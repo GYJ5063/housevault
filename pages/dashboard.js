@@ -118,10 +118,13 @@ class Dashboard extends Component {
                                                 <div className='lead-info'>
                                                     <div className='lead-item'>
                                                         <h4>This month</h4>
-                                                        <h2>{data.leads.length}<i style={{color:'green'}} className="fas fa-arrow-up val-logo-awesome"></i></h2>
+                                                        <div className='lead-number'>
+                                                            <h2 className='lead-number__green'>{data.leads.length}</h2>
+                                                            <i style={{color:'#63a51a'}} className="fas fa-arrow-up val-logo-awesome"></i>
+                                                        </div>
                                                     </div>
                                                     <div className='lead-item'>
-                                                        <h4>Last month <i style={{color:'red'}} className="fas fa-arrow-down val-logo-awesome"></i></h4>
+                                                        <h4>Last month</h4>
                                                         <h2>31</h2>
                                                     </div>
                                                 </div>
@@ -131,24 +134,33 @@ class Dashboard extends Component {
                                                     <h4>HotLeads</h4>
                                                     <p>Leads where appointment requested</p>
                                                 </div>
-                                                <h4>Leads last month <i style={{color:'red'}} className="fas fa-arrow-down val-logo-awesome"></i></h4>
-                                                <h2>31</h2>
+                                                <div className='lead-info'>
+                                                    <div className='lead-item'>
+                                                        <h2>31</h2>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div className='col-md-3 card stats-cards'>
                                                 <div className='card-title'>
                                                     <h4>Conversions</h4>
                                                     <p>Converting from a lead to a sale</p>
                                                 </div>
-                                                <h4>Hot Leads</h4>
-                                                <h2>3 <i style={{color:'red'}} className="fas fa-fire val-logo-awesome"></i></h2>
+                                                <div className='lead-info'>
+                                                    <div className='lead-item'>
+                                                        <h2>3</h2>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div className='col-md-3 card stats-cards'>
                                                 <div className='card-title'>
                                                     <h4>Conversion Rate</h4>
                                                     <p>Converting from a lead to a sale</p>
                                                 </div>
-                                                <h4>Conversion rate</h4>
-                                                <h2>23% <i style={{color:'green'}} className="fas fa-chart-pie val-logo-awesome"></i></h2>
+                                                <div className='lead-info'>
+                                                    <div className='lead-item'>
+                                                        <h2>3</h2>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div className='card-deck col-md-12'>
